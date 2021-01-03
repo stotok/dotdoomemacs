@@ -1,0 +1,5 @@
+bo/
+\#*
+*.stackdump
+.DS_Store
+.gitignore.swp

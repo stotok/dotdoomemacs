@@ -1,0 +1,17 @@
+#+title:  Dot Doom Emacs
+#+author: Totok Sulistiomono
+#+author: stotok@kukisku.com
+
+Fork from: https://github.com/zzamboni/dot-doom
+
+[[file:splash/doom-emacs-color.png]]
+
+See [[file:doom.org][doom.org]] for the source configuration file with full commentary. From this file,
+three configuration files are generated: [[file:init.el][init.el]], [[file:packages.el][packages.el]] and [[file:config.el][config.el]].
+These are the files read by Doom Emacs.
+
+zzamboni also made a super simple set of Doom-Emacs custom splash screens, which you can
+find them in the [[https://gitlab.com/zzamboni/dot-doom/-/tree/master/splash][splash/]] directory.
+
+If you are interested in the topic of literate configuration, you should check out
+zzamboni's free book [[https://leanpub.com/lit-config][Literate Configuration]]!
