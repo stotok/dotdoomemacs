@@ -101,7 +101,7 @@
  ;; Ref https://magit.vc/manual/magit/Performance.html
  ;; I don't use VC in addition to Magit, so disable it to keep it from performing
  ;; unnecessary work (see also another option just below)
- vc-handled-backends nil
+ ;; vc-handled-backends nil ; disable due to causing vcs segment gone in doom-modeline
  ;; You can also disable its use for Git but keep using it when using another version
  ;; control system:
  ;; vc-handled-backends (delq 'Git vc-handled-backends)
