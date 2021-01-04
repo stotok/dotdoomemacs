@@ -257,6 +257,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 ;; Well, macros to check system-name.
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
+(defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 #+end_src
 
 ** Customized variables
@@ -746,7 +747,7 @@ Settings related to fonts:
   (setq doom-font (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12))
  )
- (IS-IGL6301W
+ ((or IS-IGL6301W IS-IGD1943U)
   (setq doom-font (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
  )
