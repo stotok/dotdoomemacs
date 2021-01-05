@@ -38,8 +38,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#shrink-whitespace][Shrink Whitespace]]
   - [[#key-bindings][Key bindings]]
     - [[#miscellaneous-keybindings][Miscellaneous keybindings]]
-    - [[#avy-goto-line][Avy-goto-line]]
-    - [[#avy-pop-mark][avy-pop-mark]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
 - [[#org-mode][Org mode]]
   - [[#general-org-configuration][General Org Configuration]]
@@ -85,6 +83,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#how-to][How To]]
   - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
   - [[#ivy][Ivy]]
+  - [[#avy][Avy]]
+    - [[#avy-goto-line][Avy-goto-line]]
+    - [[#avy-pop-mark][avy-pop-mark]]
   - [[#company][Company]]
   - [[#evil-snipe][Evil Snipe]]
 - [[#references][References]]
@@ -1082,28 +1083,6 @@ file types).
 Totok 20201229: disable first
 #+begin_src emacs-lisp :tangle no
 (map! "M-g o" #'counsel-outline)
-#+end_src
-
-*** Avy-goto-line
-
-Replace the default =goto-line= keybindings with =avy-goto-line=, which is more flexible and
-also falls back to =goto-line= if a number is typed.
-
-#+begin_src emacs-lisp
-(map! "M-g g" #'avy-goto-line)
-(map! "M-g M-g" #'avy-goto-line)
-#+end_src
-
-*** avy-pop-mark
-
-This is my first key mapping effort, ref: [[https://rameezkhan.me/adding-keybindings-to-doom-emacs][Adding keybindings to doom emacs]] and
-[[https://github.com/hlissner/doom-emacs/issues/2725][Add keys to evil-easymotion]]. Currently it's not being mapped to any keybinding. So,
-
-#+begin_src emacs-lisp
-;; see ~/.emacs.d/modules/editor/evil/config.el
-(map! :after evil-easymotion
-      :map evilem-map
-      "p" #'avy-pop-mark)
 #+end_src
 
 *** Emulating vi's =%= key
@@ -2622,7 +2601,6 @@ the file itself.
 #+end_src
 
 * How To
-
 ** Directory Navigation with Ivy
 
 =SPC .= simply invokes ivy (unless you've disabled its module). Pressing backspace
@@ -2649,6 +2627,30 @@ it in another window instead.
  )
 #+end_src
 
+** Avy
+
+*** Avy-goto-line
+
+Replace the default =goto-line= keybindings with =avy-goto-line=, which is more flexible and
+also falls back to =goto-line= if a number is typed.
+
+#+begin_src emacs-lisp
+(map! "M-g g" #'avy-goto-line)
+(map! "M-g M-g" #'avy-goto-line)
+#+end_src
+
+*** avy-pop-mark
+
+This is my first key mapping effort, ref: [[https://rameezkhan.me/adding-keybindings-to-doom-emacs][Adding keybindings to doom emacs]] and
+[[https://github.com/hlissner/doom-emacs/issues/2725][Add keys to evil-easymotion]]. Currently it's not being mapped to any keybinding. So,
+
+#+begin_src emacs-lisp
+;; see ~/.emacs.d/modules/editor/evil/config.el
+(map! :after evil-easymotion
+      :map evilem-map
+      "p" #'avy-pop-mark)
+#+end_src
+
 ** Company
 
 Using digits to select company-mode candidates. Ref: [[https://oremacs.com/2017/12/27/company-numbers/][Abo Abo Company Numbers]].
@@ -2669,7 +2671,8 @@ Using digits to select company-mode candidates. Ref: [[https://oremacs.com/2017/
                          (interactive)
                          (company-abort)
                          (self-insert-command 1)))
-   (define-key map (kbd "<return>") nil))
+   (define-key map (kbd "<return>") nil)
+   )
  ;; actual code
  (defun ora-company-number ()
   "Forward to `company-complete-number'.

@@ -378,14 +378,6 @@
  :defer t
  :bind (("M-\\" . shrink-whitespace)))
 
-(map! "M-g g" #'avy-goto-line)
-(map! "M-g M-g" #'avy-goto-line)
-
-;; see ~/.emacs.d/modules/editor/evil/config.el
-(map! :after evil-easymotion
-      :map evilem-map
-      "p" #'avy-pop-mark)
-
 (after! smartparens
   (defun zz/goto-match-paren (arg)
     "Go to the matching paren/bracket, otherwise (or if ARG is not
@@ -1336,6 +1328,14 @@ end repeat\"")))
  (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
  )
 
+(map! "M-g g" #'avy-goto-line)
+(map! "M-g M-g" #'avy-goto-line)
+
+;; see ~/.emacs.d/modules/editor/evil/config.el
+(map! :after evil-easymotion
+      :map evilem-map
+      "p" #'avy-pop-mark)
+
 (after! company
  (setq company-idle-delay 0
        company-show-numbers t
@@ -1351,7 +1351,8 @@ end repeat\"")))
                          (interactive)
                          (company-abort)
                          (self-insert-command 1)))
-   (define-key map (kbd "<return>") nil))
+   (define-key map (kbd "<return>") nil)
+   )
  ;; actual code
  (defun ora-company-number ()
   "Forward to `company-complete-number'.
