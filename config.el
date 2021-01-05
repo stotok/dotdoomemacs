@@ -227,7 +227,21 @@
     "Never trust a man when he's in love, drunk, or running for office"
     "User: the word computer professionals use when they mean 'idiot'"
     "Don't wish it were easier, wish you were better"
-    "Remind yourself that 'done' is better than perfect"))
+    "Remind yourself that 'done' is better than perfect"
+    "Nothing lasts forever but at least we got these memories"
+    "Don't tell people your plans. Show them your results."
+    "In a room full of software architects, if two agree on the same thing, that's a majority"
+    "If you automate a mess, you get an automated mess"
+    "Don't document the problem, fix it"
+    "If the code and the comments do not match, possibly both are incorrect"
+    "I think it's a new feature. Don't tell anyone it was an accient"
+    "When debugging, novices insert corrective code; experts remove defective code"
+    "Adding manpower to a late software project makes it later!"
+    "Better train people and risk they leave - than do nothing and risk they stay"
+    "Good judgment comes from experience, and experience comes from bad judgment"
+    "Don't comment bad code - rewrite it"
+    "It's not a bug - it's an undocumented feature"
+    "Copy and paste is a design error"))
 
 (defun ttk/quotes ()
  (insert
