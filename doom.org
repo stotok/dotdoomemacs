@@ -2438,6 +2438,12 @@ $ export GRAPHVIZ_DOT="/usr/bin/dot" (debian)
 * Language Server Protocol
 ** LSP
 
+Let's try lsp:
+
+- For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp#table-of-contents][Doom LSP]].
+- For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/cc#lsp-servers][LSP servers]].
+- For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/python#language-server-protocol-support][LSP Support]].
+
 #+begin_src emacs-lisp
 (use-package! lsp
   :init
