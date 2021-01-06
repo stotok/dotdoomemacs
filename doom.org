@@ -73,7 +73,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#plantuml][Plantuml]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
-  - [[#python][Python]]
 - [[#spell-checker][Spell Checker]]
 - [[#other-tools][Other tools]]
   - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
@@ -382,7 +381,7 @@ This code is written to the =init.el= to select which modules to load.
 
  :lang
  ;;agda                ; types of types of types of types...
- cc                    ; C/C++/Obj-C madness
+ (cc +lsp)             ; C/C++/Obj-C madness
  ;;clojure             ; java with a lisp
  common-lisp           ; if you've seen one lisp, you've seen them all
  ;;coq                 ; proofs-as-programs
@@ -2439,10 +2438,12 @@ $ export GRAPHVIZ_DOT="/usr/bin/dot" (debian)
 * Language Server Protocol
 ** LSP
 
-Ref: [[https://github.com/hlissner/doom-emacs/issues/3058][The after! statement works with lsp-mode instead of lsp]].
-
 #+begin_src emacs-lisp
-(after! lsp-mode
+(use-package! lsp
+  :init
+  ;;
+  ;; For general LSP, you need :tools lsp
+  ;;
   (setq ;; lsp-auto-configure nil        ; to configure only features u like
         lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
         ;; lsp-auto-execute-action nil
@@ -2463,7 +2464,7 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/3058][The after! statement 
         lsp-ui-imenu-enable nil
         ;;
         ;; see https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-        ;; let's kill them all :)
+        ;; let's kill them all
         lsp-enable-symbol-highlighting nil   ; symbol highlighting
         lsp-enable-snippet nil               ; handle yasnippet by myself
         lsp-ui-doc-show-with-cursor nil      ; cursor hover
@@ -2487,20 +2488,18 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/3058][The after! statement 
         lsp-enable-folding nil        ; use evil-matchit' instead
         ;; lsp-enable-links nil          ; use ffip instead
   )
-)
-#+end_src
-** Python
-#+begin_src emacs-lisp
-(after! python
+  ;;
+  ;; For python, you need to add :lang (python +lsp)
+  ;;
   (setq python-backend 'lsp
-        python-lsp-server 'pyls    ; package lsp-python-ms is disabled, see below
+        python-lsp-server 'pyls
         ;; python-tab-width 4
         python-fill-column 149
         python-formatter 'yapf
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
-        ;; disable these plugins, too noisy :)
+        ;; disable these plugins, too noisy
         lsp-pyls-plugins-pycodestyle-enabled nil
         lsp-pyls-plugins-mccabe-enabled nil
         ;; enable back if you want
@@ -2510,7 +2509,8 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/3058][The after! statement 
         lsp-pyls-plugins-pyflakes-enabled nil
         lsp-pyls-plugins-flake8-enabled nil
         lsp-pyls-plugins-pydocstyle-enabled nil
-  ))
+  )
+)
 #+end_src
 
 * Spell Checker

@@ -1230,7 +1230,11 @@ end repeat\"")))
         ;; 'M-x save-buffer'. Supported format: "svg", "png", "txt" (ascii art)
         plantuml-output-type "svg"))
 
-(after! lsp-mode
+(use-package! lsp
+  :init
+  ;;
+  ;; For general LSP, you need :tools lsp
+  ;;
   (setq ;; lsp-auto-configure nil        ; to configure only features u like
         lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
         ;; lsp-auto-execute-action nil
@@ -1251,7 +1255,7 @@ end repeat\"")))
         lsp-ui-imenu-enable nil
         ;;
         ;; see https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-        ;; let's kill them all :)
+        ;; let's kill them all
         lsp-enable-symbol-highlighting nil   ; symbol highlighting
         lsp-enable-snippet nil               ; handle yasnippet by myself
         lsp-ui-doc-show-with-cursor nil      ; cursor hover
@@ -1275,18 +1279,18 @@ end repeat\"")))
         lsp-enable-folding nil        ; use evil-matchit' instead
         ;; lsp-enable-links nil          ; use ffip instead
   )
-)
-
-(after! python
+  ;;
+  ;; For python, you need to add :lang (python +lsp)
+  ;;
   (setq python-backend 'lsp
-        python-lsp-server 'pyls    ; package lsp-python-ms is disabled, see below
+        python-lsp-server 'pyls
         ;; python-tab-width 4
         python-fill-column 149
         python-formatter 'yapf
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
-        ;; disable these plugins, too noisy :)
+        ;; disable these plugins, too noisy
         lsp-pyls-plugins-pycodestyle-enabled nil
         lsp-pyls-plugins-mccabe-enabled nil
         ;; enable back if you want
@@ -1296,7 +1300,8 @@ end repeat\"")))
         lsp-pyls-plugins-pyflakes-enabled nil
         lsp-pyls-plugins-flake8-enabled nil
         lsp-pyls-plugins-pydocstyle-enabled nil
-  ))
+  )
+)
 
 (after! spell-fu
  (add-hook 'org-mode-hook
