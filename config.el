@@ -346,8 +346,8 @@
  :config
   ;; See list of doom-modeline-def-segment in doom-modeline-segments.el
   (doom-modeline-def-modeline 'ttk/my-simple-line
-   '(bar persp-name buffer-info-simple major-mode minor-modes buffer-position)
-   '(selection-info vcs misc-info))
+   '(bar vcs persp-name buffer-info-simple major-mode minor-modes buffer-position)
+   '(selection-info misc-info))
   ;; Add to `doom-modeline-mode-hook` or other hooks
   (defun setup-custom-doom-modeline ()
    (doom-modeline-set-modeline 'ttk/my-simple-line t))
