@@ -35,6 +35,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#rainbow-delimiters][Rainbow delimiters]]
     - [[#misc][Misc]]
   - [[#modeline][Modeline]]
+    - [[#doom-modeline][doom-modeline]]
+    - [[#which-function-mode][which-function-mode]]
+    - [[#show-current-time][Show current time]]
   - [[#shrink-whitespace][Shrink Whitespace]]
   - [[#key-bindings][Key bindings]]
     - [[#miscellaneous-keybindings][Miscellaneous keybindings]]
@@ -285,10 +288,12 @@ This code is written to the =init.el= to select which modules to load.
  ;;layout              ; auie,ctsrnm is the superior home row
 
  :completion
- (company +childframe) ; the ultimate code completion backend
+ ;(company +childframe) ; the ultimate code completion backend
+ company ; the ultimate code completion backend
  ;;helm                ; the *other* search engine for love and life
  ;;ido                 ; the other *other* search engine...
- (ivy +prescient +childframe
+ ;(ivy +prescient +childframe
+ (ivy +prescient
       -fuzzy +icons)   ; a search engine for love and life
 
  :ui
@@ -344,7 +349,8 @@ This code is written to the =init.el= to select which modules to load.
  vterm                 ; the best terminal emulation in Emacs
 
  :checkers
- (syntax +childframe)  ; tasing you for every semicolon you forget
+ ;(syntax +childframe)  ; tasing you for every semicolon you forget
+ syntax                ; tasing you for every semicolon you forget
  spell                 ; tasing you for misspelling mispelling
  ;;grammar             ; tasing grammar mistake every you make
 
@@ -411,7 +417,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
  ;;ocaml               ; an objective camel
- org
+ (org +pretty)
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
  ;;     +present)        ; organize your plain life in plain text
@@ -428,7 +434,8 @@ This code is written to the =init.el= to select which modules to load.
  ;;rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;;scala               ; java, but good
  ;;scheme              ; a fully conniving family of lisps
- (sh +lsp)             ; she sells {ba,z,fi}sh shells on the C xor
+ ;(sh +lsp)             ; she sells {ba,z,fi}sh shells on the C xor
+ sh                    ; she sells {ba,z,fi}sh shells on the C xor
  ;;sml
  ;;solidity            ; do you need a blockchain? No.
  ;;swift               ; who asked for emoji variables?
@@ -892,7 +899,8 @@ So this code is commented out now.
 
 Truncate lines in =ivy= childframes. [[https://discord.com/channels/406534637242810369/484105925733646336/770756709857755187][Thanks Henrik]]!
 
-#+begin_src emacs-lisp
+Totok disable first
+#+begin_src emacs-lisp :tangle no
 (setq posframe-arghandler
       (lambda (buffer-or-name key value)
         (or (and (eq key :lines-truncate)
@@ -905,18 +913,26 @@ Truncate lines in =ivy= childframes. [[https://discord.com/channels/406534637242
 #+end_src
 
 ** Modeline
+*** doom-modeline
 
 Now is the time to customize modeline, see [[https://seagle0128.github.io/doom-modeline/][doom-modeline]] and the [[https://github.com/seagle0128/doom-modeline#faq][FAQ]].
 If you are interested in adding your own segment, please refer to: [[https://www.reddit.com/r/DoomEmacs/comments/ie96qy/truncating_buffer_name_on_mode_line_doommodeline/][reddit link]].
 #+begin_src emacs-lisp
 (use-package! doom-modeline
  :init
-  (setq doom-modeline-percent-position nil) ; dunwan buffer % at segment buffer-position
+ (setq doom-modeline-percent-position nil ; dunwan buffer % at segment buffer-position
+       doom-modeline-project-detection 'projectile ; how to detect project root
+       doom-modeline-buffer-file-name-style 'buffer-name ; uniquify buffer name
+       doom-modeline-workspace-name nil                  ; need eyebrowse
+       doom-modeline-persp-name t                        ; workspace using persp-mode
+       doom-modeline-display-default-persp-name t        ; workspace using persp-mode
+       doom-modeline-persp-icon t                        ; workspace using persp-mode
+   )
  :config
   ;; See list of doom-modeline-def-segment in doom-modeline-segments.el
   (doom-modeline-def-modeline 'ttk/my-simple-line
-   '(bar vcs buffer-info-simple major-mode minor-modes buffer-position)
-   '(selection-info misc-info))
+   '(bar persp-name buffer-info-simple major-mode minor-modes buffer-position)
+   '(selection-info vcs misc-info))
   ;; Add to `doom-modeline-mode-hook` or other hooks
   (defun setup-custom-doom-modeline ()
    (doom-modeline-set-modeline 'ttk/my-simple-line t))
@@ -924,6 +940,7 @@ If you are interested in adding your own segment, please refer to: [[https://www
 )
 #+end_src
 
+*** which-function-mode
 Emacs comes with a minor mode called which-function-mode that shows the current defun –
 Lisp lingo for a function, but Emacs-speak for anything that would count as one –
 in your modeline by looking at where your point is.
@@ -940,6 +957,8 @@ in your modeline by looking at where your point is.
      '(setq which-func-modes '(c-mode cc-mode c++-mode java-mode org-mode python-mode)))
     (which-func-mode 1)))
 #+end_src
+
+*** Show current time
 
 Show current time manually with =M-x display-time=.
 

@@ -333,24 +333,21 @@
 
 ;;(add-hook 'window-setup-hook #'doom/quickload-session)
 
-(setq posframe-arghandler
-      (lambda (buffer-or-name key value)
-        (or (and (eq key :lines-truncate)
-                 (equal ivy-posframe-buffer
-                        (if (stringp buffer-or-name)
-                            buffer-or-name
-                          (buffer-name buffer-or-name)))
-                 t)
-            value)))
-
 (use-package! doom-modeline
  :init
-  (setq doom-modeline-percent-position nil) ; dunwan buffer % at segment buffer-position
+ (setq doom-modeline-percent-position nil ; dunwan buffer % at segment buffer-position
+       doom-modeline-project-detection 'projectile ; how to detect project root
+       doom-modeline-buffer-file-name-style 'buffer-name ; uniquify buffer name
+       doom-modeline-workspace-name nil                  ; need eyebrowse
+       doom-modeline-persp-name t                        ; workspace using persp-mode
+       doom-modeline-display-default-persp-name t        ; workspace using persp-mode
+       doom-modeline-persp-icon t                        ; workspace using persp-mode
+   )
  :config
   ;; See list of doom-modeline-def-segment in doom-modeline-segments.el
   (doom-modeline-def-modeline 'ttk/my-simple-line
-   '(bar vcs buffer-info-simple major-mode minor-modes buffer-position)
-   '(selection-info misc-info))
+   '(bar persp-name buffer-info-simple major-mode minor-modes buffer-position)
+   '(selection-info vcs misc-info))
   ;; Add to `doom-modeline-mode-hook` or other hooks
   (defun setup-custom-doom-modeline ()
    (doom-modeline-set-modeline 'ttk/my-simple-line t))

@@ -27,10 +27,12 @@
  ;;layout              ; auie,ctsrnm is the superior home row
 
  :completion
- (company +childframe) ; the ultimate code completion backend
+ ;(company +childframe) ; the ultimate code completion backend
+ company ; the ultimate code completion backend
  ;;helm                ; the *other* search engine for love and life
  ;;ido                 ; the other *other* search engine...
- (ivy +prescient +childframe
+ ;(ivy +prescient +childframe
+ (ivy +prescient
       -fuzzy +icons)   ; a search engine for love and life
 
  :ui
@@ -86,7 +88,8 @@
  vterm                 ; the best terminal emulation in Emacs
 
  :checkers
- (syntax +childframe)  ; tasing you for every semicolon you forget
+ ;(syntax +childframe)  ; tasing you for every semicolon you forget
+ syntax                ; tasing you for every semicolon you forget
  spell                 ; tasing you for misspelling mispelling
  ;;grammar             ; tasing grammar mistake every you make
 
@@ -153,7 +156,7 @@
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
  ;;ocaml               ; an objective camel
- org
+ (org +pretty)
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
  ;;     +present)        ; organize your plain life in plain text
@@ -170,7 +173,8 @@
  ;;rust                ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;;scala               ; java, but good
  ;;scheme              ; a fully conniving family of lisps
- (sh +lsp)             ; she sells {ba,z,fi}sh shells on the C xor
+ ;(sh +lsp)             ; she sells {ba,z,fi}sh shells on the C xor
+ sh                    ; she sells {ba,z,fi}sh shells on the C xor
  ;;sml
  ;;solidity            ; do you need a blockchain? No.
  ;;swift               ; who asked for emoji variables?
