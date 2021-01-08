@@ -261,6 +261,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
+(defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 #+end_src
 
 ** Customized variables
@@ -771,7 +772,7 @@ Settings related to fonts:
   (setq doom-font (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12))
  )
- ((or IS-IGL6301W IS-IGD1943U)
+ ((or IS-IGL6301W IS-IGD1943U IS-LOGE)
   (setq doom-font (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
  )

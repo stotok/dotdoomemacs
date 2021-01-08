@@ -61,6 +61,7 @@
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
+(defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 
 (setq-default evil-snipe-override-evil-repeat-keys nil
               doom-localleader-key ","
@@ -265,7 +266,7 @@
   (setq doom-font (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12))
  )
- ((or IS-IGL6301W IS-IGD1943U)
+ ((or IS-IGL6301W IS-IGD1943U IS-LOGE)
   (setq doom-font (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
  )
