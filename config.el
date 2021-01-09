@@ -266,9 +266,13 @@
   (setq doom-font (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12))
  )
- ((or IS-IGL6301W IS-IGD1943U IS-LOGE)
+ ((or IS-IGL6301W IS-IGD1943U)
   (setq doom-font (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
+ )
+ (IS-LOGE
+  (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
+        doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12))
  )
  (t
   (setq doom-font (font-spec :family "monospace" :size 12)
@@ -478,27 +482,6 @@
           key
           (lambda () (interactive) (find-file file)))))
 
-(defun zz/org-download-paste-clipboard (&optional use-default-filename)
-  (interactive "P")
-  (require 'org-download)
-  (let ((file
-         (if (not use-default-filename)
-             (read-string (format "Filename [%s]: "
-                                  org-download-screenshot-basename)
-                          nil nil org-download-screenshot-basename)
-           nil)))
-    (org-download-clipboard file)))
-
-(after! org
-  (setq org-download-method 'directory)
-  (setq org-download-image-dir "images")
-  (setq org-download-heading-lvl nil)
-  (setq org-download-timestamp "%Y%m%d-%H%M%S_")
-  (setq org-image-actual-width 300)
-  (map! :map org-mode-map
-        "C-c l a y" #'zz/org-download-paste-clipboard
-        "C-M-y" #'zz/org-download-paste-clipboard))
-
 (map! :after counsel :map org-mode-map
       "C-c l l h" #'counsel-org-link)
 
@@ -547,15 +530,6 @@ title."
     (let* ((id (zz/org-custom-id-get-create (cdr x))))
       (org-insert-link nil (concat "#" id) (car x)))))
 
-(when IS-MAC
-  (use-package! org-mac-link
-    :after org
-    :config
-    (setq org-mac-grab-Acrobat-app-p nil) ; Disable grabbing from Adobe Acrobat
-    (setq org-mac-grab-devonthink-app-p nil) ; Disable grabbinb from DevonThink
-    (map! :map org-mode-map
-          "C-c g"  #'org-mac-grab-link)))
-
 (after! org-agenda
   (setq org-agenda-prefix-format
         '((agenda . " %i %-12:c%?-12t% s")
@@ -564,28 +538,6 @@ title."
           (tags . " %i %-12:c")
           (search . " %i %-12:c")))
   (setq org-agenda-include-diary t))
-
-(use-package! holidays
-  :after org-agenda
-  :config
-  (require 'mexican-holidays)
-  (require 'swiss-holidays)
-  (setq swiss-holidays-zh-city-holidays
-        '((holiday-float 4 1 3 "Sechseläuten")
-          (holiday-float 9 1 3 "Knabenschiessen")))
-  (setq calendar-holidays
-        (append '((holiday-fixed 1 1 "New Year's Day")
-                  (holiday-fixed 2 14 "Valentine's Day")
-                  (holiday-fixed 4 1 "April Fools' Day")
-                  (holiday-fixed 10 31 "Halloween")
-                  (holiday-easter-etc)
-                  (holiday-fixed 12 25 "Christmas")
-                  (solar-equinoxes-solstices))
-                swiss-holidays
-                swiss-holidays-labour-day
-                swiss-holidays-catholic
-                swiss-holidays-zh-city-holidays
-                holiday-mexican-holidays)))
 
 (use-package! org-super-agenda
   :after org-agenda
@@ -689,65 +641,6 @@ title."
       (goto-char (point-min)))))
 
 (use-package org-pandoc-import)
-
-(defun zz/org-current-headline-number ()
-  "Get the numbering of the innermost headline which contains the
-cursor. Returns nil if the cursor is above the first level-1
-headline, or at the very end of the file. Does not count
-headlines tagged with :noexport:"
-  (require 'org-num)
-  (let ((org-num--numbering nil)
-        (original-point (point)))
-    (save-mark-and-excursion
-      (let ((new nil))
-        (org-map-entries
-         (lambda ()
-           (when (org-at-heading-p)
-             (let* ((level (nth 1 (org-heading-components)))
-                    (numbering (org-num--current-numbering level nil)))
-               (let* ((current-subtree (save-excursion (org-element-at-point)))
-                      (point-in-subtree
-                       (<= (org-element-property :begin current-subtree)
-                           original-point
-                           (1- (org-element-property :end current-subtree)))))
-                 ;; Get numbering to current headline if the cursor is in it.
-                 (when point-in-subtree (push numbering
-                                              new))))))
-         "-noexport")
-        ;; New contains all the trees that contain the cursor (i.e. the
-        ;; innermost and all its parents), so we only return the innermost one.
-        ;; We reverse its order to make it more readable.
-        (reverse (car new))))))
-
-(defun zz/refresh-reveal-prez ()
-  ;; Export the file
-  (org-re-reveal-export-to-html)
-  (let* ((slide-list (zz/org-current-headline-number))
-         (slide-str (string-join (mapcar #'number-to-string slide-list) "-"))
-         ;; Determine the filename to use
-         (file (concat (file-name-directory (buffer-file-name))
-                       (org-export-output-file-name ".html" nil)))
-         ;; Final URL including the slide number
-         (uri (concat "file://" file "#/slide-" slide-str))
-         ;; Get the document title
-         (title (cadar (org-collect-keywords '("TITLE"))))
-         ;; Command to reload the browser and move to the correct slide
-         (cmd (concat
-"osascript -e \"tell application \\\"Brave\\\" to repeat with W in windows
-set i to 0
-repeat with T in (tabs in W)
-set i to i + 1
-if title of T is \\\"" title "\\\" then
-  reload T
-  delay 0.1
-  set URL of T to \\\"" uri "\\\"
-  set (active tab index of W) to i
-end if
-end repeat
-end repeat\"")))
-    ;; Short sleep seems necessary for the file changes to be noticed
-    (sleep-for 0.2)
-    (call-process-shell-command cmd)))
 
 (use-package! org-ml
   :after org)

@@ -752,6 +752,11 @@ To list available fonts in linux:
 $ fc-list | grep InputSans
 #+end_src
 
+To list fonts that emacs can see:
+#+begin_example
+M-x menu-set-font
+#+end_example
+
 My favourite fonts:
 
 + [[https://input.fontbureau.com][Input Mono]]
@@ -772,9 +777,13 @@ Settings related to fonts:
   (setq doom-font (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12))
  )
- ((or IS-IGL6301W IS-IGD1943U IS-LOGE)
+ ((or IS-IGL6301W IS-IGD1943U)
   (setq doom-font (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
+ )
+ (IS-LOGE
+  (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
+        doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12))
  )
  (t
   (setq doom-font (font-spec :family "monospace" :size 12)
@@ -1279,9 +1288,12 @@ First, I define where all my Org-captured things can be found.
         '("~/gtd" "~/Work/work.org.gpg" "~/org/")))
 #+end_src
 
-I define some global keybindings  to open my frequently-used org files (original tip from [[https://sachachua.com/blog/2015/02/learn-take-notes-efficiently-org-mode/][Learn how to take notes more efficiently in Org Mode]]).
+I define some global keybindings  to open my frequently-used org files (original
+tip from [[https://sachachua.com/blog/2015/02/learn-take-notes-efficiently-org-mode/][Learn how to take notes more efficiently in Org Mode]]).
 
-First, I define a helper function to define keybindings that open files. Note that this requires lexical binding to be enabled, so that  the =lambda= creates a closure, otherwise the keybindings don't work.
+First, I define a helper function to define keybindings that open files. Note that
+this requires lexical binding to be enabled, so that  the =lambda= creates a closure,
+otherwise the keybindings don't work.
 
 #+begin_src emacs-lisp
 (defun zz/add-file-keybinding (key file &optional desc)
@@ -1303,7 +1315,8 @@ Totok 20201230 disable first.
 (zz/add-file-keybinding "C-c z d" "~/org/diary.org" "diary.org")
 #+end_src
 
-I'm still trying out =org-roam=, although I have not figured out very well how it works for my setup. For now I configure it to include my whole Org directory.
+I'm still trying out =org-roam=, although I have not figured out very well how it
+works for my setup. For now I configure it to include my whole Org directory.
 
 Totok 20201230 disable first.
 #+begin_src emacs-lisp :tangle no
@@ -1313,12 +1326,16 @@ Totok 20201230 disable first.
 
 ** Capturing images
 
-Using =org-download= to make it easier to insert images into my org notes. I don't like the configuration provided by Doom as part of the =(org +dragndrop)= module, so I install the package by hand and configure it to my liking. I also define a new keybinding to paste an image from the clipboard, asking for the filename first.
+Using =org-download= to make it easier to insert images into my org notes. I don't
+like the configuration provided by Doom as part of the =(org +dragndrop)= module,
+so I install the package by hand and configure it to my liking. I also define a
+new keybinding to paste an image from the clipboard, asking for the filename first.
 
-#+begin_src emacs-lisp :tangle packages.el
+Totok 20210109 disable first
+#+begin_src emacs-lisp :tangle no
 (package! org-download)
 #+end_src
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (defun zz/org-download-paste-clipboard (&optional use-default-filename)
   (interactive "P")
   (require 'org-download)
@@ -1342,26 +1359,32 @@ Using =org-download= to make it easier to insert images into my org notes. I don
 #+end_src
 
 ** Capturing links
-
 *** Capturing and creating internal Org links
 
-I normally use =counsel-org-link= for linking between headings in an Org document. It shows me a searchable list of all the headings in the current document, and allows selecting one, automatically creating a link to it. Since it doesn't have a keybinding by default, I give it one.
+I normally use =counsel-org-link= for linking between headings in an Org document.
+It shows me a searchable list of all the headings in the current document, and
+allows selecting one, automatically creating a link to it. Since it doesn't have
+a keybinding by default, I give it one.
 
 #+begin_src emacs-lisp
 (map! :after counsel :map org-mode-map
       "C-c l l h" #'counsel-org-link)
 #+end_src
 
-I also configure =counsel-outline-display-style= so that only the headline title is inserted into the link, instead of its full path within the document.
+I also configure =counsel-outline-display-style= so that only the headline title
+is inserted into the link, instead of its full path within the document.
 
 #+begin_src emacs-lisp
 (after! counsel
   (setq counsel-outline-display-style 'title))
 #+end_src
 
-=counsel-org-link= uses =org-id= as its backend which generates IDs using UUIDs, and it uses the =ID= property to store them. I prefer using human-readable IDs stored in the =CUSTOM_ID= property of each heading, so we need to make some changes.
+=counsel-org-link= uses =org-id= as its backend which generates IDs using UUIDs,
+and it uses the =ID= property to store them. I prefer using human-readable IDs
+stored in the =CUSTOM_ID= property of each heading, so we need to make some changes.
 
-First, configure =org-id= to use =CUSTOM_ID= if it exists. This affects the links generated by the =org-store-link= function.
+First, configure =org-id= to use =CUSTOM_ID= if it exists. This affects the links
+generated by the =org-store-link= function.
 
 #+begin_src emacs-lisp
 (after! org-id
@@ -1369,7 +1392,10 @@ First, configure =org-id= to use =CUSTOM_ID= if it exists. This affects the link
   (setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id))
 #+end_src
 
-Second, I override =counsel-org-link-action=, which is the function that actually generates and inserts the link, with a custom function that computes and inserts human-readable =CUSTOM_ID= links. This is supported by a few auxiliary functions for generating and storing the =CUSTOM_ID=.
+Second, I override =counsel-org-link-action=, which is the function that actually
+generates and inserts the link, with a custom function that computes and inserts
+human-readable =CUSTOM_ID= links. This is supported by a few auxiliary functions
+for generating and storing the =CUSTOM_ID=.
 
 #+begin_src emacs-lisp
 (defun zz/make-id-for-title (title)
@@ -1415,9 +1441,12 @@ Ta-da! Now using =counsel-org-link= inserts nice, human-readable links.
 
 *** Capturing links to external applications
 
-=org-mac-link= implements the ability to grab links from different Mac apps and insert them in the file. Bind =C-c g= to call =org-mac-grab-link= to choose an application and insert a link.
+=org-mac-link= implements the ability to grab links from different Mac apps
+and insert them in the file. Bind =C-c g= to call =org-mac-grab-link= to choose
+an application and insert a link.
 
-#+begin_src emacs-lisp
+Totok 20210109 disable first
+#+begin_src emacs-lisp :tangle no
 (when IS-MAC
   (use-package! org-mac-link
     :after org
@@ -1430,7 +1459,8 @@ Ta-da! Now using =counsel-org-link= inserts nice, human-readable links.
 
 ** Tasks and agenda
 
-Customize the agenda display to indent todo items by level to show nesting, and enable showing holidays in the Org agenda display.
+Customize the agenda display to indent todo items by level to show nesting,
+and enable showing holidays in the Org agenda display.
 
 #+begin_src emacs-lisp
 (after! org-agenda
@@ -1445,11 +1475,12 @@ Customize the agenda display to indent todo items by level to show nesting, and 
 
 Install and load some custom local holiday lists I'm interested in.
 
-#+begin_src emacs-lisp :tangle packages.el
+Totok 20200109 disable first, original :table packages.el
+#+begin_src emacs-lisp :tangle no
 (package! mexican-holidays)
 (package! swiss-holidays)
 #+end_src
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! holidays
   :after org-agenda
   :config
@@ -1473,7 +1504,8 @@ Install and load some custom local holiday lists I'm interested in.
                 holiday-mexican-holidays)))
 #+end_src
 
-[[https://github.com/alphapapa/org-super-agenda][org-super-agenda]] provides great grouping and customization features to make agenda mode easier to use.
+[[https://github.com/alphapapa/org-super-agenda][org-super-agenda]] provides great grouping and customization features to make
+agenda mode easier to use.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-super-agenda)
@@ -1486,7 +1518,11 @@ Install and load some custom local holiday lists I'm interested in.
   (org-super-agenda-mode))
 #+end_src
 
-I configure =org-archive= to archive completed TODOs by default to the =archive.org= file in the same directory as the source file, under the "date tree" corresponding to the task's CLOSED date - this allows me to easily separate work from non-work stuff. Note that this can be overridden for specific files by specifying the desired value of =org-archive-location= in the =#+archive:= property at the top of the file.
+I configure =org-archive= to archive completed TODOs by default to the =archive.org=
+file in the same directory as the source file, under the "date tree" corresponding
+to the task's CLOSED date - this allows me to easily separate work from non-work stuff.
+Note that this can be overridden for specific files by specifying the desired value of
+=org-archive-location= in the =#+archive:= property at the top of the file.
 
 #+begin_src emacs-lisp
 (use-package! org-archive
@@ -1495,16 +1531,20 @@ I configure =org-archive= to archive completed TODOs by default to the =archive.
   (setq org-archive-location "archive.org::datetree/"))
 #+end_src
 
-I have started using =org-clock= to track time I spend on tasks. Often I restart Emacs for different reasons in the middle of a session, so I want to persist all the running clocks and their history.
+I have started using =org-clock= to track time I spend on tasks. Often I restart Emacs
+for different reasons in the middle of a session, so I want to persist all the running
+clocks and their history.
 
 #+begin_src emacs-lisp
 (after! org-clock
   (setq org-clock-persist t)
   (org-clock-persistence-insinuate))
 #+end_src
+
 ** GTD
 
-I am trying out Trevoke's [[https://github.com/Trevoke/org-gtd.el][org-gtd]]. I haven't figured out my perfect workflow for tracking GTD with Org yet, but this looks like a very promising approach.
+I am trying out Trevoke's [[https://github.com/Trevoke/org-gtd.el][org-gtd]]. I haven't figured out my perfect workflow for
+tracking GTD with Org yet, but this looks like a very promising approach.
 
 Totok 20201230 disable first.
 Original tangle to packages.el.
@@ -1565,7 +1605,8 @@ We define the corresponding Org-GTD capture templates.
                  :kill-buffer t)))
 #+end_src
 
-I set up an advice before =org-capture= to make sure =org-gtd= and =org-capture= are loaded, which triggers the setup of the templates above.
+I set up an advice before =org-capture= to make sure =org-gtd= and =org-capture= are loaded,
+which triggers the setup of the templates above.
 
 #+begin_src emacs-lisp
 (defadvice! +zz/load-org-gtd-before-capture (&optional goto keys)
@@ -1573,11 +1614,13 @@ I set up an advice before =org-capture= to make sure =org-gtd= and =org-capture=
     (require 'org-capture)
     (require 'org-gtd))
 #+end_src
+
 ** Exporting a Curriculum Vitae
 
 I use =ox-awesomecv= from [[https://titan-c.gitlab.io/org-cv/][Org-CV]], to export my [[https://github.com/zzamboni/vita/][Curriculum Vit\aelig]].
 
-My =ox-awesomecv= package is [[https://gitlab.com/Titan-C/org-cv/-/merge_requests/3][not yet merged]] into the main Org-CV distribution, so I install from my branch for now.
+My =ox-awesomecv= package is [[https://gitlab.com/Titan-C/org-cv/-/merge_requests/3][not yet merged]] into the main Org-CV distribution, so I
+install from my branch for now.
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-cv
@@ -1592,16 +1635,25 @@ My =ox-awesomecv= package is [[https://gitlab.com/Titan-C/org-cv/-/merge_request
 
 ** Publishing to LeanPub
 
-I use [[https://leanpub.com/][LeanPub]] for self-publishing [[https://leanpub.com/u/zzamboni][my books]]. Fortunately, it is possible to export from org-mode to both [[https://leanpub.com/lfm/read][LeanPub-flavored Markdown]] and [[https://leanpub.com/markua/read][Markua]], so I can use Org for writing the text and simply export it in the correct format and structure needed by Leanpub.
+I use [[https://leanpub.com/][LeanPub]] for self-publishing [[https://leanpub.com/u/zzamboni][my books]]. Fortunately, it is possible to export
+from org-mode to both [[https://leanpub.com/lfm/read][LeanPub-flavored Markdown]] and [[https://leanpub.com/markua/read][Markua]], so I can use Org for
+writing the text and simply export it in the correct format and structure needed
+by Leanpub.
 
-When I decided to use org-mode to write my books, I looked around for existing modules and code. Here are some of the resources I found:
+When I decided to use org-mode to write my books, I looked around for existing
+modules and code. Here are some of the resources I found:
 - [[http://juanreyero.com/open/ox-leanpub/index.html][Description of ox-leanpub.el]] ([[https://github.com/juanre/ox-leanpub][GitHub repo]]) by [[http://juanreyero.com/about/][Juan Reyero]];
 - [[https://medium.com/@lakshminp/publishing-a-book-using-org-mode-9e817a56d144][Publishing a book using org-mode]] by [[https://medium.com/@lakshminp/publishing-a-book-using-org-mode-9e817a56d144][Lakshmi Narasimhan]];
-- [[http://irreal.org/blog/?p=5313][Publishing a Book with Leanpub and Org Mode]] by Jon Snader (from where I found the links to the above).
+- [[http://irreal.org/blog/?p=5313][Publishing a Book with Leanpub and Org Mode]] by Jon Snader (from where I found
+  the links to the above).
 
-Building upon these, I developed a new =ox-leanpub= package which you can find in MELPA (source at [[https://github.com/zzamboni/ox-leanpub]]), and which I load and configure below.
+Building upon these, I developed a new =ox-leanpub= package which you can find in
+MELPA (source at [[https://github.com/zzamboni/ox-leanpub]]), and which I load and
+configure below.
 
-The =ox-leanpub= module sets up Markua export automatically. I add the code for setting up the Markdown exporter too (I don't use it, but just to keep an eye on any breakage):
+The =ox-leanpub= module sets up Markua export automatically. I add the code for
+setting up the Markdown exporter too (I don't use it, but just to keep an eye
+on any breakage):
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! ox-leanpub
@@ -1615,32 +1667,48 @@ The =ox-leanpub= module sets up Markua export automatically. I add the code for 
   (org-leanpub-book-setup-menu-markdown))
 #+end_src
 
-I highly recommend using Markua rather than Markdown, as it is the format that Leanpub is guaranteed to support in the future, and where most of the new features are being developed.
+I highly recommend using Markua rather than Markdown, as it is the format that
+Leanpub is guaranteed to support in the future, and where most of the new features
+are being developed.
 
-With this setup, I can write my book in org-mode (I usually keep a single =book.org= file at the top of my repository), and then call the corresponding "Book" export commands. The =manuscript= directory, as well as the corresponding =Book.txt= and other necessary files are created and populated automatically.
+With this setup, I can write my book in org-mode (I usually keep a single =book.org=
+file at the top of my repository), and then call the corresponding "Book" export
+commands. The =manuscript= directory, as well as the corresponding =Book.txt= and other
+necessary files are created and populated automatically.
 
-If you are interested in learning more about publishing to Leanpub with Org-mode, check out my book [[https://leanpub.com/emacs-org-leanpub][/Publishing with Emacs, Org-mode and Leanpub/]].
+If you are interested in learning more about publishing to Leanpub with Org-mode,
+check out my book [[https://leanpub.com/emacs-org-leanpub][/Publishing with Emacs, Org-mode and Leanpub/]].
 
 ** Blogging with Hugo
 
-[[https://ox-hugo.scripter.co/][ox-hugo]] is an awesome way to blog from org-mode. It makes it possible for posts in org-mode format to be kept separate, and it generates the Markdown files for Hugo. Hugo [[https://gohugo.io/content-management/formats/][supports org files]], but using ox-hugo has multiple advantages:
+[[https://ox-hugo.scripter.co/][ox-hugo]] is an awesome way to blog from org-mode. It makes it possible for posts in
+org-mode format to be kept separate, and it generates the Markdown files for Hugo.
+Hugo [[https://gohugo.io/content-management/formats/][supports org files]], but using ox-hugo has multiple advantages:
 
-- Parsing is done by org-mode natively, not by an external library. Although goorgeous (used by Hugo) is very good, it still lacks in many areas, which leads to text being interpreted differently as by org-mode.
-- Hugo is left to parse a native Markdown file, which means that many of its features such as shortcodes, TOC generation, etc., can still be used on the generated file.
+- Parsing is done by org-mode natively, not by an external library. Although goorgeous
+  (used by Hugo) is very good, it still lacks in many areas, which leads to text being
+  interpreted differently as by org-mode.
+- Hugo is left to parse a native Markdown file, which means that many of its features
+  such as shortcodes, TOC generation, etc., can still be used on the generated file.
 
-Doom Emacs includes and configures =ox-hugo= as part of its =(:lang org +hugo)= module, so all that's left is to configure some parameters to my liking.
+Doom Emacs includes and configures =ox-hugo= as part of its =(:lang org +hugo)= module,
+so all that's left is to configure some parameters to my liking.
 
-I set =org-hugo-use-code-for-kbd= so that I can apply a custom style to keyboard bindings in my blog.
+I set =org-hugo-use-code-for-kbd= so that I can apply a custom style to keyboard bindings
+in my blog.
 
 #+begin_src emacs-lisp
 (after! ox-hugo
   (setq org-hugo-use-code-for-kbd t))
 #+end_src
+
 ** Code for org-mode macros
 
 Here I define functions which get used in some of my org-mode macros
 
-The first is a support function which gets used in some of the following, to return a string (or an optional custom  string) only if  it  is a non-zero, non-whitespace string,  and =nil= otherwise.
+The first is a support function which gets used in some of the following, to return a
+string (or an optional custom  string) only if  it  is a non-zero, non-whitespace string,
+and =nil= otherwise.
 
 #+begin_src emacs-lisp
 (defun zz/org-if-str (str &optional desc)
@@ -1648,7 +1716,9 @@ The first is a support function which gets used in some of the following, to ret
     (or (org-string-nw-p desc) str)))
 #+end_src
 
-This function receives three arguments, and returns the org-mode code for a link to the Hammerspoon API documentation for the =link= module, optionally to a specific =function=. If =desc= is passed, it is used as the display text, otherwise =section.function= is used.
+This function receives three arguments, and returns the org-mode code for a link to the
+Hammerspoon API documentation for the =link= module, optionally to a specific =function=.
+If =desc= is passed, it is used as the display text, otherwise =section.function= is used.
 
 #+begin_src emacs-lisp
 (defun zz/org-macro-hsapi-code (module &optional func desc)
@@ -1661,7 +1731,10 @@ This function receives three arguments, and returns the org-mode code for a link
                        (zz/org-if-str func (concat "." func)))))))
 #+end_src
 
-Split STR at spaces and wrap each element with the =~= char, separated by =+=. Zero-width spaces are inserted around the plus signs so that they get formatted correctly. Envisioned use is for formatting keybinding descriptions. There are two versions of this function: "outer" wraps each element in  =~=, the "inner" wraps the whole sequence in them.
+Split STR at spaces and wrap each element with the =~= char, separated by =+=. Zero-width
+spaces are inserted around the plus signs so that they get formatted correctly.
+Envisioned use is for formatting keybinding descriptions. There are two versions of this
+function: "outer" wraps each element in  =~=, the "inner" wraps the whole sequence in them.
 
 #+begin_src emacs-lisp
 (defun zz/org-macro-keys-code-outer (str)
@@ -1698,7 +1771,8 @@ Links to a specific section/function of the Lua manual.
 #+end_src
 ** Reformatting an Org buffer
 
-I picked up this little gem in the org mailing list. A function that reformats the current buffer by regenerating the text from its internal parsed representation. Quite amazing.
+I picked up this little gem in the org mailing list. A function that reformats the current
+buffer by regenerating the text from its internal parsed representation. Quite amazing.
 
 #+begin_src emacs-lisp
 (defun zz/org-reformat-buffer ()
@@ -1727,85 +1801,8 @@ I picked up this little gem in the org mailing list. A function that reformats t
 
 ** Reveal.js presentations
 
-I use =org-re-reveal= to make presentations. The functions below help me improve my workflow by automatically exporting the slides whenever I save the file, refreshing the presentation in my browser, and moving it to the slide where the cursor was when I saved the file. This helps keeping a "live" rendering of the presentation next to my Emacs window.
+TBD
 
-The first function is a modified version of the =org-num--number-region= function of the =org-num= package, but modified to only return the numbering of the innermost headline in which the cursor is currently placed.
-
-#+begin_src emacs-lisp
-(defun zz/org-current-headline-number ()
-  "Get the numbering of the innermost headline which contains the
-cursor. Returns nil if the cursor is above the first level-1
-headline, or at the very end of the file. Does not count
-headlines tagged with :noexport:"
-  (require 'org-num)
-  (let ((org-num--numbering nil)
-        (original-point (point)))
-    (save-mark-and-excursion
-      (let ((new nil))
-        (org-map-entries
-         (lambda ()
-           (when (org-at-heading-p)
-             (let* ((level (nth 1 (org-heading-components)))
-                    (numbering (org-num--current-numbering level nil)))
-               (let* ((current-subtree (save-excursion (org-element-at-point)))
-                      (point-in-subtree
-                       (<= (org-element-property :begin current-subtree)
-                           original-point
-                           (1- (org-element-property :end current-subtree)))))
-                 ;; Get numbering to current headline if the cursor is in it.
-                 (when point-in-subtree (push numbering
-                                              new))))))
-         "-noexport")
-        ;; New contains all the trees that contain the cursor (i.e. the
-        ;; innermost and all its parents), so we only return the innermost one.
-        ;; We reverse its order to make it more readable.
-        (reverse (car new))))))
-#+end_src
-
-The =zz/refresh-reveal-prez= function makes use of the above to perform the presentation export, refresh and update. You can use it by adding an after-save hook like this (add at the end of the file):
-
-#+begin_example
-,* Local variables :ARCHIVE:noexport:
-# Local variables:
-# eval: (add-hook! after-save :append :local (zz/refresh-reveal-prez))
-# end:
-#+end_example
-
-*Note #1:* This is specific to my OS (macOS) and the browser I use (Brave). I will make it more generic in the future, but for now feel free to change it to your needs.
-
-*Note #2:* the presentation must be already open in the browser, so you must run "Export to reveal.js -> To file and browse" (=C-c C-e v b=) once by hand.
-
-#+begin_src emacs-lisp
-(defun zz/refresh-reveal-prez ()
-  ;; Export the file
-  (org-re-reveal-export-to-html)
-  (let* ((slide-list (zz/org-current-headline-number))
-         (slide-str (string-join (mapcar #'number-to-string slide-list) "-"))
-         ;; Determine the filename to use
-         (file (concat (file-name-directory (buffer-file-name))
-                       (org-export-output-file-name ".html" nil)))
-         ;; Final URL including the slide number
-         (uri (concat "file://" file "#/slide-" slide-str))
-         ;; Get the document title
-         (title (cadar (org-collect-keywords '("TITLE"))))
-         ;; Command to reload the browser and move to the correct slide
-         (cmd (concat
-"osascript -e \"tell application \\\"Brave\\\" to repeat with W in windows
-set i to 0
-repeat with T in (tabs in W)
-set i to i + 1
-if title of T is \\\"" title "\\\" then
-  reload T
-  delay 0.1
-  set URL of T to \\\"" uri "\\\"
-  set (active tab index of W) to i
-end if
-end repeat
-end repeat\"")))
-    ;; Short sleep seems necessary for the file changes to be noticed
-    (sleep-for 0.2)
-    (call-process-shell-command cmd)))
-#+end_src
 ** Programming Org
 
 Trying out [[https://github.com/ndwarshuis/org-ml][org-ml]] for easier access to Org objects.

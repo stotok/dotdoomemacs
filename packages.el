@@ -62,11 +62,6 @@
 ;; https://github.com/jcpetkovich/shrink-whitespace.el
 (package! shrink-whitespace)
 
-(package! org-download)
-
-(package! mexican-holidays)
-(package! swiss-holidays)
-
 (package! org-super-agenda)
 
 (package! org-cv
