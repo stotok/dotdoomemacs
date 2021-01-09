@@ -417,7 +417,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
  ;;ocaml               ; an objective camel
- (org +pretty)
+ (org +present)        ; organize your plain life in plain text
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
  ;;     +present)        ; organize your plain life in plain text
@@ -759,7 +759,7 @@ M-x menu-set-font
 
 My favourite fonts:
 
-+ [[https://input.fontbureau.com][Input Mono]]
++ [[https://input.fontbureau.com][Input]]
 + [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]]
 
 Settings related to fonts:
@@ -797,7 +797,7 @@ so I can mix source and prose blocks in the same document.
 
 #+begin_src emacs-lisp
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
-(setq mixed-pitch-variable-pitch-cursor nil)
+(setq mixed-pitch-variable-pitch-cursor t)
 #+end_src
 
 *** Themes

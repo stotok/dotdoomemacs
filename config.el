@@ -281,7 +281,7 @@
 )
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
-(setq mixed-pitch-variable-pitch-cursor nil)
+(setq mixed-pitch-variable-pitch-cursor t)
 
 (setq doom-theme 'spacemacs-light)
 ;; (setq doom-theme 'doom-nord-light)
