@@ -86,12 +86,21 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
   - [[#ivy][Ivy]]
   - [[#avy][Avy]]
-    - [[#avy-goto-line][Avy-goto-line]]
+    - [[#goto-line][goto-line]]
     - [[#avy-pop-mark][avy-pop-mark]]
+    - [[#avy-goto-line-same-column][avy-goto-line-same-column]]
   - [[#company][Company]]
   - [[#evil-snipe][Evil Snipe]]
+  - [[#evil-escape][Evil Escape]]
 - [[#references][References]]
   - [[#keybindings][Keybindings]]
+- [[#practice][Practice]]
+  - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
+    - [[#with-avy][With avy]]
+    - [[#with-evilmotion][With evilmotion]]
+  - [[#delete-n-block-of-chars][Delete n block of chars]]
+    - [[#with-avy-1][With avy]]
+    - [[#with-evil-snipe][With evil-snipe]]
 
 * Doom Config Files
 
@@ -2668,8 +2677,7 @@ it in another window instead.
 #+end_src
 
 ** Avy
-
-*** Avy-goto-line
+*** goto-line
 
 Replace the default =goto-line= keybindings with =avy-goto-line=, which is more flexible and
 also falls back to =goto-line= if a number is typed.
@@ -2688,7 +2696,28 @@ This is my first key mapping effort, ref: [[https://rameezkhan.me/adding-keybind
 ;; see ~/.emacs.d/modules/editor/evil/config.el
 (map! :after evil-easymotion
       :map evilem-map
+      "l" #'avy-goto-line
       "p" #'avy-pop-mark)
+#+end_src
+
+To browse both local and global mark rings:
+#+begin_example
+M-x counsel-mark-ring (SPC s r)
+#+end_example
+
+*** avy-goto-line-same-column
+
+Ref: [[https://www.reddit.com/r/emacs/comments/6gbf5i/anyone_use_packages_such_as_avy_or_evilsnipe_to][reddit]]
+
+#+begin_src emacs-lisp :tangle no
+(defun avy-goto-line-same-column ()
+    (interactive)
+    (let ((col (current-column)))
+    (avy-goto-line)
+    (move-to-column col)))
+(declare-function 'avy-goto-line-same-column "avy")
+(evil-define-avy-motion avy-goto-line-same-column inclusive)
+(define-key evil-motion-state-map (kbd "g l") #'evil-avy-goto-line-same-column)
 #+end_src
 
 ** Company
@@ -2698,46 +2727,57 @@ Using digits to select company-mode candidates. Ref: [[https://oremacs.com/2017/
 #+begin_src emacs-lisp
 (after! company
  (setq company-idle-delay 0
+       company-minimum-prefix-length 2
        company-show-numbers t
   )
+ ;; make aborting less annoying
+ (add-hook 'evil-normal-state-entry-hook #'company-abort)
 
- ;; using digits to select company-mode candidates
- ;; https://oremacs.com/2017/12/27/company-numbers/
- ;; add some bindings
- (let ((map company-active-map))
-   (mapc (lambda (x) (define-key map (format "%d" x) 'ora-company-number))
-   (number-sequence 0 9))
-   (define-key map " " (lambda ()
-                         (interactive)
-                         (company-abort)
-                         (self-insert-command 1)))
-   (define-key map (kbd "<return>") nil)
-   )
- ;; actual code
- (defun ora-company-number ()
-  "Forward to `company-complete-number'.
-
-Unless the number is potentially part of the candidate.
-In that case, insert the number."
-  (interactive)
-  (let* ((k (this-command-keys))
-        (re (concat "^" company-prefix k)))
-    (if (cl-find-if (lambda (s) (string-match re s))
-                    company-candidates)
-        (self-insert-command 1)
-      (company-complete-number
-      (if (equal k "0")
-          10
-        (string-to-number k))))))
-  ;;
-  ;; end of using digits to select company-mode candidates
-  ;;
+;;  ;; using digits to select company-mode candidates
+;;  ;; https://oremacs.com/2017/12/27/company-numbers/
+;;  ;; add some bindings
+;;  (let ((map company-active-map))
+;;    (mapc (lambda (x) (define-key map (format "%d" x) 'ora-company-number))
+;;    (number-sequence 0 9))
+;;    (define-key map " " (lambda ()
+;;                          (interactive)
+;;                          (company-abort)
+;;                          (self-insert-command 1)))
+;;    (define-key map (kbd "<return>") nil)
+;;    )
+;;  ;; actual code
+;;  (defun ora-company-number ()
+;;   "Forward to `company-complete-number'.
+;;
+;; Unless the number is potentially part of the candidate.
+;; In that case, insert the number."
+;;   (interactive)
+;;   (let* ((k (this-command-keys))
+;;         (re (concat "^" company-prefix k)))
+;;     (if (cl-find-if (lambda (s) (string-match re s))
+;;                     company-candidates)
+;;         (self-insert-command 1)
+;;       (company-complete-number
+;;       (if (equal k "0")
+;;           10
+;;         (string-to-number k))))))
+;;   ;;
+;;   ;; end of using digits to select company-mode candidates
+;;   ;;
  )
 #+end_src
 
 ** Evil Snipe
 
 See [[https://github.com/hlissner/evil-snipe][evil-snipe]] and [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh's Doom Emacs Workflows]].
+
+** Evil Escape
+I don't use =evil-escape-mode= and I heard it contributes to a typing delay.
+So, let's just diasable it.
+
+#+begin_src emacs-list
+(after! evil-escape (evil-escape-mode -1))
+#+end_src
 
 * References
 
@@ -2772,3 +2812,29 @@ settings for performance optimization, package management, commonly used package
 - [[https://github.com/hlissner/doom-emacs/issues/2105][Define keybindings for logview major-mode]].
 - [[https://github.com/hlissner/doom-emacs/issues/3246][Change the leader keybinding based on the active mode]].
 - [[https://www.reddit.com/r/emacs/comments/irhe5d/doomemacs_binding_functions_to_keystrokes_greater/][Binding functions to keystrokes greater than two]].
+
+* Practice
+** Delete n lines including current line
+*** With avy
+#+begin_example
+d        (delete)
+g s l    (avy-goto-line)
+#+end_example
+*** With evilmotion
+#+begin_example
+d        (delete)
+5 j      (5 down the line)
+#+end_example
+** Delete n block of chars
+*** With avy
+#+begin_example
+d            (delete)
+g s s        (evil-avy-goto-char-2)
+    or
+g s <SPACE>  (evil-avy-goto-char-timer)
+#+end_example
+*** With evil-snipe
+#+begin_example
+d            (delete)
+s 2chars     (evil snipe)
+#+end_example
