@@ -263,32 +263,36 @@
 
 (cond
  (IS-SIDESTEP
-  (setq doom-font (font-spec :family "menlo" :size 12)
-        doom-variable-pitch-font (font-spec :family "menlo" :size 12))
- )
+  (setq doom-font                (font-spec :family "menlo" :size 12)
+        doom-variable-pitch-font (font-spec :family "menlo" :size 12)
+        doom-big-font            (font-spec :family "menlo" :size 18)))
  ((or IS-IGL6301W IS-IGD1943U)
-  (setq doom-font (font-spec :family "Roboto Mono" :size 12)
-        doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12))
- )
+  (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
+        doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
+        doom-big-font            (font-spec :family "Roboto Mono" :size 18)))
  (IS-LOGE
-  (setq doom-font (font-spec :family "Input Mono Narrow" :size 12)
-        doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12))
- )
+  (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
+        doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
+        doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
  (t
-  (setq doom-font (font-spec :family "monospace" :size 12)
-        doom-variable-pitch-font (font-spec :family "Tahoma" :size 13))
- )
-)
+  (setq doom-font                (font-spec :family "monospace" :size 12)
+        doom-variable-pitch-font (font-spec :family "monospace" :size 12)
+        doom-big-font            (font-spec :family "monospace" :size 18))))
 
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
 (setq mixed-pitch-variable-pitch-cursor t)
 
-(setq doom-theme 'spacemacs-light)
-;; (setq doom-theme 'doom-nord-light)
-;; (setq doom-theme 'doom-nord)
-;; (setq doom-theme 'doom-solarized-light)
 (setq spacemacs-theme-comment-bg nil)   ; why the heck got background :(
 ;;(setq spacemacs-theme-org-height nil) ; don't change height of org-mode headlines
+
+;; select theme
+(cond
+ (IS-IGD1943U
+  (setq doom-theme 'doom-one-light))
+ (IS-IGL6301W
+  (setq doom-theme 'spacemacs-light))
+ (t
+  (setq doom-theme 'spacemacs-light)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
