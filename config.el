@@ -1201,6 +1201,62 @@ title."
   )
 )
 
+(after! company
+ (setq company-backends '(company-capf
+                          company-keywords
+                          company-semantic
+                          company-files
+                          company-etags
+                          company-elisp
+                          company-clang
+                          ;; company-irony-c-headers
+                          ;; company-irony
+                          ;; company-jedi
+                          company-cmake
+                          company-ispell
+                          company-yasnippet))
+ (setq company-idle-delay 0
+       company-echo-delay 0
+       company-minimum-prefix-length 2
+       company-show-numbers t
+       company-tooltip-limit 20
+       company-dabbrev-downcase nil)
+ ;; make aborting less annoying
+ (add-hook 'evil-normal-state-entry-hook #'company-abort)
+
+;;  ;; using digits to select company-mode candidates
+;;  ;; https://oremacs.com/2017/12/27/company-numbers/
+;;  ;; add some bindings
+;;  (let ((map company-active-map))
+;;    (mapc (lambda (x) (define-key map (format "%d" x) 'ora-company-number))
+;;    (number-sequence 0 9))
+;;    (define-key map " " (lambda ()
+;;                          (interactive)
+;;                          (company-abort)
+;;                          (self-insert-command 1)))
+;;    (define-key map (kbd "<return>") nil)
+;;    )
+;;  ;; actual code
+;;  (defun ora-company-number ()
+;;   "Forward to `company-complete-number'.
+;;
+;; Unless the number is potentially part of the candidate.
+;; In that case, insert the number."
+;;   (interactive)
+;;   (let* ((k (this-command-keys))
+;;         (re (concat "^" company-prefix k)))
+;;     (if (cl-find-if (lambda (s) (string-match re s))
+;;                     company-candidates)
+;;         (self-insert-command 1)
+;;       (company-complete-number
+;;       (if (equal k "0")
+;;           10
+;;         (string-to-number k))))))
+;;   ;;
+;;   ;; end of using digits to select company-mode candidates
+;;   ;;
+ )
+
 (after! epa
   (set (if EMACS27+
            'epg-pinentry-mode
@@ -1243,44 +1299,3 @@ title."
       :map evilem-map
       "l" #'avy-goto-line
       "p" #'avy-pop-mark)
-
-(after! company
- (setq company-idle-delay 0
-       company-minimum-prefix-length 2
-       company-show-numbers t
-  )
- ;; make aborting less annoying
- (add-hook 'evil-normal-state-entry-hook #'company-abort)
-
-;;  ;; using digits to select company-mode candidates
-;;  ;; https://oremacs.com/2017/12/27/company-numbers/
-;;  ;; add some bindings
-;;  (let ((map company-active-map))
-;;    (mapc (lambda (x) (define-key map (format "%d" x) 'ora-company-number))
-;;    (number-sequence 0 9))
-;;    (define-key map " " (lambda ()
-;;                          (interactive)
-;;                          (company-abort)
-;;                          (self-insert-command 1)))
-;;    (define-key map (kbd "<return>") nil)
-;;    )
-;;  ;; actual code
-;;  (defun ora-company-number ()
-;;   "Forward to `company-complete-number'.
-;;
-;; Unless the number is potentially part of the candidate.
-;; In that case, insert the number."
-;;   (interactive)
-;;   (let* ((k (this-command-keys))
-;;         (re (concat "^" company-prefix k)))
-;;     (if (cl-find-if (lambda (s) (string-match re s))
-;;                     company-candidates)
-;;         (self-insert-command 1)
-;;       (company-complete-number
-;;       (if (equal k "0")
-;;           10
-;;         (string-to-number k))))))
-;;   ;;
-;;   ;; end of using digits to select company-mode candidates
-;;   ;;
- )
