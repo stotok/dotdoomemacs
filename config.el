@@ -1201,13 +1201,6 @@ title."
   )
 )
 
-(after! spell-fu
- (add-hook 'org-mode-hook
-   (lambda ()
-     (setq spell-fu-faces-exclude '(org-meta-line))
-     (spell-fu-mode)))
- )
-
 (after! epa
   (set (if EMACS27+
            'epg-pinentry-mode

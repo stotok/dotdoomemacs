@@ -360,7 +360,7 @@ This code is written to the =init.el= to select which modules to load.
  :checkers
  ;(syntax +childframe)  ; tasing you for every semicolon you forget
  syntax                ; tasing you for every semicolon you forget
- spell                 ; tasing you for misspelling mispelling
+ ;;spell                 ; tasing you for misspelling mispelling
  ;;grammar             ; tasing grammar mistake every you make
 
  :tools
@@ -2533,18 +2533,31 @@ Let's try lsp:
 #+end_src
 
 * Spell Checker
-Toggle ON for org-mode.
 
-#+begin_src emacs-lisp
+Toggle ON for org-mode. Well, it's too noisy. Remove the checker =spell=
+from =init.el=.
+
+#+begin_src emacs-lisp :tangle no
 (after! spell-fu
  (add-hook 'org-mode-hook
    (lambda ()
-     (setq spell-fu-faces-exclude '(org-meta-line))
-     (spell-fu-mode)))
- )
+     (setq spell-fu-faces-exclude '(org-meta-line org-link org-code))
+     (spell-fu-mode))))
 #+end_src
 
-Globally you can toggle with 'M-x global-spell-fu-mode'.
+Another variation,
+
+#+begin_src emacs-lisp :tangle no
+(use-package! spell-fu
+  :hook (org-mode . (lambda ()
+                      (setq spell-fu-faces-exclude
+                            '(org-meta-line org-link org-code))
+                      (spell-fu-mode)
+                      )))
+#+end_src
+
+Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
+in =~/.emacs.d/.local/etc/spell-fu=.
 
 * Other tools
 ** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
