@@ -1003,7 +1003,7 @@ title."
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
       :localleader
-      :prefix "c"
+      :prefix "d"    ;; "c" already taken by ccls-show-caller: modules/lang/cc/config.el
         "<" 'c-up-conditional-with-else
         ">" '(lambda (count) (interactive "p") (c-up-conditional-with-else (- count)))
         "A" 'c-beginning-of-defun

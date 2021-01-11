@@ -92,6 +92,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#avy-goto-line-same-column][avy-goto-line-same-column]]
   - [[#evil-snipe][Evil Snipe]]
   - [[#evil-escape][Evil Escape]]
+  - [[#map-unmap-keybinding][Map Unmap keybinding]]
 - [[#references][References]]
   - [[#keybindings][Keybindings]]
 - [[#practice][Practice]]
@@ -2275,7 +2276,7 @@ Some keybindings.
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
       :localleader
-      :prefix "c"
+      :prefix "d"    ;; "c" already taken by ccls-show-caller: modules/lang/cc/config.el
         "<" 'c-up-conditional-with-else
         ">" '(lambda (count) (interactive "p") (c-up-conditional-with-else (- count)))
         "A" 'c-beginning-of-defun
@@ -2812,6 +2813,14 @@ So, let's just diasable it.
 #+begin_src emacs-list
 (after! evil-escape (evil-escape-mode -1))
 #+end_src
+
+** Map Unmap keybinding
+
+Ref:
+- [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/config.el][doom config.el]]
+- [[https://github.com/hlissner/doom-emacs/issues/1797][Unmap keys with prefix]]
+- [[https://github.com/hlissner/doom-emacs/issues/820][changing leader key to F13]]
+- [[https://github.com/hlissner/doom-emacs/issues/814][howto unmap keymap prefix set via map!]]
 
 * References
 
