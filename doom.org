@@ -102,6 +102,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#delete-n-block-of-chars][Delete n block of chars]]
     - [[#with-avy-1][With avy]]
     - [[#with-evil-snipe][With evil-snipe]]
+  - [[#evil-multiedit][Evil-multiedit]]
+  - [[#narrowing][Narrowing]]
 
 * Doom Config Files
 
@@ -2868,6 +2870,7 @@ g s l    (avy-goto-line)
 d        (delete)
 5 j      (5 down the line)
 #+end_example
+
 ** Delete n block of chars
 *** With avy
 #+begin_example
@@ -2880,4 +2883,48 @@ g s <SPACE>  (evil-avy-goto-char-timer)
 #+begin_example
 d            (delete)
 s 2chars     (evil snipe)
+#+end_example
+
+** Evil-multiedit
+Ref: [[https://www.youtube.com/watch?v=zXdT5jY_ui0&t=112s][Emacs Doom E08: Multiple cursor with evil-multiedit]].
+
+Basic usage:
+#+begin_example
+- Select a region  (visual selection)
+- M-d              (find occurance downwards)
+- M-D              (find occurance upwards)
+- C-n              (go to next occurance)
+- C-p              (go to previous occurance)
+- Enter            (to exclude current occurance)
+- d e              (edge case: delete last word in occurance)
+#+end_example
+
+#+begin_example
+One morning, when Gregor Samsa woke from troubled dreams, he found himself
+transformed in his bed into a horrible vermin. He lay on this armour-like back,
+and if he lifted his head a little he could see his bbrown belly, slightly domed
+and divided by arches into stiff sections. The bedding was hardly able to cover
+it and seemed ready to slide off any moment.
+
+One morning, when Gregor Samsa woke from troubled dreams, he found himself
+transformed in his bed into a horrible vermin. He lay on this armour-like back,
+and if he lifted his head a little he could see his bbrown belly, slightly domed
+and divided by arches into stiff sections. The bedding was hardly able to cover
+it and seemed ready to slide off any moment.
+
+One morning, when Gregor Samsa woke from troubled dreams, he found himself
+transformed in his bed into a horrible vermin. He lay on this armour-like back,
+and if he lifted his head a little he could see his bbrown belly, slightly domed
+and divided by arches into stiff sections. The bedding was hardly able to cover
+it and seemed ready to slide off any moment.
+#+end_example
+
+** Narrowing
+Ref: [[https://www.youtube.com/watch?v=4bVMXXxPiQs][Narrowing]]
+
+#+begin_example
+- Select region of lines                 (visual line)
+- M-x doom/narrow-buffer-indirectly
+- Do something, e.g. evil-multiedit
+- z N                                    (M-x doom/widen-indirectly-narrowed-buffer)
 #+end_example
