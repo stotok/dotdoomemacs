@@ -84,7 +84,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#unfill][Unfill]]
   - [[#annotate][Annotate]]
 - [[#how-to][How To]]
-  - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
+  - [[#dir-navigation-with-ivy][Dir Navigation with Ivy]]
   - [[#ivy][Ivy]]
   - [[#avy][Avy]]
     - [[#goto-line][goto-line]]
@@ -377,7 +377,8 @@ This code is written to the =init.el= to select which modules to load.
  ;;gist                ; interacting with github gists
  lookup                ; navigate your code and its documentation
  lsp
- (magit +forge)        ; a git porcelain for Emacs
+ magit                 ; a git porcelain for Emacs
+ ;;(magit +forge)        ; a git porcelain for Emacs
  ;;make                ; run make tasks from Emacs
  pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements
@@ -2734,7 +2735,7 @@ the file itself.
 #+end_src
 
 * How To
-** Directory Navigation with Ivy
+** Dir Navigation with Ivy
 
 =SPC .= simply invokes ivy (unless you've disabled its module). Pressing backspace
 or typing =../= will go up one directory. Typing =/= (or =TAB= twice) will move down the
@@ -2906,13 +2907,13 @@ and if he lifted his head a little he could see his bbrown belly, slightly domed
 and divided by arches into stiff sections. The bedding was hardly able to cover
 it and seemed ready to slide off any moment.
 
-One morning, when Gregor Samsa woke from troubled dreams, he found himself
+One morning, when  Samsa woke from troubled dreams, he found himself
 transformed in his bed into a horrible vermin. He lay on this armour-like back,
 and if he lifted his head a little he could see his bbrown belly, slightly domed
 and divided by arches into stiff sections. The bedding was hardly able to cover
 it and seemed ready to slide off any moment.
 
-One morning, when Gregor Samsa woke from troubled dreams, he found himself
+One morning, when  Samsa woke from troubled dreams, he found himself
 transformed in his bed into a horrible vermin. He lay on this armour-like back,
 and if he lifted his head a little he could see his bbrown belly, slightly domed
 and divided by arches into stiff sections. The bedding was hardly able to cover
