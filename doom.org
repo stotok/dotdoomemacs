@@ -816,28 +816,25 @@ so I can mix source and prose blocks in the same document.
 
 *** Themes
 
-Set the theme to use. I like the [[https://github.com/nashamri/spacemacs-theme][Spacemacs-Light]], which does not come with
-Doom, so we need to install it from =package.el=:
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! spacemacs-theme)
-#+end_src
-
-And then from =config.el= we specify the theme to use.
-But, I don't like background color on comment for spacemacs theme, so disable it.
+See
+- [[https://github.com/hlissner/emacs-doom-themes/issues/404][How to best cusomize doom theme]].
+- [[https://www.reddit.com/r/emacs/comments/jushaq/changing_treemacs_hlline_color_on_doom_emacs][Change treemacs hl-line color on doom emacs]].
+- [[https://stackoverflow.com/questions/62578682/emacs-multiple-hl-line-faces-change-line-hook][Emacs multiple hl-line faces/change line hook?]].
+- Later see [[https://github.com/hlissner/doom-emacs/issues/1988][this]].
+- Also [[https://github.com/hlissner/emacs-doom-themes/issues/342][this]].
+- [[https://github.com/hlissner/emacs-doom-themes/issues/204][This]] also.
+- Probably [[https://gitea.esy.fun/yogsototh/emacs-doom-themes/commit/c4babe81c5466fbea5a9e4c35673d0d27d7d5b28][this]] also.
 
 #+begin_src emacs-lisp
-(setq spacemacs-theme-comment-bg nil)   ; why the heck got background :(
-;;(setq spacemacs-theme-org-height nil) ; don't change height of org-mode headlines
-
 ;; select theme
 (cond
  (IS-IGD1943U
-  (setq doom-theme 'doom-one-light))
+  (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  (setq doom-theme 'spacemacs-light))
+  ;; (setq doom-theme 'ttk-doom-solarized-light))
+  (setq doom-theme 'ttk-doom-zenburn))
  (t
-  (setq doom-theme 'spacemacs-light)))
+  (setq doom-theme 'ttk-doom-zenburn)))
 #+end_src
 
 *** Line settings
@@ -859,31 +856,6 @@ toggle-truncate-lines.
 (map! :leader
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
-#+end_src
-
-I like to have underline whole line at cursor.
-#+begin_src emacs-lisp :tangle packages.el
-(package! hl-line)
-#+end_src
-#+begin_src emacs-lisp
-(after! hl-line
-  :init
-  ;; code here will run immediately
-  :config
-  ;; code here will run after the package is loaded
-  ;;
-  ;; get the right time to set face of hl-line is a bit tricky
-  ;; each theme has its own way to set and clear
-  ;; hence, call this function after switching to a theme
-  ;; i just call this function manually after switching theme
-  (defun ttk-hl-line-underline-on ()
-   "Enable hl-line underline"
-   (interactive)
-   (set-face-background 'hl-line nil)
-   (set-face-foreground 'hl-line nil)
-   (set-face-underline 'hl-line t))
-  (ttk-hl-line-underline-on)
-)
 #+end_src
 
 *** Rainbow delimiters

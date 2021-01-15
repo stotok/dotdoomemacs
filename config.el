@@ -282,17 +282,15 @@
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
 (setq mixed-pitch-variable-pitch-cursor t)
 
-(setq spacemacs-theme-comment-bg nil)   ; why the heck got background :(
-;;(setq spacemacs-theme-org-height nil) ; don't change height of org-mode headlines
-
 ;; select theme
 (cond
  (IS-IGD1943U
-  (setq doom-theme 'doom-one-light))
+  (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  (setq doom-theme 'spacemacs-light))
+  ;; (setq doom-theme 'ttk-doom-solarized-light))
+  (setq doom-theme 'ttk-doom-zenburn))
  (t
-  (setq doom-theme 'spacemacs-light)))
+  (setq doom-theme 'ttk-doom-zenburn)))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -303,25 +301,6 @@
 (map! :leader
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
-
-(after! hl-line
-  :init
-  ;; code here will run immediately
-  :config
-  ;; code here will run after the package is loaded
-  ;;
-  ;; get the right time to set face of hl-line is a bit tricky
-  ;; each theme has its own way to set and clear
-  ;; hence, call this function after switching to a theme
-  ;; i just call this function manually after switching theme
-  (defun ttk-hl-line-underline-on ()
-   "Enable hl-line underline"
-   (interactive)
-   (set-face-background 'hl-line nil)
-   (set-face-foreground 'hl-line nil)
-   (set-face-underline 'hl-line t))
-  (ttk-hl-line-underline-on)
-)
 
 ;;
 ;; balanced and colorful delimiters

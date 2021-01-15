@@ -53,10 +53,6 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;;(unpin! t)
 
-(package! spacemacs-theme)
-
-(package! hl-line)
-
 (package! rainbow-delimiters)
 
 ;; https://github.com/jcpetkovich/shrink-whitespace.el
