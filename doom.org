@@ -27,14 +27,13 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#mac-modifiers][Mac Modifiers]]
   - [[#frame-title][Frame Title]]
   - [[#persist-frame-geometry][Persist Frame Geometry]]
-  - [[#visual-and-faces][Visual and Faces]]
-    - [[#dashboard][Dashboard]]
-    - [[#fonts][Fonts]]
-    - [[#themes][Themes]]
-    - [[#line-settings][Line settings]]
-    - [[#rainbow-mode][Rainbow mode]]
-    - [[#rainbow-delimiters][Rainbow delimiters]]
-    - [[#misc][Misc]]
+  - [[#dashboard][Dashboard]]
+  - [[#fonts][Fonts]]
+  - [[#themes][Themes]]
+  - [[#line-settings][Line settings]]
+  - [[#rainbow-mode][Rainbow mode]]
+  - [[#rainbow-delimiters][Rainbow delimiters]]
+  - [[#misc][Misc]]
   - [[#modeline][Modeline]]
     - [[#doom-modeline][doom-modeline]]
     - [[#which-function-mode][which-function-mode]]
@@ -637,8 +636,7 @@ Reference: [[https://github.com/hlissner/doom-emacs/blob/develop/docs/api.org#pe
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 #+end_src
 
-** Visual and Faces
-*** Dashboard
+** Dashboard
 **** Splash Screen
 
 I made a super simple set of Doom-Emacs custom splash screens by combining
@@ -750,7 +748,7 @@ Show random quote:
 (add-to-list '+doom-dashboard-functions 'ttk/quotes t)
 #+end_src
 
-*** Fonts
+** Fonts
 
 To install custom fonts in linux:
 #+begin_src bash
@@ -815,16 +813,14 @@ so I can mix source and prose blocks in the same document.
 (setq mixed-pitch-variable-pitch-cursor t)
 #+end_src
 
-*** Themes
+** Themes
 
-See
-- [[https://github.com/hlissner/emacs-doom-themes/issues/404][How to best cusomize doom theme]].
-- [[https://www.reddit.com/r/emacs/comments/jushaq/changing_treemacs_hlline_color_on_doom_emacs][Change treemacs hl-line color on doom emacs]].
-- [[https://stackoverflow.com/questions/62578682/emacs-multiple-hl-line-faces-change-line-hook][Emacs multiple hl-line faces/change line hook?]].
-- Later see [[https://github.com/hlissner/doom-emacs/issues/1988][this]].
-- Also [[https://github.com/hlissner/emacs-doom-themes/issues/342][this]].
-- [[https://github.com/hlissner/emacs-doom-themes/issues/204][This]] also.
-- Probably [[https://gitea.esy.fun/yogsototh/emacs-doom-themes/commit/c4babe81c5466fbea5a9e4c35673d0d27d7d5b28][this]] also.
+I customize existing doom-themes to my liking:
+
+- Copy one of doom-themese to =${DOOMDIR}/themes=.
+- Change the filename.
+- Change =def-doom-theme= name to avoid conflict with the existing.
+- That's it. Customize other settings as you please.
 
 #+begin_src emacs-lisp
 ;; select theme
@@ -838,7 +834,7 @@ See
   (setq doom-theme 'ttk-doom-zenburn)))
 #+end_src
 
-*** Line settings
+** Line settings
 
 I like relative line number so vertical jumping is easier.
 
@@ -859,7 +855,7 @@ toggle-truncate-lines.
       "t t" #'toggle-truncate-lines)
 #+end_src
 
-*** Rainbow mode
+** Rainbow mode
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! rainbow-mode)
@@ -870,7 +866,7 @@ toggle-truncate-lines.
   :hook (emacs-lisp-mode . rainbow-mode))
 #+end_src
 
-*** Rainbow delimiters
+** Rainbow delimiters
 
 I like balanced and colorful delimiters provided by [[https://github.com/Fanael/rainbow-delimiters.git][rainbow-delimiters]].
 #+begin_src emacs-lisp :tangle packages.el
@@ -897,7 +893,7 @@ And configure it only for certain modes.
 )
 #+end_src
 
-*** Misc
+** Misc
 
 In my previous configuration, I used to automatically restore the previous
 session upon startup. Doom Emacs starts up so fast that it does not feel
