@@ -332,7 +332,7 @@
        doom-modeline-workspace-name nil                  ; need eyebrowse
        doom-modeline-persp-name t                        ; workspace using persp-mode
        doom-modeline-display-default-persp-name t        ; workspace using persp-mode
-       doom-modeline-persp-icon t                        ; workspace using persp-mode
+       doom-modeline-persp-icon nil                      ; workspace using persp-mode
    )
  :config
   ;; See list of doom-modeline-def-segment in doom-modeline-segments.el
