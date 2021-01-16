@@ -302,6 +302,9 @@
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
 
+(use-package! rainbow-mode
+  :hook (emacs-lisp-mode . rainbow-mode))
+
 ;;
 ;; balanced and colorful delimiters
 ;;     https://github.com/Fanael/rainbow-delimiters.git

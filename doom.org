@@ -32,6 +32,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#fonts][Fonts]]
     - [[#themes][Themes]]
     - [[#line-settings][Line settings]]
+    - [[#rainbow-mode][Rainbow mode]]
     - [[#rainbow-delimiters][Rainbow delimiters]]
     - [[#misc][Misc]]
   - [[#modeline][Modeline]]
@@ -858,6 +859,17 @@ toggle-truncate-lines.
       "t t" #'toggle-truncate-lines)
 #+end_src
 
+*** Rainbow mode
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! rainbow-mode)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! rainbow-mode
+  :hook (emacs-lisp-mode . rainbow-mode))
+#+end_src
+
 *** Rainbow delimiters
 
 I like balanced and colorful delimiters provided by [[https://github.com/Fanael/rainbow-delimiters.git][rainbow-delimiters]].
@@ -913,6 +925,9 @@ Totok disable first
 #+end_src
 
 ** Modeline
+
+Interesting: [[https://www.gonsie.com/blorg/modeline.html][Beautifying the Mode Line]]
+
 *** doom-modeline
 
 Now is the time to customize modeline, see [[https://seagle0128.github.io/doom-modeline/][doom-modeline]] and the [[https://github.com/seagle0128/doom-modeline#faq][FAQ]].

@@ -148,13 +148,20 @@ Can be an integer to determine the exact padding."
    (mode-line-emphasis
     :foreground (if -modeline-bright base8 highlight))
 
+   ;; totok change mode-lie a lot
    (solaire-mode-line-face
-    :inherit 'mode-line
-    :background modeline-bg-l
+    ;; :inherit 'mode-line
+    ;; :background modeline-bg-l
+    :background bg
+    :foreground fg
+    :distant-foreground bg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-l)))
    (solaire-mode-line-inactive-face
-    :inherit 'mode-line-inactive
-    :background modeline-bg-inactive-l
+    ;; :inherit 'mode-line-inactive
+    ;; :background modeline-bg-inactive-l
+    :background bg-alt
+    :foreground fg-alt
+    :distant-foreground bg-alt
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg-inactive-l)))
 
    (link :foreground yellow-2 :underline t :weight 'bold)
@@ -250,7 +257,8 @@ Can be an integer to determine the exact padding."
    (diff-hl-insert :foreground green+1 :background green-2)
 
    ;; Doom modeline
-   (doom-modeline-bar :background yellow)
+   ;; (doom-modeline-bar :background yellow)
+   (doom-modeline-bar :background nil)  ; totok don't want shiny bar
    (doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'bold)
    (doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'bold)
    (doom-modeline-buffer-project-root :foreground green :weight 'bold)
