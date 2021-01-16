@@ -78,7 +78,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#other-tools][Other tools]]
   - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
   - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
-  - [[#iedit][Iedit]]
   - [[#measure-timing][Measure timing]]
   - [[#vterm][Vterm]]
   - [[#unfill][Unfill]]
@@ -2504,27 +2503,6 @@ the default ='loopback=.
            'epg-pinentry-mode
          'epa-pinentry-mode) ; DEPRECATED `epa-pinentry-mode'
        nil))
-#+end_src
-
-** Iedit
-
-I find =iedit= absolutely indispensable when coding. In short: when you hit =Ctrl-;=, all
-occurrences of the symbol under the cursor (or the current selection) are highlighted,
-and any changes you make on one of them will be automatically applied to all others.
-It's great for renaming variables in code, but it needs to be used with care, as it
-has no idea of semantics, it's  a plain string replacement, so it can inadvertently
-modify unintended parts of the code.
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! iedit)
-#+end_src
-#+begin_src emacs-lisp
-(use-package! iedit
-  :defer
-  :config
-  (set-face-background 'iedit-occurrence "Magenta")
-  :bind
-  ("C-;" . iedit-mode))
 #+end_src
 
 ** Measure timing

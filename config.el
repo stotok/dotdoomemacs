@@ -1098,13 +1098,6 @@ title."
          'epa-pinentry-mode) ; DEPRECATED `epa-pinentry-mode'
        nil))
 
-(use-package! iedit
-  :defer
-  :config
-  (set-face-background 'iedit-occurrence "Magenta")
-  :bind
-  ("C-;" . iedit-mode))
-
 (defmacro zz/measure-time (&rest body)
   "Measure the time it takes to evaluate BODY."
   `(let ((time (current-time)))

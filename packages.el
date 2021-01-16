@@ -96,6 +96,4 @@
            ;; every time you change the package.
            :no-byte-compile t))
 
-(package! iedit)
-
 (package! annotate)
