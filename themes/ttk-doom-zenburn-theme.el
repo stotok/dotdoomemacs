@@ -96,7 +96,8 @@ Can be an integer to determine the exact padding."
    (strings        red)
    (variables      orange)
    (numbers        fg)
-   (region         base1)
+   ;; (region         base1)
+   (region         base0)                 ; totok wants more visible
    (error          red)
    (warning        yellow)
    (success        green)
