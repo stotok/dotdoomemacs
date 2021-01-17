@@ -378,6 +378,27 @@ Can be an integer to determine the exact padding."
    (solaire-hl-line-face :inherit 'hl-line :underline t) ; totok
    (solaire-org-hide-face :inherit 'org-hide :background bg)
 
+   ;; iedit totok add
+   ;; (iedit-occurance-face :inherit 'hightlight :background magenta)
+
+   ;; ivy-mode totok add
+   ;; (ivy-current-match :background (doom-lighten yellow 0.65) :distant-foreground fg)
+   ;; (ivy-minibuffer-match-face-1 :foreground blue :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-face-2 :foreground magenta :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-face-3 :foreground green   :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-face-4 :foreground yellow  :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-highlight :foreground violet :background nil :weight 'bold)
+   ;; (swiper-line-face :background red)
+   ;; (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
+   ;; (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
+   ;; (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
+   ;; (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4)
+
+   ;; evil-ex totok add
+   (evil-ex-lazy-highlight :foreground base0 :background orange :weight 'bold)
+   ;; (evil-ex-substitute-matches :background red :foreground yellow)
+   ;; (evil-ex-substitute-replacement :background green :foreground yellow)
+
    ;; web-mode
    (web-mode-html-attr-name-face :foreground orange)
    (web-mode-css-pseudo-class-face :foreground green+3 :weight 'bold)
