@@ -94,6 +94,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#avy-goto-line-same-column][avy-goto-line-same-column]]
   - [[#evil-snipe][Evil Snipe]]
   - [[#evil-escape][Evil Escape]]
+  - [[#evil-mc][Evil-mc]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
 - [[#references][References]]
   - [[#keybindings][Keybindings]]
@@ -104,6 +105,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#delete-n-block-of-chars][Delete n block of chars]]
     - [[#with-avy-1][With avy]]
     - [[#with-evil-snipe][With evil-snipe]]
+  - [[#evil-mc-1][Evil-mc]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
 
@@ -2681,6 +2683,35 @@ So, let's just diasable it.
 (after! evil-escape (evil-escape-mode -1))
 #+end_src
 
+** Evil-mc
+Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cursors_in_emacs/][evil-mc with lispy-mode]].
+
+evil-mc is incompatible with lispy-mode which gave me headache until I added
+lispy-mode to evil-mc-incompatible-minor-modes like so:
+
+Ref: [[https://github.com/syl20bnr/spacemacs/issues/2669][Multiple Cursors Integration Discussion]].
+
+This does not work :(
+#+begin_src emacs-lisp :tangle no
+(after! evil-mc
+ (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
+ ;;
+ (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
+      (move-to-column startcol)
+      (unless (= (line-number-at-pos) orig-line)
+        (evil-mc-make-cursor-here)))
+    (defun evil-mc-make-vertical-cursors (beg end)
+      (interactive (list (region-beginning) (region-end)))
+      (evil-mc-pause-cursors)
+      (apply-on-rectangle #'evil--mc-make-cursor-at-col
+                          beg end (line-number-at-pos (point)))
+      (evil-mc-resume-cursors)
+      (evil-normal-state)
+      (move-to-column (evil-mc-column-number (if (> end beg)
+                                                 beg
+                                               end)))))
+#+end_src
+
 ** Map Unmap keybinding
 
 Ref:
@@ -2749,6 +2780,26 @@ g s <SPACE>  (evil-avy-goto-char-timer)
 d            (delete)
 s 2chars     (evil snipe)
 #+end_example
+
+** Evil-mc
+Functions to use:
+#+begin_example
+evil-mc-make-cursor-here
+evil-mc-make-cursor-move-next-line (g z j)
+evil-mc-make-cursor-move-prev-line (g z k)
+#+end_example
+
+Example:
+#+begin_src c :tangle no
+#define ONE              1
+#define TWO              2
+#define THREE            3
+
+#define MULTI_ONE       TWO * ONE
+#define MULTI_TWO       TWO * TWO
+#define MULTI_THREE     TWO * ONE
+#define MULTI_FOUR      TWO * THREE
+#+end_src
 
 ** Evil-multiedit
 Ref: [[https://www.youtube.com/watch?v=zXdT5jY_ui0&t=112s][Emacs Doom E08: Multiple cursor with evil-multiedit]].
