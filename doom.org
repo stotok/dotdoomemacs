@@ -2684,32 +2684,12 @@ So, let's just diasable it.
 #+end_src
 
 ** Evil-mc
-Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cursors_in_emacs/][evil-mc with lispy-mode]].
+Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cursors_in_emacs/][evil-mc incompatibility]]. Evil-mc is incompatible with lispy-mode and yas-minor-mode:
 
-evil-mc is incompatible with lispy-mode which gave me headache until I added
-lispy-mode to evil-mc-incompatible-minor-modes like so:
-
-Ref: [[https://github.com/syl20bnr/spacemacs/issues/2669][Multiple Cursors Integration Discussion]].
-
-This does not work :(
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (after! evil-mc
- (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
- ;;
- (defun evil--mc-make-cursor-at-col (startcol _endcol orig-line)
-      (move-to-column startcol)
-      (unless (= (line-number-at-pos) orig-line)
-        (evil-mc-make-cursor-here)))
-    (defun evil-mc-make-vertical-cursors (beg end)
-      (interactive (list (region-beginning) (region-end)))
-      (evil-mc-pause-cursors)
-      (apply-on-rectangle #'evil--mc-make-cursor-at-col
-                          beg end (line-number-at-pos (point)))
-      (evil-mc-resume-cursors)
-      (evil-normal-state)
-      (move-to-column (evil-mc-column-number (if (> end beg)
-                                                 beg
-                                               end)))))
+  (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
+  (add-to-list 'evil-mc-incompatible-minor-modes 'yas-minor-mode))
 #+end_src
 
 ** Map Unmap keybinding
@@ -2789,7 +2769,7 @@ evil-mc-make-cursor-move-next-line (g z j)
 evil-mc-make-cursor-move-prev-line (g z k)
 #+end_example
 
-Example:
+Example (do it in c-mode major mode). Evil-mc does not fully work in org-mode.
 #+begin_src c :tangle no
 #define ONE              1
 #define TWO              2

@@ -1160,3 +1160,7 @@ title."
       :map evilem-map
       "l" #'avy-goto-line
       "p" #'avy-pop-mark)
+
+(after! evil-mc
+  (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
+  (add-to-list 'evil-mc-incompatible-minor-modes 'yas-minor-mode))
