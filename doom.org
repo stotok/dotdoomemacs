@@ -96,6 +96,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-escape][Evil Escape]]
   - [[#evil-mc][Evil-mc]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
+- [[#known-bugs][Known Bugs]]
+  - [[#-failed-to-provide-feature-with-editor][... failed to provide feature 'with-editor']]
 - [[#references][References]]
   - [[#keybindings][Keybindings]]
 - [[#practice][Practice]]
@@ -2700,6 +2702,16 @@ Ref:
 - [[https://github.com/hlissner/doom-emacs/issues/820][changing leader key to F13]]
 - [[https://github.com/hlissner/doom-emacs/issues/814][howto unmap keymap prefix set via map!]]
 
+* Known Bugs
+** ... failed to provide feature 'with-editor'
+
+Happen after =doom upgrade=.  Ref: [[https://github.com/hlissner/doom-emacs/issues/4171][see this]]
+Fix:
+#+begin_example
+$ rm -rf ~/.emacs.d/.local/straight/build*/with-editor
+$ doom sync
+#+end_example
+
 * References
 
 These are some of the best ones (several are also written in org mode). You will find
@@ -2720,6 +2732,7 @@ snippets from all of these (and possibly others):
 - [[https://www.gtrun.org/custom/config.html][GuangTao's Doom Emacs config]]
 - [[https://github.com/hlissner/emacs-doom-themes/issues/185][Unable to see time in modeline]]
 - [[https://randomgeekery.org/config/emacs/doom/][Ramdom Geekery's Emacs Doom config]]
+- [[https://rameezkhan.me/adding-keybindings-to-doom-emacs/][Rameez Khan Adding Keybindings to Doom Emacs]]
 
 Note: a lot of manual configuration has been rendered moot by using Emacs Doom,
 which aggregates a well-maintained and organized collection of common configuration
