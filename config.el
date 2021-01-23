@@ -743,8 +743,6 @@ title."
   :commands cfengine3-mode
   :mode ("\\.cf\\'" . cfengine3-mode))
 
-(use-package! graphviz-dot-mode)
-
 ;;
 (defconst my-c-style
   '((c-tab-always-indent        . t)
@@ -963,6 +961,8 @@ title."
         ;; 'M-x save-buffer'. Supported format: "svg", "png", "txt" (ascii art)
         plantuml-output-type "svg"))
 
+(use-package! graphviz-dot-mode)
+
 (use-package! lsp
   :init
   ;;
@@ -1103,8 +1103,6 @@ title."
   `(let ((time (current-time)))
      ,@body
      (float-time (time-since time))))
-
-(setq vterm-shell "/usr/local/bin/elvish")
 
 ;; To get the full path of current buffer and put it in kill-ring
 ;;

@@ -75,13 +75,6 @@
 
 (package! org-ml)
 
-(package! elvish-mode)
-(package! ob-elvish)
-
-(package! ob-cfengine3)
-
-(package! graphviz-dot-mode)
-
 ;; Relative paths are expanded to ~/.emacs.d/.local/straight/repos/{local-repo}
 ;; or ~/.doom.d/{local-repo} -- the first that is found.
 (package! xcscope
@@ -96,4 +89,4 @@
            ;; every time you change the package.
            :no-byte-compile t))
 
-(package! annotate)
+(package! graphviz-dot-mode)

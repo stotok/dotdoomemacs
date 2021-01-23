@@ -71,6 +71,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#cscope][Cscope]]
 - [[#projectile][Projectile]]
 - [[#plantuml][Plantuml]]
+  - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
+  - [[#plantuml-mode][=plantuml-mode=]]
+  - [[#if-youd-like-to-edit-dot-file-directly][If you'd like to edit =dot file= directly]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
 - [[#company][Company]]
@@ -1994,14 +1997,16 @@ Totok 20201229: disable first
 ** Some other languages I use
 
 - [[http://elvish.io/][Elvish shell]], with support for org-babel.
-  #+begin_src emacs-lisp :tangle packages.el
+  Totok 20210124 disable first
+  #+begin_src emacs-lisp :tangle no
 (package! elvish-mode)
 (package! ob-elvish)
   #+end_src
 
 - [[http://cfengine.com/][CFEngine]] policy files. The =cfengine3-mode= package is included with Emacs,
   but I also install org-babel support.
-  #+begin_src emacs-lisp :tangle packages.el
+  Totok 20210124 disable first.
+  #+begin_src emacs-lisp :tangle no
 (package! ob-cfengine3)
   #+end_src
   #+begin_src emacs-lisp
@@ -2011,18 +2016,12 @@ Totok 20201229: disable first
   :mode ("\\.cf\\'" . cfengine3-mode))
   #+end_src
 
-- [[https://graphviz.org/][Graphviz]] for graph generation.
-  #+begin_src emacs-lisp :tangle packages.el
-(package! graphviz-dot-mode)
-  #+end_src
-  #+begin_src emacs-lisp
-(use-package! graphviz-dot-mode)
-  #+end_src
-
 - I am learning [[http://www.gigamonkeys.com/book/][Common LISP]], which is well supported through the =common-lisp=
   Doom module, but I need to configure this in the =~/.slynkrc= file for I/O in
   the Sly REPL to work fine ([[https://github.com/joaotavora/sly/issues/347#issuecomment-717065056][source]]).
-  #+begin_src emacs-lisp :tangle ~/.slynkrc
+  Totok 20210124 disable first
+  # #+begin_src emacs-lisp :tangle ~/.slynkrc
+  #+begin_src emacs-lisp :tangle no
 (setf slynk:*use-dedicated-output-stream* nil)
   #+end_src
 * C/C++
@@ -2268,8 +2267,11 @@ Now create new keybindings. "SPC m s" is not currently being used.
 
 * Plantuml
 
-Diagram to confuse people more, see: [[https://plantuml.com/][PlantUML in a nutshell]]. This need 'dot' utility
-from graphviz package:
+Diagram to confuse people more, see: [[https://plantuml.com/][PlantUML in a nutshell]].
+
+** Need =dot= utility from =graphviz= package
+
+See [[https://www.graphviz.org/][graphviz.org]].
 
 #+begin_example
 $ sudo port install graphviz (macport)
@@ -2281,6 +2283,9 @@ $ export GRAPHVIZ_DOT="/opt/local/bin/dot" (homebrew)
 $ export GRAPHVIZ_DOT="/usr/bin/dot" (debian)
 #+end_example
 
+** =plantuml-mode=
+
+See [[https://github.com/skuro/plantuml-mode][skuro/plantuml-mode]].
 
 #+begin_src emacs-lisp
 ;; see doom-emacs/modules/lang/plantuml/packages.el
@@ -2298,6 +2303,18 @@ $ export GRAPHVIZ_DOT="/usr/bin/dot" (debian)
         ;; we can save *PLANTUML Preview* buffer to a file with command
         ;; 'M-x save-buffer'. Supported format: "svg", "png", "txt" (ascii art)
         plantuml-output-type "svg"))
+#+end_src
+
+** If you'd like to edit =dot file= directly
+
+See: [[https://github.com/ppareit/graphviz-dot-mode][ppareit/graphviz-dot-mode]].
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! graphviz-dot-mode)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! graphviz-dot-mode)
 #+end_src
 
 * Language Server Protocol
@@ -2532,7 +2549,8 @@ I'm still not fully convinced of running a terminal inside Emacs, but =vterm= is
 nicer than any of the previous terminal emulators, so I'm giving it a try.
 I configure it so that it runs my [[https://elv.sh/][favorite shell]]. Vterm runs Elvish flawlessly!
 
-#+begin_src emacs-lisp
+Totok 20210124 disable first.
+#+begin_src emacs-lisp :tangle no
 (setq vterm-shell "/usr/local/bin/elvish")
 #+end_src
 
@@ -2557,7 +2575,8 @@ Totok 20210101 disable first
 The [[https://github.com/bastibe/annotate.el][annotate]] package is nice - allows adding annotations to files without modifying
 the file itself.
 
-#+begin_src emacs-lisp :tangle packages.el
+Totok 20210124 disable first
+#+begin_src emacs-lisp :tangle no
 (package! annotate)
 #+end_src
 
@@ -2574,7 +2593,7 @@ the file itself.
 #+end_src
 
 ** Insert date at cursor
-Sun 17-Jan-2021  6:09AM
+
 #+begin_src emacs-lisp
 ;; insert date into buffer
 ;;
