@@ -1108,7 +1108,7 @@ title."
 
 ;; To get the full path of current buffer and put it in kill-ring
 ;;
-(defun ttk-copy-full-path-to-kill-ring ()
+(defun ttk/copy-full-path-to-kill-ring ()
   "copy buffer's full path to kill ring"
   (interactive)
   (when buffer-file-name
@@ -1116,12 +1116,12 @@ title."
 
 ;; insert date into buffer
 ;;
-(defun ttk-insert-date ()
+(defun ttk/insert-date ()
  "Insert date at point."
  (interactive)
  (insert (format-time-string "%a %e-%b-%Y %l:%M%p")))
 
-(defun ttk-ascii-table()
+(defun ttk/ascii-table()
   "Display basic ASCII table (0 thru 128)."
   (interactive)
   (switch-to-buffer "*ASCII*")

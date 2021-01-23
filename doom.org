@@ -110,6 +110,12 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-mc-1][Evil-mc]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
+  - [[#expand-region][Expand region]]
+  - [[#copy-and-comment-lines][Copy and comment lines]]
+  - [[#search-with-ripgrep][Search with ripgrep]]
+    - [[#live-project-search-from-the-project-root-using-ripgrep][Live project search from the project root using ripgrep]]
+    - [[#grep-for-a-string-in-the-current-directory-using-ripgrep][Grep for a string in the current directory using ripgrep]]
+    - [[#search-the-current-project-with-ripgrep][Search the current project with ripgrep]]
 
 * Doom Config Files
 
@@ -2560,7 +2566,7 @@ the file itself.
 #+begin_src emacs-lisp
 ;; To get the full path of current buffer and put it in kill-ring
 ;;
-(defun ttk-copy-full-path-to-kill-ring ()
+(defun ttk/copy-full-path-to-kill-ring ()
   "copy buffer's full path to kill ring"
   (interactive)
   (when buffer-file-name
@@ -2572,7 +2578,7 @@ Sun 17-Jan-2021  6:09AM
 #+begin_src emacs-lisp
 ;; insert date into buffer
 ;;
-(defun ttk-insert-date ()
+(defun ttk/insert-date ()
  "Insert date at point."
  (interactive)
  (insert (format-time-string "%a %e-%b-%Y %l:%M%p")))
@@ -2583,7 +2589,7 @@ Sun 17-Jan-2021  6:09AM
 Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 
 #+begin_src emacs-lisp
-(defun ttk-ascii-table()
+(defun ttk/ascii-table()
   "Display basic ASCII table (0 thru 128)."
   (interactive)
   (switch-to-buffer "*ASCII*")
@@ -2836,4 +2842,33 @@ Ref: [[https://www.youtube.com/watch?v=4bVMXXxPiQs][Narrowing]]
 - M-x doom/narrow-buffer-indirectly
 - Do something, e.g. evil-multiedit
 - z N                                    (M-x doom/widen-indirectly-narrowed-buffer)
+#+end_example
+
+** Expand region
+Ref: [[https://github.com/magnars/expand-region.el][magnars/expand-region.el]]
+Video: [[http://emacsrocks.com/e09.html][Emacs Rocks! Episode 09: expand-region]]
+
+#+begin_example
+M-x er/expand-region
+#+end_example
+
+** Copy and comment lines
+#+begin_example
+M-x evilnc-copy-and-comment-lines
+#+end_example
+
+** Search with ripgrep
+*** Live project search from the project root using ripgrep
+#+begin_example
+M-x +ivy/project-search  ( SPC / ) ( SPC s p )
+#+end_example
+
+*** Grep for a string in the current directory using ripgrep
+#+begin_example
+M-x counsel-rg
+#+end_example
+
+*** Search the current project with ripgrep
+#+begin_example
+M-x counsel-projectile-rg
 #+end_example
