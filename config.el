@@ -75,6 +75,18 @@
 
 (setq-default inhibit-x-resources t)
 
+(set-language-environment 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq utf-translate-cjk-mode nil
+      locale-coding-system 'utf-8
+      default-file-name-coding-system 'utf-8
+      default-buffer-file-coding-system 'utf-8)
+
+(setq create-lockfiles nil)
+
 (setq auto-save-default nil
       make-backup-files nil
       create-lockfiles  nil)

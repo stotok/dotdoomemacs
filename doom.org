@@ -526,6 +526,26 @@ Don't load xresources, it messes with our themes.
 (setq-default inhibit-x-resources t)
 #+end_src
 
+Change the default encoding to UTF-8
+
+#+begin_src emacs-lisp
+(set-language-environment 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq utf-translate-cjk-mode nil
+      locale-coding-system 'utf-8
+      default-file-name-coding-system 'utf-8
+      default-buffer-file-coding-system 'utf-8)
+#+end_src
+
+Do not create lockfiles for files being edited
+
+#+begin_src emacs-lisp
+(setq create-lockfiles nil)
+#+end_src
+
 Do not need emacs backup file lah ...
 
 #+begin_src emacs-lisp
@@ -2752,7 +2772,7 @@ snippets from all of these (and possibly others):
 - [[https://blog.jethro.dev/posts/migrating_to_doom_emacs/][Jethro's Migrating To Doom Emacs]]
 - [[https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#use-better-defaults][Angry Bacon's Better Defaults]]
 - [[https://blog.sumtypeofway.com/posts/emacs-config.html][sumtypeofway's emacs config]]
-- [[https://www.soitflows.xyz/posts/my-doom-emacs-configuration/][soitflows's doom emacs config]]
+- [[https://www.soitflows.xyz/posts/my-doom-emacs-configuration/][So It Flow's doom emacs config]]
 - [[https://dangirsh.org/projects/doom-config.html][Dan Girshovich's doom-config]]
 - [[https://www.gtrun.org/custom/config.html][GuangTao's Doom Emacs config]]
 - [[https://github.com/hlissner/emacs-doom-themes/issues/185][Unable to see time in modeline]]
