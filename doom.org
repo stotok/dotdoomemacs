@@ -370,10 +370,10 @@ This code is written to the =init.el= to select which modules to load.
  vc                    ; version-control and Emacs, sitting in a tree
 
  :term
- ;;eshell              ; the elisp shell that works everywhere
+ eshell                ; the elisp shell that works everywhere
  ;;shell               ; simple shell REPL for Emacs
  ;;term                ; basic terminal emulator for Emacs
- vterm                 ; the best terminal emulation in Emacs
+ ;;vterm               ; the best terminal emulation in Emacs
 
  :checkers
  ;(syntax +childframe)  ; tasing you for every semicolon you forget
@@ -486,6 +486,8 @@ This code is written to the =init.el= to select which modules to load.
  ;;literate
  (default +bindings +smartparens))
 #+end_src
+
+#+RESULTS:
 
 * General Configuration
 ** Doom Local Leader Key
@@ -1838,7 +1840,12 @@ buffer by regenerating the text from its internal parsed representation. Quite a
 
 ** Reveal.js presentations
 
-TBD
+On major version update on reveal.js, see [[https://www.reddit.com/r/emacs/comments/hiaqdj/doom_emacs_revealjs_does_it_work_for_you/][reveal.js on doom emacs]].
+
+To fix, add this on your org file:
+#+begin_example
+#+REVEAL_ROOT: file:///path/to/reveal.js
+#+end_example
 
 ** Programming Org
 
