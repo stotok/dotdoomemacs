@@ -286,8 +286,20 @@ Can be an integer to determine the exact padding."
    (git-gutter:modified :foreground magenta :weight 'bold)
 
    ;; ivy
-   (ivy-current-match :background bg-alt :weight 'bold)
-   (ivy-minibuffer-match-face-2 :foreground green+4 :weight 'bold)
+   ;; (ivy-current-match :background bg-alt :weight 'bold)
+   (ivy-current-match :background base0 :weight 'bold) ; totok wants more distinctive background
+   ;; (ivy-minibuffer-match-face-2 :foreground green+4 :weight 'bold) ; totok replace with below
+   ;; (ivy-current-match :background (doom-lighten yellow 0.65) :distant-foreground fg)
+   ;; (ivy-minibuffer-match-face-1 :foreground blue :background base3 :weight 'bold)
+   (ivy-minibuffer-match-face-2 :foreground magenta :weight 'bold)
+   ;; (ivy-minibuffer-match-face-3 :foreground green   :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-face-4 :foreground yellow  :background base3 :weight 'bold)
+   ;; (ivy-minibuffer-match-highlight :foreground violet :background nil :weight 'bold)
+   ;; (swiper-line-face :background red)
+   ;; (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
+   ;; (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
+   ;; (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
+   ;; (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4)
 
    ;; helm
    (helm-header :foreground yellow :background base1 :weight 'bold :extend t)
@@ -381,19 +393,6 @@ Can be an integer to determine the exact padding."
 
    ;; iedit totok add
    ;; (iedit-occurance-face :inherit 'hightlight :background magenta)
-
-   ;; ivy-mode totok add
-   ;; (ivy-current-match :background (doom-lighten yellow 0.65) :distant-foreground fg)
-   ;; (ivy-minibuffer-match-face-1 :foreground blue :background base3 :weight 'bold)
-   ;; (ivy-minibuffer-match-face-2 :foreground magenta :background base3 :weight 'bold)
-   ;; (ivy-minibuffer-match-face-3 :foreground green   :background base3 :weight 'bold)
-   ;; (ivy-minibuffer-match-face-4 :foreground yellow  :background base3 :weight 'bold)
-   ;; (ivy-minibuffer-match-highlight :foreground violet :background nil :weight 'bold)
-   ;; (swiper-line-face :background red)
-   ;; (swiper-match-face-1 :inherit 'ivy-minibuffer-match-face-1)
-   ;; (swiper-match-face-2 :inherit 'ivy-minibuffer-match-face-2)
-   ;; (swiper-match-face-3 :inherit 'ivy-minibuffer-match-face-3)
-   ;; (swiper-match-face-4 :inherit 'ivy-minibuffer-match-face-4)
 
    ;; evil-ex totok add
    (evil-ex-lazy-highlight :foreground base0 :background orange :weight 'bold)
