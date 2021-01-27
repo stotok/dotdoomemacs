@@ -392,6 +392,9 @@
  :defer t
  :bind (("M-\\" . shrink-whitespace)))
 
+(after! magit
+  (setq-default +magit-open-windows-in-direction 'down))
+
 (after! smartparens
   (defun zz/goto-match-paren (arg)
     "Go to the matching paren/bracket, otherwise (or if ARG is not

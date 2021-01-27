@@ -1133,6 +1133,11 @@ Totok 20201229: disable first
 (map! :after magit "C-c C-g" #'magit-status)
 #+end_src
 
+#+begin_src emacs-lisp
+(after! magit
+  (setq-default +magit-open-windows-in-direction 'down))
+#+end_src
+
 Interactive search key bindings -  [[https://github.com/benma/visual-regexp-steroids.el][visual-regexp-steroids]] provides sane regular
 expressions and visual incremental search. I use the =pcre2el= package to support
 PCRE-style regular expressions.
