@@ -2318,18 +2318,21 @@ See [[https://github.com/skuro/plantuml-mode][skuro/plantuml-mode]].
 ;; see doom-emacs/modules/lang/plantuml/packages.el
 (use-package! plantuml-mode
   :init
+  (setq plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
+        org-plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
+        plantuml-indent-level 3
+        ;; See: https://github.com/skuro/plantuml-mode/issues/46
+        ;; we can save *PLANTUML Preview* buffer to a file with command:
+        ;; - C-c C-c  (Turning the display mode to text)
+        ;; - SPC f s  (M-x save-buffer)
+        ;; - Keyin filename
+        ;; Supported format: "svg", "png", "txt" (ascii art)
+        plantuml-output-type "svg")
+  :config
+  (setq plantuml-default-exec-mode 'jar))
   ;; enable plantuml-mode for PlantUML files
   (setq auto-mode-alist (cons '("\\.plantuml$" . plantuml-mode) auto-mode-alist))
   (setq auto-mode-alist (cons '("\\.uml$"      . plantuml-mode) auto-mode-alist))
-  (setq plantuml-default-exec-mode 'jar
-        ;; plantuml-jar-path "~/project/dotdoomemacs/plantuml/plantuml.jar"
-        plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
-        ;; org-plantuml-jar-path "~/project/dotdoomemacs/plantuml/plantuml.jar"
-        org-plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
-        plantuml-indent-level 3
-        ;; we can save *PLANTUML Preview* buffer to a file with command
-        ;; 'M-x save-buffer'. Supported format: "svg", "png", "txt" (ascii art)
-        plantuml-output-type "svg"))
 #+end_src
 
 ** If you'd like to edit =dot file= directly
