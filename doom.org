@@ -112,6 +112,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#doom-emacs][Doom Emacs]]
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings][Keybindings]]
+  - [[#pipenv][=pipenv=]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -2915,7 +2916,13 @@ M-x SPC h f map\!
 - [[https://github.com/hlissner/doom-emacs/issues/2105][Define keybindings for logview major-mode]].
 - [[https://github.com/hlissner/doom-emacs/issues/3246][Change the leader keybinding based on the active mode]].
 - [[https://www.reddit.com/r/emacs/comments/irhe5d/doomemacs_binding_functions_to_keystrokes_greater/][Binding functions to keystrokes greater than two]].
+- [[https://github.com/hlissner/doom-emacs/issues/1313#issuecomment-480665450][map! macro cause non-prefix error]]
 
+** =pipenv=
+
+- [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
+- [[https://github.com/hlissner/doom-emacs/pull/2806][Enable pipenv-with-projectile]]
+- [[https://github.com/hlissner/doom-emacs/pull/3116][Enable projectile integration for pipenv.el]]
 * Practice
 ** Delete n lines including current line
 *** With avy
