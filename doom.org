@@ -76,6 +76,12 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#if-youd-like-to-edit-dot-file-directly][If you'd like to edit =dot file= directly]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
+  - [[#cc-1][C/C++]]
+  - [[#python-virtual-environment][Python Virtual Environment]]
+    - [[#install-pipenv][Install pipenv]]
+    - [[#bashrc][=.bashrc=]]
+    - [[#createactivate-virtual-environment][Create/activate virtual environment]]
+    - [[#doom-manual][Doom Manual]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
 - [[#other-tools][Other tools]]
@@ -2358,7 +2364,7 @@ See: [[https://github.com/ppareit/graphviz-dot-mode][ppareit/graphviz-dot-mode]]
 * Language Server Protocol
 ** LSP
 
-Let's try lsp:
+The world is moving towards [[https://langserver.org/][Language Server Protocol]], so are we.
 
 - For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp#table-of-contents][Doom LSP]].
 - For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/cc#lsp-servers][LSP servers]].
@@ -2438,6 +2444,92 @@ Let's try lsp:
   )
 )
 #+end_src
+
+I don't like default doom keybindings for lsp. Here's mine:
+
+#+begin_src emacs-lisp
+(map! :after lsp
+      :map (c-mode-map c++-mode-map python-mode-map)
+      :localleader
+      :g "l" nil                        ; firstly, unbind default doom binding
+      (:prefix "l"                      ; define our ownd
+        :nv "d" #'lsp-find-definition
+        :nv "s" #'lsp-find-references))
+#+end_src
+
+** C/C++
+TBD
+
+** Python Virtual Environment
+*** Install pipenv
+**** debian
+=wheel= and =virtualenv= as system-wide, =pipenv= as user local.
+
+#+begin_example
+$ sudo apt install python3-dev
+$ sudo pip3 install wheel
+$ sudo pip3 install virtualenv
+$ pip3 install --user pipenv
+#+end_example
+
+*** =.bashrc=
+#+begin_example
+# pipenv will now place the virtualenv inside the project folder
+# emacs will see it and activate it
+export PIPENV_VENV_IN_PROJECT=1
+...
+# debian pipenv install here
+PATH=~/.local/bin:${PATH}
+#+end_example
+
+*** Create/activate virtual environment
+**** Spawn a shell in a virtual environment
+#+begin_example
+$ cd <your project root>
+#+end_example
+
+- First time (create virtual env)
+  #+begin_example
+  $ pipenv shell --python 3 (first time to create env)
+  #+end_example
+- Next time (virtual env already created, ie =Pipfile= already exist)
+  #+begin_example
+  $ pipenv shell (next tie after the first time)
+  #+end_example
+
+**** Install packages
+- First time
+  #+begin_example
+  $ pipenv install autoflake flake8 epc importmagic 'python-language-server[all]' 'ptvsd>=4.2'
+  $ pipenv install pyls-isort pyls-mypy pyls-black
+  $ pipenv install pytest nose black pyflakes isort
+  $ pipenv install <python library needed by your project>
+  #+end_example
+- Next time (after clone git repo, install from =Pipfile=)
+  #+begin_example
+  $ pipenv install
+  #+end_example
+
+**** Execute python program
+- When in virtual env shell
+  #+begin_example
+  (venv) $ python main.py
+  #+end_example
+- When not in virtual env shell
+  #+begin_example
+  $ pipenv run python main.py
+  #+end_example
+
+*** Doom Manual
+- Open python file at the project root directory.
+- Activate pipenv
+  #+begin_example
+  M-x pipenv-activate
+  #+end_example
+- Execute lsp on the buffer
+  #+begin_example
+  M-x lsp
+  #+end_example
 
 * Company
 
@@ -2812,8 +2904,11 @@ settings for performance optimization, package management, commonly used package
 
 - [[https://github.com/hlissner/emacs-doom-themes/issues/185][Unable to see time in modeline]]
 
-
 ** Keybindings
+Map reference:
+#+begin_example
+M-x SPC h f map\!
+#+end_example
 
 - [[https://github.com/hlissner/doom-emacs/issues/920#issuecomment-425654279][How to map keybindings for built-in modes]].
 - [[https://github.com/hlissner/doom-emacs/issues/1314][How to make package's major mode attaced with leader key map]].

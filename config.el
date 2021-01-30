@@ -1054,6 +1054,14 @@ title."
   )
 )
 
+(map! :after lsp
+      :map (c-mode-map c++-mode-map python-mode-map)
+      :localleader
+      :g "l" nil                        ; firstly, unbind default doom binding
+      (:prefix "l"                      ; define our ownd
+        :nv "d" #'lsp-find-definition
+        :nv "s" #'lsp-find-references))
+
 (after! company
  (setq company-backends '(company-capf
                           company-keywords

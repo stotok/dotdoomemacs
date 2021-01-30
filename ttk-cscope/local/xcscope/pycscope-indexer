@@ -139,7 +139,7 @@ fi
     fi
 ) | \
     egrep -i '\.(py|PY)$' | \
-    sed -e '/\/.hg\//d' -e '/\/.svn\//d' -e '/\/.git\//d'  -e '/\/CVS\//d' -e '/\/RCS\//d' -e 's/^\.\///' | \
+    sed -e '/\/.repo\//d' -e '/\/.hg\//d' -e '/\/.svn\//d' -e '/\/.git\//d'  -e '/\/CVS\//d' -e '/\/RCS\//d' -e 's/^\.\///' | \
     sort > $LIST_FILE
 
 if [ "X$VERBOSE" != "X" ]
