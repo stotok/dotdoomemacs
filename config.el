@@ -345,6 +345,16 @@
        doom-modeline-persp-name t                        ; workspace using persp-mode
        doom-modeline-display-default-persp-name t        ; workspace using persp-mode
        doom-modeline-persp-icon nil                      ; workspace using persp-mode
+       doom-modeline-lsp nil                             ; no need display lsp state
+       ;; Whether display the environment version
+       doom-modeline-env-version nil
+       ;; Or for individual languages
+       doom-modeline-env-enable-python t
+       doom-modeline-env-enable-ruby t
+       doom-modeline-env-enable-perl t
+       doom-modeline-env-enable-go t
+       doom-modeline-env-enable-elixir t
+       doom-modeline-env-enable-rust t
    )
  :config
   ;; See list of doom-modeline-def-segment in doom-modeline-segments.el
@@ -894,10 +904,16 @@ title."
  (setq projectile-enable-caching t)
  ;; disable remote file exists cache
  ;;(setq projectile-file-exists-remote-cache-expire nil)
- ;; enable remote file exists cache 10 minutes
- (setq projectile-file-exists-remote-cache-expire (* 10 60))
+ (setq ;; enable remote file exists cache 10 minutes
+   projectile-file-exists-remote-cache-expire (* 10 60)
+   projectile-file-exists-local-cache-expire (* 10 60))
  ;; change default display on modeline (don't do it for spacemacs)
  ;;(setq projectile-mode-line '(:eval (format " P:%s" (projectile-project-name))))
+ ;; (setq projectile-mode-line "Projectile")
+
+ ;; (defadvice projectile-project-root (around ignore-remote first activate)
+ ;;   (unless (file-remote-p default-directory) ad-do-it))
+
  ;;; by default, doom emacs use ivy
  ;;(setq projectile-completion-system 'ivy) ; it's nice (from swiper package)
  ;; tell projectile to not try and find the file on the remote SVN server and
@@ -959,6 +975,47 @@ title."
                     " ")))
      (advice-add 'projectile-get-ext-command :override #'ttk/advice-projectile-use-rg)))
 )
+
+;;
+;; TRAMP
+;;
+;; SSH WITH PUBLIC KEY
+;; 1. Add to ~/.ssh/config
+;;        Host myhost
+;;             Hostname myhost.abc.com
+;;             ... <as usual>
+;;             IdentityFile ~/.ssh/id_rsa_yours_blah
+;; 2. $ eval `ssh-agent -s`
+;; 3. $ ssh-add ~/.ssh/id_rsa_blah
+;; 4. From emacs:
+;;        C-x C-f /ssh:yourusername@myhost:~/somefile.txt
+;;
+(after! tramp
+ (tramp-set-completion-function "ssh"
+                                '((tramp-parse-sconfig "/etc/ssh_config")
+                                  (tramp-parse-sconfig "/etc/ssh/ssh_config")
+                                  (tramp-parse-sconfig "~/.ssh/config")))
+ (setq tramp-default-method "ssh")
+ (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+ ;; Only for debugging slow tramp connections
+ ;; (setq tramp-verbose 7)
+ ;;
+ ;; Skip version control for tramp files
+ (setq vc-ignore-dir-regexp
+       (format "\\(%s\\)\\|\\(%s\\)"
+               vc-ignore-dir-regexp
+               tramp-file-name-regexp))
+ ;; Turn off auto-save for tramp files
+ (add-to-list 'backup-directory-alist
+              (cons tramp-file-name-regexp nil))
+ ;; Use ControlPath from .ssh/config
+ (setq tramp-ssh-controlmaster-options "")
+ ;; Disable ssh password cache expiration
+ (setq password-cache-expiry nil)
+ ;; When autosave kickec in, save here ...
+ (setq tramp-auto-save-directory "~/tmp/tramp/")
+ ;; Let's see this chunksize value
+ (setq tramp-chunksize 2000))
 
 ;; see doom-emacs/modules/lang/plantuml/packages.el
 (use-package! plantuml-mode
