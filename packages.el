@@ -87,6 +87,7 @@
 
            ;; With ':no-byte-compile t' you can avoid having to run 'doom sync'
            ;; every time you change the package.
-           :no-byte-compile t))
+           ;; :no-byte-compile t
+           ))
 
 (package! graphviz-dot-mode)

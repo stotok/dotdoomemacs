@@ -2204,7 +2204,8 @@ Tool for browsing source code, see [[http://cscope.sourceforge.net/][CSCOPE]]. =
 
            ;; With ':no-byte-compile t' you can avoid having to run 'doom sync'
            ;; every time you change the package.
-           :no-byte-compile t))
+           ;; :no-byte-compile t
+           ))
 #+end_src
 #+begin_src emacs-lisp
 (use-package! xcscope
