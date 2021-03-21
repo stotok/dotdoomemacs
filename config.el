@@ -771,29 +771,7 @@ title."
   :commands cfengine3-mode
   :mode ("\\.cf\\'" . cfengine3-mode))
 
-;;
-(defconst my-c-style
-  '((c-tab-always-indent        . t)
-    (c-comment-only-line-offset . 0) ;; 4
-    (c-hanging-braces-alist     . ((substatement-open after)
-                                  (brace-list-open)))
-    (c-hanging-colons-alist     . ((member-init-intro before)
-                                  (inher-intro)
-                                  (case-label after)
-                                  (label after)
-                                  (access-label after)))
-    (c-cleanup-list             . (scope-operator
-                                  empty-defun-braces
-                                  defun-close-semi))
-    (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
-                                  (substatement-open . 0)
-                                  (case-label        . 3) ;; 0 ;; 4
-                                  (block-open        . 0)
-                                  (knr-argdecl-intro . -)))
-    (c-echo-syntactic-information-p . t))
-  "My C Programming Style")
-;;
-(defconst ct-c-style
+(defconst ttk-c-style
   '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
     ;; stroustrup : the classic Stroustrup style for C++ code.
     ;; linux      : C coding standard for Linux (the kernel).
@@ -809,8 +787,6 @@ title."
                           (string-match "~/project/linux" (buffer-file-name)))
                     "linux"
                   "user"))
-    (c-tab-always-indent        . t)
-    (c-comment-only-line-offset . 0) ;; 4
     (c-hanging-braces-alist     . ((substatement-open after)
                                   (brace-list-open)))
     (c-hanging-colons-alist     . ((member-init-intro before)
@@ -822,20 +798,25 @@ title."
                                   empty-defun-braces
                                   defun-close-semi))
     (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
-                                  (substatement-open . 0)
+                                  (substatement-open . 0) ; brackets shd be at same identation as the statement they open
                                   (case-label        . 4) ;; 0 ;; 3
                                   (block-open        . 0)
                                   (knr-argdecl-intro . -)))
-    (c-echo-syntactic-information-p . t))
-  "CT C Programming Style")
+    (setq-default c-indent-tabs-mode t         ; pressing TAB should cause indentation
+                  c-tab-always-indent t
+                  c-comment-only-line-offset 0 ; 4
+                  indent-tabs-mode nil         ; nil uses space, t uses tab
+                  c-echo-syntactic-information-p t
+     ))
+  "TTK C Programming Style")
 ;;
 ;; Customizations for all of modes in CC mode
 ;;
 ;; ct hook
 (defun ct-c-mode-common-hook ()
   ;; add ct style and set it for the current buffer
-  (c-add-style "CT" ct-c-style t)
-  ;; offset customizations not in ct-c-style
+  (c-add-style "TTK" ttk-c-style t)
+  ;; offset customizations not in ttk-c-style
   (c-set-offset 'member-init-intro '++)
   ;; treat '_' as a word constituent
   (modify-syntax-entry ?_ "w")
@@ -846,7 +827,6 @@ title."
   (setq tab-width 4
         c-basic-offset 4
         c-indent-level 4
-        indent-tabs-mode nil ; nil uses space, t uses tab
         )
   ;; we like auto-newline and hungry-delete
   ;; (c-toggle-auto-hungry-state 1)
@@ -858,6 +838,7 @@ title."
 ;;
 ;; apply which one to use
 (add-hook 'c-mode-common-hook 'ct-c-mode-common-hook)
+(add-hook 'c++-mode-common-hook 'ct-c-mode-common-hook)
 ;; files *.ipp is c++ source code in UPA
 (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
 
