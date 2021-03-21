@@ -46,6 +46,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
   - [[#capturing-and-note-taking][Capturing and note taking]]
+  - [[#org-roam][Org Roam]]
   - [[#capturing-images][Capturing images]]
   - [[#capturing-links][Capturing links]]
     - [[#capturing-and-creating-internal-org-links][Capturing and creating internal Org links]]
@@ -456,7 +457,10 @@ This code is written to the =init.el= to select which modules to load.
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
  ;;ocaml               ; an objective camel
- (org +present)        ; organize your plain life in plain text
+ (org                  ; organize your plain life in plain text
+  +present             ; presentation, include reveal.js
+  +roam                ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+  )
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
  ;;     +present)        ; organize your plain life in plain text
@@ -497,8 +501,6 @@ This code is written to the =init.el= to select which modules to load.
  ;;literate
  (default +bindings +smartparens))
 #+end_src
-
-#+RESULTS:
 
 * General Configuration
 ** Doom Local Leader Key
@@ -1379,13 +1381,15 @@ Totok 20201230 disable first.
 (zz/add-file-keybinding "C-c z d" "~/org/diary.org" "diary.org")
 #+end_src
 
-I'm still trying out =org-roam=, although I have not figured out very well how it
-works for my setup. For now I configure it to include my whole Org directory.
+** Org Roam
 
-Totok 20201230 disable first.
-#+begin_src emacs-lisp :tangle no
-(setq org-roam-directory org-directory)
-(setq +org-roam-open-buffer-on-find-file nil)
+Let's roam :D
+
+For now I configure it to include my whole Org directory.
+
+#+begin_src emacs-lisp
+(setq org-roam-directory org-directory
+      +org-roam-open-buffer-on-find-file nil)
 #+end_src
 
 ** Capturing images
@@ -2960,6 +2964,7 @@ settings for performance optimization, package management, commonly used package
 - [[https://randomgeekery.org/config/emacs/doom/][Ramdom Geekery: Emacs Doom config]]
 - [[https://cyberchris.xyz/posts/org-mode-assignments/][Writing Assignments with Doom Emacs]]
 - [[https://rameezkhan.me/adding-keybindings-to-doom-emacs/][Rameez Khan Adding Keybindings to Doom Emacs]]
+- [[https://github.com/sunnyhasija/Academic-Doom-Emacs-Config][An Academic's Opinionated DOOM Emacs Config]]
 
 ** Issues and Fixes
 

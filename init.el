@@ -157,7 +157,10 @@
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
  ;;ocaml               ; an objective camel
- (org +present)        ; organize your plain life in plain text
+ (org                  ; organize your plain life in plain text
+  +present             ; presentation, include reveal.js
+  +roam                ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+  )
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
  ;;     +present)        ; organize your plain life in plain text
