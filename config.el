@@ -1255,3 +1255,10 @@ title."
 (after! evil-mc
   (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
   (add-to-list 'evil-mc-incompatible-minor-modes 'yas-minor-mode))
+
+(use-package! evil-motion-trainer
+  :init
+  :config
+  (setq evil-motion-trainer-threshold 6
+        evil-motion-trainer-super-annoying-mode t)
+  (global-evil-motion-trainer-mode 1))

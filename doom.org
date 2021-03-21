@@ -109,6 +109,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-escape][Evil Escape]]
   - [[#evil-mc][Evil-mc]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
+  - [[#evil-motion-trainer][Evil Motion Trainer]]
 - [[#known-bugs][Known Bugs]]
   - [[#-failed-to-provide-feature-with-editor][... failed to provide feature 'with-editor']]
 - [[#references][References]]
@@ -2687,6 +2688,7 @@ Another variation,
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 * Other Modes
+Fork from [[https://github.com/coldnew/qml-mode][coldnew/qml-mode]].
 ** QML (QT Declarative)
 #+begin_src emacs-lisp :tangle packages.el
 (package! qml-mode
@@ -2701,7 +2703,6 @@ in =~/.emacs.d/.local/etc/spell-fu=.
 ;; enable qml-mode for qml files
 (setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
 #+end_src
-
 * Other tools
 ** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
 
@@ -2932,13 +2933,27 @@ Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cu
 #+end_src
 
 ** Map Unmap keybinding
-
 Ref:
 - [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/config.el][doom config.el]]
 - [[https://github.com/hlissner/doom-emacs/issues/1797][Unmap keys with prefix]]
 - [[https://github.com/hlissner/doom-emacs/issues/820][changing leader key to F13]]
 - [[https://github.com/hlissner/doom-emacs/issues/814][howto unmap keymap prefix set via map!]]
-
+** Evil Motion Trainer
+Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs Evil Motion Training]]. Github: [[https://github.com/martinbaillie/evil-motion-trainer][evil-motion-trainer]].
+#+begin_src emacs-lisp :tangle packages.el
+(package! evil-motion-trainer
+  :recipe (:host github
+           :repo "martinbaillie/evil-motion-trainer"
+           :files ("*.el")))
+#+end_src
+#+begin_src emacs-lisp
+(use-package! evil-motion-trainer
+  :init
+  :config
+  (setq evil-motion-trainer-threshold 6
+        evil-motion-trainer-super-annoying-mode t)
+  (global-evil-motion-trainer-mode 1))
+#+end_src
 * Known Bugs
 ** ... failed to provide feature 'with-editor'
 
@@ -3001,7 +3016,6 @@ M-x SPC h f map\!
 - [[https://github.com/hlissner/doom-emacs/issues/1313#issuecomment-480665450][map! macro cause non-prefix error]]
 
 ** =pipenv=
-
 - [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
 - [[https://github.com/hlissner/doom-emacs/pull/2806][Enable pipenv-with-projectile]]
 - [[https://github.com/hlissner/doom-emacs/pull/3116][Enable projectile integration for pipenv.el]]
