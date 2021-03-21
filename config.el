@@ -1178,6 +1178,13 @@ title."
 ;;   ;;
  )
 
+(use-package! qml-mode
+  :init
+  :config
+  )
+;; enable qml-mode for qml files
+(setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
+
 (after! epa
   (set (if EMACS27+
            'epg-pinentry-mode

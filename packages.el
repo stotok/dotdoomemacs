@@ -91,3 +91,7 @@
            ))
 
 (package! graphviz-dot-mode)
+
+(package! qml-mode
+ :recipe (:local-repo "ttk-qml"         ; look for ${DOOMDIR}/ttk-qml/qml-mode.el
+ ))

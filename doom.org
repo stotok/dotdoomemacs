@@ -86,6 +86,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#doom-manual][Doom Manual]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
+- [[#other-modes][Other Modes]]
+  - [[#qml-qt-declarative][QML (QT Declarative)]]
 - [[#other-tools][Other tools]]
   - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
   - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
@@ -2684,6 +2686,21 @@ Another variation,
 
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
+* Other Modes
+** QML (QT Declarative)
+#+begin_src emacs-lisp :tangle packages.el
+(package! qml-mode
+ :recipe (:local-repo "ttk-qml"         ; look for ${DOOMDIR}/ttk-qml/qml-mode.el
+ ))
+#+end_src
+#+begin_src emacs-lisp
+(use-package! qml-mode
+  :init
+  :config
+  )
+;; enable qml-mode for qml files
+(setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
+#+end_src
 
 * Other tools
 ** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
