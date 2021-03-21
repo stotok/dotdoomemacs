@@ -2375,7 +2375,23 @@ $ export GRAPHVIZ_DOT="/usr/bin/dot" (debian)
 
 ** =plantuml-mode=
 
-See [[https://github.com/skuro/plantuml-mode][skuro/plantuml-mode]].
+See [[https://github.com/skuro/plantuml-mode][skuro/plantuml-mode]]. To display plantuml.jar version:
+
+#+begin_example
+$ java -jar plantuml.jar -version
+PlantUML version 1.2021.01 (Tue Feb 02 15:55:08 SGT 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+
+PLANTUML_LIMIT_SIZE: 4096
+
+Dot version: dot - graphviz version 2.43.0 (0)
+Installation seems OK. File generation OK
+#+end_example
 
 #+begin_src emacs-lisp
 ;; see doom-emacs/modules/lang/plantuml/packages.el
@@ -2515,9 +2531,9 @@ TBD
 =wheel= and =virtualenv= as system-wide, =pipenv= as user local.
 
 #+begin_example
-$ sudo apt install python3-dev
-$ sudo pip3 install wheel
-$ sudo pip3 install virtualenv
+$ sudo apt install python3-dev python3-pip
+$ sudo -H pip3 install wheel
+$ sudo -H pip3 install virtualenv
 $ pip3 install --user pipenv
 #+end_example
 
