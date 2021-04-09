@@ -134,12 +134,30 @@ fi
 	    echo "$DIR/$f"
 	done
     else
-	find $DIR \( -type f -o -type l \)
+  # exclude symbolic links
+	find $DIR \( -type f -xtype f \)
     fi
 ) | \
-    egrep -i '\.([chly](xx|pp)*|cc|hh)$' | \
-    sed -e '/\/external\/product\/external\/fm\/tests\//d' -e '/\/external\/product\/external\/ftl\//d' -e '/\/doc\//d' -e '/\/external\/product\/external\/fm_fe\/tests\/CTF\/Wrapper\/FM\ Python\ Wrapper\//d' -e '/\/external\/product\/external\/fm_fe\/tests\/FM_SW\/FM\ Python\ Wrapper\//d' -e '/\/external\/product\/external\/ftl\/doc\//d' -e '/\/external\/product\/external\/sata\/documentation\//d' -e '/\/external\/product\/external\/sata\/applications\/simulation\/sata\/haps_automation\//d'  -e '/\/external\/product\/external\/hal\/applications\//d' -e '/\/external\/product\/external\/hal\/bsp\/asic\//d' -e '/\/CVS\//d' -e '/\/RCS\//d' -e 's/^\.\///' | \
+    egrep -i '\.([chy](xx|pp)*|cc|hh)$' | \
+    sed -e '/\/package\/arm\//d' -e '/\/package\/codeaurora\//d' -e '/\/package\/opensource\//d' -e '/\/package\/valens\//d' -e '/\/package\/specs\//d' -e '/\/package\/qualcomm\//d' -e '/\/tools\//d' -e '/\/release-toolchain\//d' -e '/\/release-host\//d' -e '/\/release\//d' -e '/\/project\//d' -e '/\/platform-hal\//d' -e '/\/platform-framework\//d' -e '/\/platform\//d' -e '/\/logs\//d' -e '/\/.build\//d' -e '/\/.repo\//d' -e '/\/CVS\//d' -e '/\/RCS\//d' -e '/^\.svn\//d' -e '/\/.git\//d' -e '/\/.hg\//d' -e 's/^\.\///' | \
     sort > $LIST_FILE
+
+# what is 'l' ??
+# egrep -i '\.([chly](xx|pp)*|cc|hh)$' | \
+
+# let's include SOC PD source tree
+soc_pd_source_tree="${DIR}/package/external"
+if [ -d "${soc_pd_source_tree}" ]; then
+    # pay attention to the '/' at the end of the symbolic link soc_pd_source_tree
+    # ref: https://unix.stackexchange.com/questions/93857/find-does-not-work-on-symlinked-path
+    find ${soc_pd_source_tree}/ \( -type f \) | \
+        egrep -i '\.([chy](xx|pp)*|cc|hh)$' | \
+        sed -e '/\/TelematicsAutomatedTest\//d' -e '/\/int_scripts\//d' -e '/\/tests\//d' -e '/\/stub\//d' -e '/\/.repo\//d' -e '/\/CVS\//d' -e '/\/RCS\//d' -e '/^\.svn\//d' -e '/\/.git\//d' -e '/\/.hg\//d' -e 's/^\.\///' | \
+        sort >> $LIST_FILE
+fi
+
+buildenv="$DIR/etc/buildenv.h"
+[ -f "$buildenv" ] && echo "${buildenv}" >> $LIST_FILE
 
 if [ "X$VERBOSE" != "X" ]
 then
