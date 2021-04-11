@@ -1,0 +1,14 @@
+.repo/
+int_scripts/
+tests/
+TelematicsAutomatedTest/
+subaru-t19plus/package/conti-dcm/code/application/example/
+subaru-t19plus/package/conti-dcm/code/stub/
+subaru-t19plus/package/conti-dcm/code/test_code/
+CCAST_.CFG
+cscope.files
+cscope.out
+*.o
+*.d
+*.a
+*.c.test
