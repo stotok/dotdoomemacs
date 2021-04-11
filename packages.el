@@ -96,6 +96,10 @@
  :recipe (:local-repo "ttk-qml"         ; look for ${DOOMDIR}/ttk-qml/qml-mode.el
  ))
 
+(package! csv-mode
+ :recipe (:branch "master"
+ ))
+
 (package! evil-motion-trainer
   :recipe (:host github
            :repo "martinbaillie/evil-motion-trainer"

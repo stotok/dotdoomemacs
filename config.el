@@ -1166,6 +1166,13 @@ title."
 ;; enable qml-mode for qml files
 (setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
 
+(use-package! csv-mode
+  :init
+  :config
+  )
+;; enable csv-mode for csv files
+(setq auto-mode-alist (cons '("\\.[Cc][Ss][Vv]$" . csv-mode) auto-mode-alist))
+
 (after! epa
   (set (if EMACS27+
            'epg-pinentry-mode
@@ -1241,5 +1248,5 @@ title."
   :init
   :config
   (setq evil-motion-trainer-threshold 6
-        evil-motion-trainer-super-annoying-mode t)
+        evil-motion-trainer-super-annoying-mode nil)
   (global-evil-motion-trainer-mode 1))
