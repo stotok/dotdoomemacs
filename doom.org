@@ -40,7 +40,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#show-current-time][Show current time]]
   - [[#shrink-whitespace][Shrink Whitespace]]
   - [[#key-bindings][Key bindings]]
-    - [[#miscellaneous-keybindings][Miscellaneous keybindings]]
+    - [[#misc-keybindings][Misc keybindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
 - [[#org-mode][Org mode]]
   - [[#general-org-configuration][General Org Configuration]]
@@ -111,6 +111,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-mc][Evil-mc]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
+  - [[#what-is-my-xxx][What is my xxx]]
 - [[#known-bugs][Known Bugs]]
   - [[#-failed-to-provide-feature-with-editor][... failed to provide feature 'with-editor']]
 - [[#references][References]]
@@ -693,12 +694,11 @@ Reference: [[https://github.com/hlissner/doom-emacs/blob/develop/docs/api.org#pe
 ** Dashboard
 **** Splash Screen
 
-I made a super simple set of Doom-Emacs custom splash screens by combining
+Zzamboni made a super simple set of Doom-Emacs custom splash screens by combining
 [[http://www.thedreamcastjunkyard.co.uk/2018/03/cross-platform-online-multiplayer-added.html][a Doom logo]] with the word "Emacs" rendered in the [[https://fontmeme.com/doom-font/][Doom Font]]. You can see them
 at https://gitlab.com/zzamboni/dot-doom/-/tree/master/splash (you can also see
 one of them at the top of this file). I configure it to be used instead of the
-default splash screen. It took me all of 5 minutes to make, so improvements
-are welcome!
+default splash screen.
 
 If you want to choose at random among a few different splash images, you can
 list them in =alternatives=.
@@ -961,7 +961,6 @@ So this code is commented out now.
 
 Truncate lines in =ivy= childframes. [[https://discord.com/channels/406534637242810369/484105925733646336/770756709857755187][Thanks Henrik]]!
 
-Totok disable first
 #+begin_src emacs-lisp :tangle no
 (setq posframe-arghandler
       (lambda (buffer-or-name key value)
@@ -1080,7 +1079,7 @@ already bound. I modify some keybindings here.
 
 For =evil-normal-state-map=, see: =~/.emacs.d/.local/straight/repos/evil/evil-maps.el=.
 
-*** Miscellaneous keybindings
+*** Misc keybindings
 
 Use =counsel-buffer-or-recentf= for ~C-x b~. I like being able to see all recently
 opened files, instead of just the current ones. This makes it possible to use
@@ -1262,11 +1261,8 @@ and braces.
 
 * Org mode
 
-[[http://orgmode.org/][Org mode]] has become my primary tool for writing, blogging, coding, presentations and more.
-I am duly impressed. I have been a fan of the idea of [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] for many years,
-and I have tried other tools before (most notably [[https://www.cs.tufts.edu/~nr/noweb/][noweb]], which I used during grad school
-for homeworks and projects), but Org is the first tool I have encountered which makes it
-practical. Here are some of the resources I have found useful in learning it:
+I have been a fan of the idea of [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] for many years, but Org is the first
+tool I have encountered which makes it practical. Here are some of the resources I have found useful in learning it:
 
 - Howard Abrams' [[http://www.howardism.org/Technical/Emacs/literate-programming-tutorial.html][Introduction to Literate Programming]], which got me jumpstarted into writing
   code documented with org-mode.
@@ -1276,9 +1272,6 @@ practical. Here are some of the resources I have found useful in learning it:
 - Sacha Chua's [[http://sachachua.com/blog/2014/01/tips-learning-org-mode-emacs/][Some tips for learning Org Mode for Emacs]], her [[http://pages.sachachua.com/.emacs.d/Sacha.html][Emacs configuration]] and
   many of her [[http://sachachua.com/blog/category/emacs/][other articles]].
 - Rainer König's [[https://www.youtube.com/playlist?list=PLVtKhBrRV_ZkPnBtt_TD1Cs9PJlU0IIdE][OrgMode Tutorial]] video series.
-
-Doom's Org module provides a lot of sane configuration settings, so I don't have to
-configure so much as in my [[https://github.com/zzamboni/dot-emacs/][previous hand-crafted config]].
 
 ** General Org Configuration
 
@@ -2967,6 +2960,13 @@ Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs E
         evil-motion-trainer-super-annoying-mode nil)
   (global-evil-motion-trainer-mode 1))
 #+end_src
+** What is my xxx
+- Specific keybinding
+  : <M-x> describe-key (SPC h k)
+- List of keybindings
+  : SPC ?
+- Specific function
+  : <M-x> describe-function (SPC h f)
 * Known Bugs
 ** ... failed to provide feature 'with-editor'
 
