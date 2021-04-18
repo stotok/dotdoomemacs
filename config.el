@@ -182,6 +182,15 @@
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 
+(use-package! persistent-scratch
+ :init
+ :config
+ ;; Directory to save old versions of scratch buffer saves to
+ (setq persistent-scratch-backup-directory (format "%s/private/persist-scratch" (getenv "DOOMDIR")))
+ ;; Enable both autosave and restore the last saved data on emacs start
+ (persistent-scratch-setup-default)
+)
+
 (let ((alternatives '("doom-emacs-bw-light.svg")))
    ;;((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))
   (setq fancy-splash-image

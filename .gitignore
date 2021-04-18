@@ -3,3 +3,8 @@ bo/
 *.stackdump
 .DS_Store
 .gitignore.swp
+
+# private directories
+private/
+!private/README.org
+!private/persist-scratch/README.org

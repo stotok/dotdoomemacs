@@ -53,6 +53,9 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;;(unpin! t)
 
+(package! persistent-scratch
+  :recipe (:branch "master"))
+
 (package! rainbow-mode)
 
 (package! rainbow-delimiters)

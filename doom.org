@@ -27,6 +27,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#mac-modifiers][Mac Modifiers]]
   - [[#frame-title][Frame Title]]
   - [[#persist-frame-geometry][Persist Frame Geometry]]
+  - [[#persist-scratch-buffer][Persist Scratch Buffer]]
   - [[#dashboard][Dashboard]]
   - [[#fonts][Fonts]]
   - [[#themes][Themes]]
@@ -690,7 +691,24 @@ Reference: [[https://github.com/hlissner/doom-emacs/blob/develop/docs/api.org#pe
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 #+end_src
+** Persist Scratch Buffer
+Ref: [[https://umarahmad.xyz/blog/quick-scratch-buffers/][Quick persistent scratch buffer]], Github: [[https://github.com/Fanael/persistent-scratch/][Fanael/persistent-scratch]].
+Available on MELPA.
 
+#+begin_src emacs-lisp :tangle packages.el
+(package! persistent-scratch
+  :recipe (:branch "master"))
+#+end_src
+#+begin_src emacs-lisp
+(use-package! persistent-scratch
+ :init
+ :config
+ ;; Directory to save old versions of scratch buffer saves to
+ (setq persistent-scratch-backup-directory (format "%s/private/persist-scratch" (getenv "DOOMDIR")))
+ ;; Enable both autosave and restore the last saved data on emacs start
+ (persistent-scratch-setup-default)
+)
+#+end_src
 ** Dashboard
 **** Splash Screen
 
