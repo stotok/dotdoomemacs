@@ -27,9 +27,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#mac-modifiers][Mac Modifiers]]
   - [[#frame-title][Frame Title]]
   - [[#persist-frame-geometry][Persist Frame Geometry]]
-  - [[#scratch-buffer-and-persistancy][Scratch Buffer and Persistancy]]
-    - [[#default][Default]]
-    - [[#persistance-scratch-buffer][Persistance Scratch Buffer]]
+  - [[#scratch-buffer][Scratch Buffer]]
+    - [[#doom-scratch-buffer][Doom Scratch Buffer]]
+    - [[#emacs-scratch-buffer][Emacs Scratch Buffer]]
   - [[#dashboard][Dashboard]]
   - [[#fonts][Fonts]]
   - [[#themes][Themes]]
@@ -693,8 +693,8 @@ Reference: [[https://github.com/hlissner/doom-emacs/blob/develop/docs/api.org#pe
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 #+end_src
-** Scratch Buffer and Persistancy
-*** Default
+** Scratch Buffer
+*** Doom Scratch Buffer
 Doom has persistance scratch buffer named =doom:scratch= with:
 - =M-x doom/switch-to-scratch-buffer (SPC b X)=, or
 - =M-x doom/open-scratch-buffer (SPC x)=
@@ -704,7 +704,7 @@ Doom has persistance scratch buffer named =doom:scratch= with:
               doom-scratch-initial-major-mode 'org-mode)
 #+end_src
 
-*** Persistance Scratch Buffer
+*** Emacs Scratch Buffer
 This is for default emacs scratch buffer named =scratch=. Available on MELPA.
 Ref: [[https://umarahmad.xyz/blog/quick-scratch-buffers/][Quick persistent scratch buffer]], Github: [[https://github.com/Fanael/persistent-scratch/][Fanael/persistent-scratch]].
 
