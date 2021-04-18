@@ -182,6 +182,9 @@
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 
+(setq-default doom-scratch-dir (format "%s/private" (getenv "DOOMDIR"))
+              doom-scratch-initial-major-mode 'org-mode)
+
 (use-package! persistent-scratch
  :init
  :config
