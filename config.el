@@ -194,7 +194,7 @@
  (persistent-scratch-setup-default)
  ;; See https://umarahmad.xyz/blog/quick-scratch-buffers/
  ;; (setq persistent-scratch-save-file (concat CACHE-DIR ".persistent-scratch"))
- (setq persistent-scratch-save-file (concat persistent-scratch-backup-directory ".persistent-scratch"))
+ (setq persistent-scratch-save-file (concat persistent-scratch-backup-directory "/persistent-scratch"))
  ;; (persistent-scratch-restore)
  ;; (persistent-scratch-setup-default)
  (persistent-scratch-autosave-mode)
