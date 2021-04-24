@@ -844,76 +844,78 @@ title."
   :commands cfengine3-mode
   :mode ("\\.cf\\'" . cfengine3-mode))
 
-(defconst ttk-c-style
-  '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
-    ;; stroustrup : the classic Stroustrup style for C++ code.
-    ;; linux      : C coding standard for Linux (the kernel).
-    ;; user       : special style created by you. It consists of the factory defaults for
-    ;;              all the style variables as modified by the customizations.
-    (setq c-default-style '((java-mode . "java")
-                            (awk-mode  . "awk")
-                            (c-mode    . "user")
-                            (c++-mode  . "user")
-                            (other     . "user")))
-    ;; this is for linux kernel and driver project
-    (c-set-style (if (and (buffer-file-name)
-                          (string-match "~/project/linux" (buffer-file-name)))
-                    "linux"
-                  "user"))
-    (c-hanging-braces-alist     . ((substatement-open after)
-                                  (brace-list-open)))
-    (c-hanging-colons-alist     . ((member-init-intro before)
-                                  (inher-intro)
-                                  (case-label after)
-                                  (label after)
-                                  (access-label after)))
-    (c-cleanup-list             . (scope-operator
-                                  empty-defun-braces
-                                  defun-close-semi))
-    (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
-                                  (substatement-open . 0) ; brackets shd be at same identation as the statement they open
-                                  (case-label        . 4) ;; 0 ;; 3
-                                  (block-open        . 0)
-                                  (knr-argdecl-intro . -)))
-    (setq-default c-indent-tabs-mode t         ; pressing TAB should cause indentation
-                  c-tab-always-indent t
-                  c-comment-only-line-offset 0 ; 4
-                  indent-tabs-mode nil         ; nil uses space, t uses tab
-                  c-echo-syntactic-information-p t
-     ))
-  "TTK C Programming Style")
-;;
-;; Customizations for all of modes in CC mode
-;;
-;; ct hook
-(defun ct-c-mode-common-hook ()
-  ;; add ct style and set it for the current buffer
-  (c-add-style "TTK" ttk-c-style t)
-  ;; offset customizations not in ttk-c-style
-  (c-set-offset 'member-init-intro '++)
-  ;; treat '_' as a word constituent
-  (modify-syntax-entry ?_ "w")
-  ;; local binding
-  ;; (local-set-key (kbd "C-<") 'c-up-conditional-with-else)
-  ;; (local-set-key (kbd "C->") '(lambda (count) (interactive "p") (c-up-conditional-with-else (- count))))
-  ;; other customizations
-  (setq tab-width 4
-        c-basic-offset 4
-        c-indent-level 4
-        )
-  ;; we like auto-newline and hungry-delete
-  ;; (c-toggle-auto-hungry-state 1)
-  ;; keybindings for all supported languages.  We can put these in
-  ;; c-mode-base-map because c-mode-map, c++-mode-map, objc-mode-map,
-  ;; java-mode-map, and idl-mode-map inherit from it.
-  ;; (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+(after! cc-mode
+  :init
+   (defconst ttk-c-style
+     '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
+       ;; stroustrup : the classic Stroustrup style for C++ code.
+       ;; linux      : C coding standard for Linux (the kernel).
+       ;; user       : special style created by you. It consists of the factory defaults for
+       ;;              all the style variables as modified by the customizations.
+       (setq c-default-style '((java-mode . "java")
+                               (awk-mode  . "awk")
+                               (c-mode    . "user")
+                               (c++-mode  . "user")
+                               (other     . "user")))
+       ;; this is for linux kernel and driver project
+       (c-set-style (if (and (buffer-file-name)
+                           (string-match "~/project/linux" (buffer-file-name)))
+                       "linux"
+                   "user"))
+       (c-hanging-braces-alist     . ((substatement-open after)
+                                      (brace-list-open)))
+       (c-hanging-colons-alist     . ((member-init-intro before)
+                                      (inher-intro)
+                                      (case-label after)
+                                      (label after)
+                                      (access-label after)))
+       (c-cleanup-list             . (scope-operator
+                                      empty-defun-braces
+                                      defun-close-semi))
+       (c-offsets-alist            . ((arglist-close . c-lineup-arglist)
+                                     (substatement-open . 0) ; brackets shd be at same identation as the statement they open
+                                     (case-label        . 4) ;; 0 ;; 3
+                                     (block-open        . 0)
+                                     (knr-argdecl-intro . -)))
+       (setq-default c-indent-tabs-mode t         ; pressing TAB should cause indentation
+                     c-tab-always-indent t
+                     c-comment-only-line-offset 0 ; 4
+                     indent-tabs-mode nil         ; nil uses space, t uses tab
+                     c-echo-syntactic-information-p t))
+      "TTK C Programming Style")
+   ;;
+   ;; Customizations for all of modes in CC mode
+   ;;
+   ;; ct hook
+   (defun ct-c-mode-common-hook ()
+   ;; add ct style and set it for the current buffer
+   (c-add-style "TTK" ttk-c-style t)
+   ;; offset customizations not in ttk-c-style
+   (c-set-offset 'member-init-intro '++)
+   ;; treat '_' as a word constituent
+   (modify-syntax-entry ?_ "w")
+   ;; local binding
+   ;; (local-set-key (kbd "C-<") 'c-up-conditional-with-else)
+   ;; (local-set-key (kbd "C->") '(lambda (count) (interactive "p") (c-up-conditional-with-else (- count))))
+   ;; other customizations
+   (setq tab-width 4
+         c-basic-offset 4
+         c-indent-level 4)
+   ;; we like auto-newline and hungry-delete
+   ;; (c-toggle-auto-hungry-state 1)
+   ;; keybindings for all supported languages.  We can put these in
+   ;; c-mode-base-map because c-mode-map, c++-mode-map, objc-mode-map,
+   ;; java-mode-map, and idl-mode-map inherit from it.
+   ;; (define-key c-mode-base-map "\C-m" 'newline-and-indent)
+   )
+  :config
+   ;;
+   ;; apply which one to use
+   (add-hook 'c-mode-common-hook 'ct-c-mode-common-hook)
+   (add-hook 'c++-mode-common-hook 'ct-c-mode-common-hook)
+   ;; files *.ipp is c++ source code in UPA
+   (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
   )
-;;
-;; apply which one to use
-(add-hook 'c-mode-common-hook 'ct-c-mode-common-hook)
-(add-hook 'c++-mode-common-hook 'ct-c-mode-common-hook)
-;; files *.ipp is c++ source code in UPA
-(setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
 
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
