@@ -53,6 +53,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;;(unpin! t)
 
+(package! rtags :disable t)
+
 (package! persistent-scratch
   :recipe (:branch "master"))
 

@@ -20,6 +20,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#header-for-configel][Header for =config.el=]]
   - [[#customized-variables][Customized variables]]
 - [[#doom-modules][Doom Modules]]
+  - [[#modules][Modules]]
+  - [[#disabling-packages][Disabling Packages]]
 - [[#general-configuration][General Configuration]]
   - [[#doom-local-leader-key][Doom Local Leader Key]]
   - [[#personal-info-and-gpg][Personal Info and GPG]]
@@ -185,6 +187,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 ;;      directory (for easy access to its source code).
 #+end_src
 
+#+RESULTS:
+
 *** Header for =packages.el=
 #+begin_src emacs-lisp :tangle packages.el
 ;; -*- no-byte-compile: t; -*-
@@ -324,7 +328,7 @@ The only exceptions are "safe variable" and "safe theme" settings, which are aut
 saved by Emacs in =custom.el=, but this is OK as they don't conflict with anything else from the config.
 
 * Doom Modules
-
+** Modules
 This code is written to the =init.el= to select which modules to load.
 
 #+begin_src emacs-lisp :tangle init.el
@@ -508,6 +512,11 @@ This code is written to the =init.el= to select which modules to load.
  :config
  ;;literate
  (default +bindings +smartparens))
+#+end_src
+
+** Disabling Packages
+#+begin_src emacs-lisp :tangle packages.el
+(package! rtags :disable t)
 #+end_src
 
 * General Configuration
