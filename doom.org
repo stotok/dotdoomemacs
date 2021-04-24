@@ -2175,7 +2175,6 @@ Over the years of doing C/C++, here's my favourite settings.
 
 #+begin_src emacs-lisp
 (after! cc-mode
-  :init
    (defconst ttk-c-style
      '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
        ;; stroustrup : the classic Stroustrup style for C++ code.
@@ -2238,7 +2237,6 @@ Over the years of doing C/C++, here's my favourite settings.
    ;; java-mode-map, and idl-mode-map inherit from it.
    ;; (define-key c-mode-base-map "\C-m" 'newline-and-indent)
    )
-  :config
    ;;
    ;; apply which one to use
    (add-hook 'c-mode-common-hook 'ct-c-mode-common-hook)
@@ -2443,6 +2441,7 @@ Now create new keybindings. "SPC m s" is not currently being used.
  ;; Let's see this chunksize value
  (setq tramp-chunksize 2000))
 #+end_src
+
 * Plantuml
 
 Diagram to confuse people more, see: [[https://plantuml.com/][PlantUML in a nutshell]].

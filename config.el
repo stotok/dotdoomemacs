@@ -845,7 +845,6 @@ title."
   :mode ("\\.cf\\'" . cfengine3-mode))
 
 (after! cc-mode
-  :init
    (defconst ttk-c-style
      '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
        ;; stroustrup : the classic Stroustrup style for C++ code.
@@ -908,7 +907,6 @@ title."
    ;; java-mode-map, and idl-mode-map inherit from it.
    ;; (define-key c-mode-base-map "\C-m" 'newline-and-indent)
    )
-  :config
    ;;
    ;; apply which one to use
    (add-hook 'c-mode-common-hook 'ct-c-mode-common-hook)
