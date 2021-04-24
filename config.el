@@ -1322,4 +1322,6 @@ title."
   :config
   (setq evil-motion-trainer-threshold 6
         evil-motion-trainer-super-annoying-mode nil)
-  (global-evil-motion-trainer-mode 1))
+  ;; (global-evil-motion-trainer-mode 1)
+  (global-evil-motion-trainer-mode 0)
+ )

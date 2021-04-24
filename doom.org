@@ -3046,6 +3046,7 @@ Ref:
 - [[https://github.com/hlissner/doom-emacs/issues/1797][Unmap keys with prefix]]
 - [[https://github.com/hlissner/doom-emacs/issues/820][changing leader key to F13]]
 - [[https://github.com/hlissner/doom-emacs/issues/814][howto unmap keymap prefix set via map!]]
+
 ** Evil Motion Trainer
 Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs Evil Motion Training]]. Github: [[https://github.com/martinbaillie/evil-motion-trainer][evil-motion-trainer]].
 #+begin_src emacs-lisp :tangle packages.el
@@ -3060,8 +3061,11 @@ Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs E
   :config
   (setq evil-motion-trainer-threshold 6
         evil-motion-trainer-super-annoying-mode nil)
-  (global-evil-motion-trainer-mode 1))
+  ;; (global-evil-motion-trainer-mode 1)
+  (global-evil-motion-trainer-mode 0)
+ )
 #+end_src
+
 ** What is my xxx
 - Specific keybinding
   : <M-x> describe-key (SPC h k)
