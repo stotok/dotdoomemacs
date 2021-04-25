@@ -1,14 +1,29 @@
 #!/bin/sh
+# -*- mode: shell-script -*-
 #
+if ! command -v fd > /dev/null 2>&1; then
+    echo "ERROR::   fd command not found."
+    echo "INSTALL:: $ sudo apt install fd-find"
+    echo "THEN::    $ ln -s \$(which fdfind) ~/bin/fd"
+    echo "REF::     https://github.com/sharkdp/fd"
+    exit
+fi
+#
+if ! command -v cscope > /dev/null 2>&1; then
+    echo "ERROR::   cscope command not found."
+    echo "INSTALL:: $ sudo apt install cscopoe"
+    exit
+fi
 #
 LIST_FILE="fd-cscope.files"
 DATABASE_FILE="cscope.out"
 FIND="fd --ignore-case --type f"
 CSCOPE="cscope"
-
+#
 ${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
     VUC_APP/TVIP_Ctrl_Files/TVIP | cut -d '/' -f3- > .fdignore
-
+#
+echo "generating cscope file listing: ${LIST_FILE} ..."
 ${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
     --exclude .git \
     --exclude .repo \
@@ -59,5 +74,8 @@ ${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
     --exclude VUC_APP/User_Config/Sec \
     --exclude VUC_APP/User_Config/tmp \
     > ${LIST_FILE}
-
+#
+echo "generating cscope database: ${DATABASE_FILE} ..."
 ${CSCOPE} -b -c -i ${LIST_FILE} -f ${DATABASE_FILE}
+#
+echo "done."
