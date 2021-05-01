@@ -9,6 +9,7 @@
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
 #+email: stotok@kukisku.com
+#+OPTIONS: num:nil
 
 This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
 
