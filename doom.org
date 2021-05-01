@@ -2215,13 +2215,14 @@ Over the years of doing C/C++, here's my favourite settings.
                                     (case-label        . 4) ;; 0 ;; 3
                                     (block-open        . 0)
                                     (knr-argdecl-intro . -)))
-     (setq-default tab-wideth                 4
-                   c-basic-offset             4
-                   c-indent-level             4
-                   c-indent-tabs-mode         t ; pressing TAB should cause indentation
-                   c-tab-always-indent        t
-                   c-comment-only-line-offset 0 ; 4
-                   indent-tabs-mode nil         ; nil uses space, t uses tab
+     (setq-default indent-tabs-mode             nil ; nil uses space, t uses tab. See: https://www.emacswiki.org/emacs/NoTabs
+                   tab-width                      4 ; this is only for displaying existing tabs in files
+                   c-basic-offset                 4
+                   c-indent-level                 4 ; a tab is equivalent to four spaces
+                   c-indent-tabs-mode             t ; pressing TAB should cause indentation
+                   c-tab-always-indent            t
+                   c-comment-only-line-offset     0 ; 4
+                   c-continued-statement-offset   4 ; if a statement continues on the next line, indent the continuation by 4
                    c-echo-syntactic-information-p t)
      ) "TTK C Programming Style")
    ;;
