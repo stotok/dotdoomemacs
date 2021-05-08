@@ -4,7 +4,10 @@
 #+property: header-args :mkdirp yes :comments no
 #+startup: fold
 :END:
+
 #+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
+# Then copy the "src" folder from the org-html-themes folder into
+# the same folder as the file you want to export
 
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
@@ -2086,30 +2089,6 @@ Publishing the website.
       :recursive t
       :publishing-function org-publish-attachment)
     ("ctdc-org" :components ("ctdc-notes" "ctdc-static" "ctdc-org-html-themes"))
-    ;;
-    ;; dotdoomemacs project
-    ;;
-    ("dotdoomemacs-notes"
-      :base-directory "~/project/dotdoomemacs/"
-      :base-extension "org"
-      :publishing-directory "~/project/dotdoomemacs/bo/html/"
-      :recursive t
-      :publishing-function org-html-publish-to-html
-      :headline-levels 4             ; Just the default for this project.
-      :auto-preamble t)
-    ("dotdoomemacs-static"
-      :base-directory "~/project/dotdoomemacs/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/dotdoomemacs/bo/html/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("dotdoomemacs-org-html-themes"
-      :base-directory "~/project/org-html-themes/src/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/dotdoomemacs/bo/html/src/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("dotdoomemacs-org" :components ("dotdoomemacs-notes" "dotdoomemacs-static" "dotdoomemacs-org-html-themes"))
     ))
   ;; Source code block evaluated during export. I don't want to be asked everytime :)
   (setq org-confirm-babel-evaluate nil)
