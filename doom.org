@@ -314,6 +314,11 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
+(defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
+;; print hostname
+(cond
+ (IS-COROLLA
+  (message "hostname: corolla")))
 #+end_src
 
 ** Customized variables
@@ -719,11 +724,12 @@ Doom has persistance scratch buffer named =doom:scratch= with:
 This is for default emacs scratch buffer named =scratch=. Available on MELPA.
 Ref: [[https://umarahmad.xyz/blog/quick-scratch-buffers/][Quick persistent scratch buffer]], Github: [[https://github.com/Fanael/persistent-scratch/][Fanael/persistent-scratch]].
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! persistent-scratch
   :recipe (:branch "master"))
 #+end_src
-#+begin_src emacs-lisp
+
+#+begin_src emacs-lisp :tangle no
 (use-package! persistent-scratch
  :init
  :config
@@ -962,7 +968,7 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
         doom-big-font            (font-spec :family "Roboto Mono" :size 18)))
- (IS-LOGE
+ ((or IS-LOGE IS-COROLLA)
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
@@ -994,10 +1000,9 @@ I customize existing doom-themes to my liking:
 #+begin_src emacs-lisp
 ;; select theme
 (cond
- (IS-IGD1943U
+ ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  ;; (setq doom-theme 'ttk-doom-solarized-light))
   (setq doom-theme 'ttk-doom-zenburn))
  (t
   (setq doom-theme 'ttk-doom-zenburn)))
