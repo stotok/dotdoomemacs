@@ -8,7 +8,3 @@ bo/
 private/
 !private/README.org
 !private/persist-scratch/README.org
-
-# html export
-doom.html
-src/

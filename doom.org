@@ -8,6 +8,9 @@
 #+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
+# cp -R ../org-html-themes/src bo/
+#+EXPORT_FILE_NAME: bo/doom
+# the exported filename will be bo/doom.html, bo/doom.tex or bo/doom.pdf
 
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
