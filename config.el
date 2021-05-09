@@ -240,6 +240,7 @@
     "Repair what you can but when you must fail, fail noisily and as soon as possible"
     "Too much agrement kills a chat"
     "Don't talk about yourself; it will be done when you leave"
+    "Your best teacher is your last mistake"
     "A smile can mean a thousand words, but it can also hide a thousand problems"
     "Laziness is nothing more than the habit of resting before you get tired"
     "When we talk to God, we're praying. When God talks to us, we're schizophrenic"
@@ -838,7 +839,8 @@ title."
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
       :localleader
-      :prefix "d"    ;; "c" already taken by ccls-show-caller: modules/lang/cc/config.el
+      :prefix ("d" . "C Movement")    ;; "c" already taken by ccls-show-caller: modules/lang/cc/config.el
+       :desc "ccmode Movement"
         "<" 'c-up-conditional-with-else
         ">" '(lambda (count) (interactive "p") (c-up-conditional-with-else (- count)))
         "A" 'c-beginning-of-defun
@@ -860,16 +862,17 @@ title."
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
       :localleader
-      :prefix "s"
-      "s" #'cscope-find-this-symbol
-      "d" #'cscope-find-global-definition
-      "c" #'cscope-find-functions-calling-this-function
-      "C" #'cscope-find-called-functions
-      "i" #'cscope-find-files-including-file
-      "b" #'cscope-display-buffer
-      "u" #'cscope-pop-mark
-      "a" #'cscope-set-initial-directory
-      "A" #'cscope-unset-initial-directory)
+      :prefix ("s" . "cscope")
+       :desc "cscope"
+        "s" #'cscope-find-this-symbol
+        "d" #'cscope-find-global-definition
+        "c" #'cscope-find-functions-calling-this-function
+        "C" #'cscope-find-called-functions
+        "i" #'cscope-find-files-including-file
+        "b" #'cscope-display-buffer
+        "u" #'cscope-pop-mark
+        "a" #'cscope-set-initial-directory
+        "A" #'cscope-unset-initial-directory)
 
 (after! projectile
  ;; alien method need external utility (unixes), and fast.
