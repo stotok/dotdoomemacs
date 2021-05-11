@@ -140,6 +140,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#with-avy-1][With avy]]
     - [[#with-evil-snipe][With evil-snipe]]
   - [[#evil-mc-1][Evil-mc]]
+    - [[#use-case-1-make-vertical-cursors][Use Case 1: Make vertical cursors]]
+    - [[#use-case-2-make-occurance-cursors][Use Case 2: Make occurance cursors]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
   - [[#expand-region][Expand region]]
@@ -148,6 +150,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#live-project-search-from-the-project-root-using-ripgrep][Live project search from the project root using ripgrep]]
     - [[#grep-for-a-string-in-the-current-directory-using-ripgrep][Grep for a string in the current directory using ripgrep]]
     - [[#search-the-current-project-with-ripgrep][Search the current project with ripgrep]]
+  - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
 
 * Doom Config Files
 
@@ -3168,6 +3171,7 @@ s 2chars     (evil snipe)
 #+end_example
 
 ** Evil-mc
+*** Use Case 1: Make vertical cursors
 Functions to use:
 #+begin_example
 evil-mc-make-cursor-here
@@ -3186,6 +3190,15 @@ Example (do it in c-mode major mode). Evil-mc does not fully work in org-mode.
 #define MULTI_THREE     TWO * ONE
 #define MULTI_FOUR      TWO * THREE
 #+end_src
+
+*** Use Case 2: Make occurance cursors
+Functions to use:
+#+begin_example
+- Select a region   (visual selection)
+- g z d             (find occurance downwards)
+or
+- g z m             (find all occurance)
+#+end_example
 
 ** Evil-multiedit
 Ref: [[https://www.youtube.com/watch?v=zXdT5jY_ui0&t=112s][Emacs Doom E08: Multiple cursor with evil-multiedit]].
@@ -3258,4 +3271,11 @@ M-x counsel-rg
 *** Search the current project with ripgrep
 #+begin_example
 M-x counsel-projectile-rg
+#+end_example
+
+** Break a long line into shorther lines
+#+begin_example
+M-x ruler-mode        (show ruler)
+M-x set-fill-column   (set max chars per line used to 'fill' command)
+M-x fill-paragraph    (break a long line into shorter lines)
 #+end_example
