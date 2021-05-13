@@ -151,6 +151,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#grep-for-a-string-in-the-current-directory-using-ripgrep][Grep for a string in the current directory using ripgrep]]
     - [[#search-the-current-project-with-ripgrep][Search the current project with ripgrep]]
   - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
+  - [[#calculator][Calculator]]
+    - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
+    - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
 
 * Doom Config Files
 
@@ -3279,3 +3282,44 @@ M-x ruler-mode        (show ruler)
 M-x set-fill-column   (set max chars per line used to 'fill' command)
 M-x fill-paragraph    (break a long line into shorter lines)
 #+end_example
+** Calculator
+Reading:
+- [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
+- [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
+
+*** Calc-Mode Epiphany
+Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].
+#+begin_example
+<Place cursor at the location for calc result>
+M-x calc            (calc mode)
+<Do calculcation>
+C-x * y             (copy last item in calc into cursor location)
+#+end_example
+#+begin_example
+# 2:18:47
+Convert 2:18:47 into seconds = 8327
+#+end_example
+
+*** Convert Decimal/Hexadecimal
+#+begin_example
+M-x calc
+Type any number.
+Type "D6" to turn the display into hex form
+Type "D0" to turn the display into dec form
+#+end_example
+
+To display radix generally, use "D r" (calc-radix) and enter
+an integer from 2 to 36 (2:binary, 8:octal, 6:hex, 0:dec, etc).
+
+About inputting a number:
+- A number entered without "#" is always interpreted as decimal.
+- To enter a number with different radix, type "initial digit" then "#"
+  |---------------+-------------|
+  | initial digit | radix       |
+  |---------------+-------------|
+  |             2 | binary      |
+  |             6 | hexadecimal |
+  |             8 | octal       |
+  |             0 | decimal     |
+  |---------------+-------------|
+- To enter a number as current radix, type "#".
