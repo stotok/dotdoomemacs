@@ -65,8 +65,18 @@
 (defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
 ;; print hostname
 (cond
+ (IS-SIDESTEP
+  (message "hostname: sidestep"))
+ (IS-IGL6301W
+  (message "hostname: IGL6301W"))
+ (IS-IGD1943U
+  (message "hostname: igd1943u"))
+ (IS-LOGE
+  (message "hostname: loge"))
  (IS-COROLLA
-  (message "hostname: corolla")))
+  (message "hostname: corolla"))
+ (t
+  (message "hostname: unknown")))
 
 (setq-default evil-snipe-override-evil-repeat-keys nil
               doom-localleader-key ","
@@ -312,9 +322,6 @@
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
         doom-big-font            (font-spec :family "monospace" :size 18))))
 
-(add-hook! 'org-mode-hook #'mixed-pitch-mode)
-(setq mixed-pitch-variable-pitch-cursor t)
-
 ;; select theme
 (cond
  ((or IS-IGD1943U IS-COROLLA)
@@ -498,8 +505,7 @@
 (add-hook! org-mode (electric-indent-local-mode -1))
 
 (add-hook! org-mode :append
-           #'visual-line-mode
-           #'variable-pitch-mode)
+           #'visual-line-mode)
 
 (after! org
   (setq org-agenda-files
@@ -512,9 +518,6 @@
     (map! :desc (or desc file)
           key
           (lambda () (interactive) (find-file file)))))
-
-(setq org-roam-directory org-directory
-      +org-roam-open-buffer-on-find-file nil)
 
 (map! :after counsel :map org-mode-map
       "C-c l l h" #'counsel-org-link)

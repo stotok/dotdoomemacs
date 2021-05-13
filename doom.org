@@ -329,8 +329,18 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
 ;; print hostname
 (cond
+ (IS-SIDESTEP
+  (message "hostname: sidestep"))
+ (IS-IGL6301W
+  (message "hostname: IGL6301W"))
+ (IS-IGD1943U
+  (message "hostname: igd1943u"))
+ (IS-LOGE
+  (message "hostname: loge"))
  (IS-COROLLA
-  (message "hostname: corolla")))
+  (message "hostname: corolla"))
+ (t
+  (message "hostname: unknown")))
 #+end_src
 
 ** Customized variables
@@ -491,6 +501,7 @@ This code is written to the =init.el= to select which modules to load.
  (org                  ; organize your plain life in plain text
   +present             ; presentation, include reveal.js
   +roam                ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+                       ;               $ brew install sqlite3
   )
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
@@ -991,12 +1002,12 @@ Settings related to fonts:
         doom-big-font            (font-spec :family "monospace" :size 18))))
 #+end_src
 
-Check [[https://www.dschapman.com/notes/mix-monospace-and-variable-fonts-in-doom-emacs][How to mix monospace and viariable width fonts]].
+Check [[https://www.dschapman.com/notes/mix-monospace-and-variable-fonts-in-doom-emacs][How to mix monospace and viariable width fonts]] and [[https://emacs.stackexchange.com/questions/62987/cannot-set-correct-size-for-variable-pitch-font-in-doom-emacs][Cannot set correct size for variable pitch font in Doom Emacs]].
 
 Allow mixed fonts in a buffer. This is particularly useful for Org mode,
 so I can mix source and prose blocks in the same document.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (add-hook! 'org-mode-hook #'mixed-pitch-mode)
 (setq mixed-pitch-variable-pitch-cursor t)
 #+end_src
@@ -1466,12 +1477,11 @@ indentation sometimes.
 
 ** Org visual settings
 
-Enable variable and visual line mode in Org mode by default.
+Enable visual line mode in Org mode by default.
 
 #+begin_src emacs-lisp
 (add-hook! org-mode :append
-           #'visual-line-mode
-           #'variable-pitch-mode)
+           #'visual-line-mode)
 #+end_src
 
 ** Capturing and note taking
@@ -1517,7 +1527,7 @@ Let's roam :D
 
 For now I configure it to include my whole Org directory.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (setq org-roam-directory org-directory
       +org-roam-open-buffer-on-find-file nil)
 #+end_src

@@ -161,6 +161,7 @@
  (org                  ; organize your plain life in plain text
   +present             ; presentation, include reveal.js
   +roam                ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+                       ;               $ brew install sqlite3
   )
  ;;(org +pretty +journal
  ;;     +hugo +roam +pandoc
