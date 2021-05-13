@@ -1,7 +1,8 @@
 :DOC-CONFIG:
 # Tangle by default to config.el, which is the most common case
 #+property: header-args:emacs-lisp :tangle config.el
-#+property: header-args :mkdirp yes :comments no
+# Just silent the output. Ref: https://orgmode.org/manual/Results-of-Evaluation.html
+#+property: header-args :mkdirp yes :comments no :results output silent
 #+startup: fold
 :END:
 
@@ -200,7 +201,6 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 ;;      directory (for easy access to its source code).
 #+end_src
 
-#+RESULTS:
 
 *** Header for =packages.el=
 #+begin_src emacs-lisp :tangle packages.el
