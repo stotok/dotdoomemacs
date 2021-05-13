@@ -1527,7 +1527,7 @@ Let's roam :D
 
 For now I configure it to include my whole Org directory.
 
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (setq org-roam-directory org-directory
       +org-roam-open-buffer-on-find-file nil)
 #+end_src

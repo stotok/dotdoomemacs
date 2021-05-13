@@ -519,6 +519,9 @@
           key
           (lambda () (interactive) (find-file file)))))
 
+(setq org-roam-directory org-directory
+      +org-roam-open-buffer-on-find-file nil)
+
 (map! :after counsel :map org-mode-map
       "C-c l l h" #'counsel-org-link)
 
