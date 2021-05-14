@@ -970,8 +970,9 @@ M-x menu-set-font
 
 My favourite fonts:
 
-+ [[https://input.fontbureau.com][Input]]
-+ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]]
++ [[https://input.fontbureau.com][Input]].
++ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
++ [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]].
 
 Settings related to fonts:
 
@@ -988,7 +989,11 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12)
         doom-big-font            (font-spec :family "menlo" :size 18)))
- ((or IS-IGL6301W IS-IGD1943U)
+ (IS-IGL6301W
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-IGD1943U
   (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
         doom-big-font            (font-spec :family "Roboto Mono" :size 18)))

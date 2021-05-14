@@ -309,7 +309,11 @@
   (setq doom-font                (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12)
         doom-big-font            (font-spec :family "menlo" :size 18)))
- ((or IS-IGL6301W IS-IGD1943U)
+ (IS-IGL6301W
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-IGD1943U
   (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
         doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
         doom-big-font            (font-spec :family "Roboto Mono" :size 18)))
