@@ -124,12 +124,12 @@ determine the exact padding."
    (lsp-ui-sideline-code-action :foreground blue)
 
    (font-lock-comment-face
-    :slant 'italic
+    ;; :slant 'italic      ; totok does not want italic
     :foreground comments
     :background (if doom-solarized-light-comment-bg (doom-blend teal base0 0.07)))
    ((font-lock-doc-face &override) :foreground doc-comments)
-   ((font-lock-type-face &override) :slant 'italic)
-   ((font-lock-builtin-face &override) :slant 'italic)
+   ;; ((font-lock-type-face &override) :slant 'italic)      ; totok does not want italic
+   ;; ((font-lock-builtin-face &override) :slant 'italic)   ; totok does not want italic
    ((font-lock-function-name-face &override) :foreground type)
 
    (font-lock-keyword-face

@@ -979,9 +979,6 @@ Settings related to fonts:
 + 'doom-font' -- standard monospace font that is used for most things.
 + 'doom-variable-pitch-font' -- variable font which is useful in some plugins.
 + 'doom-big-font' -- used in doom-big-font-mode; useful for presentations.
-+ 'font-lock-comment-face' -- for comments.
-+ 'font-lock-keyword-face' -- for keywords with special significace, like
-  'for' and 'if' in C.
 
 #+begin_src emacs-lisp
 (cond
