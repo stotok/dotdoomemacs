@@ -1023,8 +1023,8 @@ title."
   :config
   (setq plantuml-default-exec-mode 'jar))
   ;; enable plantuml-mode for PlantUML files
-  (setq auto-mode-alist (cons '("\\.plantuml$" . plantuml-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.uml$"      . plantuml-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.plantuml$"     . plantuml-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.[uU][mM][lL]$" . plantuml-mode) auto-mode-alist))
 
 (use-package! graphviz-dot-mode)
 
@@ -1164,13 +1164,6 @@ title."
 ;;   ;; end of using digits to select company-mode candidates
 ;;   ;;
  )
-
-(use-package! qml-mode
-  :init
-  :config
-  )
-;; enable qml-mode for qml files
-(setq auto-mode-alist (cons '("\\.[qQ][mM][lL]$" . qml-mode) auto-mode-alist))
 
 (after! epa
   (set (if EMACS27+

@@ -101,6 +101,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#spell-checker][Spell Checker]]
 - [[#other-modes][Other Modes]]
   - [[#qml-qt-declarative][QML (QT Declarative)]]
+  - [[#csv-mode][CSV mode]]
 - [[#other-tools][Other tools]]
   - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
   - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
@@ -509,7 +510,7 @@ This code is written to the =init.el= to select which modules to load.
  plantuml              ; diagrams for confusing people more
  ;;purescript          ; javascript, but functional
  (python +lsp)         ; beautiful is better than ugly
- ;;qt                  ; the 'cutest' gui framework ever
+ qt                    ; the 'cutest' gui framework ever (qml-mode, qt-pro-mode)
  ;;racket                ; a DSL for DSLs
  ;;raku                ; the artist formerly known as perl6
  ;;rest                ; Emacs as a REST client
@@ -2525,8 +2526,8 @@ Installation seems OK. File generation OK
   :config
   (setq plantuml-default-exec-mode 'jar))
   ;; enable plantuml-mode for PlantUML files
-  (setq auto-mode-alist (cons '("\\.plantuml$" . plantuml-mode) auto-mode-alist))
-  (setq auto-mode-alist (cons '("\\.uml$"      . plantuml-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.plantuml$"     . plantuml-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.[uU][mM][lL]$" . plantuml-mode) auto-mode-alist))
 #+end_src
 
 ** If you'd like to edit =dot file= directly
@@ -2800,20 +2801,41 @@ Another variation,
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 * Other Modes
-Fork from [[https://github.com/coldnew/qml-mode][coldnew/qml-mode]].
+
 ** QML (QT Declarative)
-#+begin_src emacs-lisp :tangle packages.el
+Note: This is not needed anymore. Available in Doom =:lang qt=.
+
+Fork from [[https://github.com/coldnew/qml-mode][coldnew/qml-mode]].
+#+begin_src emacs-lisp :tangle no
 (package! qml-mode
  :recipe (:local-repo "ttk-qml"         ; look for ${DOOMDIR}/ttk-qml/qml-mode.el
  ))
 #+end_src
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! qml-mode
   :init
   :config
   )
 ;; enable qml-mode for qml files
-(setq auto-mode-alist (cons '("\\.[qQ][mM][lL]$" . qml-mode) auto-mode-alist))
+;(setq auto-mode-alist (cons '("\\.[qQ][mM][lL]$" . qml-mode) auto-mode-alist))
+#+end_src
+
+** CSV mode
+Note: This is not needed anymore. Available in Doom =:lang data=.
+
+Available on Melpa, ref: https://elpa.gnu.org/packages/csv-mode.html
+#+begin_src emacs-lisp :tangle no
+(package! csv-mode
+ :recipe (:branch "master"
+ ))
+#+end_src
+#+begin_src emacs-lisp :tangle no
+(use-package! csv-mode
+  :init
+  :config
+  )
+;; enable csv-mode for csv files
+;(setq auto-mode-alist (cons '("\\.[Cc][Ss][Vv]$" . csv-mode) auto-mode-alist))
 #+end_src
 
 * Other tools
