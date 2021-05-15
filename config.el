@@ -1170,14 +1170,7 @@ title."
   :config
   )
 ;; enable qml-mode for qml files
-(setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
-
-(use-package! csv-mode
-  :init
-  :config
-  )
-;; enable csv-mode for csv files
-(setq auto-mode-alist (cons '("\\.[Cc][Ss][Vv]$" . csv-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.[qQ][mM][lL]$" . qml-mode) auto-mode-alist))
 
 (after! epa
   (set (if EMACS27+

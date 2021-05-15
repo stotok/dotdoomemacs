@@ -101,7 +101,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#spell-checker][Spell Checker]]
 - [[#other-modes][Other Modes]]
   - [[#qml-qt-declarative][QML (QT Declarative)]]
-  - [[#csv-mode][CSV mode]]
 - [[#other-tools][Other tools]]
   - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
   - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
@@ -469,7 +468,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;coq                 ; proofs-as-programs
  ;;crystal             ; ruby at the speed of c
  ;;csharp              ; unity, .NET, and mono shenanigans
- ;;data                ; config/data formats
+ data                  ; config/data formats (csv-mode, nxml-mode)
  ;;(dart +flutter)     ; paint ui and not much else
  ;;elixir              ; erlang done right
  ;;elm                 ; care for a cup of TEA?
@@ -2814,23 +2813,9 @@ Fork from [[https://github.com/coldnew/qml-mode][coldnew/qml-mode]].
   :config
   )
 ;; enable qml-mode for qml files
-(setq auto-mode-alist (cons '("\\.qml$" . qml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.[qQ][mM][lL]$" . qml-mode) auto-mode-alist))
 #+end_src
-** CSV mode
-Available on Melpa, ref: https://elpa.gnu.org/packages/csv-mode.html
-#+begin_src emacs-lisp :tangle packages.el
-(package! csv-mode
- :recipe (:branch "master"
- ))
-#+end_src
-#+begin_src emacs-lisp
-(use-package! csv-mode
-  :init
-  :config
-  )
-;; enable csv-mode for csv files
-(setq auto-mode-alist (cons '("\\.[Cc][Ss][Vv]$" . csv-mode) auto-mode-alist))
-#+end_src
+
 * Other tools
 ** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
 
