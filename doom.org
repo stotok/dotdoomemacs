@@ -1008,7 +1008,10 @@ Settings related to fonts:
         doom-big-font            (font-spec :family "monospace" :size 18))))
 #+end_src
 
-Check [[https://www.dschapman.com/notes/mix-monospace-and-variable-fonts-in-doom-emacs][How to mix monospace and viariable width fonts]] and [[https://emacs.stackexchange.com/questions/62987/cannot-set-correct-size-for-variable-pitch-font-in-doom-emacs][Cannot set correct size for variable pitch font in Doom Emacs]].
+Check this reference:
+
+- [[https://www.dschapman.com/notes/mix-monospace-and-variable-fonts-in-doom-emacs][How to mix monospace and viariable width fonts]]
+- [[https://emacs.stackexchange.com/questions/62987/cannot-set-correct-size-for-variable-pitch-font-in-doom-emacs][Cannot set correct size for variable pitch font in Doom Emacs]].
 
 Allow mixed fonts in a buffer. This is particularly useful for Org mode,
 so I can mix source and prose blocks in the same document.
