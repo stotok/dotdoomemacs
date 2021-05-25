@@ -1434,7 +1434,7 @@ Default directory for Org files.
 (setq org-directory "~/org/")
 #+end_src
 
-Hide Org markup indicators.
+Hide Org markup indicators such as *bold*, /italic/, etc.
 
 #+begin_src emacs-lisp
 (after! org (setq org-hide-emphasis-markers t))
