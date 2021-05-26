@@ -153,6 +153,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#search-the-current-project-with-ripgrep][Search the current project with ripgrep]]
   - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
   - [[#calculator][Calculator]]
+    - [[#keybinding][Keybinding]]
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
 
@@ -3312,6 +3313,36 @@ M-x fill-paragraph    (break a long line into shorter lines)
 Reading:
 - [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
 - [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
+- [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Emacs Lets You Calculate While You Write]].
+
+*** Keybinding
+Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
+calc mode to be more aligned with evil mode.
+
+Most common operations in Doom Emacs are mapped to the =SPC= leader,
+so pressing =C-x= felt foreign to me. So,
+
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix-map ("=" . "calc")
+       "=" #'calc-dispatch
+       ;; some other shorcuts
+       "c" #'calc               ; launch calc mode w/o doing anything clever
+       "q" #'quick-calc         ; quick calculations in the minibuffer
+       "g" #'calc-grab-region   ; grab a region w/o going through calc-dispatch
+       ))
+#+end_src
+
+|-------------------------+------------|
+| Function                | Keybinding |
+|-------------------------+------------|
+| M-x calc-dispatch       | SPC = =    |
+| M-x calc                | SPC = c    |
+| M-x quick-calc          | SPC = q    |
+| M-x calc-grab-region    | SPC = g    |
+| M-x calc-unpack         | v u        |
+| M-X calc-copy-to-buffer | SPC u p P  |
+|-------------------------+------------|
 
 *** Calc-Mode Epiphany
 Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].

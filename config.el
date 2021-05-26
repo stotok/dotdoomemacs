@@ -1248,3 +1248,12 @@ title."
   ;; (global-evil-motion-trainer-mode 1)
   (global-evil-motion-trainer-mode 0)
  )
+
+(map! :leader
+      (:prefix-map ("=" . "calc")
+       "=" #'calc-dispatch
+       ;; some other shorcuts
+       "c" #'calc               ; launch calc mode w/o doing anything clever
+       "q" #'quick-calc         ; quick calculations in the minibuffer
+       "g" #'calc-grab-region   ; grab a region w/o going through calc-dispatch
+       ))
