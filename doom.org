@@ -2809,7 +2809,6 @@ Another variation,
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 * Other Modes
-
 ** QML (QT Declarative)
 Note: This is not needed anymore. Available in Doom =:lang qt=.
 
