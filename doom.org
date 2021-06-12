@@ -6,7 +6,7 @@
 #+startup: fold
 :END:
 
-#+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
+#+SETUPFILE: ../org-html-themes/org/theme-bigblow-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
 # cp -R ../org-html-themes/src bo/
@@ -113,7 +113,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#insert-date-at-cursor][Insert date at cursor]]
   - [[#show-ascii-table][Show ascii table]]
 - [[#how-to][How To]]
-  - [[#dir-navigation-with-ivy][Dir Navigation with Ivy]]
+  - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
+  - [[#directory-editor-with-dired][Directory Editor with Dired]]
   - [[#ivy][Ivy]]
   - [[#avy][Avy]]
     - [[#goto-line][goto-line]]
@@ -156,6 +157,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#keybinding][Keybinding]]
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
+    - [[#binary-number-operation][Binary Number Operation]]
 
 * Doom Config Files
 
@@ -1040,6 +1042,19 @@ I customize existing doom-themes to my liking:
   (setq doom-theme 'ttk-doom-zenburn))
  (t
   (setq doom-theme 'ttk-doom-zenburn)))
+#+end_src
+
+#+begin_src emacs-lisp
+;; get the right time to set face of hl-line is a bit tricky
+;; each theme has its own way to set and clear
+;; hence, call this function after switching to a theme
+(defun ttk-hl-line-underline-on ()
+  "Enable hl-line underline"
+  (interactive)
+  (set-face-background 'hl-line nil)
+  (set-face-foreground 'hl-line nil)
+  (set-face-underline 'hl-line t))
+;;(ttk-hl-line-underline-on)
 #+end_src
 
 ** Line settings
@@ -2983,14 +2998,17 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 #+end_src
 
 * How To
-** Dir Navigation with Ivy
+** Directory Navigation with Ivy
+- =SPC .= simply invokes ivy (unless you've disabled its module).
+- Pressing backspace or typing =../= will go up one directory.
+- Typing =/= (or =TAB= twice) will move down the selected directory.
+- If you use evil, =C-j= and =C-k= will move down and up through the file list.
+  Otherwise, =C-n= and =C-p=. Press =RET= (enter) to open the selected file/folder.
+- =C-o= will reveal alternative actions you can take on said file/folder.
+- =C-o= j to open it in another window instead.
 
-=SPC .= simply invokes ivy (unless you've disabled its module). Pressing backspace
-or typing =../= will go up one directory. Typing =/= (or =TAB= twice) will move down the
-selected directory. If you use evil, =C-j= and =C-k= will move down and up through the
-file list. Otherwise, =C-n= and =C-p=. Press =RET= (enter) to open the selected file/folder.
-=C-o= will reveal alternative actions you can take on said file/folder. =C-o= j to open
-it in another window instead.
+** Directory Editor with Dired
+Ref: [[https://www.youtube.com/watch?v=oZSmlAAbmYs][Youtube: Emacs Doom E03 - A short intro to Dired]]
 
 ** Ivy
 
@@ -3313,6 +3331,8 @@ Reading:
 - [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
 - [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
 - [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Emacs Lets You Calculate While You Write]].
+- [[https://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
+- [[https://www.emacswiki.org/emacs/Calc_Tutorials_by_Andrew_Hyatt][Calc Tutorials by Andrew Hyatt]]
 
 *** Keybinding
 Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
@@ -3374,8 +3394,21 @@ About inputting a number:
   | initial digit | radix       |
   |---------------+-------------|
   |             2 | binary      |
-  |             6 | hexadecimal |
+  |            16 | hexadecimal |
   |             8 | octal       |
   |             0 | decimal     |
   |---------------+-------------|
 - To enter a number as current radix, type "#".
+
+*** Binary Number Operation
+|------------+----------------------+------------------------------|
+| Keybinding | Calc Function        | Description                  |
+|------------+----------------------+------------------------------|
+| b a        | (calc-and)           | Bitwise AND                  |
+| b o        | (calc-or)            | Bitwise OR                   |
+| b x        | (calc-xor)           | Bitwise XOR                  |
+| b n        | (calc-not)           | Bitwise NOT                  |
+| b d        | (calc-diff)          | Bitwise difference           |
+| b r        | (calc-rshift-binary) | Bitwise right shift by 1 bit |
+| b l        | (calc-lshift-binary) | Bitwise left shift by 1 bit  |
+|------------+----------------------+------------------------------|
