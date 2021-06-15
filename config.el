@@ -335,7 +335,7 @@
  ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  (setq doom-theme 'doom-homage-white))
+  (setq doom-theme 'ttk-doom-homage-white))
  (t
   (setq doom-theme 'ttk-doom-zenburn)))
 
