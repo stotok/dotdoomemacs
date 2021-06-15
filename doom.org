@@ -99,6 +99,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#doom-manual][Doom Manual]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
+- [[#calendar][Calendar]]
+  - [[#localized-holidays][Localized Holidays]]
 - [[#other-modes][Other Modes]]
   - [[#qml-qt-declarative][QML (QT Declarative)]]
   - [[#csv-mode][CSV mode]]
@@ -1039,7 +1041,7 @@ I customize existing doom-themes to my liking:
  ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  (setq doom-theme 'ttk-doom-zenburn))
+  (setq doom-theme 'doom-homage-white))
  (t
   (setq doom-theme 'ttk-doom-zenburn)))
 #+end_src
@@ -1056,6 +1058,12 @@ I customize existing doom-themes to my liking:
   (set-face-underline 'hl-line t))
 ;;(ttk-hl-line-underline-on)
 #+end_src
+
+This is on my TODO list for the next themes:
+- [[https://github.com/rougier/nano-emacs][GNU Emacs/NANO]]
+- [[https://github.com/skyler544/doom-nano-testing][Getting NANO to work in Doom]]
+- [[https://www.reddit.com/r/emacs/comments/lncawq/getting_doom_emacs_and_nano_emacs_to_work_together/][Getting Doom Emacs and Nano Themes to work together]]
+- [[https://github.com/hlissner/doom-emacs/issues/117][Doom Using a custome theme]]
 
 ** Line settings
 
@@ -2823,6 +2831,25 @@ Another variation,
 
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
+
+* Calendar
+** Localized Holidays
+#+begin_src emacs-lisp
+(setq calendar-holidays `((holiday-fixed 1 1 "New Year's Day")
+                          (holiday-fixed 2 12 "Chinese New Year")
+                          (holiday-fixed 2 13 "Chinese New Year")
+                          (holiday-fixed 4 2 "Good Friday")
+                          (holiday-fixed 5 1 "Labour Day")
+                          (holiday-fixed 5 13 "Hari Raya Puasa")
+                          (holiday-fixed 5 26 "Vesak Day")
+                          (holiday-fixed 7 20 "Hari Raya Haji")
+                          (holiday-fixed 8 9 "National Day")
+                          (holiday-fixed 11 4 "Deepavali")
+                          (holiday-fixed 12 25 "Christmas Day")) ; singapore holiday
+      calendar-mark-holidays-flag t)                            ; mark dates of holidays
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mart today's date
+#+end_src
+
 * Other Modes
 ** QML (QT Declarative)
 Note: This is not needed anymore. Available in Doom =:lang qt=.

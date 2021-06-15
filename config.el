@@ -335,7 +335,7 @@
  ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
  (IS-IGL6301W
-  (setq doom-theme 'ttk-doom-zenburn))
+  (setq doom-theme 'doom-homage-white))
  (t
   (setq doom-theme 'ttk-doom-zenburn)))
 
@@ -1179,6 +1179,20 @@ title."
 ;;   ;; end of using digits to select company-mode candidates
 ;;   ;;
  )
+
+(setq calendar-holidays `((holiday-fixed 1 1 "New Year's Day")
+                          (holiday-fixed 2 12 "Chinese New Year")
+                          (holiday-fixed 2 13 "Chinese New Year")
+                          (holiday-fixed 4 2 "Good Friday")
+                          (holiday-fixed 5 1 "Labour Day")
+                          (holiday-fixed 5 13 "Hari Raya Puasa")
+                          (holiday-fixed 5 26 "Vesak Day")
+                          (holiday-fixed 7 20 "Hari Raya Haji")
+                          (holiday-fixed 8 9 "National Day")
+                          (holiday-fixed 11 4 "Deepavali")
+                          (holiday-fixed 12 25 "Christmas Day")) ; singapore holiday
+      calendar-mark-holidays-flag t)                            ; mark dates of holidays
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mart today's date
 
 (after! epa
   (set (if EMACS27+
