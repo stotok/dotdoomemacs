@@ -1278,7 +1278,8 @@ title."
       (:prefix-map ("=" . "calc")
        "=" #'calc-dispatch
        ;; some other shorcuts
-       "c" #'calc               ; launch calc mode w/o doing anything clever
-       "q" #'quick-calc         ; quick calculations in the minibuffer
-       "g" #'calc-grab-region   ; grab a region w/o going through calc-dispatch
+       "c" #'calc                ; launch calc mode w/o doing anything clever
+       "q" #'quick-calc          ; quick calculations in the minibuffer
+       "g" #'calc-grab-region    ; grab a region w/o going through calc-dispatch
+       "p" #'calc-copy-to-buffer ; same as SPC u p P
        ))
