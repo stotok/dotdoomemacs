@@ -6,7 +6,7 @@
 #+startup: fold
 :END:
 
-#+SETUPFILE: ../org-html-themes/org/theme-bigblow-local.setup
+#+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
 # cp -R ../org-html-themes/src bo/
@@ -30,6 +30,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#doom-modules][Doom Modules]]
   - [[#modules][Modules]]
   - [[#disabling-packages][Disabling Packages]]
+  - [[#need-to-have-packages][Need to Have Packages]]
 - [[#general-configuration][General Configuration]]
   - [[#doom-local-leader-key][Doom Local Leader Key]]
   - [[#personal-info-and-gpg][Personal Info and GPG]]
@@ -133,6 +134,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#references][References]]
   - [[#general-emacs][General Emacs]]
   - [[#doom-emacs][Doom Emacs]]
+  - [[#org-mode-1][Org-mode]]
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings][Keybindings]]
   - [[#pipenv][=pipenv=]]
@@ -553,6 +555,12 @@ This code is written to the =init.el= to select which modules to load.
 #+begin_src emacs-lisp :tangle packages.el
 (package! rtags :disable t)
 #+end_src
+
+** Need to Have Packages
+Will install these packages later:
+- [[https://xenodium.com/emacs-org-block-completion-on-melpa/][Emacs org block completion on melpa]]
+- [[https://www.reddit.com/r/emacs/comments/ntnhkc/how_i_jump_around_emacs_with_betterjumper/][How I jump around emacs with better jumper]]
+- [[https://philjackson.github.io/emacs/widescreen/2021/06/06/wide-screen-emacs/][Widescreen Emacs and Vertical Splits]]
 
 * General Configuration
 ** Doom Local Leader Key
@@ -1255,6 +1263,8 @@ Doom Emacs has an extensive keybinding system, and most module functions are
 already bound. I modify some keybindings here.
 
 For =evil-normal-state-map=, see: =~/.emacs.d/.local/straight/repos/evil/evil-maps.el=.
+
+For more, see [[#ref-keybindings]].
 
 *** Misc keybindings
 
@@ -3206,6 +3216,7 @@ settings for performance optimization, package management, commonly used package
 - [[https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#use-better-defaults][Angry Bacon: Better Defaults]]
 - [[https://blog.sumtypeofway.com/posts/emacs-config.html][Emacs is Agar for Brain Worms]]
 - [[https://www.masteringemacs.org/][Mastering Emacs]]
+- [[https://philjackson.github.io/emacs/widescreen/2021/06/06/wide-screen-emacs/][Widescreen Emacs And Vertical Splits]]
 
 ** Doom Emacs
 
@@ -3219,14 +3230,21 @@ settings for performance optimization, package management, commonly used package
 - [[https://www.gtrun.org/custom/config.html][GuangTao: Doom Emacs config]]
 - [[https://randomgeekery.org/config/emacs/doom/][Ramdom Geekery: Emacs Doom config]]
 - [[https://cyberchris.xyz/posts/org-mode-assignments/][Writing Assignments with Doom Emacs]]
-- [[https://rameezkhan.me/adding-keybindings-to-doom-emacs/][Rameez Khan Adding Keybindings to Doom Emacs]]
 - [[https://github.com/sunnyhasija/Academic-Doom-Emacs-Config][An Academic's Opinionated DOOM Emacs Config]]
+- [[https://hungyi.net/tags/doom~emacs/][Hung-Yi's Journal, tag:Doom Emacs]]
+
+** Org-mode
+
+- [[https://blog.tecosaur.com/tmio/][This Month in Org]]
 
 ** Issues and Fixes
 
 - [[https://github.com/hlissner/emacs-doom-themes/issues/185][Unable to see time in modeline]]
 
 ** Keybindings
+:PROPERTIES:
+:CUSTOM_ID: ref-keybindings
+:END:
 Map reference:
 #+begin_example
 M-x SPC h f map\!
@@ -3238,6 +3256,7 @@ M-x SPC h f map\!
 - [[https://github.com/hlissner/doom-emacs/issues/3246][Change the leader keybinding based on the active mode]].
 - [[https://www.reddit.com/r/emacs/comments/irhe5d/doomemacs_binding_functions_to_keystrokes_greater/][Binding functions to keystrokes greater than two]].
 - [[https://github.com/hlissner/doom-emacs/issues/1313#issuecomment-480665450][map! macro cause non-prefix error]]
+- [[https://rameezkhan.me/adding-keybindings-to-doom-emacs/][Rameez Khan: Adding Keybindings to Doom Emacs]]
 
 ** =pipenv=
 - [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
