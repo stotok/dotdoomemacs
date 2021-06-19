@@ -2833,21 +2833,47 @@ Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 
 * Calendar
+Ref:
+- [[https://emacsredux.com/blog/2021/06/08/emacs-as-your-calendar/][Emacs as Your Calendar]]
+- [[https://emacs.stackexchange.com/questions/8309/change-local-holiday-calendar][StackExchange: Change local holiday calendar]]
+- [[https://www.emacswiki.org/emacs/CalendarLocalization][EmacsWiki: Calendar Localization]]
+- [[https://thenybble.de/projects/german-emacs-calendar.html][German emacs calendar setup]]
+
 ** Localized Holidays
 #+begin_src emacs-lisp
-(setq calendar-holidays `((holiday-fixed 1 1 "New Year's Day")
-                          (holiday-fixed 2 12 "Chinese New Year")
-                          (holiday-fixed 2 13 "Chinese New Year")
-                          (holiday-fixed 4 2 "Good Friday")
-                          (holiday-fixed 5 1 "Labour Day")
-                          (holiday-fixed 5 13 "Hari Raya Puasa")
-                          (holiday-fixed 5 26 "Vesak Day")
-                          (holiday-fixed 7 20 "Hari Raya Haji")
-                          (holiday-fixed 8 9 "National Day")
-                          (holiday-fixed 11 4 "Deepavali")
-                          (holiday-fixed 12 25 "Christmas Day")) ; singapore holiday
-      calendar-mark-holidays-flag t)                            ; mark dates of holidays
-(add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mart today's date
+(setq singapore-holidays-2021 `((holiday-fixed 1 1   "New Year's Day")
+                                (holiday-fixed 2 12  "SG: Chinese New Year")
+                                (holiday-fixed 2 13  "SG: Chinese New Year")
+                                (holiday-fixed 4 2   "SG: Good Friday")
+                                (holiday-fixed 5 1   "Labour Day")
+                                (holiday-fixed 5 13  "SG: Hari Raya Puasa")
+                                (holiday-fixed 5 26  "SG: Vesak Day")
+                                (holiday-fixed 7 20  "SG: Hari Raya Haji")
+                                (holiday-fixed 8 9   "SG: National Day")
+                                (holiday-fixed 11 4  "SG: Deepavali")
+                                (holiday-fixed 12 25 "Christmas Day"))
+      south-korea-holidays-2021 `((holiday-fixed 1 1   "New Year's Day")
+                                  (holiday-fixed 2 11  "SK: Korean New Year")
+                                  (holiday-fixed 2 12  "SK: Korean New Year")
+                                  (holiday-fixed 2 13  "SK: Korean New Year")
+                                  (holiday-fixed 2 14  "SK: Korean New Year")
+                                  (holiday-fixed 3 1   "SK: March 1st Movement")
+                                  (holiday-fixed 5 1   "Labour Day")
+                                  (holiday-fixed 5 5   "SK: Children's Day")
+                                  (holiday-fixed 5 19  "SK: Buddha's Birthday")
+                                  (holiday-fixed 6 6   "SK: Memorial Day")
+                                  (holiday-fixed 7 17  "SK: Constitution Day")
+                                  (holiday-fixed 8 15  "SK: Liberation Day")
+                                  (holiday-fixed 9 20  "SK: Harvest Festival")
+                                  (holiday-fixed 9 21  "SK: Harvest Festival")
+                                  (holiday-fixed 9 22  "SK: Harvest Festival")
+                                  (holiday-fixed 10 3  "SK: National Foundation Day")
+                                  (holiday-fixed 10 9  "SK: Hangeul Day")
+                                  (holiday-fixed 12 25 "Chrstmas Day"))
+      calendar-holidays (append singapore-holidays-2021 south-korea-holidays-2021)
+      calendar-mark-holidays-flag t     ; mark dates of holidays
+  )
+(add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 #+end_src
 
 * Other Modes
