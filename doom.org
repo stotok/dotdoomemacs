@@ -2316,6 +2316,11 @@ Over the years of doing C/C++, here's my favourite settings.
    (add-hook 'c++-mode-common-hook 'ct-c-mode-common-hook)
    ;; files *.ipp is c++ source code in UPA
    (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
+   ;; this is to override "doom" as c-default-style
+   (when (listp c-default-style)
+     (setf (alist-get 'c-mode c-default-style) "user")
+     (setf (alist-get 'c++-mode c-default-style) "user")
+     (setf (alist-get 'other c-default-style) "user"))
   )
 #+end_src
 
@@ -3187,12 +3192,10 @@ Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs E
 #+end_src
 
 ** What is my xxx
-- Specific keybinding
-  : <M-x> describe-key (SPC h k)
-- List of keybindings
-  : SPC ?
-- Specific function
-  : <M-x> describe-function (SPC h f)
+- Specific keybinding: =<M-x> describe-key (SPC h k)=
+- List of keybindings: =SPC ?=
+- Specific function: =<M-x> describe-function (SPC h f)=
+- Specific variable: =<M-x> describe-variable (SPC h v)=
 * Known Bugs
 ** ... failed to provide feature 'with-editor'
 
