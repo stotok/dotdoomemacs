@@ -127,7 +127,7 @@ determine the exact padding."
     ;; :slant 'italic      ; totok does not want italic
     :foreground comments
     :background (if doom-solarized-light-comment-bg (doom-blend teal base0 0.07)))
-   ((font-lock-doc-face &override) :foreground doc-comments)
+   ((font-lock-doc-face &override) :foreground comments)    ; totok change foreground
    ;; ((font-lock-type-face &override) :slant 'italic)      ; totok does not want italic
    ;; ((font-lock-builtin-face &override) :slant 'italic)   ; totok does not want italic
    ((font-lock-function-name-face &override) :foreground type)
