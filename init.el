@@ -40,11 +40,12 @@
  doom                  ; what makes DOOM look the way it does
  doom-dashboard        ; a nifty splash screen for Emacs
  ;;doom-quit           ; DOOM quit-message prompts when you quit Emacs
+ ;;(emoji +unicode)    ;
  ;;fill-column         ; a `fill-column' indicator
  hl-todo               ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
  ;;hydra
  ;;indent-guides       ; highlighted indent columns
- ;;(ligatures +extra)  ; ligatures or substitute text with pretty symbols
+ ;;ligatures           ; ligatures and symbols to make your code pretty again
  ;;minimap             ; show a map of the code on the side
  modeline              ; snazzy, Atom-inspired modeline, plus API
  ;;nav-flash           ; blink cursor line after big motions
@@ -123,6 +124,7 @@
 
  :lang
  ;;agda                ; types of types of types of types...
+ ;;beancount           ; mind the GAAP
  (cc +lsp)             ; C/C++/Obj-C madness
  ;;clojure             ; java with a lisp
  common-lisp           ; if you've seen one lisp, you've seen them all
@@ -136,6 +138,7 @@
  emacs-lisp            ; drown in parentheses
  ;;erlang              ; an elegant language for a more civilized age
  ;;(ess +lsp)            ; emacs speaks statistics
+ ;;factor
  ;;faust               ; dsp, but you get to keep your soul
  ;;fsharp              ; ML stands for Microsoft's Language
  ;;fstar               ; (dependent) types and (monadic) effects and Z3
@@ -151,7 +154,6 @@
  ;;kotlin              ; a better, slicker Java(Script)
  ;;(latex +latexmk)      ; writing papers in Emacs has never been so fun
  ;;lean
- ;;factor
  ;;ledger              ; an accounting system in Emacs
  ;;lua                   ; one-based indices? one-based indices
  ;;markdown              ; writing docs for people to ignore
@@ -187,6 +189,7 @@
  ;;terra               ; Earth and Moon in alignment for performance.
  ;;web                 ; the tubes
  ;;(yaml +lsp)           ; JSON, but readable
+ ;;zig                 ; C, but simpler
 
  :email
  ;;(mu4e +gmail)
@@ -195,6 +198,8 @@
 
  :app
  ;;calendar
+ ;;emms
+ ;;everywhere          ; *leave* Emacs!? You must be joking
  ;;irc                   ; how neckbeards socialize
  ;;(rss +org)          ; emacs as an RSS reader
  ;;twitter             ; twitter client https://twitter.com/vnought
