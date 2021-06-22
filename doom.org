@@ -3086,6 +3086,7 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 
 ** Directory Editor with Dired
 Ref: [[https://www.youtube.com/watch?v=oZSmlAAbmYs][Youtube: Emacs Doom E03 - A short intro to Dired]]
+Ref: [[https://www.youtube.com/watch?v=ing9Y53RICs][Youtube: The Nuts and Bolds of Emacs DIRED]]
 
 ** Ivy
 
