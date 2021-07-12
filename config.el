@@ -897,7 +897,7 @@ title."
    (add-hook 'c++-mode-common-hook 'ct-c-mode-common-hook)
    ;; files *.ipp is c++ source code in UPA
    (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
-   (setq auto-mode-alist (cons '("\\.c.test$" . c-mode) auto-mode-alist))
+   (setq auto-mode-alist (cons '("\\.[ch].test$" . c-mode) auto-mode-alist))
    ;; this is to override "doom" as c-default-style
    (when (listp c-default-style)
      (setf (alist-get 'c-mode c-default-style) "user")
