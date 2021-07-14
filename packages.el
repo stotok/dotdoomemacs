@@ -62,6 +62,9 @@
 ;; https://github.com/jcpetkovich/shrink-whitespace.el
 (package! shrink-whitespace)
 
+(package! tree-sitter)
+(package! tree-sitter-langs)
+
 (package! org-super-agenda)
 
 (package! org-cv

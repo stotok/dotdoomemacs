@@ -330,14 +330,21 @@
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
         doom-big-font            (font-spec :family "monospace" :size 18))))
 
-;; select theme
-(cond
- ((or IS-IGD1943U IS-COROLLA)
+(when (featurep! :ui doom)
+  (setq doom-themes-enable-bold nil     ; if nil, bold i universally disabled
+      doom-themes-enable-italic nil   ; if nil, italics is universally disabled
+  )
+  ;; select theme
+  (cond
+  ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
- (IS-IGL6301W
+  (IS-IGL6301W
   (setq doom-theme 'ttk-doom-homage-white))
- (t
+  (t
   (setq doom-theme 'ttk-doom-zenburn)))
+  ;; corrects (and improves) org-mode's native fontification
+  (doom-themes-org-config)
+)
 
 ;; get the right time to set face of hl-line is a bit tricky
 ;; each theme has its own way to set and clear
@@ -500,6 +507,12 @@
             ((looking-at "\\s\)") (forward-char 1) (sp-backward-sexp))
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
+
+(use-package! tree-sitter
+ :config
+ (require 'tree-sitter-langs)
+ (global-tree-sitter-mode)
+ (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (after! evil-mc
   (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
@@ -1257,7 +1270,8 @@ title."
                                  (holiday-fixed 10 3  "SK: National Foundation Day")
                                  (holiday-fixed 10 9  "SK: Hangeul Day")
                                  (holiday-fixed 12 25 "Chrstmas Day"))))
-      calendar-holidays (append singapore-holidays south-korea-holidays)
+      ;; calendar-holidays (append singapore-holidays south-korea-holidays)
+      calendar-holidays (append singapore-holidays)
       calendar-mark-holidays-flag t     ; mark dates of holidays
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date

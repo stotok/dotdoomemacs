@@ -56,6 +56,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#key-bindings][Key bindings]]
     - [[#misc-keybindings][Misc keybindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
+- [[#tree-sitter][Tree-Sitter]]
+  - [[#use-emacs-tree-sitter-for-hightlighting-in-doom-emacs][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 - [[#evil][Evil]]
   - [[#evil-mc][evil-mc]]
     - [[#incompatibility][Incompatibility]]
@@ -1052,14 +1054,21 @@ I customize existing doom-themes to my liking:
 - That's it. Customize other settings as you please.
 
 #+begin_src emacs-lisp
-;; select theme
-(cond
- ((or IS-IGD1943U IS-COROLLA)
+(when (featurep! :ui doom)
+  (setq doom-themes-enable-bold nil     ; if nil, bold i universally disabled
+      doom-themes-enable-italic nil   ; if nil, italics is universally disabled
+  )
+  ;; select theme
+  (cond
+  ((or IS-IGD1943U IS-COROLLA)
   (setq doom-theme 'ttk-doom-solarized-light))
- (IS-IGL6301W
+  (IS-IGL6301W
   (setq doom-theme 'ttk-doom-homage-white))
- (t
+  (t
   (setq doom-theme 'ttk-doom-zenburn)))
+  ;; corrects (and improves) org-mode's native fontification
+  (doom-themes-org-config)
+)
 #+end_src
 
 #+begin_src emacs-lisp
@@ -1452,6 +1461,23 @@ and braces.
             ((looking-at "\\s\)") (forward-char 1) (sp-backward-sexp))
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
+#+end_src
+
+* Tree-Sitter
+** Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs
+Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! tree-sitter)
+(package! tree-sitter-langs)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! tree-sitter
+ :config
+ (require 'tree-sitter-langs)
+ (global-tree-sitter-mode)
+ (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 #+end_src
 
 * Evil
@@ -3016,7 +3042,8 @@ Ref:
                                  (holiday-fixed 10 3  "SK: National Foundation Day")
                                  (holiday-fixed 10 9  "SK: Hangeul Day")
                                  (holiday-fixed 12 25 "Chrstmas Day"))))
-      calendar-holidays (append singapore-holidays south-korea-holidays)
+      ;; calendar-holidays (append singapore-holidays south-korea-holidays)
+      calendar-holidays (append singapore-holidays)
       calendar-mark-holidays-flag t     ; mark dates of holidays
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
