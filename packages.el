@@ -68,7 +68,9 @@
 (package! org-super-agenda)
 
 (package! org-cv
-  :recipe (:host gitlab :repo "zzamboni/org-cv" :branch "awesomecv"))
+  :recipe (:host gitlab
+           :repo "Titan-C/org-cv"
+           :branch "master"))
 
 (package! ox-leanpub
   :recipe (:local-repo "~/Dropbox/Personal/devel/emacs/ox-leanpub"))

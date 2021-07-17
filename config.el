@@ -691,8 +691,6 @@ title."
 
 (use-package! ox-awesomecv
   :after org)
-(use-package! ox-moderncv
-  :after org)
 
 (use-package! ox-leanpub
   :after org

@@ -2019,20 +2019,21 @@ which triggers the setup of the templates above.
 #+end_src
 
 ** Exporting a Curriculum Vitae
+Ref: [[https://gitlab.com/zzamboni/vita][Curriculum Vitae with Org-mode]].
 
-I use =ox-awesomecv= from [[https://titan-c.gitlab.io/org-cv/][Org-CV]], to export my [[https://github.com/zzamboni/vita/][Curriculum Vit\aelig]].
-
-My =ox-awesomecv= package is [[https://gitlab.com/Titan-C/org-cv/-/merge_requests/3][not yet merged]] into the main Org-CV distribution, so I
-install from my branch for now.
+=org-cv= is not available on melpa yet, hence, install from the source:
 
 #+begin_src emacs-lisp :tangle packages.el
 (package! org-cv
-  :recipe (:host gitlab :repo "zzamboni/org-cv" :branch "awesomecv"))
+  :recipe (:host gitlab
+           :repo "Titan-C/org-cv"
+           :branch "master"))
 #+end_src
+
+And load it:
+
 #+begin_src emacs-lisp
 (use-package! ox-awesomecv
-  :after org)
-(use-package! ox-moderncv
   :after org)
 #+end_src
 
