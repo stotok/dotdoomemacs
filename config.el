@@ -833,8 +833,13 @@ title."
   (setq org-confirm-babel-evaluate nil)
   )
 
-(add-hook! org-mode :append
-  (add-hook! after-save :append :local #'org-babel-tangle))
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+   ;; i want nil by default, then set #+auto_tangle: t in each org file
+   (setq org-auto-tangle-default nil
+    ))
 
 (use-package! cfengine
   :defer t

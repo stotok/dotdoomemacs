@@ -3,6 +3,8 @@
 #+property: header-args:emacs-lisp :tangle config.el
 # Just silent the output. Ref: https://orgmode.org/manual/Results-of-Evaluation.html
 #+property: header-args :mkdirp yes :comments no :results output silent
+# Manually set auto tangle for this file
+#+auto_tangle: t
 #+startup: fold
 :END:
 
@@ -2313,15 +2315,27 @@ Publishing the website.
 
 * Coding
 ** Tangle-on-save
+Ref:
+- [[https://zzamboni.org/post/my-doom-emacs-configuration-with-commentary/][Zzamboni Coding Section]]
+- [[https://github.com/yilkalargaw/org-auto-tangle][Github: org-auto-tangle]]
 
-Tangle-on-save has revolutionized my literate programming workflow. It automatically runs
-=org-babel-tangle= upon saving any org-mode buffer, which means the resulting files will be
-automatically kept up to date.
-
-#+begin_src emacs-lisp
-(add-hook! org-mode :append
-  (add-hook! after-save :append :local #'org-babel-tangle))
+Install package:
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-auto-tangle)
 #+end_src
+
+And configure it:
+#+begin_src emacs-lisp
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+   ;; i want nil by default, then set #+auto_tangle: t in each org file
+   (setq org-auto-tangle-default nil
+    ))
+#+end_src
+
+If we want to manual tangle: =M-x org-babel-tangle=.
 
 ** Smartparens strict mode
 

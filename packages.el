@@ -82,6 +82,8 @@
 
 (package! org-ml)
 
+(package! org-auto-tangle)
+
 ;; Relative paths are expanded to ~/.emacs.d/.local/straight/repos/{local-repo}
 ;; or ~/.doom.d/{local-repo} -- the first that is found.
 (package! xcscope
