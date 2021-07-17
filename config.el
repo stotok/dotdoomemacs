@@ -692,6 +692,11 @@ title."
 (use-package! ox-awesomecv
   :after org)
 
+(defun ttk/org-export-to-file-awesomecv-tex ()
+  (interactive)
+  (let ((outfile (org-export-output-file-name ".tex")))
+    (org-export-to-file 'awesomecv outfile)))
+
 (use-package! ox-leanpub
   :after org
   :config

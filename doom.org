@@ -2039,6 +2039,15 @@ And load it:
   :after org)
 #+end_src
 
+This command to export current org-cv file to latex for further processing.
+
+#+begin_src emacs-lisp
+(defun ttk/org-export-to-file-awesomecv-tex ()
+  (interactive)
+  (let ((outfile (org-export-output-file-name ".tex")))
+    (org-export-to-file 'awesomecv outfile)))
+#+end_src
+
 ** Publishing to LeanPub
 
 I use [[https://leanpub.com/][LeanPub]] for self-publishing [[https://leanpub.com/u/zzamboni][my books]]. Fortunately, it is possible to export
