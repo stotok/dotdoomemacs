@@ -331,17 +331,17 @@
         doom-big-font            (font-spec :family "monospace" :size 18))))
 
 (when (featurep! :ui doom)
-  (setq doom-themes-enable-bold nil     ; if nil, bold i universally disabled
-      doom-themes-enable-italic nil   ; if nil, italics is universally disabled
+  (setq doom-themes-enable-bold t      ; if nil, bold i universally disabled
+      doom-themes-enable-italic t      ; if nil, italics is universally disabled
   )
   ;; select theme
   (cond
-  ((or IS-IGD1943U IS-COROLLA)
-  (setq doom-theme 'ttk-doom-solarized-light))
-  (IS-IGL6301W
-  (setq doom-theme 'ttk-doom-homage-white))
-  (t
-  (setq doom-theme 'ttk-doom-zenburn)))
+   ((or IS-IGD1943U IS-COROLLA)
+    (setq doom-theme 'ttk-doom-solarized-light))
+   (IS-IGL6301W
+    (setq doom-theme 'ttk-doom-homage-white))
+   (t
+    (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
   (doom-themes-org-config)
 )
