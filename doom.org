@@ -85,6 +85,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#revealjs-presentations][Reveal.js presentations]]
   - [[#programming-org][Programming Org]]
   - [[#publishing-project][Publishing Project]]
+  - [[#the-orgtbl-minor-mode][The Orgtbl Minor mode]]
+  - [[#tableel][Table.el]]
 - [[#coding][Coding]]
   - [[#tangle-on-save][Tangle-on-save]]
   - [[#smartparens-strict-mode][Smartparens strict mode]]
@@ -2321,6 +2323,21 @@ Publishing the website.
   (setq org-confirm-babel-evaluate nil)
   )
 #+end_src
+
+** The Orgtbl Minor mode
+Ref: [[https://orgmode.org/manual/Orgtbl-Mode.html#Orgtbl-Mode][The Orgtbl Minor Mode]].
+We can toggle the mode with =M-x orgtbl-mode=.
+
+To turn it on by default, for example in Message mode, use:
+
+#+begin_example
+(add-hook 'message-mode-hook 'turn-on-orgtbl')
+#+end_example
+
+** Table.el
+Ref: [[https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/table.el][table.el by Takaaki Ota]].
+Ref: [[https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode-table][2 Modes: org-table and table.el]].
+Ref: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Text-Based-Tables.html][Editing Text-based Tables]].
 
 * Coding
 ** Tangle-on-save
