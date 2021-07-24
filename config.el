@@ -1284,6 +1284,9 @@ title."
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 
+(when (featurep! :tools docker)
+  (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
+
 (after! epa
   (set (if EMACS27+
            'epg-pinentry-mode
