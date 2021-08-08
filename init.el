@@ -152,7 +152,7 @@
  ;;javascript          ; all(hope(abandon(ye(who(enter(here))))))
  ;;julia               ; a better, faster MATLAB
  ;;kotlin              ; a better, slicker Java(Script)
- ;;(latex +latexmk)      ; writing papers in Emacs has never been so fun
+ (latex +latexmk)      ; writing papers in Emacs has never been so fun
  ;;lean
  ;;ledger              ; an accounting system in Emacs
  ;;lua                   ; one-based indices? one-based indices

@@ -173,6 +173,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
     - [[#binary-number-operation][Binary Number Operation]]
+    - [[#hms][HMS]]
 
 * Doom Config Files
 
@@ -510,7 +511,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;javascript          ; all(hope(abandon(ye(who(enter(here))))))
  ;;julia               ; a better, faster MATLAB
  ;;kotlin              ; a better, slicker Java(Script)
- ;;(latex +latexmk)      ; writing papers in Emacs has never been so fun
+ (latex +latexmk)      ; writing papers in Emacs has never been so fun
  ;;lean
  ;;ledger              ; an accounting system in Emacs
  ;;lua                   ; one-based indices? one-based indices
@@ -3607,6 +3608,7 @@ Reading:
 - [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Emacs Lets You Calculate While You Write]].
 - [[https://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
 - [[https://www.emacswiki.org/emacs/Calc_Tutorials_by_Andrew_Hyatt][Calc Tutorials by Andrew Hyatt]]
+- [[https://pagefault.se/post/emacs-can-do-that/][Convert hours, mins and seconds]]
 
 *** Keybinding
 Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
@@ -3702,3 +3704,25 @@ About inputting a number:
   9 <RET>
   H b l
   #+end_example
+
+*** HMS
+**** Convert Minute to HH:MM:SS
+1. Convert 8000 min to hour
+   : 8000 RET 60 RET /
+   133.333333333
+2. Convert the hour to HMS
+   : M-x calc-to-hms (bound to c h)
+   133@ 19' 59.999999"
+Result: 6000 secs = 133 hour 19 min 60 sec
+
+**** Convert HH:MM:SS to Minute
+1. Enter to algebraic mode
+   : '
+   : Algebraic: 133hr+19min+60sec
+   133 hr + 19 min + 60 sec
+2. Convert to base unit
+   : M-x calc-base-unit (bound to U b)
+   480000 s
+3. Convert to minute
+   : 60 RET /
+   8000 s
