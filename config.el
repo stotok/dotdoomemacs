@@ -514,6 +514,9 @@
  (global-tree-sitter-mode)
  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
+(when (featurep! :editor evil)
+  (setq-default +evil-want-o/O-to-continue-comments nil))
+
 (after! evil-mc
   (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
   (add-to-list 'evil-mc-incompatible-minor-modes 'yas-minor-mode))

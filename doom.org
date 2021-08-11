@@ -61,6 +61,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#tree-sitter][Tree-Sitter]]
   - [[#use-emacs-tree-sitter-for-hightlighting-in-doom-emacs][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 - [[#evil][Evil]]
+  - [[#general][General]]
   - [[#evil-mc][evil-mc]]
     - [[#incompatibility][Incompatibility]]
     - [[#hydra][Hydra]]
@@ -1485,6 +1486,14 @@ Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tre
 #+end_src
 
 * Evil
+** General
+Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][Doom editor/evil]]
+
+I don't like the o/O keys will respect and continue commented lines, so disable it.
+#+begin_src emacs-lisp
+(when (featurep! :editor evil)
+  (setq-default +evil-want-o/O-to-continue-comments nil))
+#+end_src
 ** evil-mc
 *** Incompatibility
 
