@@ -49,7 +49,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#line-settings][Line settings]]
   - [[#rainbow-mode][Rainbow mode]]
   - [[#rainbow-delimiters][Rainbow delimiters]]
-  - [[#misc][Misc]]
   - [[#modeline][Modeline]]
     - [[#doom-modeline][doom-modeline]]
     - [[#which-function-mode][which-function-mode]]
@@ -1139,33 +1138,8 @@ And configure it only for certain modes.
 )
 #+end_src
 
-** Misc
-
-In my previous configuration, I used to automatically restore the previous
-session upon startup. Doom Emacs starts up so fast that it does not feel
-right to do it automatically. In any case, from the Doom dashboard I can
-simply press Enter to invoke the first item, which is "Reload Last Session".
-So this code is commented out now.
-
-#+begin_src emacs-lisp
-;;(add-hook 'window-setup-hook #'doom/quickload-session)
-#+end_src
-
-Truncate lines in =ivy= childframes. [[https://discord.com/channels/406534637242810369/484105925733646336/770756709857755187][Thanks Henrik]]!
-
-#+begin_src emacs-lisp :tangle no
-(setq posframe-arghandler
-      (lambda (buffer-or-name key value)
-        (or (and (eq key :lines-truncate)
-                 (equal ivy-posframe-buffer
-                        (if (stringp buffer-or-name)
-                            buffer-or-name
-                          (buffer-name buffer-or-name)))
-                 t)
-            value)))
-#+end_src
-
 ** Modeline
+
 Interesting: [[https://www.gonsie.com/blorg/modeline.html][Beautifying the Mode Line]]
 
 *** doom-modeline
@@ -1254,6 +1228,7 @@ See: [[https://github.com/jcpetkovich/shrink-whitespace.el][jcpetkovich github]]
 ;; https://github.com/jcpetkovich/shrink-whitespace.el
 (package! shrink-whitespace)
 #+end_src
+
 #+begin_src emacs-lisp
 ;; shrink-whitespace.el
 ;;     https://github.com/jcpetkovich/shrink-whitespace.el.git

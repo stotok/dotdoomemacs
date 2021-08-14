@@ -389,8 +389,6 @@
  ;; code here will run after the package is loaded
 )
 
-;;(add-hook 'window-setup-hook #'doom/quickload-session)
-
 (use-package! doom-modeline
  :init
  (setq doom-modeline-percent-position nil ; dunwan buffer % at segment buffer-position
