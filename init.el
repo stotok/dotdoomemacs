@@ -162,7 +162,7 @@
  ;;ocaml               ; an objective camel
  (org                  ; organize your plain life in plain text
   +present             ; presentation, include reveal.js
-  ;+roam               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+  +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
   )
  ;;php                 ; perl's insecure younger brother

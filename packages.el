@@ -65,22 +65,10 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
-(package! org-super-agenda)
-
 (package! org-cv
   :recipe (:host gitlab
            :repo "Titan-C/org-cv"
            :branch "master"))
-
-(package! ox-leanpub
-  :recipe (:local-repo "~/Dropbox/Personal/devel/emacs/ox-leanpub"))
-
-(package! org-pandoc-import
-  :recipe (:host github
-           :repo "tecosaur/org-pandoc-import"
-           :files ("*.el" "filters" "preprocessors")))
-
-(package! org-ml)
 
 (package! org-auto-tangle)
 
