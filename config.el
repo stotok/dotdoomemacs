@@ -681,11 +681,6 @@ Current pattern: %`evil-mc-pattern
    (setq org-auto-tangle-default nil
     ))
 
-(use-package! cfengine
-  :defer t
-  :commands cfengine3-mode
-  :mode ("\\.cf\\'" . cfengine3-mode))
-
 (after! cc-mode
   (defconst ttk-c-style
    '(;; gnu        : coding style blessed by FSF for C code in  GNU programs

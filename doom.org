@@ -76,9 +76,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#tableel][Table.el]]
 - [[#coding][Coding]]
   - [[#tangle-on-save][Tangle-on-save]]
-  - [[#smartparens-strict-mode][Smartparens strict mode]]
-  - [[#adding-keybindings-for-some-useful-functions][Adding keybindings for some useful functions]]
-  - [[#some-other-languages-i-use][Some other languages I use]]
 - [[#cc][C/C++]]
 - [[#cscope][Cscope]]
 - [[#projectile][Projectile]]
@@ -1278,122 +1275,9 @@ For more, see [[#ref-keybindings]].
 
 *** Misc keybindings
 
-Use =counsel-buffer-or-recentf= for ~C-x b~. I like being able to see all recently
-opened files, instead of just the current ones. This makes it possible to use
- ~C-x b~ almost as a replacement for ~C-c C-f~, for files that I edit often.
-Similarly, for switching between non-file buffers I use =counsel-switch-buffer=,
-mapped to ~C-x C-b~.
-
-Totok 20201229: disable first.
-#+begin_src emacs-lisp :tangle no
-(map! "C-x b"   #'counsel-buffer-or-recentf
-      "C-x C-b" #'counsel-switch-buffer)
-#+end_src
-
-The =counsel-buffer-or-recentf= function by default shows duplicated entries because it
-does not abbreviate the paths of the open buffers. The function below fixes this, I have
-submitted this change to the =counsel= library (https://github.com/abo-abo/swiper/pull/2687),
-in the meantime I define it here and integrate it via =advice-add=.
-
-Totok 20021229: disable first.
-#+begin_src emacs-lisp :tangle no
-(defun zz/counsel-buffer-or-recentf-candidates ()
-  "Return candidates for `counsel-buffer-or-recentf'."
-  (require 'recentf)
-  (recentf-mode)
-  (let ((buffers
-         (delq nil
-               (mapcar (lambda (b)
-                         (when (buffer-file-name b)
-                           (abbreviate-file-name (buffer-file-name b))))
-                       (delq (current-buffer) (buffer-list))))))
-    (append
-     buffers
-     (cl-remove-if (lambda (f) (member f buffers))
-                   (counsel-recentf-candidates)))))
-
-(advice-add #'counsel-buffer-or-recentf-candidates
-            :override #'zz/counsel-buffer-or-recentf-candidates)
-#+end_src
-
-The =switch-buffer-functions= package allows us to update the =recentf= buffer list
-as we switch between them, so that the list produced by =counsel-buffer-or-recentf=
-is shown in the order the buffers have been visited, rather than in the order they
-were opened. Thanks to [[https://github.com/abo-abo/swiper/issues/1560#issuecomment-729403768][@tau3000]] for the tip.
-
-Totok 20201229: disable first (:tangle packages.el to :tangle no)
-#+begin_src emacs-lisp :tangle no
-(package! switch-buffer-functions)
-#+end_src
-
-#+begin_src emacs-lisp :tangle no
-(use-package! switch-buffer-functions
-  :after recentf
-  :preface
-  (defun my-recentf-track-visited-file (_prev _curr)
-    (and buffer-file-name
-         (recentf-add-file buffer-file-name)))
-  :init
-  (add-hook 'switch-buffer-functions #'my-recentf-track-visited-file))
-#+end_src
-
-Use =+default/search-buffer= for searching by default, I like the Swiper interface.
-
-Totok 20201229: disable first
-#+begin_src emacs-lisp :tangle no
-;;(map! "C-s" #'counsel-grep-or-swiper)
-(map! "C-s" #'+default/search-buffer)
-#+end_src
-
-Map ~C-c C-g~ to =magit-status= - I have too ingrained muscle memory for this keybinding.
-
-Totok 20201229: disable first
-#+begin_src emacs-lisp :tangle no
-(map! :after magit "C-c C-g" #'magit-status)
-#+end_src
-
 #+begin_src emacs-lisp
 (after! magit
   (setq-default +magit-open-windows-in-direction 'down))
-#+end_src
-
-Interactive search key bindings -  [[https://github.com/benma/visual-regexp-steroids.el][visual-regexp-steroids]] provides sane regular
-expressions and visual incremental search. I use the =pcre2el= package to support
-PCRE-style regular expressions.
-
-Totok 20201229: disable first (:tangle packages.el to :tangle no)
-#+begin_src emacs-lisp :tangle no
-(package! pcre2el)
-(package! visual-regexp-steroids)
-#+end_src
-
-#+begin_src emacs-lisp :tangle no
-(use-package! visual-regexp-steroids
-  :defer 3
-  :config
-  (require 'pcre2el)
-  (setq vr/engine 'pcre2el)
-  (map! "C-c s r" #'vr/replace)
-  (map! "C-c s q" #'vr/query-replace))
-#+end_src
-
-The Doom =undo= package introduces the use of [[https://gitlab.com/ideasman42/emacs-undo-fu][=undo-fu=]], which makes undo/redo more "lineal".
-I normally use ~C-/~ for undo and Emacs doesn't have a separate "redo" action, so I map ~C-?~
-(in my keyboard, the same combination + ~Shift~) for redo.
-
-Totok 20201229: disable first
-#+begin_src emacs-lisp :tangle no
-(after! undo-fu
-  (map! :map undo-fu-mode-map "C-?" #'undo-fu-only-redo))
-#+end_src
-
-Map a keybindings for =counsel-outline=, which allows easily navigating documents (it works
-best with Org documents, but it also tries to extract navigation information from other
-file types).
-
-Totok 20201229: disable first
-#+begin_src emacs-lisp :tangle no
-(map! "M-g o" #'counsel-outline)
 #+end_src
 
 *** Emulating vi's =%= key
@@ -1817,6 +1701,7 @@ Publishing the website.
 #+end_src
 
 ** The Orgtbl Minor mode
+
 Ref: [[https://orgmode.org/manual/Orgtbl-Mode.html#Orgtbl-Mode][The Orgtbl Minor Mode]].
 We can toggle the mode with =M-x orgtbl-mode=.
 
@@ -1832,7 +1717,9 @@ Ref: [[https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-o
 Ref: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Text-Based-Tables.html][Editing Text-based Tables]].
 
 * Coding
+
 ** Tangle-on-save
+
 Ref:
 - [[https://zzamboni.org/post/my-doom-emacs-configuration-with-commentary/][Zzamboni Coding Section]]
 - [[https://github.com/yilkalargaw/org-auto-tangle][Github: org-auto-tangle]]
@@ -1855,75 +1742,6 @@ And configure it:
 
 If we want to manual tangle: =M-x org-babel-tangle=.
 
-** Smartparens strict mode
-
-Some useful settings for LISP coding - =smartparens-strict-mode= to enforce parenthesis to
-match. I map =M-(= to enclose the next expression as in =paredit= using a custom function.
-Prefix argument can be used to indicate how many expressions to enclose instead of just 1.
-E.g. =C-u 3 M-(= will enclose the next 3 sexps.
-
-Totok 20201229: disable first
-#+begin_src emacs-lisp :tangle no
-(defun zz/sp-enclose-next-sexp (num)
-  (interactive "p")
-  (insert-parentheses (or num 1)))
-
-(after! smartparens
-  (add-hook! (clojure-mode
-              emacs-lisp-mode
-              lisp-mode
-              cider-repl-mode
-              racket-mode
-              racket-repl-mode) :append #'smartparens-strict-mode)
-  (add-hook! smartparens-mode :append #'sp-use-paredit-bindings)
-  (map! :map (smartparens-mode-map smartparens-strict-mode-map)
-        "M-(" #'zz/sp-enclose-next-sexp))
-#+end_src
-
-** Adding keybindings for some useful functions
-
-- =find-function-at-point= gets bound to =C-c l g p= (grouped together with other "go to"
-  functions bound by Doom) and to =C-c C-f= (analog to the existing =C-c f=) for faster access.
-  Totok 20201229: disable first
-  #+begin_src emacs-lisp :tangle no
-(after! prog-mode
-  (map! :map prog-mode-map "C-h C-f" #'find-function-at-point)
-  (map! :map prog-mode-map
-        :localleader
-        :desc "Find function at point"
-        "g p" #'find-function-at-point))
-  #+end_src
-
-** Some other languages I use
-
-- [[http://elvish.io/][Elvish shell]], with support for org-babel.
-  Totok 20210124 disable first
-  #+begin_src emacs-lisp :tangle no
-(package! elvish-mode)
-(package! ob-elvish)
-  #+end_src
-
-- [[http://cfengine.com/][CFEngine]] policy files. The =cfengine3-mode= package is included with Emacs,
-  but I also install org-babel support.
-  Totok 20210124 disable first.
-  #+begin_src emacs-lisp :tangle no
-(package! ob-cfengine3)
-  #+end_src
-  #+begin_src emacs-lisp
-(use-package! cfengine
-  :defer t
-  :commands cfengine3-mode
-  :mode ("\\.cf\\'" . cfengine3-mode))
-  #+end_src
-
-- I am learning [[http://www.gigamonkeys.com/book/][Common LISP]], which is well supported through the =common-lisp=
-  Doom module, but I need to configure this in the =~/.slynkrc= file for I/O in
-  the Sly REPL to work fine ([[https://github.com/joaotavora/sly/issues/347#issuecomment-717065056][source]]).
-  Totok 20210124 disable first
-  # #+begin_src emacs-lisp :tangle ~/.slynkrc
-  #+begin_src emacs-lisp :tangle no
-(setf slynk:*use-dedicated-output-stream* nil)
-  #+end_src
 * C/C++
 
 Over the years of doing C/C++, here's my favourite settings.
