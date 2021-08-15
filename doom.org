@@ -68,6 +68,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
   - [[#org-roam][Org Roam]]
+    - [[#v2][V2]]
+    - [[#front-end][Front end]]
   - [[#exporting-a-curriculum-vitae][Exporting a Curriculum Vitae]]
   - [[#revealjs-presentations][Reveal.js presentations]]
   - [[#publishing-project][Publishing Project]]
@@ -1487,14 +1489,14 @@ Hide Org markup indicators such as *bold*, /italic/, etc.
 (after! org (setq org-hide-emphasis-markers t))
 #+end_src
 
-Insert Org headings at point, not after the current subtree (this is enabled by default
-by Doom).
+Insert Org headings at point, not after the current subtree (this is enabled by
+default by Doom).
 
 #+begin_src emacs-lisp
 (after! org (setq org-insert-heading-respect-content nil))
 #+end_src
 
-Enable logging of done tasks, and log stuff into the LOGBOOK drawer by default
+Enable logging of done tasks, and log stuff into the LOGBOOK drawer by default.
 
 #+begin_src emacs-lisp
 (after! org
@@ -1540,7 +1542,30 @@ Enable visual line mode in Org mode by default.
            #'visual-line-mode)
 #+end_src
 
+Use [[https://github.com/awth13/org-appear][org-appear]] to reveal emphasis markers when moving the cursor over them.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! org-appear)
+#+end_src
+
+And enable it automatically on org-mode start-up:
+
+#+begin_src emacs-lisp
+(use-package! org-appear
+  :hook (org-mode . org-appear-mode)
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  (setq org-appear-autolinks t
+        org-appear-autosubmarkers t
+        org-appear-autoentities t
+        org-appear-autokeywords t))
+#+end_src
+
 ** Org Roam
+
+*** V2
 
 Let's roam :D
 
@@ -1549,6 +1574,36 @@ For now I configure it to include my whole Org directory.
 #+begin_src emacs-lisp
 (setq org-roam-directory "~/project/org-roam"
       +org-roam-open-buffer-on-find-file nil)
+#+end_src
+
+*** Front end
+
+Ref: [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! websocket)
+(package! org-roam-ui
+  :recipe (:host github
+           :repo "org-roam/org-roam-ui"
+           :files ("*.el" "out")))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! websocket
+    :after org-roam)
+
+(use-package! org-roam-ui
+    :after org-roam ;; or :after org
+    ;; :hook
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+    ;; :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 #+end_src
 
 ** Exporting a Curriculum Vitae
