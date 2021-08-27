@@ -910,10 +910,21 @@ Current pattern: %`evil-mc-pattern
 ;;             Hostname myhost.abc.com
 ;;             ... <as usual>
 ;;             IdentityFile ~/.ssh/id_rsa_yours_blah
-;; 2. $ eval `ssh-agent -s`
+;; 2. $ eval $(ssh-agent -s)
 ;; 3. $ ssh-add ~/.ssh/id_rsa_blah
 ;; 4. From emacs:
 ;;        C-x C-f /ssh:yourusername@myhost:~/somefile.txt
+;;
+;; Common cause of tramp access to remote ssh timeout is that remote host has
+;; an unconventional prompt (which tramp can't parse).
+;; To fix, in your shell config on the remote machine:
+;;
+;;     if [[ "$TERM" == "dumb" ]];; then
+;;       unset zle_bracketed_paste
+;;       unset zle
+;;       PS1='$ '
+;;       return
+;;     fi
 ;;
 (after! tramp
  (tramp-set-completion-function "ssh"

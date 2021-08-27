@@ -155,6 +155,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
   - [[#calculator][Calculator]]
     - [[#keybinding][Keybinding]]
+    - [[#digit-grouping][Digit Grouping]]
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
     - [[#binary-number-operation][Binary Number Operation]]
@@ -2018,10 +2019,21 @@ Now create new keybindings. "SPC m s" is not currently being used.
 ;;             Hostname myhost.abc.com
 ;;             ... <as usual>
 ;;             IdentityFile ~/.ssh/id_rsa_yours_blah
-;; 2. $ eval `ssh-agent -s`
+;; 2. $ eval $(ssh-agent -s)
 ;; 3. $ ssh-add ~/.ssh/id_rsa_blah
 ;; 4. From emacs:
 ;;        C-x C-f /ssh:yourusername@myhost:~/somefile.txt
+;;
+;; Common cause of tramp access to remote ssh timeout is that remote host has
+;; an unconventional prompt (which tramp can't parse).
+;; To fix, in your shell config on the remote machine:
+;;
+;;     if [[ "$TERM" == "dumb" ]];; then
+;;       unset zle_bracketed_paste
+;;       unset zle
+;;       PS1='$ '
+;;       return
+;;     fi
 ;;
 (after! tramp
  (tramp-set-completion-function "ssh"
@@ -2469,10 +2481,13 @@ Available on Melpa, ref: https://elpa.gnu.org/packages/csv-mode.html
 
 * Tools
 ** docker
+Yeay ... finally docker.
+
 #+begin_src emacs-lisp
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
 #+end_src
+
 * Other tools
 ** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
 
@@ -2613,6 +2628,7 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 
 * How To
 ** Directory Navigation with Ivy
+
 - =SPC .= simply invokes ivy (unless you've disabled its module).
 - Pressing backspace or typing =../= will go up one directory.
 - Typing =/= (or =TAB= twice) will move down the selected directory.
@@ -2622,8 +2638,46 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 - =C-o= j to open it in another window instead.
 
 ** Directory Editor with Dired
-Ref: [[https://www.youtube.com/watch?v=oZSmlAAbmYs][Youtube: Emacs Doom E03 - A short intro to Dired]]
-Ref: [[https://www.youtube.com/watch?v=ing9Y53RICs][Youtube: The Nuts and Bolds of Emacs DIRED]]
+
+Ref:
+
+- [[https://www.youtube.com/watch?v=oZSmlAAbmYs][Youtube: Emacs Doom E03 - A short intro to Dired]]
+- [[https://www.youtube.com/watch?v=ing9Y53RICs][Youtube: The Nuts and Bolds of Emacs DIRED]]
+- =evil-collection=: [[https://github.com/emacs-evil/evil-collection/blob/master/modes/dired/evil-collection-dired.el][keybinding for dired]]
+- [[https://ashok-khanna.medium.com/introduction-to-dired-mode-91cecd3a06ff][Ashok: Introduction to Dired Mode]]
+
+Navigational:
+
+- =SPC .= and =<enter>=
+- Move cursor down/up: =j=, =k=
+- Go subdir down/up: =<enter>=, =-=
+- Switch between full view and short view: =(=
+
+Operations:
+
+- Create a directory: =+=
+- Create a file: =SPC .= and type in a new filename followed by: =<enter>= will
+  automatically open a new file.
+- Rename file: =i=, to confirm: =Z Z=, to abort: =Z Q=
+- Mark to delete a directory: =d=
+  + Execute: =x=
+  + Unmark: =u=
+- Refresh the Dired buffer: =gr= (=M-x revert-buffer=)
+
+Other operations:
+
+- Sort by name/date: =o=
+- Modify file/directory permissions: =M=
+- Modify owner: =O=
+- Mark file(s): =m=
+- Unmark file(s): =u=, unmark all: =U=
+
+Two panes operations:
+
+- Create 2 panes horizontal: =SPC w s=
+- Switch between pane: =SPC w w=
+- Copy file from current pane to another pane: =C=
+- Move file from current pane to antoher pane: =R=
 
 ** Ivy
 
@@ -2729,6 +2783,7 @@ Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs E
 - List of keybindings: =SPC ?=
 - Specific function: =<M-x> describe-function (SPC h f)=
 - Specific variable: =<M-x> describe-variable (SPC h v)=
+
 * Known Bugs
 ** ... failed to provide feature 'with-editor'
 
@@ -2978,6 +3033,14 @@ so pressing =C-x= felt foreign to me. So,
 | M-x calc-unpack         | v u        |
 | M-x calc-copy-to-buffer | SPC u p P  |
 |-------------------------+------------|
+
+*** Digit Grouping
+
+Display thousands in decimal, or tuple in binary.
+
+#+begin_example
+M-x calc-group-digits <enter>, bound to D g
+#+end_example
 
 *** Calc-Mode Epiphany
 Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].
