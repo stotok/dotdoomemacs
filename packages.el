@@ -65,6 +65,11 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
+(package! evil-motion-trainer
+  :recipe (:host github
+           :repo "martinbaillie/evil-motion-trainer"
+           :files ("*.el")))
+
 (package! org-appear)
 
 (package! websocket)
@@ -96,8 +101,3 @@
            ))
 
 (package! graphviz-dot-mode)
-
-(package! evil-motion-trainer
-  :recipe (:host github
-           :repo "martinbaillie/evil-motion-trainer"
-           :files ("*.el")))

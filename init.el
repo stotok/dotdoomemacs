@@ -164,6 +164,9 @@
   +present             ; presentation, include reveal.js
   +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
+  +pretty              ; Pretty unicode symbols for bullets and priorities. Keep
+                       ; in mind: this can be expensive. If org becomes too slow,
+                       ; it'd be wise to disable this flag.
   )
  ;;php                 ; perl's insecure younger brother
  plantuml              ; diagrams for confusing people more

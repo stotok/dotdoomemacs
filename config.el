@@ -102,8 +102,8 @@
 
 (setq create-lockfiles nil)
 
-(setq auto-save-default nil
-      make-backup-files nil
+(setq auto-save-default nil             ; don't create #autosave# files
+      make-backup-files nil             ; don't create backup~ files
       create-lockfiles  nil)
 
 (setq confirm-kill-emacs nil)
@@ -345,9 +345,18 @@
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
-  (doom-themes-org-config)
-)
+  (doom-themes-org-config))
 
+;; ref: https://github.com/bbatsov/solarized-emacs
+;; if you are using emacs under X you might like the following setting which puts
+;; the underline below the font bottomline instead of the baseline.
+(if (display-graphic-p)
+  (progn
+   ;; in graphics mode
+   (setq x-underline-at-descent-line t))
+  ;; else in terminal
+  ;; do nothing
+  )
 ;; get the right time to set face of hl-line is a bit tricky
 ;; each theme has its own way to set and clear
 ;; hence, call this function after switching to a theme
@@ -555,6 +564,17 @@ Current pattern: %`evil-mc-pattern
   :prefix "g"
   :nv "z" #'my-mc-hydra/body))
 
+(after! evil-escape (evil-escape-mode -1))
+
+(use-package! evil-motion-trainer
+  :init
+  :config
+  (setq evil-motion-trainer-threshold 6
+        evil-motion-trainer-super-annoying-mode nil)
+  ;; (global-evil-motion-trainer-mode 1)
+  (global-evil-motion-trainer-mode 0)
+ )
+
 (setq org-directory "~/org/")
 
 (after! org (setq org-hide-emphasis-markers t))
@@ -617,6 +637,20 @@ Current pattern: %`evil-mc-pattern
   (interactive)
   (let ((outfile (org-export-output-file-name ".tex")))
     (org-export-to-file 'awesomecv outfile)))
+
+(after! org-tree-slide
+  ;; h-bauer 25-june-2021: When arriving on a subsection, the narrow did not occur as expected.
+  ;; The first sub-section was unfolded, the next two where still visible. I could not go further
+  ;; with the binding, unless moving the cursor to the next sibling. would then unfold the
+  ;; next sibling, but to move to the next section with, I had to move the cursor to the
+  ;; last line of the last sub-section.
+  ;; After some investigation, I fixed my issue by removing the following advice :
+  (advice-remove 'org-tree-slide--display-tree-with-narrow
+                 #'+org-present--hide-first-heading-maybe-a)
+  ;; display inline image
+  (add-hook 'org-tree-slide-mode-after-narrow-hook
+            #'org-display-inline-images)
+ )
 
 (after! org
   ;; Project Tree
@@ -1213,15 +1247,6 @@ Current pattern: %`evil-mc-pattern
       :map evilem-map
       "l" #'avy-goto-line
       "p" #'avy-pop-mark)
-
-(use-package! evil-motion-trainer
-  :init
-  :config
-  (setq evil-motion-trainer-threshold 6
-        evil-motion-trainer-super-annoying-mode nil)
-  ;; (global-evil-motion-trainer-mode 1)
-  (global-evil-motion-trainer-mode 0)
- )
 
 (map! :leader
       (:prefix-map ("=" . "calc")

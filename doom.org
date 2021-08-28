@@ -9,6 +9,7 @@
 :END:
 
 #+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
+# +SETUPFILE: ../org-html-themes/org/theme-bigblow-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
 # cp -R ../org-html-themes/src bo/
@@ -64,6 +65,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-mc][evil-mc]]
     - [[#incompatibility][Incompatibility]]
     - [[#hydra][Hydra]]
+  - [[#evil-escape][Evil Escape]]
+  - [[#evil-snipe][Evil Snipe]]
+  - [[#evil-motion-trainer][Evil Motion Trainer]]
 - [[#org-mode][Org mode]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
@@ -72,6 +76,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#front-end][Front end]]
   - [[#exporting-a-curriculum-vitae][Exporting a Curriculum Vitae]]
   - [[#revealjs-presentations][Reveal.js presentations]]
+  - [[#org-tree-slide][Org-tree-slide]]
   - [[#publishing-project][Publishing Project]]
   - [[#the-orgtbl-minor-mode][The Orgtbl Minor mode]]
   - [[#tableel][Table.el]]
@@ -120,13 +125,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#goto-line][goto-line]]
     - [[#avy-pop-mark][avy-pop-mark]]
     - [[#avy-goto-line-same-column][avy-goto-line-same-column]]
-  - [[#evil-snipe][Evil Snipe]]
-  - [[#evil-escape][Evil Escape]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
-  - [[#evil-motion-trainer][Evil Motion Trainer]]
   - [[#what-is-my-xxx][What is my xxx]]
-- [[#known-bugs][Known Bugs]]
-  - [[#-failed-to-provide-feature-with-editor][... failed to provide feature 'with-editor']]
 - [[#references][References]]
   - [[#general-emacs][General Emacs]]
   - [[#doom-emacs][Doom Emacs]]
@@ -509,6 +509,9 @@ This code is written to the =init.el= to select which modules to load.
   +present             ; presentation, include reveal.js
   +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
+  +pretty              ; Pretty unicode symbols for bullets and priorities. Keep
+                       ; in mind: this can be expensive. If org becomes too slow,
+                       ; it'd be wise to disable this flag.
   )
  ;;php                 ; perl's insecure younger brother
  plantuml              ; diagrams for confusing people more
@@ -624,8 +627,8 @@ Do not create lockfiles for files being edited
 Do not need emacs backup file lah ...
 
 #+begin_src emacs-lisp
-(setq auto-save-default nil
-      make-backup-files nil
+(setq auto-save-default nil             ; don't create #autosave# files
+      make-backup-files nil             ; don't create backup~ files
       create-lockfiles  nil)
 #+end_src
 
@@ -1059,11 +1062,20 @@ I customize existing doom-themes to my liking:
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
-  (doom-themes-org-config)
-)
+  (doom-themes-org-config))
 #+end_src
 
 #+begin_src emacs-lisp
+;; ref: https://github.com/bbatsov/solarized-emacs
+;; if you are using emacs under X you might like the following setting which puts
+;; the underline below the font bottomline instead of the baseline.
+(if (display-graphic-p)
+  (progn
+   ;; in graphics mode
+   (setq x-underline-at-descent-line t))
+  ;; else in terminal
+  ;; do nothing
+  )
 ;; get the right time to set face of hl-line is a bit tricky
 ;; each theme has its own way to set and clear
 ;; hence, call this function after switching to a theme
@@ -1337,6 +1349,7 @@ Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tre
 
 * Evil
 ** General
+
 Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][Doom editor/evil]]
 
 I don't like the o/O keys will respect and continue commented lines, so disable it.
@@ -1344,6 +1357,7 @@ I don't like the o/O keys will respect and continue commented lines, so disable 
 (when (featurep! :editor evil)
   (setq-default +evil-want-o/O-to-continue-comments nil))
 #+end_src
+
 ** evil-mc
 *** Incompatibility
 
@@ -1460,6 +1474,43 @@ keys because I rarely use them right now.
 
 Of course, you’re free to bind them yourself. Might I suggest using some of these
 directional keys? =[= =]= =<= =>=.
+
+** Evil Escape
+
+I don't use =evil-escape-mode= and I heard it contributes to a typing delay.
+So, let's just disable it.
+
+#+begin_src emacs-lisp
+(after! evil-escape (evil-escape-mode -1))
+#+end_src
+
+** Evil Snipe
+
+See [[https://github.com/hlissner/evil-snipe][evil-snipe]] and [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh's Doom Emacs Workflows]].
+
+** Evil Motion Trainer
+
+Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs Evil Motion Training]]. Github: [[https://github.com/martinbaillie/evil-motion-trainer][evil-motion-trainer]].
+
+Let's install it:
+#+begin_src emacs-lisp :tangle packages.el
+(package! evil-motion-trainer
+  :recipe (:host github
+           :repo "martinbaillie/evil-motion-trainer"
+           :files ("*.el")))
+#+end_src
+
+Now, configure it:
+#+begin_src emacs-lisp
+(use-package! evil-motion-trainer
+  :init
+  :config
+  (setq evil-motion-trainer-threshold 6
+        evil-motion-trainer-super-annoying-mode nil)
+  ;; (global-evil-motion-trainer-mode 1)
+  (global-evil-motion-trainer-mode 0)
+ )
+#+end_src
 
 * Org mode
 
@@ -1644,6 +1695,26 @@ To fix, add this on your org file:
 #+begin_example
 #+REVEAL_ROOT: file:///path/to/reveal.js
 #+end_example
+
+** Org-tree-slide
+
+Ref: [[https://github.com/hlissner/doom-emacs/issues/4646][org-tree-slide-mode bugs]]
+
+#+begin_src emacs-lisp
+(after! org-tree-slide
+  ;; h-bauer 25-june-2021: When arriving on a subsection, the narrow did not occur as expected.
+  ;; The first sub-section was unfolded, the next two where still visible. I could not go further
+  ;; with the binding, unless moving the cursor to the next sibling. would then unfold the
+  ;; next sibling, but to move to the next section with, I had to move the cursor to the
+  ;; last line of the last sub-section.
+  ;; After some investigation, I fixed my issue by removing the following advice :
+  (advice-remove 'org-tree-slide--display-tree-with-narrow
+                 #'+org-present--hide-first-heading-maybe-a)
+  ;; display inline image
+  (add-hook 'org-tree-slide-mode-after-narrow-hook
+            #'org-display-inline-images)
+ )
+#+end_src
 
 ** Publishing Project
 
@@ -2740,18 +2811,6 @@ Ref: [[https://www.reddit.com/r/emacs/comments/6gbf5i/anyone_use_packages_such_a
 (define-key evil-motion-state-map (kbd "g l") #'evil-avy-goto-line-same-column)
 #+end_src
 
-** Evil Snipe
-
-See [[https://github.com/hlissner/evil-snipe][evil-snipe]] and [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh's Doom Emacs Workflows]].
-
-** Evil Escape
-I don't use =evil-escape-mode= and I heard it contributes to a typing delay.
-So, let's just diasable it.
-
-#+begin_src emacs-list
-(after! evil-escape (evil-escape-mode -1))
-#+end_src
-
 ** Map Unmap keybinding
 Ref:
 - [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/config.el][doom config.el]]
@@ -2759,40 +2818,11 @@ Ref:
 - [[https://github.com/hlissner/doom-emacs/issues/820][changing leader key to F13]]
 - [[https://github.com/hlissner/doom-emacs/issues/814][howto unmap keymap prefix set via map!]]
 
-** Evil Motion Trainer
-Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs Evil Motion Training]]. Github: [[https://github.com/martinbaillie/evil-motion-trainer][evil-motion-trainer]].
-#+begin_src emacs-lisp :tangle packages.el
-(package! evil-motion-trainer
-  :recipe (:host github
-           :repo "martinbaillie/evil-motion-trainer"
-           :files ("*.el")))
-#+end_src
-#+begin_src emacs-lisp
-(use-package! evil-motion-trainer
-  :init
-  :config
-  (setq evil-motion-trainer-threshold 6
-        evil-motion-trainer-super-annoying-mode nil)
-  ;; (global-evil-motion-trainer-mode 1)
-  (global-evil-motion-trainer-mode 0)
- )
-#+end_src
-
 ** What is my xxx
 - Specific keybinding: =<M-x> describe-key (SPC h k)=
 - List of keybindings: =SPC ?=
 - Specific function: =<M-x> describe-function (SPC h f)=
 - Specific variable: =<M-x> describe-variable (SPC h v)=
-
-* Known Bugs
-** ... failed to provide feature 'with-editor'
-
-Happen after =doom upgrade=.  Ref: [[https://github.com/hlissner/doom-emacs/issues/4171][see this]]
-Fix:
-#+begin_example
-$ rm -rf ~/.emacs.d/.local/straight/build*/with-editor
-$ doom sync
-#+end_example
 
 * References
 
