@@ -650,6 +650,11 @@ Current pattern: %`evil-mc-pattern
   ;; display inline image
   (add-hook 'org-tree-slide-mode-after-narrow-hook
             #'org-display-inline-images)
+  ;; this is my own profile
+  (defun ttk/org-tree-slide-simple-presentation-profile ()
+    (interactive)
+    (setq org-tree-slide-header nil
+          org-tree-slide-slide-in-effect t))
  )
 
 (after! org
