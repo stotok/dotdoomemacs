@@ -61,6 +61,7 @@
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
+(defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
 ;; print hostname
@@ -71,6 +72,8 @@
   (message "hostname: IGL6301W"))
  (IS-IGD1943U
   (message "hostname: igd1943u"))
+ (IS-IGD0464U
+  (message "hostname: igd0464u"))
  (IS-LOGE
   (message "hostname: loge"))
  (IS-COROLLA
@@ -321,7 +324,7 @@
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18))
   )
- ((or IS-LOGE IS-COROLLA)
+ ((or IS-LOGE IS-COROLLA IS-IGD0464U)
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))

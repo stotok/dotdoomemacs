@@ -206,7 +206,6 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 ;;      directory (for easy access to its source code).
 #+end_src
 
-
 *** Header for =packages.el=
 #+begin_src emacs-lisp :tangle packages.el
 ;; -*- no-byte-compile: t; -*-
@@ -330,6 +329,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
+(defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
 ;; print hostname
@@ -340,6 +340,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: IGL6301W"))
  (IS-IGD1943U
   (message "hostname: igd1943u"))
+ (IS-IGD0464U
+  (message "hostname: igd0464u"))
  (IS-LOGE
   (message "hostname: loge"))
  (IS-COROLLA
@@ -1014,7 +1016,7 @@ Settings related to fonts:
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18))
   )
- ((or IS-LOGE IS-COROLLA)
+ ((or IS-LOGE IS-COROLLA IS-IGD0464U)
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
@@ -2085,6 +2087,9 @@ Now create new keybindings. "SPC m s" is not currently being used.
 #+end_src
 
 * Tramp
+
+Ref: [[https://helpdeskheadesk.net/help-desk-head-desk/2021-05-19/][A Few TRAMP Tricks]]
+
 #+begin_src emacs-lisp
 ;;
 ;; TRAMP
