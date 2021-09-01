@@ -2387,7 +2387,9 @@ $ cd <your project root>
 
 * Company
 
-See: [[https://tychoish.com/post/better-company/][Better Company]]
+Ref:
+- [[https://tychoish.com/post/better-company/][Better Company]]
+- [[https://readingworldmagazine.com/emacs/2020-07-27-emacs-company-mode/#article-title][Emacs Comany Mode]]
 
 #+begin_src emacs-lisp
 (after! company
@@ -2404,12 +2406,16 @@ See: [[https://tychoish.com/post/better-company/][Better Company]]
                           company-cmake
                           company-ispell
                           company-yasnippet))
- (setq company-idle-delay 0
-       company-echo-delay 0
-       company-minimum-prefix-length 2
+ (setq company-echo-delay 0
+       company-minimum-prefix-length 3
        company-show-numbers t
        company-tooltip-limit 20
-       company-dabbrev-downcase nil)
+       company-dabbrev-downcase nil
+       ;; adjust this idle delay so it does not interrupt
+       ;; your flow while still allowing you to call it on demand
+       company-idle-delay 0.3           ; unit is seconds
+       company-require-match nil
+   )
  ;; make aborting less annoying
  (add-hook 'evil-normal-state-entry-hook #'company-abort)
 
