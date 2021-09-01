@@ -63,7 +63,8 @@ determine the exact padding."
    ;; face categories -- required for all themes
    (highlight      blue)
    (vertical-bar   base4)
-   (selection      dark-blue)
+   ;; (selection      dark-blue)
+   (selection      base4)               ; totok to make it not too intrusive in nav-flash
    (builtin        magenta)
    (comments       (if doom-solarized-light-brighter-comments
                        (doom-lighten teal 0.25)
