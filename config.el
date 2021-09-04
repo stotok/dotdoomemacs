@@ -567,6 +567,38 @@ Current pattern: %`evil-mc-pattern
   :prefix "g"
   :nv "z" #'my-mc-hydra/body))
 
+(after! (:and evil-mc smartparens)
+  (dolist (sp-command '(sp-up-sexp
+                        sp-copy-sexp
+                        sp-down-sexp
+                        sp-join-sexp
+                        sp-kill-sexp
+                        sp-next-sexp
+                        sp-split-sexp
+                        sp-wrap-curly
+                        sp-wrap-round
+                        sp-raise-sexp
+                        sp-clone-sexp
+                        sp-wrap-square
+                        sp-splice-sexp
+                        sp-end-of-sexp
+                        sp-forward-sexp
+                        sp-backward-sexp
+                        sp-convolute-sexp
+                        sp-transpose-sexp
+                        sp-kill-whole-line
+                        sp-beginning-of-sexp
+                        sp-forward-barf-sexp
+                        sp-forward-slurp-sexp
+                        sp-backward-barf-sexp
+                        sp-backward-slurp-sexp
+                        sp-splice-sexp-killing-forward
+                        sp-splice-sexp-killing-backward))
+    (add-to-list
+     'evil-mc-custom-known-commands
+     `(,sp-command
+       (:default . evil-mc-execute-call)))))
+
 (after! evil-escape (evil-escape-mode -1))
 
 (use-package! evil-motion-trainer

@@ -65,6 +65,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-mc][evil-mc]]
     - [[#incompatibility][Incompatibility]]
     - [[#hydra][Hydra]]
+    - [[#working-with-smartparens][Working With Smartparens]]
   - [[#evil-escape][Evil Escape]]
   - [[#evil-snipe][Evil Snipe]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
@@ -1477,6 +1478,49 @@ keys because I rarely use them right now.
 Of course, you’re free to bind them yourself. Might I suggest using some of these
 directional keys? =[= =]= =<= =>=.
 
+*** Working With Smartparens
+
+Ref: [[https://hungyi.net/posts/how-to-evil-mc-smartparens/][How to Quickly Get evil-mc Working With Smartparens]]
+
+[[https://philjackson.github.io/elisp/evil-mc/smartparens/emacs/2021/06/05/smartparens-and-evil-mc/][As described here]], when using =evil-mc=, it's very frustrating when a =smartparens=
+command works on only the first of the multiple cursors.
+
+Here's how to fix that:
+
+#+begin_src emacs-lisp
+(after! (:and evil-mc smartparens)
+  (dolist (sp-command '(sp-up-sexp
+                        sp-copy-sexp
+                        sp-down-sexp
+                        sp-join-sexp
+                        sp-kill-sexp
+                        sp-next-sexp
+                        sp-split-sexp
+                        sp-wrap-curly
+                        sp-wrap-round
+                        sp-raise-sexp
+                        sp-clone-sexp
+                        sp-wrap-square
+                        sp-splice-sexp
+                        sp-end-of-sexp
+                        sp-forward-sexp
+                        sp-backward-sexp
+                        sp-convolute-sexp
+                        sp-transpose-sexp
+                        sp-kill-whole-line
+                        sp-beginning-of-sexp
+                        sp-forward-barf-sexp
+                        sp-forward-slurp-sexp
+                        sp-backward-barf-sexp
+                        sp-backward-slurp-sexp
+                        sp-splice-sexp-killing-forward
+                        sp-splice-sexp-killing-backward))
+    (add-to-list
+     'evil-mc-custom-known-commands
+     `(,sp-command
+       (:default . evil-mc-execute-call)))))
+#+end_src
+
 ** Evil Escape
 
 I don't use =evil-escape-mode= and I heard it contributes to a typing delay.
@@ -2855,6 +2899,8 @@ settings for performance optimization, package management, commonly used package
 - [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sacha Chua: Emacs Configuration]]
 - [[https://github.com/daedreth/UncleDavesEmacs#user-content-ido-and-why-i-started-using-helm][Uncle Dave: Emacs config]]
 - [[https://github.com/PythonNut/emacs-config][PythonNut: Emacs config]]
+- [[https://www.manueluberti.eu/][Manuel Uberti: Emacs Stuff]]
+- [[https://philjackson.github.io/][Phil Jackson: Snippets and other bits]]
 - [[https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#use-better-defaults][Angry Bacon: Better Defaults]]
 - [[https://blog.sumtypeofway.com/posts/emacs-config.html][Emacs is Agar for Brain Worms]]
 - [[https://www.masteringemacs.org/][Mastering Emacs]]
