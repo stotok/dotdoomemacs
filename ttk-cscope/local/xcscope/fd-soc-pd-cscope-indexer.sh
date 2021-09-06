@@ -21,7 +21,7 @@ FIND="fd --ignore-case --type f"
 CSCOPE="cscope"
 #
 echo "generating cscope file listing: ${LIST_FILE} ..."
-${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
+${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
     --exclude .git \
     --exclude .repo \
     --exclude .build \

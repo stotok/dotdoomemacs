@@ -24,7 +24,7 @@ ${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
     VUC_APP/TVIP_Ctrl_Files/TVIP | cut -d '/' -f3- > .fdignore
 #
 echo "generating cscope file listing: ${LIST_FILE} ..."
-${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
+${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
     --exclude .git \
     --exclude .repo \
     --exclude Int_Scripts \
