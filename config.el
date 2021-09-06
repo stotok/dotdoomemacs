@@ -261,6 +261,7 @@
     "In the Beginning ... Was the command Line"
     "Life is 10% what happens to you and 90% how you react to it"
     "The secret of getting ahead is getting started"
+    "Once you eliminate your number one problem, You promote number two"
     "Clarity is better than cleverness"
     "How beautiful it is to find someone who asks for nothing but your company"
     "When in doubt, use brute force"

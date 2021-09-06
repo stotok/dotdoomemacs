@@ -922,6 +922,7 @@ Show random quote:
     "In the Beginning ... Was the command Line"
     "Life is 10% what happens to you and 90% how you react to it"
     "The secret of getting ahead is getting started"
+    "Once you eliminate your number one problem, You promote number two"
     "Clarity is better than cleverness"
     "How beautiful it is to find someone who asks for nothing but your company"
     "When in doubt, use brute force"
@@ -1578,18 +1579,20 @@ Now, configure it:
 * Org mode
 
 I have been a fan of the idea of [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] for many years, but Org is the first
-tool I have encountered which makes it practical. Here are some of the resources I have found useful in learning it:
+tool I have encountered which makes it practical. Here are some of the resources I have
+found useful in learning it:
 
-- Howard Abrams' [[http://www.howardism.org/Technical/Emacs/literate-programming-tutorial.html][Introduction to Literate Programming]], which got me jumpstarted into writing
+- Howard Abrams: [[http://www.howardism.org/Technical/Emacs/literate-programming-tutorial.html][Introduction to Literate Programming]], which got me jumpstarted into writing
   code documented with org-mode.
-- Nick Anderson's [[https://github.com/nickanderson/Level-up-your-notes-with-Org][Level up your notes with Org]], which contains many useful tips and
+- Nick Anderson: [[https://github.com/nickanderson/Level-up-your-notes-with-Org][Level up your notes with Org]], which contains many useful tips and
   configuration tricks. Nick's recommendation also got me to start looking into Org-mode
   in the first place!
-- Sacha Chua's [[http://sachachua.com/blog/2014/01/tips-learning-org-mode-emacs/][Some tips for learning Org Mode for Emacs]], her [[http://pages.sachachua.com/.emacs.d/Sacha.html][Emacs configuration]] and
+- Sacha Chua: [[http://sachachua.com/blog/2014/01/tips-learning-org-mode-emacs/][Some tips for learning Org Mode for Emacs]], her [[http://pages.sachachua.com/.emacs.d/Sacha.html][Emacs configuration]] and
   many of her [[http://sachachua.com/blog/category/emacs/][other articles]].
-- Rainer König's [[https://www.youtube.com/playlist?list=PLVtKhBrRV_ZkPnBtt_TD1Cs9PJlU0IIdE][OrgMode Tutorial]] video series.
-- System Crafters Youtube [[https://www.youtube.com/watch?v=AyhPmypHDEw&t=2007s][Gettring Started with Org Roam v2]].
-- Peter Prevos [[https://lucidmanager.org/productivity/taking-notes-with-emacs-org-mode-and-org-roam/][Taking Notes with Emacs Org Mode and Org Roam]].
+- Rainer König: [[https://www.youtube.com/playlist?list=PLVtKhBrRV_ZkPnBtt_TD1Cs9PJlU0IIdE][OrgMode Tutorial]] video series.
+- System Crafters Youtube: [[https://www.youtube.com/watch?v=AyhPmypHDEw&t=2007s][Gettring Started with Org Roam v2]].
+- Peter Prevos: [[https://lucidmanager.org/productivity/taking-notes-with-emacs-org-mode-and-org-roam/][Taking Notes with Emacs Org Mode and Org Roam]].
+- Where parallels cross: [[https://ag91.github.io/blog/2021/03/12/find-org-roam-notes-via-their-relations/][Find Org Roam notes via their relations]]
 
 ** General Org Configuration
 
