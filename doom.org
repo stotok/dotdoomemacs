@@ -55,6 +55,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#which-function-mode][which-function-mode]]
     - [[#show-current-time][Show current time]]
   - [[#shrink-whitespace][Shrink Whitespace]]
+  - [[#registers][Registers]]
   - [[#key-bindings][Key bindings]]
     - [[#misc-keybindings][Misc keybindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
@@ -73,7 +74,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
   - [[#org-roam][Org Roam]]
-    - [[#v2][V2]]
+    - [[#configuration][Configuration]]
     - [[#front-end][Front end]]
   - [[#exporting-a-curriculum-vitae][Exporting a Curriculum Vitae]]
   - [[#revealjs-presentations][Reveal.js presentations]]
@@ -156,6 +157,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
   - [[#calculator][Calculator]]
     - [[#keybinding][Keybinding]]
+    - [[#trail-commands][Trail Commands]]
     - [[#digit-grouping][Digit Grouping]]
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
@@ -751,6 +753,7 @@ Reference: [[https://github.com/hlissner/doom-emacs/blob/develop/docs/api.org#pe
 
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 #+end_src
+
 ** Scratch Buffer
 *** Doom Scratch Buffer
 Doom has persistance scratch buffer named =doom:scratch= with:
@@ -1257,6 +1260,20 @@ See: [[https://github.com/jcpetkovich/shrink-whitespace.el][jcpetkovich github]]
  :bind (("M-\\" . shrink-whitespace)))
 #+end_src
 
+** Registers
+
+Ref: [[https://tech.toryanderson.com/2020/07/03/emacs-tip-registers/][The Simple Genius of Emacs Registers]]
+
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix-map ("r" . "register")
+       "SPC" #'point-to-register
+       "l" #'list-registers
+       "i" #'insert-register
+       "j" #'jump-to-register
+       "s" #'copy-to-register))
+#+end_src
+
 ** Key bindings
 
 Doom Emacs has an extensive keybinding system, and most module functions are
@@ -1572,6 +1589,7 @@ tool I have encountered which makes it practical. Here are some of the resources
   many of her [[http://sachachua.com/blog/category/emacs/][other articles]].
 - Rainer König's [[https://www.youtube.com/playlist?list=PLVtKhBrRV_ZkPnBtt_TD1Cs9PJlU0IIdE][OrgMode Tutorial]] video series.
 - System Crafters Youtube [[https://www.youtube.com/watch?v=AyhPmypHDEw&t=2007s][Gettring Started with Org Roam v2]].
+- Peter Prevos [[https://lucidmanager.org/productivity/taking-notes-with-emacs-org-mode-and-org-roam/][Taking Notes with Emacs Org Mode and Org Roam]].
 
 ** General Org Configuration
 
@@ -1663,11 +1681,9 @@ And enable it automatically on org-mode start-up:
 
 ** Org Roam
 
-*** V2
+*** Configuration
 
-Let's roam :D
-
-For now I configure it to include my whole Org directory.
+Yes, only for Org Roam v2.
 
 #+begin_src emacs-lisp
 (setq org-roam-directory "~/project/org-roam"
@@ -3087,6 +3103,7 @@ M-x set-fill-column   (set max chars per line used to 'fill' command)
 M-x fill-paragraph    (break a long line into shorter lines)
 #+end_example
 ** Calculator
+
 Reading:
 - [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
 - [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
@@ -3096,6 +3113,7 @@ Reading:
 - [[https://pagefault.se/post/emacs-can-do-that/][Convert hours, mins and seconds]]
 
 *** Keybinding
+
 Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
 calc mode to be more aligned with evil mode.
 
@@ -3126,6 +3144,16 @@ so pressing =C-x= felt foreign to me. So,
 | M-x calc-copy-to-buffer | SPC u p P  |
 |-------------------------+------------|
 
+*** Trail Commands
+
+Ref: [[https://www.gnu.org/software/emacs/manual/html_node/calc/Trail-Commands.html][Emacs Trail Commands]]
+
+#+begin_example
+M-x calc-trail-display, bound to t d
+M-x calc-trail-in,      bound to t i
+M-x calc-trail-out,     bound to t o
+#+end_example
+
 *** Digit Grouping
 
 Display thousands in decimal, or tuple in binary.
@@ -3135,6 +3163,7 @@ M-x calc-group-digits <enter>, bound to D g
 #+end_example
 
 *** Calc-Mode Epiphany
+
 Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].
 #+begin_example
 <Place cursor at the location for calc result>
@@ -3148,6 +3177,7 @@ Convert 2:18:47 into seconds = 8327
 #+end_example
 
 *** Convert Decimal/Hexadecimal
+
 #+begin_example
 M-x calc
 Type any number.
@@ -3172,6 +3202,7 @@ About inputting a number:
 - To enter a number as current radix, type "#".
 
 *** Binary Number Operation
+
 |------------+----------------------+------------------------------|
 | Keybinding | Calc Function        | Description                  |
 |------------+----------------------+------------------------------|
@@ -3185,6 +3216,7 @@ About inputting a number:
 |------------+----------------------+------------------------------|
 
 **** Bitwise shift by more than 1 bit
+
 - Use /numeric prefix argument/. Example: To shift 9 bits to the left:
   #+begin_example
   1 <RET>

@@ -467,6 +467,14 @@
  :defer t
  :bind (("M-\\" . shrink-whitespace)))
 
+(map! :leader
+      (:prefix-map ("r" . "register")
+       "SPC" #'point-to-register
+       "l" #'list-registers
+       "i" #'insert-register
+       "j" #'jump-to-register
+       "s" #'copy-to-register))
+
 (after! magit
   (setq-default +magit-open-windows-in-direction 'down))
 
