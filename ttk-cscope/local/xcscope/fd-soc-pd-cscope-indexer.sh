@@ -32,6 +32,7 @@ ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
     --exclude TelematicsAutomatedTest \
     --exclude int_scripts \
     --exclude tests \
+    --exclude tmp \
     > ${LIST_FILE}
 #
 echo "generating cscope database: ${DATABASE_FILE} ..."
