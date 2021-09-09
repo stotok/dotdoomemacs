@@ -1092,7 +1092,7 @@ I customize existing doom-themes to my liking:
   (set-face-background 'hl-line nil)
   (set-face-foreground 'hl-line nil)
   (set-face-underline 'hl-line t))
-;;(ttk-hl-line-underline-on)
+;;(ttk/hl-line-underline-on)
 #+end_src
 
 This is on my TODO list for the next themes:
@@ -2476,7 +2476,7 @@ Ref:
        company-dabbrev-downcase nil
        ;; adjust this idle delay so it does not interrupt
        ;; your flow while still allowing you to call it on demand
-       company-idle-delay 0.3           ; unit is seconds
+       company-idle-delay 0.5           ; unit is seconds
        company-require-match nil
    )
  ;; make aborting less annoying

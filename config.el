@@ -370,7 +370,7 @@
   (set-face-background 'hl-line nil)
   (set-face-foreground 'hl-line nil)
   (set-face-underline 'hl-line t))
-;;(ttk-hl-line-underline-on)
+;;(ttk/hl-line-underline-on)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -1159,7 +1159,7 @@ Current pattern: %`evil-mc-pattern
        company-dabbrev-downcase nil
        ;; adjust this idle delay so it does not interrupt
        ;; your flow while still allowing you to call it on demand
-       company-idle-delay 0.3           ; unit is seconds
+       company-idle-delay 0.5           ; unit is seconds
        company-require-match nil
    )
  ;; make aborting less annoying
