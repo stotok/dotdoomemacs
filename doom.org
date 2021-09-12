@@ -858,7 +858,7 @@ If you want to choose at random among a few different splash images, you can
 list them in =alternatives=.
 
 #+begin_src emacs-lisp
-(let ((alternatives '("doom-emacs-bw-light.svg")))
+(let ((alternatives '("chicken-5156328-500.svg")))
    ;;((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))
   (setq fancy-splash-image
         (concat doom-private-dir "splash/"
