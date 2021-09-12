@@ -163,6 +163,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
     - [[#binary-number-operation][Binary Number Operation]]
     - [[#hms][HMS]]
+  - [[#macros][Macros]]
+    - [[#exercise-1][Exercise 1]]
+    - [[#exercise-2][Exercise 2]]
 
 * Doom Config Files
 
@@ -3254,3 +3257,38 @@ Result: 6000 secs = 133 hour 19 min 60 sec
 3. Convert to minute
    : 60 RET /
    8000 s
+
+
+** Macros
+
+Automate repetitive tasks by recording and replaying keyboard macros.
+
+- Start keyboard macro: =M-x kmacro-start-macro: C-x (=
+- End keyboard macro: =M-x kmacro-end-macro: C-x )=
+- End and call macro: =M-x kmacro-end-and-call-macro: C-x e=
+- Set counter: =M-x kmacro-set-counter: C-x C-k C-c=
+- Insert counter: =M-x kmacro-insert-counter: C-x C-k TAB=
+
+*** Exercise 1
+
+Produce this:
+#+begin_example
+(xterm-color-names [,col0 ,col1 ,col2 ,col3 ,col4 ,col5 ,col6 ,col7])
+#+end_example
+
+*** Exercise 2
+
+Produce this:
+#+begin_example
+0   http0mailbox
+1   http1mailbox
+2   http2mailbox
+3   http3mailbox
+4   http4mailbox
+5   http5mailbox
+6   http6mailbox
+7   http7mailbox
+8   http8mailbox
+9   http9mailbox
+10  http10mailbox
+#+end_example
