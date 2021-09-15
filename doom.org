@@ -86,6 +86,8 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#tangle-on-save][Tangle-on-save]]
 - [[#cc][C/C++]]
 - [[#cscope][Cscope]]
+- [[#magit][Magit]]
+  - [[#magit-and-gerrit][Magit and Gerrit]]
 - [[#projectile][Projectile]]
 - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
@@ -110,7 +112,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#tools][Tools]]
   - [[#docker][docker]]
 - [[#other-tools][Other tools]]
-  - [[#trying-out-magits-multi-repository-abilities][Trying out Magit's multi-repository abilities.]]
   - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
   - [[#measure-timing][Measure timing]]
   - [[#vterm][Vterm]]
@@ -2066,6 +2067,15 @@ Now create new keybindings. "SPC m s" is not currently being used.
         "A" #'cscope-unset-initial-directory)
 #+end_src
 
+* Magit
+
+** Magit and Gerrit
+
+Push to gerrit:
+#+begin_example
+p r "origin" RET "HEAD:refs/drafts/master"
+#+end_example
+
 * Projectile
 
 #+begin_src emacs-lisp
@@ -2642,32 +2652,6 @@ Yeay ... finally docker.
 #+end_src
 
 * Other tools
-** Trying out [[https://magit.vc/manual/magit/Repository-List.html][Magit's multi-repository abilities]].
-
-This stays in sync with the git repo list used by my [[https://github.com/zzamboni/elvish-themes/blob/master/chain.org#bonus-displaying-the-status-of-several-git-repos-at-once][chain:summary-status]] Elvish
-shell function by reading the file every time =magit-list-repositories= is called,
-using =defadvice!=. I also customize the display to add the =Status= column.
-
-Totok 20200101 disable first.
-#+begin_src emacs-lisp :tangle no
-(after! magit
-  (setq zz/repolist
-        "~/.elvish/package-data/elvish-themes/chain-summary-repos.json")
-  (defadvice! +zz/load-magit-repositories ()
-    :before #'magit-list-repositories
-    (setq magit-repository-directories
-          (seq-map (lambda (e) (cons e 0)) (json-read-file zz/repolist))))
-  (setq magit-repolist-columns
-        '(("Name" 25 magit-repolist-column-ident nil)
-          ("Status" 7 magit-repolist-column-flag nil)
-          ("B<U" 3 magit-repolist-column-unpulled-from-upstream
-           ((:right-align t)
-            (:help-echo "Upstream changes not in branch")))
-          ("B>U" 3 magit-repolist-column-unpushed-to-upstream
-           ((:right-align t)
-            (:help-echo "Local changes not in upstream")))
-          ("Path" 99 magit-repolist-column-path nil))))
-#+end_src
 
 ** GPG Graphical PIPN Entry Utility
 
