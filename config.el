@@ -1062,9 +1062,7 @@ Current pattern: %`evil-mc-pattern
   ;;
   ;; For general LSP, you need :tools lsp
   ;;
-  (setq ;; lsp-auto-configure nil        ; to configure only features u like
-        lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
-        ;; lsp-auto-execute-action nil
+  (setq lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
         ;;
         lsp-navigation 'simple
         ;; this is also too noisy
@@ -1135,8 +1133,21 @@ Current pattern: %`evil-mc-pattern
       :localleader
       :g "l" nil                        ; firstly, unbind default doom binding
       (:prefix "l"                      ; define our ownd
-        :nv "d" #'lsp-find-definition
-        :nv "s" #'lsp-find-references))
+        :nv "d" #'xref-find-definitions
+        :nv "u" #'xref-pop-marker-stack
+        :nv "s" #'lsp-find-references
+        ))
+
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+(defun ttk/enable-xref-prompt ()
+  (interactive)
+  (setq xref-prompt-for-identifier t))
 
 (after! company
  (setq company-backends '(company-capf

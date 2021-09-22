@@ -97,6 +97,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
   - [[#cc-1][C/C++]]
+    - [[#where-clangd-to-find-compile_commandsjson][Where =clangd= to find =compile_commands.json=?]]
   - [[#python-virtual-environment][Python Virtual Environment]]
     - [[#install-pipenv][Install pipenv]]
     - [[#bashrc][=.bashrc=]]
@@ -2299,6 +2300,7 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 - For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp#table-of-contents][Doom LSP]].
 - For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/cc#lsp-servers][LSP servers]].
 - For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/python#language-server-protocol-support][LSP Support]].
+- See [[https://www.cheng92.com/emacs/doom-emacs-with-org/][this one]] as well.
 
 #+begin_src emacs-lisp
 (use-package! lsp
@@ -2306,9 +2308,7 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
   ;;
   ;; For general LSP, you need :tools lsp
   ;;
-  (setq ;; lsp-auto-configure nil        ; to configure only features u like
-        lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
-        ;; lsp-auto-execute-action nil
+  (setq lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
         ;;
         lsp-navigation 'simple
         ;; this is also too noisy
@@ -2383,12 +2383,53 @@ I don't like default doom keybindings for lsp. Here's mine:
       :localleader
       :g "l" nil                        ; firstly, unbind default doom binding
       (:prefix "l"                      ; define our ownd
-        :nv "d" #'lsp-find-definition
-        :nv "s" #'lsp-find-references))
+        :nv "d" #'xref-find-definitions
+        :nv "u" #'xref-pop-marker-stack
+        :nv "s" #'lsp-find-references
+        ))
 #+end_src
 
 ** C/C++
-TBD
+
+Yes, I'm using [[https://clangd.llvm.org/][clangd]]. Probably you should too.
+
+Ref:
+- [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp][doom-emacs:tools/lsp]]
+- [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/README.org][doom-emacs:lang/cc]]
+- [[https://clangd.llvm.org/installation.html][clangd installation]]
+- [[https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/][LSP Support for Emacs]]
+- [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as C/C++ IDE]]
+
+#+begin_src emacs-lisp
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+(defun ttk/enable-xref-prompt ()
+  (interactive)
+  (setq xref-prompt-for-identifier t))
+#+end_src
+
+*** Where =clangd= to find =compile_commands.json=?
+
+Ref: see this [[https://github.com/emacs-lsp/lsp-mode/issues/2278][emacs-lsp discussion]].
+
+=clangd= use heuristic method: If path is invalid, it will look in the current
+directory and parent paths of each source file you are currently editing.
+
+So, how to put compile_commands.json at custom location?
+
+Solution: [[https://llvm.discourse.group/t/clangd-lsp-with-emacs-external-library/1593/3][see this discussion]]. After =clangd-11=, we will also be looking for
+directories named =build= to find =compile_commands.json=. But for a general
+solution, you can either:
+
+- Create symlink in your project root, pointing at the =compile_commands.json=
+  inside the build directory.
+- Provide =--compile-commands-dir=<string>= to =clangd=, pointing at the
+  directory containing the compilation database.
 
 ** Python Virtual Environment
 *** Install pipenv
@@ -3241,7 +3282,6 @@ Result: 6000 secs = 133 hour 19 min 60 sec
 3. Convert to minute
    : 60 RET /
    8000 s
-
 
 ** Macros
 

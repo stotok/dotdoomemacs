@@ -120,8 +120,10 @@ determine the exact padding."
 
    (org-block :background (doom-blend yellow bg 0.04) :extend t)
    (org-block-background :background (doom-blend yellow bg 0.04))
-   (org-block-begin-line :background (doom-blend yellow bg 0.08) :extend t)
-   (org-block-end-line :background (doom-blend yellow bg 0.08) :extend t)
+   ;; (org-block-begin-line :background (doom-blend yellow bg 0.08) :extend t)
+   (org-block-begin-line :background (doom-blend yellow bg 0.04) :foreground base4 :extend t)
+   ;; (org-block-end-line :background (doom-blend yellow bg 0.08) :extend t)
+   (org-block-end-line :background (doom-blend yellow bg 0.04) :foreground base4 :extend t)
    (lsp-ui-sideline-code-action :foreground blue)
 
    (font-lock-comment-face
