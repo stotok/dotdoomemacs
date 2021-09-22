@@ -1103,7 +1103,9 @@ Current pattern: %`evil-mc-pattern
         lsp-log-io nil                ; enable log only for debug
         lsp-enable-folding nil        ; use evil-matchit' instead
         ;; lsp-enable-links nil          ; use ffip instead
-  )
+        ;; well, how to make below works?
+        xref-prompt-for-identifier nil  ; prompt if no identifier
+   )
   ;;
   ;; For python, you need to add :lang (python +lsp)
   ;;
