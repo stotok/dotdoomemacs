@@ -1361,8 +1361,10 @@ and braces.
 Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! tree-sitter)
-(package! tree-sitter-langs)
+(package! tree-sitter
+  :recipe (:branch "master"))
+(package! tree-sitter-langs
+  :recipe (:branch "master"))
 #+end_src
 
 #+begin_src emacs-lisp
