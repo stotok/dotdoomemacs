@@ -1062,10 +1062,59 @@ Current pattern: %`evil-mc-pattern
   ;;
   ;; For general LSP, you need :tools lsp
   ;;
-  (setq lsp-prefer-flymake nil        ; prefer lsp-ui (flycheck) over flymake
+  (setq ;;;;;;;;;;;;; Features/Core ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;; lsp-auto-configure t            ; default: t
+        ;; lsp-eldoc-hook nil              ; default: '(lsp-hover)
+        ;; lsp-eldoc-enable-hover t        ; detault: t
+        lsp-eldoc-render-all t             ; default: nil. This to show enum value
+        lsp-enable-on-type-formatting t    ; default: t
+        lsp-enable-symbol-highlighting nil ; default: t
+        ;; http://blog.binchen.org/posts/how-to-speed-up-lsp-mode/
+        lsp-log-io nil                     ; enable log only for debug
+        lsp-enable-folding nil             ; use evil-matchit' instead
+        ;; lsp-enable-links nil            ; use ffip instead
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-completion-enable t            ; see how is performance
+        lsp-completion-provider :ivy       ; long live ivy
+        ;; lsp-completion-show-detail nil         ; completion item detail
+        ;; lsp-completion-show-kind nil           ; completion item kind
+        lsp-enable-snippet nil             ; handle yasnippet by myself
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Diagnostics ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-diagnostics-provider :none
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Headerline ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-headerline-breadcrumb-enable nil               ; headerline
+        lsp-headerline-breadcrumb-enable-diagnostics nil
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Modeline ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-modeline-workspace-status-enable nil
+        lsp-modeline-code-actions-enable nil     ; modeline code actions
+        lsp-modeline-diagnostics-enable nil      ; modeline diagnostics statistics
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Lens ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-lens-enable nil             ; default: nil
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;; Features/Icons ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        lsp-headerline-breadcrumb-icons-enable nil
         ;;
-        lsp-navigation 'simple
-        ;; this is also too noisy
+        ;; well, how to make below works?
+        ;;
+        lsp-prefer-flymake nil          ; prefer lsp-ui (flycheck) over flymake
+        ;;
+        ;; lsp-navigation 'simple
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;;;;;;;;;;;;;; Extensions/UI ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        ;; see https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         lsp-ui-doc-enable nil
         lsp-ui-sideline-enable nil
         lsp-ui-sideline-show-symbol nil
@@ -1078,33 +1127,12 @@ Current pattern: %`evil-mc-pattern
         lsp-ui-flycheck-enable nil
         lsp-ui-flycheck-live-reporting nil
         lsp-ui-imenu-enable nil
-        ;;
-        ;; see https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-        ;; let's kill them all
-        lsp-enable-symbol-highlighting nil   ; symbol highlighting
-        lsp-enable-snippet nil               ; handle yasnippet by myself
-        lsp-ui-doc-show-with-cursor nil      ; cursor hover
-        lsp-ui-doc-show-with-mouse nil       ; mouse hover
-        lsp-lens-enable nil                  ; lens
-        lsp-headerline-breadcrumb-enable nil ; headerline
-        lsp-modeline-code-actions-enable nil ; modeline code actions
-        lsp-diagnostics-provider :none
-        lsp-modeline-diagnostics-enable nil    ; modeline diagnostics statistics
-        lsp-eldoc-hook nil                     ; eldoc
-        lsp-eldoc-enable-hover nil             ; eldoc
+        lsp-ui-doc-show-with-cursor nil ; cursor hover
+        lsp-ui-doc-show-with-mouse nil  ; mouse hover
         lsp-signature-auto-activate nil        ; manually: `lsp-signature-activate'
         lsp-signature-render-documentation nil ; signature help documentation
-        lsp-completion-enable t                ; see how is performance
-        lsp-completion-provider :ivy           ; long live ivy
-        ;; lsp-completion-show-detail nil         ; completion item detail
-        ;; lsp-completion-show-kind nil           ; completion item kind
         ;;
-        ;; http://blog.binchen.org/posts/how-to-speed-up-lsp-mode/
-        lsp-log-io nil                ; enable log only for debug
-        lsp-enable-folding nil        ; use evil-matchit' instead
-        ;; lsp-enable-links nil          ; use ffip instead
-        ;; well, how to make below works?
-        xref-prompt-for-identifier nil  ; prompt if no identifier
+        xref-prompt-for-identifier t  ; prompt if no identifier
    )
   ;;
   ;; For python, you need to add :lang (python +lsp)
@@ -1138,6 +1166,8 @@ Current pattern: %`evil-mc-pattern
         :nv "d" #'xref-find-definitions
         :nv "u" #'xref-pop-marker-stack
         :nv "s" #'lsp-find-references
+        :nv "i" #'lsp-ui-sideline-toggle-symbols-info
+        :nv "a" #'lsp-workspace-restart
         ))
 
 (setq lsp-clients-clangd-args '("-j=3"
