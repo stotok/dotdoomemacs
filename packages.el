@@ -54,6 +54,12 @@
 ;;(unpin! t)
 
 (package! rtags :disable t)
+(package! helm-rtags :disable t)
+(package! ivy-rtags :disable t)
+(package! ccls :disable t)
+(package! anaconda-mode :disable t)
+(package! lsp-python-ms :disable t)
+(package! lsp-ivy :disable t)
 
 (package! rainbow-mode)
 

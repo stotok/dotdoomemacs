@@ -567,6 +567,12 @@ This code is written to the =init.el= to select which modules to load.
 ** Disabling Packages
 #+begin_src emacs-lisp :tangle packages.el
 (package! rtags :disable t)
+(package! helm-rtags :disable t)
+(package! ivy-rtags :disable t)
+(package! ccls :disable t)
+(package! anaconda-mode :disable t)
+(package! lsp-python-ms :disable t)
+(package! lsp-ivy :disable t)
 #+end_src
 
 ** Need to Have Packages
