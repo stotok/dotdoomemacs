@@ -1166,6 +1166,7 @@ Current pattern: %`evil-mc-pattern
         :nv "d" #'xref-find-definitions
         :nv "u" #'xref-pop-marker-stack
         :nv "s" #'lsp-find-references
+        :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
         ))
