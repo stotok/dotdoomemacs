@@ -1074,6 +1074,7 @@ Current pattern: %`evil-mc-pattern
         lsp-log-io nil                     ; enable log only for debug
         lsp-enable-folding nil             ; use evil-matchit' instead
         ;; lsp-enable-links nil            ; use ffip instead
+        lsp-idle-delay 5.0                 ; default: 0.5
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;; Features/Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1165,6 +1166,7 @@ Current pattern: %`evil-mc-pattern
       (:prefix "l"                      ; define our ownd
         :nv "d" #'xref-find-definitions
         :nv "u" #'xref-pop-marker-stack
+        :nv "c" #'lsp-treemacs-call-hierarchy
         :nv "s" #'lsp-find-references
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
@@ -1172,6 +1174,8 @@ Current pattern: %`evil-mc-pattern
         ))
 
 (use-package! lsp-treemacs
+  :init
+  (setq lsp-treemacs-theme "Iconless")
   :config
   (lsp-treemacs-sync-mode 1))
 

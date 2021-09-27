@@ -2313,6 +2313,7 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 - For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/python#language-server-protocol-support][LSP Support]].
 - See [[https://www.cheng92.com/emacs/doom-emacs-with-org/][this one]] as well.
 - Please see [[https://emacs-lsp.github.io/lsp-mode/page/settings/mode/][emacs-lsp/lsp-mode settings]].
+- Robert Krahn: [[https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/#lsp-mode-and-lsp-ui-mode][Configuring Emacs for Rust Development]].
 
 *** Configuration
 
@@ -2334,6 +2335,7 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
         lsp-log-io nil                     ; enable log only for debug
         lsp-enable-folding nil             ; use evil-matchit' instead
         ;; lsp-enable-links nil            ; use ffip instead
+        lsp-idle-delay 5.0                 ; default: 0.5
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;; Features/Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -2431,6 +2433,7 @@ I don't like default doom keybindings for lsp. Here's mine:
       (:prefix "l"                      ; define our ownd
         :nv "d" #'xref-find-definitions
         :nv "u" #'xref-pop-marker-stack
+        :nv "c" #'lsp-treemacs-call-hierarchy
         :nv "s" #'lsp-find-references
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
@@ -2451,6 +2454,8 @@ Calltree is nice!
 
 #+begin_src emacs-lisp
 (use-package! lsp-treemacs
+  :init
+  (setq lsp-treemacs-theme "Iconless")
   :config
   (lsp-treemacs-sync-mode 1))
 #+end_src
