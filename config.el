@@ -1171,6 +1171,10 @@ Current pattern: %`evil-mc-pattern
         :nv "a" #'lsp-workspace-restart
         ))
 
+(use-package! lsp-treemacs
+  :config
+  (lsp-treemacs-sync-mode 1))
+
 (setq lsp-clients-clangd-args '("-j=3"
                                 "--background-index"
                                 "--clang-tidy"

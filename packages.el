@@ -109,3 +109,6 @@
            ))
 
 (package! graphviz-dot-mode)
+
+(package! lsp-treemacs
+  :recipe (:branch "master"))

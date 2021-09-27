@@ -96,6 +96,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#if-youd-like-to-edit-dot-file-directly][If you'd like to edit =dot file= directly]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
+    - [[#configuration-1][Configuration]]
+    - [[#keybindings][Keybindings]]
+    - [[#lsp-treemacs][=lsp-treemacs=]]
   - [[#cc-1][C/C++]]
     - [[#where-clangd-to-find-compile_commandsjson][Where =clangd= to find =compile_commands.json=?]]
   - [[#python-virtual-environment][Python Virtual Environment]]
@@ -136,7 +139,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#doom-emacs][Doom Emacs]]
   - [[#org-mode-1][Org-mode]]
   - [[#issues-and-fixes][Issues and Fixes]]
-  - [[#keybindings][Keybindings]]
+  - [[#keybindings-1][Keybindings]]
   - [[#pipenv][=pipenv=]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
@@ -2311,6 +2314,8 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 - See [[https://www.cheng92.com/emacs/doom-emacs-with-org/][this one]] as well.
 - Please see [[https://emacs-lsp.github.io/lsp-mode/page/settings/mode/][emacs-lsp/lsp-mode settings]].
 
+*** Configuration
+
 #+begin_src emacs-lisp
 (use-package! lsp
   :init
@@ -2414,6 +2419,8 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 )
 #+end_src
 
+*** Keybindings
+
 I don't like default doom keybindings for lsp. Here's mine:
 
 #+begin_src emacs-lisp
@@ -2429,6 +2436,23 @@ I don't like default doom keybindings for lsp. Here's mine:
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
         ))
+#+end_src
+
+*** =lsp-treemacs=
+
+Ref: https://github.com/emacs-lsp/lsp-treemacs
+
+Calltree is nice!
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! lsp-treemacs
+  :recipe (:branch "master"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! lsp-treemacs
+  :config
+  (lsp-treemacs-sync-mode 1))
 #+end_src
 
 ** C/C++
