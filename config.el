@@ -323,12 +323,15 @@
   ;;       doom-big-font            (font-spec :family "Roboto Mono" :size 18))
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
-        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18))
-  )
- ((or IS-LOGE IS-COROLLA IS-IGD0464U)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ ((or IS-LOGE IS-COROLLA)
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
+ (IS-IGD0464U
+  (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
+        doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
+        doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
@@ -340,7 +343,7 @@
   )
   ;; select theme
   (cond
-   ((or IS-IGD1943U IS-COROLLA)
+   ((or IS-IGD1943U IS-COROLLA IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
     ;; (setq doom-theme 'ttk-doom-homage-white)
