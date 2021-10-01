@@ -1070,6 +1070,7 @@ Current pattern: %`evil-mc-pattern
         ;; lsp-auto-configure t            ; default: t
         ;; lsp-eldoc-hook nil              ; default: '(lsp-hover)
         ;; lsp-eldoc-enable-hover t        ; detault: t
+        lsp-eldoc-enable-hover nil         ; default: t (too noisy, so do on demand with lsp-ui-doc-show)
         lsp-eldoc-render-all t             ; default: nil. This to show enum value
         lsp-enable-on-type-formatting t    ; default: t
         lsp-enable-symbol-highlighting nil ; default: t
@@ -1168,6 +1169,7 @@ Current pattern: %`evil-mc-pattern
       :g "l" nil                        ; firstly, unbind default doom binding
       (:prefix "l"                      ; define our ownd
         :nv "d" #'xref-find-definitions
+        :nv "D" #'lsp-ui-doc-show
         :nv "u" #'xref-pop-marker-stack
         :nv "c" #'lsp-treemacs-call-hierarchy
         :nv "s" #'lsp-find-references
