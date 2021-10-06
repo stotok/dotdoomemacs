@@ -1142,24 +1142,11 @@ Current pattern: %`evil-mc-pattern
   ;;
   ;; For python, you need to add :lang (python +lsp)
   ;;
-  (setq python-backend 'lsp
-        python-lsp-server 'pyls
-        ;; python-tab-width 4
-        python-fill-column 149
+  (setq python-fill-column 149
         python-formatter 'yapf
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
-        ;; disable these plugins, too noisy
-        lsp-pyls-plugins-pycodestyle-enabled nil
-        lsp-pyls-plugins-mccabe-enabled nil
-        ;; enable back if you want
-        lsp-pyls-plugins-pylint-enabled nil
-        lsp-pyls-plugins-autopep8-enabled nil
-        lsp-pyls-plugins-yapf-enabled nil
-        lsp-pyls-plugins-pyflakes-enabled nil
-        lsp-pyls-plugins-flake8-enabled nil
-        lsp-pyls-plugins-pydocstyle-enabled nil
   )
 )
 
@@ -1191,9 +1178,6 @@ Current pattern: %`evil-mc-pattern
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
-(defun ttk/enable-xref-prompt ()
-  (interactive)
-  (setq xref-prompt-for-identifier t))
 
 (after! company
  (setq company-backends '(company-capf

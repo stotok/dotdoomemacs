@@ -101,8 +101,9 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
     - [[#lsp-treemacs][=lsp-treemacs=]]
   - [[#cc-1][C/C++]]
     - [[#where-clangd-to-find-compile_commandsjson][Where =clangd= to find =compile_commands.json=?]]
-  - [[#python-virtual-environment][Python Virtual Environment]]
-    - [[#install-pipenv][Install pipenv]]
+  - [[#python][Python]]
+    - [[#pyenv][Pyenv]]
+    - [[#pipenv][Pipenv]]
     - [[#bashrc][=.bashrc=]]
     - [[#createactivate-virtual-environment][Create/activate virtual environment]]
     - [[#doom-manual][Doom Manual]]
@@ -140,7 +141,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#org-mode-1][Org-mode]]
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings-1][Keybindings]]
-  - [[#pipenv][=pipenv=]]
+  - [[#pipenv-1][=pipenv=]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -463,7 +464,9 @@ This code is written to the =init.el= to select which modules to load.
  (eval +overlay)       ; run code, run (also, repls)
  ;;gist                ; interacting with github gists
  lookup                ; navigate your code and its documentation
- lsp
+ (lsp
+   +peek               ; use lsp-ui-peek for definitions and references
+   )
  magit                 ; a git porcelain for Emacs
  ;;(magit +forge)        ; a git porcelain for Emacs
  ;;make                ; run make tasks from Emacs
@@ -529,7 +532,11 @@ This code is written to the =init.el= to select which modules to load.
  ;;php                 ; perl's insecure younger brother
  plantuml              ; diagrams for confusing people more
  ;;purescript          ; javascript, but functional
- (python +lsp)         ; beautiful is better than ugly
+ (python               ; yeah, monty python :D
+  +lsp                 ; you gonna need this
+  +pyright             ; use pyright lsp server instead of mspyls or pyls
+  ;;+pyenv               ; python virtual environment support via pyenv
+  )
  qt                    ; the 'cutest' gui framework ever (qml-mode, qt-pro-mode)
  ;;racket                ; a DSL for DSLs
  ;;raku                ; the artist formerly known as perl6
@@ -2403,24 +2410,11 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
   ;;
   ;; For python, you need to add :lang (python +lsp)
   ;;
-  (setq python-backend 'lsp
-        python-lsp-server 'pyls
-        ;; python-tab-width 4
-        python-fill-column 149
+  (setq python-fill-column 149
         python-formatter 'yapf
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
-        ;; disable these plugins, too noisy
-        lsp-pyls-plugins-pycodestyle-enabled nil
-        lsp-pyls-plugins-mccabe-enabled nil
-        ;; enable back if you want
-        lsp-pyls-plugins-pylint-enabled nil
-        lsp-pyls-plugins-autopep8-enabled nil
-        lsp-pyls-plugins-yapf-enabled nil
-        lsp-pyls-plugins-pyflakes-enabled nil
-        lsp-pyls-plugins-flake8-enabled nil
-        lsp-pyls-plugins-pydocstyle-enabled nil
   )
 )
 #+end_src
@@ -2484,9 +2478,6 @@ Ref:
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
-(defun ttk/enable-xref-prompt ()
-  (interactive)
-  (setq xref-prompt-for-identifier t))
 #+end_src
 
 *** Where =clangd= to find =compile_commands.json=?
@@ -2507,8 +2498,20 @@ solution, you can either:
 - Provide =--compile-commands-dir=<string>= to =clangd=, pointing at the
   directory containing the compilation database.
 
-** Python Virtual Environment
-*** Install pipenv
+** Python
+
+Yes, I'm using [[https://pypi.org/project/pyright/][pyright]], see =:lang python +pyright=. It needs =npm= system-wide, so install with:
+
+#+begin_example
+$ sudo apt install npm
+#+end_example
+
+*** Pyenv
+
+TBD: [[https://www.rootstrap.com/blog/how-to-manage-your-python-projects-with-pipenv-pyenv/][Read Later]]
+
+*** Pipenv
+
 **** debian
 =wheel= and =virtualenv= as system-wide, =pipenv= as user local.
 
@@ -2520,6 +2523,7 @@ $ pip3 install --user pipenv
 #+end_example
 
 *** =.bashrc=
+
 #+begin_example
 # pipenv will now place the virtualenv inside the project folder
 # emacs will see it and activate it
@@ -2530,6 +2534,7 @@ PATH=~/.local/bin:${PATH}
 #+end_example
 
 *** Create/activate virtual environment
+
 **** Spawn a shell in a virtual environment
 #+begin_example
 $ cd <your project root>
@@ -2547,9 +2552,8 @@ $ cd <your project root>
 **** Install packages
 - First time
   #+begin_example
-  $ pipenv install autoflake flake8 epc importmagic 'python-language-server[all]' 'ptvsd>=4.2' --skip-lock
-  $ pipenv install pyls-isort pyls-mypy pyls-black --skip-lock
-  $ pipenv install pytest nose black pyflakes isort --skip-lock
+  $ pipenv install autoflake flake8 epc importmagic pyright --skip-lock
+  $ pipenv install pytest nose black pyflakes isort pylint --skip-lock
   $ pipenv install <python library needed by your project> --skip-lock
   #+end_example
 - Next time (after clone git repo, install from =Pipfile=)
@@ -2573,9 +2577,9 @@ $ cd <your project root>
   #+begin_example
   M-x pipenv-activate
   #+end_example
-- Execute lsp on the buffer
+- Restart lsp
   #+begin_example
-  M-x lsp
+  M-x lsp-workspace-restart
   #+end_example
 
 * Company
