@@ -51,7 +51,9 @@
  nav-flash             ; blink cursor line after big motions
  ;;neotree             ; a project drawer, like NERDTree for vim
  ;;ophints             ; highlight the region an operation acts on (previously evil-goggles)
- (popup +defaults)   ; tame sudden yet inevitable temporary windows
+ (popup
+  +all                 ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
+  +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
  treemacs              ; a project drawer, like neotree but cooler
  ;;unicode             ; extended unicode support for various languages

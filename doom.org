@@ -410,7 +410,9 @@ This code is written to the =init.el= to select which modules to load.
  nav-flash             ; blink cursor line after big motions
  ;;neotree             ; a project drawer, like NERDTree for vim
  ;;ophints             ; highlight the region an operation acts on (previously evil-goggles)
- (popup +defaults)   ; tame sudden yet inevitable temporary windows
+ (popup
+  +all                 ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
+  +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
  treemacs              ; a project drawer, like neotree but cooler
  ;;unicode             ; extended unicode support for various languages
@@ -2087,6 +2089,12 @@ Now create new keybindings. "SPC m s" is not currently being used.
         "u" #'cscope-pop-mark
         "a" #'cscope-set-initial-directory
         "A" #'cscope-unset-initial-directory)
+#+end_src
+
+#+begin_src emacs-lisp
+(after! xcscope
+  ;; *cscope* buffer at bottom and get focus automatically
+  (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 #+end_src
 
 * Magit

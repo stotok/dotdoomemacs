@@ -905,6 +905,10 @@ Current pattern: %`evil-mc-pattern
         "a" #'cscope-set-initial-directory
         "A" #'cscope-unset-initial-directory)
 
+(after! xcscope
+  ;; *cscope* buffer at bottom and get focus automatically
+  (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
+
 (after! projectile
  ;; alien method need external utility (unixes), and fast.
  ;; it ignores the content of .projectile, but read .gitignore
