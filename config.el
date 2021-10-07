@@ -203,7 +203,7 @@
 (setq-default doom-scratch-dir (format "%s/private" (getenv "DOOMDIR"))
               doom-scratch-initial-major-mode 'org-mode)
 
-(let ((alternatives '("chicken-5156328-500.svg")))
+(let ((alternatives '("kenshin-at-the-inn-01.jpg" "kenshin-at-the-inn-02.jpg")))
    ;;((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))
   (setq fancy-splash-image
         (concat doom-private-dir "splash/"
