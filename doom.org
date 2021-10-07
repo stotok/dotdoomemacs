@@ -1086,12 +1086,12 @@ I customize existing doom-themes to my liking:
   )
   ;; select theme
   (cond
-   ((or IS-IGD1943U IS-COROLLA IS-IGD0464U)
+   ((or IS-COROLLA IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
-    ;; (setq doom-theme 'ttk-doom-homage-white)
-    (setq doom-theme 'ttk-doom-solarized-light)
-    )
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-IGD1943U
+    (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
