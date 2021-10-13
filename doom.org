@@ -1258,8 +1258,8 @@ Show current time manually with =M-x display-time=.
  ;; %M is the minute
  ;; %S is the second
  display-time-default-load-average nil
- display-time-format "%p%I:%M"
- ;; display-time-format "%H:%M"
+ ;; display-time-format "%p%I:%M"
+ display-time-format "%H:%M"
  display-time-interval 60               ; update every 60 sec
  display-time-default-load-average nil  ; don't show load average
  )
@@ -2423,11 +2423,52 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
+   )
+)
+#+end_src
+
+File watchers: [[https://emacs-lsp.github.io/lsp-mode/page/file-watchers/][see this link]]
+
+#+begin_src emacs-lisp
+(with-eval-after-load 'lsp-mode
+ ;; VUC directories
+ (dolist (dir '(
+            "[/\\\\]\\.repo\\'"
+            "[/\\\\]\\tests\\'"
+            "[/\\\\]\\err\\'"
+            "[/\\\\]\\lst\\'"
+            "[/\\\\]\\opt\\'"
+            "[/\\\\]\\out\\'"
+            "[/\\\\]\\tmp\\'"
+            "[/\\\\]\\.cache\\'" ; clangd index
+            "[/\\\\]\\.kwlp\\'"  ; klocwor
+            "[/\\\\]\\.kwps\\'"  ; klocwor
+            "[/\\\\]\\Application_PTF\\'"
+            "[/\\\\]\\User_Config_PTF\\'"
+            "[/\\\\]\\TVIP_Ctrl_Files\\'"
+            "[/\\\\]\\WindRiver\\'"
+            ))
+  (push dir lsp-file-watch-ignored-directories)
   )
+ ;; well disable first :)
+ (setq lsp-enable-file-watchers nil)
 )
 #+end_src
 
 *** Keybindings
+
+#+begin_src emacs-lisp
+(defun ttk/xref-display-buffer ()
+ "Display the *xref* buffer."
+ (interactive)
+ (let ((buffer (get-buffer "*xref*")))
+   (if buffer
+     (pop-to-buffer buffer)
+    (error "The *xref* buffer does not exist yet"))))
+
+;; (after! xref
+;;  (set-popup-rule! "^*xref*$" :side 'left :size 0.4 :select t :ttl nil))
+#+end_src
 
 I don't like default doom keybindings for lsp. Here's mine:
 
@@ -2445,8 +2486,12 @@ I don't like default doom keybindings for lsp. Here's mine:
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
+        :nv "b" #'ttk/xref-display-buffer
         ))
 #+end_src
+
+Note-1: =xref-pop-marker-stack= in Doom is remapped to =better-jumper-jump-backward=.
+Ref: [[https://github.com/hlissner/doom-emacs/issues/4463][See this link]]. And it's keybinding is =C-o=.
 
 *** =lsp-treemacs=
 
@@ -2512,6 +2557,12 @@ Yes, I'm using [[https://pypi.org/project/pyright/][pyright]], see =:lang python
 
 #+begin_example
 $ sudo apt install npm
+#+end_example
+
+Also, project without =pipenv= (which install =pyright= inside virtual env) need system-side:
+
+#+begin_example
+$ pip install pyright
 #+end_example
 
 *** Pyenv

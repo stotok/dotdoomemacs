@@ -455,8 +455,8 @@
  ;; %M is the minute
  ;; %S is the second
  display-time-default-load-average nil
- display-time-format "%p%I:%M"
- ;; display-time-format "%H:%M"
+ ;; display-time-format "%p%I:%M"
+ display-time-format "%H:%M"
  display-time-interval 60               ; update every 60 sec
  display-time-default-load-average nil  ; don't show load average
  )
@@ -1151,8 +1151,43 @@ Current pattern: %`evil-mc-pattern
         python-format-on-save nil
         python-sort-imports-on-save t
         python-pipenv-activate t
-  )
+   )
 )
+
+(with-eval-after-load 'lsp-mode
+ ;; VUC directories
+ (dolist (dir '(
+            "[/\\\\]\\.repo\\'"
+            "[/\\\\]\\tests\\'"
+            "[/\\\\]\\err\\'"
+            "[/\\\\]\\lst\\'"
+            "[/\\\\]\\opt\\'"
+            "[/\\\\]\\out\\'"
+            "[/\\\\]\\tmp\\'"
+            "[/\\\\]\\.cache\\'" ; clangd index
+            "[/\\\\]\\.kwlp\\'"  ; klocwor
+            "[/\\\\]\\.kwps\\'"  ; klocwor
+            "[/\\\\]\\Application_PTF\\'"
+            "[/\\\\]\\User_Config_PTF\\'"
+            "[/\\\\]\\TVIP_Ctrl_Files\\'"
+            "[/\\\\]\\WindRiver\\'"
+            ))
+  (push dir lsp-file-watch-ignored-directories)
+  )
+ ;; well disable first :)
+ (setq lsp-enable-file-watchers nil)
+)
+
+(defun ttk/xref-display-buffer ()
+ "Display the *xref* buffer."
+ (interactive)
+ (let ((buffer (get-buffer "*xref*")))
+   (if buffer
+     (pop-to-buffer buffer)
+    (error "The *xref* buffer does not exist yet"))))
+
+;; (after! xref
+;;  (set-popup-rule! "^*xref*$" :side 'left :size 0.4 :select t :ttl nil))
 
 (map! :after lsp
       :map (c-mode-map c++-mode-map python-mode-map)
@@ -1167,6 +1202,7 @@ Current pattern: %`evil-mc-pattern
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
+        :nv "b" #'ttk/xref-display-buffer
         ))
 
 (use-package! lsp-treemacs

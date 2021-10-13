@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # -*- mode: shell-script -*-
 #
 if ! command -v fd > /dev/null 2>&1; then
@@ -77,5 +77,26 @@ ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
 #
 echo "generating cscope database: ${DATABASE_FILE} ..."
 ${CSCOPE} -b -c -i ${LIST_FILE} -f ${DATABASE_FILE}
+#
+CDBPYSCRIPTLOC="VUC_APP/tools/parsecdb"
+CDBNAME="compile_commands.json"
+CDBENVVAR="cdbenv.var"
+APPROOTDIR="TVIP/Vehicle_Micro"
+FBLROOTDIR="VUC_APP/User_Config/Boot_SBU/SBU"
+# generating compile_commands.json
+pushd "${APPROOTDIR}" > /dev/null
+python2 "parsecdb.py" --in "${CDBENVVAR}" --out "${CDBNAME}"
+popd > /dev/null
+# python2 "${CDBPYSCRIPTLOC}/parsecdb.py" --in "${APPROOTDIR}/${CDBENVVAR}" --out "${APPROOTDIR}/${CDBNAME}"
+pushd "${FBLROOTDIR}" > /dev/null
+python2 "parsecdb.py" --in "${CDBENVVAR}" --out "${CDBNAME}"
+popd > /dev/null
+# python2 "${CDBPYSCRIPTLOC}/parsecdb.py" --in "${FBLROOTDIR}/${CDBENVVAR}" --out "${FBLROOTDIR}/${CDBNAME}"
+# combining compile_commands.json
+CDBIN1="${APPROOTDIR}/${CDBNAME}"
+CDBIN2="${FBLROOTDIR}/${CDBNAME}"
+CDBOUT="${CDBNAME}"             # at current directory
+python2 VUC_APP/tools/parsecdb/combinecdb.py --in1 "${CDBIN1}" --in2 "${CDBIN2}" --out "${CDBOUT}"
+echo "generated ${CDBOUT}"
 #
 echo "done."
