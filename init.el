@@ -52,7 +52,7 @@
  ;;neotree             ; a project drawer, like NERDTree for vim
  ;;ophints             ; highlight the region an operation acts on (previously evil-goggles)
  (popup
-  +all                 ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
+  ;;+all               ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
   +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
  treemacs              ; a project drawer, like neotree but cooler

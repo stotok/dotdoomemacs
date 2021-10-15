@@ -411,7 +411,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;neotree             ; a project drawer, like NERDTree for vim
  ;;ophints             ; highlight the region an operation acts on (previously evil-goggles)
  (popup
-  +all                 ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
+  ;;+all               ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
   +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
  treemacs              ; a project drawer, like neotree but cooler
@@ -2091,7 +2091,8 @@ Now create new keybindings. "SPC m s" is not currently being used.
         "A" #'cscope-unset-initial-directory)
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
+;; below is already default behavior, so no tangle
 (after! xcscope
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
@@ -2528,6 +2529,7 @@ Ref:
                                 "--background-index"
                                 "--clang-tidy"
                                 "--completion-style=detailed"
+                                "--log=verbose"
                                 "--header-insertion=never"
                                 "--header-insertion-decorators=0"))
 (after! lsp-clangd (set-lsp-priority! 'clangd 2))
