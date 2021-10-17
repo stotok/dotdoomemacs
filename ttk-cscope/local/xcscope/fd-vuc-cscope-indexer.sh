@@ -83,16 +83,16 @@ CDBNAME="compile_commands.json"
 CDBENVVAR="cdbenv.var"
 APPROOTDIR="TVIP/Vehicle_Micro"
 FBLROOTDIR="VUC_APP/User_Config/Boot_SBU/SBU"
-# generating compile_commands.json
+# generating compile_commands.json for APPROOTDIR
 pushd "${APPROOTDIR}" > /dev/null
 python2 "parsecdb.py" --in "${CDBENVVAR}" --out "${CDBNAME}"
 popd > /dev/null
-# python2 "${CDBPYSCRIPTLOC}/parsecdb.py" --in "${APPROOTDIR}/${CDBENVVAR}" --out "${APPROOTDIR}/${CDBNAME}"
-pushd "${FBLROOTDIR}" > /dev/null
-python2 "parsecdb.py" --in "${CDBENVVAR}" --out "${CDBNAME}"
-popd > /dev/null
-# python2 "${CDBPYSCRIPTLOC}/parsecdb.py" --in "${FBLROOTDIR}/${CDBENVVAR}" --out "${FBLROOTDIR}/${CDBNAME}"
-# combining compile_commands.json
+### generating compile_commands.json for FBLROOTDIR
+### disable first
+# pushd "${FBLROOTDIR}" > /dev/null
+# python2 "parsecdb.py" --in "${CDBENVVAR}" --out "${CDBNAME}"
+# popd > /dev/null
+### combining compile_commands.json
 CDBIN1="${APPROOTDIR}/${CDBNAME}"
 CDBIN2="${FBLROOTDIR}/${CDBNAME}"
 CDBOUT="${CDBNAME}"             # at current directory

@@ -1207,7 +1207,7 @@ Current pattern: %`evil-mc-pattern
   :config
   (lsp-treemacs-sync-mode 1))
 
-(setq lsp-clients-clangd-args '("-j=3"
+(setq lsp-clients-clangd-args '("-j=2"
                                 "--background-index"
                                 "--clang-tidy"
                                 "--completion-style=detailed"
@@ -1314,6 +1314,10 @@ Current pattern: %`evil-mc-pattern
       calendar-mark-holidays-flag t     ; mark dates of holidays
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
+
+(when (featurep! :lang json)
+ (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist))
+ )
 
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))

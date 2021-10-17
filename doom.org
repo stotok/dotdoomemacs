@@ -114,6 +114,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#other-modes][Other Modes]]
   - [[#qml-qt-declarative][QML (QT Declarative)]]
   - [[#csv-mode][CSV mode]]
+  - [[#json-mode][JSON mode]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
 - [[#other-tools][Other tools]]
@@ -510,7 +511,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;(haskell +dante)    ; a language that's lazier than I am
  ;;hy                  ; readability of scheme w/ speed of python
  ;;idris               ; a language you can depend on
- ;;json                  ; At least it ain't XML
+ json                  ; At least it ain't XML
  ;;(java +meghanada)   ; the poster child for carpal tunnel syndrome
  ;;javascript          ; all(hope(abandon(ye(who(enter(here))))))
  ;;julia               ; a better, faster MATLAB
@@ -2525,7 +2526,7 @@ Ref:
 - [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as C/C++ IDE]]
 
 #+begin_src emacs-lisp
-(setq lsp-clients-clangd-args '("-j=3"
+(setq lsp-clients-clangd-args '("-j=2"
                                 "--background-index"
                                 "--clang-tidy"
                                 "--completion-style=detailed"
@@ -2824,6 +2825,15 @@ Available on Melpa, ref: https://elpa.gnu.org/packages/csv-mode.html
 ;(setq auto-mode-alist (cons '("\\.[Cc][Ss][Vv]$" . csv-mode) auto-mode-alist))
 #+end_src
 
+** JSON mode
+
+Available in Doom =:lang json=.
+
+#+begin_src emacs-lisp
+(when (featurep! :lang json)
+ (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist))
+ )
+#+end_src
 * Tools
 ** docker
 Yeay ... finally docker.
