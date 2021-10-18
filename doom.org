@@ -2526,9 +2526,9 @@ Ref:
 - [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as C/C++ IDE]]
 
 #+begin_src emacs-lisp
+;;                                "--clang-tidy"
 (setq lsp-clients-clangd-args '("-j=2"
                                 "--background-index"
-                                "--clang-tidy"
                                 "--completion-style=detailed"
                                 "--log=verbose"
                                 "--header-insertion=never"

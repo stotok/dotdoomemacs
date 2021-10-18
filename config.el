@@ -1207,9 +1207,9 @@ Current pattern: %`evil-mc-pattern
   :config
   (lsp-treemacs-sync-mode 1))
 
+;;                                "--clang-tidy"
 (setq lsp-clients-clangd-args '("-j=2"
                                 "--background-index"
-                                "--clang-tidy"
                                 "--completion-style=detailed"
                                 "--log=verbose"
                                 "--header-insertion=never"
