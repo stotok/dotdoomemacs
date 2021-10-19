@@ -679,9 +679,9 @@ Other default preferences
  delete-by-moving-to-trash nil        ; no need to go to OS's trash folder
  cursor-in-non-selected-windows nil   ; hide cursor in inactive windows
  select-enable-clipboard t            ; merge system's and emacs's clipboard
- ;;
- split-height-threshold 0             ; i only want vertical window splitting
- split-width-threshold nil            ; and dunwan horizontal window splitting
+ ;; disable, looks like Doom has it by default?
+ ;; split-height-threshold 0             ; i only want vertical window splitting
+ ;; split-width-threshold nil            ; and dunwan horizontal window splitting
  ;; vi like scrolling
  scroll-step 1                        ; scroll just goes down 1 line even it hits the bottom
  scroll-margin 3                      ; 3 lines margin
