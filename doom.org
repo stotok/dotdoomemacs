@@ -1402,10 +1402,17 @@ Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tre
 
 Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][Doom editor/evil]]
 
-I don't like the o/O keys will respect and continue commented lines, so disable it.
 #+begin_src emacs-lisp
 (when (featurep! :editor evil)
-  (setq-default +evil-want-o/O-to-continue-comments nil))
+  (setq-default
+    ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
+    +evil-want-o/O-to-continue-comments nil
+    ;; these will make cursor follow the new splitted window
+    evil-split-window-below t
+    evil-vsplit-window-below t
+    ;; let's mimic the original vim behavior and don't make mistakes :)
+    evil-want-fine-undo t
+  ))
 #+end_src
 
 ** evil-mc
@@ -2525,6 +2532,9 @@ Ref:
 - [[https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/][LSP Support for Emacs]]
 - [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as C/C++ IDE]]
 
+Below will both set =clagd= flags and choose =clangd= as default LSP server
+anywhere =clangd= can be used.
+
 #+begin_src emacs-lisp
 ;;                                "--clang-tidy"
 (setq lsp-clients-clangd-args '("-j=2"
@@ -3118,6 +3128,7 @@ settings for performance optimization, package management, commonly used package
 - [[https://cyberchris.xyz/posts/org-mode-assignments/][Writing Assignments with Doom Emacs]]
 - [[https://github.com/sunnyhasija/Academic-Doom-Emacs-Config][An Academic's Opinionated DOOM Emacs Config]]
 - [[https://hungyi.net/tags/doom~emacs/][Hung-Yi's Journal, tag:Doom Emacs]]
+- [[https://github.com/elken/.doom.d][Elken Doom]]: to be continued.
 
 ** Org-mode
 

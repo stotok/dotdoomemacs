@@ -539,7 +539,15 @@
  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 
 (when (featurep! :editor evil)
-  (setq-default +evil-want-o/O-to-continue-comments nil))
+  (setq-default
+    ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
+    +evil-want-o/O-to-continue-comments nil
+    ;; these will make cursor follow the new splitted window
+    evil-split-window-below t
+    evil-vsplit-window-below t
+    ;; let's mimic the original vim behavior and don't make mistakes :)
+    evil-want-fine-undo t
+  ))
 
 (after! evil-mc
   (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
