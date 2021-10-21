@@ -652,6 +652,8 @@ Current pattern: %`evil-mc-pattern
 
 (add-hook! org-mode (electric-indent-local-mode -1))
 
+(after! org (setq org-startup-folded 'fold))
+
 (add-hook! org-mode :append
            #'visual-line-mode)
 

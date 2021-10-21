@@ -1,11 +1,11 @@
 :DOC-CONFIG:
 # Tangle by default to config.el, which is the most common case
-#+property: header-args:emacs-lisp :tangle config.el
+#+PROPERTY: header-args:emacs-lisp :tangle config.el
 # Just silent the output. Ref: https://orgmode.org/manual/Results-of-Evaluation.html
-#+property: header-args :mkdirp yes :comments no :results output silent
+#+PROPERTY: header-args :mkdirp yes :comments no :results output silent
 # Manually set auto tangle for this file
-#+auto_tangle: t
-#+startup: fold
+#+AUTO_TANGLE: t
+#+STARTUP: fold
 :END:
 
 #+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
@@ -70,7 +70,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-escape][Evil Escape]]
   - [[#evil-snipe][Evil Snipe]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
-- [[#org-mode][Org mode]]
+- [[#org][Org]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
   - [[#org-roam][Org Roam]]
@@ -139,7 +139,7 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#references][References]]
   - [[#general-emacs][General Emacs]]
   - [[#doom-emacs][Doom Emacs]]
-  - [[#org-mode-1][Org-mode]]
+  - [[#org-mode][Org-mode]]
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings-1][Keybindings]]
   - [[#pipenv-1][=pipenv=]]
@@ -1612,7 +1612,7 @@ Now, configure it:
  )
 #+end_src
 
-* Org mode
+* Org
 
 I have been a fan of the idea of [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] for many years, but Org is the first
 tool I have encountered which makes it practical. Here are some of the resources I have
@@ -1686,6 +1686,12 @@ indentation sometimes.
 
 #+begin_src emacs-lisp
 (add-hook! org-mode (electric-indent-local-mode -1))
+#+end_src
+
+Default folding is very noisy, rarely need to see everything expanded.
+
+#+begin_src emacs-lisp
+(after! org (setq org-startup-folded 'fold))
 #+end_src
 
 ** Org visual settings
