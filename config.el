@@ -630,6 +630,65 @@ Current pattern: %`evil-mc-pattern
   (global-evil-motion-trainer-mode 0)
  )
 
+;; see ~/.emacs.d/modules/editor/evil/config.el
+(map! :after evil-easymotion
+  :map evilem-map
+   "l" #'evil-avy-goto-line
+;; "p" #'avy-pop-mark  ; better-jumper-jump-backword (C-o) as general jump backward
+)
+
+(after! avy
+  (defun avy-action-kill-whole-line (pt)
+  (save-excursion
+      (goto-char pt)
+      (kill-whole-line))
+  (select-window
+  (cdr
+      (ring-ref avy-ring 0)))
+  t)
+  ;;
+  (setf (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line
+        ; (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay     ;; doom default ?X
+        )
+ )
+
+(after! avy
+  (defun avy-action-copy-whole-line (pt)
+    (save-excursion
+      (goto-char pt)
+      (cl-destructuring-bind (start . end)
+          (bounds-of-thing-at-point 'line)
+        (copy-region-as-kill start end)))
+    (select-window
+     (cdr
+      (ring-ref avy-ring 0)))
+    t)
+  ;;
+  (defun avy-action-yank-whole-line (pt)
+    (avy-action-copy-whole-line pt)
+    (save-excursion (yank))
+    t)
+  ;;
+  (setf ; (alist-get ?y avy-dispatch-alist) 'avy-action-yank             ; doom default ?y
+        ; (alist-get ?w avy-dispatch-alist) 'avy-action-copy             ; doom default ?n
+        (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
+        (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line  ; override doom yang-line (?Y)
+        )
+ )
+
+(after! ivy
+ (setq ivy-height 16
+       ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
+       counsel-git-cmd "rg --files"
+       ;; already defined in doom emacs config
+       ;counsel-rg-base-command "rg -i -M 120 --no-heading --line-number --color never %s ."
+       ;; https://oremacs.com/2017/08/04/ripgrep/
+       counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
+       )
+ ;; i don't like dir buffer.
+ (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+ )
+
 (setq org-directory "~/org/")
 
 (after! org (setq org-hide-emphasis-markers t))
@@ -1370,28 +1429,6 @@ Current pattern: %`evil-mc-pattern
                       (setq i (+ 32 i)) i (single-key-description i)
                       (setq i (+ 32 i)) i (single-key-description i)))
       (setq i (- i 96))))))
-
-(after! ivy
- (setq ivy-height 16
-       ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
-       counsel-git-cmd "rg --files"
-       ;; already defined in doom emacs config
-       ;counsel-rg-base-command "rg -i -M 120 --no-heading --line-number --color never %s ."
-       ;; https://oremacs.com/2017/08/04/ripgrep/
-       counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
-       )
- ;; i don't like dir buffer.
- (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
- )
-
-(map! "M-g g" #'avy-goto-line)
-(map! "M-g M-g" #'avy-goto-line)
-
-;; see ~/.emacs.d/modules/editor/evil/config.el
-(map! :after evil-easymotion
-      :map evilem-map
-      "l" #'avy-goto-line
-      "p" #'avy-pop-mark)
 
 (map! :leader
       (:prefix-map ("=" . "calc")

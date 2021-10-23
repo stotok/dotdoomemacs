@@ -70,6 +70,11 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
   - [[#evil-escape][Evil Escape]]
   - [[#evil-snipe][Evil Snipe]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
+- [[#abo-abo][abo-abo]]
+  - [[#avy][avy]]
+    - [[#avy-goto-line][avy-goto-line]]
+    - [[#avy-can-do-anything][Avy Can Do Anything]]
+  - [[#ivy][ivy]]
 - [[#org][Org]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
@@ -129,11 +134,6 @@ This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/d
 - [[#how-to][How To]]
   - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
   - [[#directory-editor-with-dired][Directory Editor with Dired]]
-  - [[#ivy][Ivy]]
-  - [[#avy][Avy]]
-    - [[#goto-line][goto-line]]
-    - [[#avy-pop-mark][avy-pop-mark]]
-    - [[#avy-goto-line-same-column][avy-goto-line-same-column]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
   - [[#what-is-my-xxx][What is my xxx]]
 - [[#references][References]]
@@ -1612,6 +1612,96 @@ Now, configure it:
  )
 #+end_src
 
+* abo-abo
+** avy
+
+*** avy-goto-line
+
+This is my first key mapping effort, ref: [[https://rameezkhan.me/adding-keybindings-to-doom-emacs][Adding keybindings to doom emacs]] and
+[[https://github.com/hlissner/doom-emacs/issues/2725][Add keys to evil-easymotion]]. Currently it's not being mapped to any keybinding. So,
+
+#+begin_src emacs-lisp
+;; see ~/.emacs.d/modules/editor/evil/config.el
+(map! :after evil-easymotion
+  :map evilem-map
+   "l" #'evil-avy-goto-line
+;; "p" #'avy-pop-mark  ; better-jumper-jump-backword (C-o) as general jump backward
+)
+#+end_src
+
+To browse both local and global mark rings:
+#+begin_example
+M-x counsel-mark-ring (SPC s r)
+#+end_example
+
+*** Avy Can Do Anything
+
+Ref: [[https://karthinks.com/software/avy-can-do-anything/][Avy can do anything]]
+
+**** Kill a candidate word, sexp or line
+
+#+begin_src emacs-lisp
+(after! avy
+  (defun avy-action-kill-whole-line (pt)
+  (save-excursion
+      (goto-char pt)
+      (kill-whole-line))
+  (select-window
+  (cdr
+      (ring-ref avy-ring 0)))
+  t)
+  ;;
+  (setf (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line
+        ; (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay     ;; doom default ?X
+        )
+ )
+#+end_src
+
+**** Yank a candidate word, sexp or line
+
+#+begin_src emacs-lisp
+(after! avy
+  (defun avy-action-copy-whole-line (pt)
+    (save-excursion
+      (goto-char pt)
+      (cl-destructuring-bind (start . end)
+          (bounds-of-thing-at-point 'line)
+        (copy-region-as-kill start end)))
+    (select-window
+     (cdr
+      (ring-ref avy-ring 0)))
+    t)
+  ;;
+  (defun avy-action-yank-whole-line (pt)
+    (avy-action-copy-whole-line pt)
+    (save-excursion (yank))
+    t)
+  ;;
+  (setf ; (alist-get ?y avy-dispatch-alist) 'avy-action-yank             ; doom default ?y
+        ; (alist-get ?w avy-dispatch-alist) 'avy-action-copy             ; doom default ?n
+        (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
+        (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line  ; override doom yang-line (?Y)
+        )
+ )
+#+end_src
+
+** ivy
+
+#+begin_src emacs-lisp
+(after! ivy
+ (setq ivy-height 16
+       ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
+       counsel-git-cmd "rg --files"
+       ;; already defined in doom emacs config
+       ;counsel-rg-base-command "rg -i -M 120 --no-heading --line-number --color never %s ."
+       ;; https://oremacs.com/2017/08/04/ripgrep/
+       counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
+       )
+ ;; i don't like dir buffer.
+ (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+ )
+#+end_src
+
 * Org
 
 I have been a fan of the idea of [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]] for many years, but Org is the first
@@ -3023,67 +3113,6 @@ Two panes operations:
 - Switch between pane: =SPC w w=
 - Copy file from current pane to another pane: =C=
 - Move file from current pane to antoher pane: =R=
-
-** Ivy
-
-#+begin_src emacs-lisp
-(after! ivy
- (setq ivy-height 16
-       ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
-       counsel-git-cmd "rg --files"
-       ;; already defined in doom emacs config
-       ;counsel-rg-base-command "rg -i -M 120 --no-heading --line-number --color never %s ."
-       ;; https://oremacs.com/2017/08/04/ripgrep/
-       counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
-       )
- ;; i don't like dir buffer.
- (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
- )
-#+end_src
-
-** Avy
-*** goto-line
-
-Replace the default =goto-line= keybindings with =avy-goto-line=, which is more flexible and
-also falls back to =goto-line= if a number is typed.
-
-#+begin_src emacs-lisp
-(map! "M-g g" #'avy-goto-line)
-(map! "M-g M-g" #'avy-goto-line)
-#+end_src
-
-*** avy-pop-mark
-
-This is my first key mapping effort, ref: [[https://rameezkhan.me/adding-keybindings-to-doom-emacs][Adding keybindings to doom emacs]] and
-[[https://github.com/hlissner/doom-emacs/issues/2725][Add keys to evil-easymotion]]. Currently it's not being mapped to any keybinding. So,
-
-#+begin_src emacs-lisp
-;; see ~/.emacs.d/modules/editor/evil/config.el
-(map! :after evil-easymotion
-      :map evilem-map
-      "l" #'avy-goto-line
-      "p" #'avy-pop-mark)
-#+end_src
-
-To browse both local and global mark rings:
-#+begin_example
-M-x counsel-mark-ring (SPC s r)
-#+end_example
-
-*** avy-goto-line-same-column
-
-Ref: [[https://www.reddit.com/r/emacs/comments/6gbf5i/anyone_use_packages_such_as_avy_or_evilsnipe_to][reddit]]
-
-#+begin_src emacs-lisp :tangle no
-(defun avy-goto-line-same-column ()
-    (interactive)
-    (let ((col (current-column)))
-    (avy-goto-line)
-    (move-to-column col)))
-(declare-function 'avy-goto-line-same-column "avy")
-(evil-define-avy-motion avy-goto-line-same-column inclusive)
-(define-key evil-motion-state-map (kbd "g l") #'evil-avy-goto-line-same-column)
-#+end_src
 
 ** Map Unmap keybinding
 Ref:
