@@ -121,8 +121,8 @@
  cursor-in-non-selected-windows nil   ; hide cursor in inactive windows
  select-enable-clipboard t            ; merge system's and emacs's clipboard
  ;; disable, looks like Doom has it by default?
- ;; split-height-threshold 0             ; i only want vertical window splitting
- ;; split-width-threshold nil            ; and dunwan horizontal window splitting
+ split-height-threshold 0             ; i only want vertical window splitting
+ split-width-threshold nil            ; and dunwan horizontal window splitting
  ;; vi like scrolling
  scroll-step 1                        ; scroll just goes down 1 line even it hits the bottom
  scroll-margin 3                      ; 3 lines margin
@@ -543,9 +543,9 @@
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
     +evil-want-o/O-to-continue-comments nil
     ;; these will make cursor follow the new splitted window
-    evil-split-window-below t
-    evil-vsplit-window-below t
-    ;; let's mimic the original vim behavior and don't make mistakes :)
+    evil-split-window-below nil     ; t: follow new splitted window, nil: remain
+    evil-vsplit-window-below nil    ; t: follow new splitted window, nil: remain
+    ;; let's mimic the original vim behavior and don't make mistakes
     evil-want-fine-undo t
   ))
 
@@ -973,6 +973,10 @@ Current pattern: %`evil-mc-pattern
         "u" #'cscope-pop-mark
         "a" #'cscope-set-initial-directory
         "A" #'cscope-unset-initial-directory)
+
+(after! xcscope
+  ;; *cscope* buffer at bottom and get focus automatically
+  (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 
 (after! projectile
  ;; alien method need external utility (unixes), and fast.
