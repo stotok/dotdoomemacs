@@ -12,3 +12,4 @@ cscope.out
 *.d
 *.a
 *.c.test
+.cache/

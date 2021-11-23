@@ -32,3 +32,4 @@ TAGS.files
 *.o
 *.d
 *.c.test
+.cache/
