@@ -23,3 +23,8 @@ cscope.out
 *.o
 *.d
 .cache/
+vectorcast/
+testsuite/
+docs/
+doc/
+ATP_suites/
