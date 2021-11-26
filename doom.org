@@ -1729,6 +1729,7 @@ Default directory for Org files.
 #+end_src
 
 Hide Org markup indicators such as *bold*, /italic/, etc.
+More: [[https://emacstil.com/til/2021/11/26/make-org-emphasis-code-verbatim-bold-look-nicer/][Hide leading/trailing emphasis margers in Org]].
 
 #+begin_src emacs-lisp
 (after! org (setq org-hide-emphasis-markers t))
