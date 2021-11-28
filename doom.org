@@ -8,17 +8,17 @@
 #+STARTUP: fold
 :END:
 
-#+SETUPFILE: ../org-html-themes/org/theme-readtheorg-local.setup
-# +SETUPFILE: ../org-html-themes/org/theme-bigblow-local.setup
+#+SETUPFILE: ../thirdp/org-html-themes/org/theme-readtheorg-local.setup
+# +SETUPFILE: ../thirdp/org-html-themes/org/theme-bigblow-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
-# cp -R ../org-html-themes/src bo/
+# cp -R ../thridp/org-html-themes/src bo/
 #+EXPORT_FILE_NAME: bo/doom
 # the exported filename will be bo/doom.html, bo/doom.tex or bo/doom.pdf
 
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
-#+email: stotok@kukisku.com
+#+email: s.totok@gmail.com
 #       #+OPTIONS: num:nil
 
 This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
@@ -344,7 +344,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
-(defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
+(defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -357,8 +357,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: igd0464u"))
  (IS-LOGE
   (message "hostname: loge"))
- (IS-COROLLA
-  (message "hostname: corolla"))
+ (IS-OMICRON
+  (message "hostname: omicron"))
  (t
   (message "hostname: unknown")))
 #+end_src
@@ -1019,7 +1019,13 @@ My favourite fonts:
 
 + [[https://input.fontbureau.com][Input]].
 + [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
-+ [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]].
++ [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]]. Also [[https://github.com/be5invis/Iosevka][Iosevka on GitHub]].
+  - On MacOS
+    #+begin_example
+    $ brew tap homebrew/cask-fonts
+    $ brew install --cask font-iosevka
+    $ brew install --cask font-iosevka-ss04
+    #+end_example
 
 Settings related to fonts:
 
@@ -1033,7 +1039,7 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12)
         doom-big-font            (font-spec :family "menlo" :size 18)))
- (IS-IGL6301W
+ ((or IS-IGL6301W IS-OMICRON)
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
@@ -1044,7 +1050,7 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
- ((or IS-LOGE IS-COROLLA)
+ (IS-LOGE
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
@@ -1087,7 +1093,7 @@ I customize existing doom-themes to my liking:
   )
   ;; select theme
   (cond
-   ((or IS-COROLLA IS-IGD0464U)
+   ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
     (setq doom-theme 'ttk-doom-one-light))

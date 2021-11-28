@@ -63,7 +63,7 @@
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
-(defconst IS-COROLLA  (string-prefix-p "corolla"  (system-name) t))
+(defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -76,8 +76,8 @@
   (message "hostname: igd0464u"))
  (IS-LOGE
   (message "hostname: loge"))
- (IS-COROLLA
-  (message "hostname: corolla"))
+ (IS-OMICRON
+  (message "hostname: omicron"))
  (t
   (message "hostname: unknown")))
 
@@ -313,7 +313,7 @@
   (setq doom-font                (font-spec :family "menlo" :size 12)
         doom-variable-pitch-font (font-spec :family "menlo" :size 12)
         doom-big-font            (font-spec :family "menlo" :size 18)))
- (IS-IGL6301W
+ ((or IS-IGL6301W IS-OMICRON)
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
@@ -324,7 +324,7 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
- ((or IS-LOGE IS-COROLLA)
+ (IS-LOGE
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
         doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
@@ -343,7 +343,7 @@
   )
   ;; select theme
   (cond
-   ((or IS-COROLLA IS-IGD0464U)
+   ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
     (setq doom-theme 'ttk-doom-one-light))
