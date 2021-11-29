@@ -780,50 +780,26 @@ Current pattern: %`evil-mc-pattern
      ;; SSDC project
      ;;
      ("ssdc-notes"
-       :base-directory "~/project/ssdc/org/"
+       :base-directory "~/project/stotok/ssdc/org/"
        :base-extension "org"
-       :publishing-directory "~/project/ssdc/bo/html/"
-       :recursive t
        :publishing-function org-html-publish-to-html
+       :publishing-directory "~/project/stotok/ssdc/bo/html/"
+       :recursive t
        :headline-levels 4             ; Just the default for this project.
        :auto-preamble t)
      ("ssdc-static"
-       :base-directory "~/project/ssdc/org/"
+       :base-directory "~/project/stotok/ssdc/org/"
        :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-       :publishing-directory "~/project/ssdc/bo/html/"
+       :publishing-directory "~/project/stotok/ssdc/bo/html/"
        :recursive t
        :publishing-function org-publish-attachment)
      ("ssdc-org-html-themes"
-       :base-directory "~/project/org-html-themes/src/"
+       :base-directory "~/project/thirdp/org-html-themes/src/"
        :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-       :publishing-directory "~/project/ssdc/bo/html/src/"
+       :publishing-directory "~/project/stotok/ssdc/bo/html/src/"
        :recursive t
        :publishing-function org-publish-attachment)
      ("ssdc-org" :components ("ssdc-notes" "ssdc-static" "ssdc-org-html-themes"))
-     ;;
-     ;; CISSP project
-     ;;
-     ("cissp-notes"
-      :base-directory "~/project/cissp/org/"
-      :base-extension "org"
-      :publishing-directory "~/project/cissp/bo/html/"
-      :recursive t
-      :publishing-function org-html-publish-to-html
-      :headline-levels 4             ; Just the default for this project.
-      :auto-preamble t)
-    ("cissp-static"
-      :base-directory "~/project/cissp/org/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/cissp/bo/html/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("cissp-org-html-themes"
-      :base-directory "~/project/org-html-themes/styles/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/cissp/bo/html/styles/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("cissp-org" :components ("cissp-notes" "cissp-static" "cissp-org-html-themes"))
     ;;
     ;; CTDC project
     ;;
@@ -842,7 +818,7 @@ Current pattern: %`evil-mc-pattern
       :recursive t
       :publishing-function org-publish-attachment)
     ("ctdc-org-html-themes"
-      :base-directory "~/project/conti/org-html-themes/src/"
+      :base-directory "~/project/thirdp/org-html-themes/src/"
       :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
       :publishing-directory "~/project/conti/ctdc/bo/html/src/"
       :recursive t
