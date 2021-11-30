@@ -2196,6 +2196,7 @@ Now create new keybindings. "SPC m s" is not currently being used.
 Push to gerrit:
 #+begin_example
 p r "origin" RET "HEAD:refs/drafts/master"
+p r "origin" RET "HEAD:refs/for/master"
 #+end_example
 
 * Projectile
