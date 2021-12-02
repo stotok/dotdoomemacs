@@ -409,6 +409,7 @@
  :init
  (setq doom-modeline-percent-position nil ; dunwan buffer % at segment buffer-position
        doom-modeline-project-detection 'projectile ; how to detect project root
+       ;; doom-modeline-project-detection 'project ; how to detect project root
        doom-modeline-buffer-file-name-style 'buffer-name ; uniquify buffer name
        doom-modeline-workspace-name nil                  ; need eyebrowse
        doom-modeline-persp-name t                        ; workspace using persp-mode
@@ -958,7 +959,7 @@ Current pattern: %`evil-mc-pattern
  ;; alien method need external utility (unixes), and fast.
  ;; it ignores the content of .projectile, but read .gitignore
  ;; totok 11-nov-2018: new method by default: turbo-alien
- ;; (setq projectile-indexing-method 'alien) ; long live 'ripgrep'
+ (setq projectile-indexing-method 'alien) ; long live 'ripgrep'
  ;; native method is portable but slow. it reads the content of .projectile
  ;; (setq projectile-indexing-method 'native)
  (setq projectile-enable-caching t)
@@ -975,7 +976,7 @@ Current pattern: %`evil-mc-pattern
  ;;   (unless (file-remote-p default-directory) ad-do-it))
 
  ;;; by default, doom emacs use ivy
- ;;(setq projectile-completion-system 'ivy) ; it's nice (from swiper package)
+ (setq projectile-completion-system 'ivy) ; it's nice (from swiper package)
  ;; tell projectile to not try and find the file on the remote SVN server and
  ;; instead search locally, see https://github.com/bbatsov/projectile/issues/520
  (setq projectile-svn-command "find . -type f -not -iwholename '*.svn/*' -print0")
@@ -992,9 +993,13 @@ Current pattern: %`evil-mc-pattern
    (add-to-list 'projectile-project-root-files-bottom-up ".repo")
    ;; ignored directories
    (add-to-list 'projectile-globally-ignored-directories "tests")
+   (add-to-list 'projectile-globally-ignored-directories ".repo")
    ;; ignored files
    (add-to-list 'projectile-globally-ignored-file-suffixes ".d")
    (add-to-list 'projectile-globally-ignored-file-suffixes ".o")
+   ;; somehow
+   (setq projectile-project-root-files (delete "setup.py" projectile-project-root-files))
+   (setq projectile-project-root-files (delete "requirements.txt" projectile-project-root-files))
    )
  ;;
  ;; Use ripgrep to index files to be used by projectile
