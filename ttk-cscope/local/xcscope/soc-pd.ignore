@@ -8,6 +8,7 @@ subaru-t19plus/package/conti-dcm/code/test_code/
 CCAST_.CFG
 cscope.files
 cscope.out
+*.pyc
 *.o
 *.d
 *.a

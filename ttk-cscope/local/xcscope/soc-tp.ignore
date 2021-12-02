@@ -20,8 +20,10 @@ tools/
 CCAST_.CFG
 cscope.files
 cscope.out
+*.pyc
 *.o
 *.d
+*.so
 .cache/
 vectorcast/
 testsuite/

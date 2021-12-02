@@ -29,6 +29,7 @@ cscope.files
 cscope.out
 TAGS
 TAGS.files
+*.pyc
 *.o
 *.d
 *.c.test
