@@ -21,7 +21,7 @@
 #+email: s.totok@gmail.com
 #       #+OPTIONS: num:nil
 
-This is my Doom Emacs configuration, forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
+This is my Doom Emacs configuration, originally forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
 
 * Table of Contents :TOC_3:noexport:
 - [[#doom-config-files][Doom Config Files]]
@@ -614,7 +614,7 @@ This is used by GPG and other things.
 
 #+begin_src emacs-lisp
 (setq user-full-name "Totok Sulistiomono"
-      user-mail-address "stotok@kukisku.com")
+      user-mail-address "s.totok@gmail.com")
 #+end_src
 
 Speaking of GPG, I use =~/.authsource.gpg= instead of the default in =~/.emacs.d=.
@@ -908,6 +908,7 @@ Show random quote:
     "It takes an average person 7 minutes to fall asleep"
     "If you can't explain it simply, you don't understand it well enough"
     "The world is changed by examples, not by opinions"
+    "Give a man a fish, you feed him for a day. Teach a man to fish, you feed him for a lifetime"
     "When you talk, you spray around 2.5 microscopic saliva droplets per word"
     "An apple in the morning will keep you more awake than a cup of coffee"
     "You miss 100% of the shots you never take"
@@ -1414,7 +1415,7 @@ Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][
   (setq-default
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
     +evil-want-o/O-to-continue-comments nil
-    ;; these will make cursor follow the new splitted window
+    ;; if t then these will make cursor follow the new splitted window
     evil-split-window-below nil     ; t: follow new splitted window, nil: remain
     evil-vsplit-window-below nil    ; t: follow new splitted window, nil: remain
     ;; let's mimic the original vim behavior and don't make mistakes
@@ -3122,9 +3123,6 @@ Ref:
 
 * References
 
-These are some of the best ones (several are also written in org mode). You will find
-snippets from all of these (and possibly others).
-
 A lot of manual configuration has been rendered moot by using Emacs Doom,
 which aggregates a well-maintained and organized collection of common configuration
 settings for performance optimization, package management, commonly used packages
@@ -3144,8 +3142,6 @@ settings for performance optimization, package management, commonly used package
 
 ** Doom Emacs
 
-- [[https://github.com/hlissner/doom-emacs][Doom Emacs]]
-- [[https://github.com/zzamboni/dot-doom][Zzamboni: Doom Emacs Configuration]]
 - [[https://tecosaur.github.io/emacs-config/config.html][Tecosaur: Emacs config]]
 - [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh: Doom Emacs Workflow]]
 - [[https://blog.jethro.dev/posts/migrating_to_doom_emacs/][Jethro: Migrating To Doom Emacs]]

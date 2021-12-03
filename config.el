@@ -86,7 +86,7 @@
               doom-localleader-alt-key "M-,")
 
 (setq user-full-name "Totok Sulistiomono"
-      user-mail-address "stotok@kukisku.com")
+      user-mail-address "s.totok@gmail.com")
 
 (setq auth-sources '("~/.authinfo.gpg")
       auth-source-cache-expiry nil)      ; default is 7200 (2h)
@@ -223,6 +223,7 @@
     "It takes an average person 7 minutes to fall asleep"
     "If you can't explain it simply, you don't understand it well enough"
     "The world is changed by examples, not by opinions"
+    "Give a man a fish, you feed him for a day. Teach a man to fish, you feed him for a lifetime"
     "When you talk, you spray around 2.5 microscopic saliva droplets per word"
     "An apple in the morning will keep you more awake than a cup of coffee"
     "You miss 100% of the shots you never take"
@@ -543,7 +544,7 @@
   (setq-default
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
     +evil-want-o/O-to-continue-comments nil
-    ;; these will make cursor follow the new splitted window
+    ;; if t then these will make cursor follow the new splitted window
     evil-split-window-below nil     ; t: follow new splitted window, nil: remain
     evil-vsplit-window-below nil    ; t: follow new splitted window, nil: remain
     ;; let's mimic the original vim behavior and don't make mistakes
