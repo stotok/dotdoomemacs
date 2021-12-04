@@ -549,7 +549,12 @@
     evil-vsplit-window-below nil    ; t: follow new splitted window, nil: remain
     ;; let's mimic the original vim behavior and don't make mistakes
     evil-want-fine-undo t
-  ))
+  )
+  ;;
+  (after! evil
+    (setq evil-move-cursor-back nil     ; don't move the block cursor when toggling inser mode
+          evil-kill-on-visual-paste nil ; don't put overwritten text in the kill ring
+          )))
 
 (after! evil-mc
   (add-to-list 'evil-mc-incompatible-minor-modes 'lispy-mode)
@@ -620,8 +625,6 @@ Current pattern: %`evil-mc-pattern
      'evil-mc-custom-known-commands
      `(,sp-command
        (:default . evil-mc-execute-call)))))
-
-(after! evil-escape (evil-escape-mode -1))
 
 (use-package! evil-motion-trainer
   :init

@@ -578,6 +578,7 @@ This code is written to the =init.el= to select which modules to load.
 #+end_src
 
 ** Disabling Packages
+
 #+begin_src emacs-lisp :tangle packages.el
 (package! rtags :disable t)
 (package! helm-rtags :disable t)
@@ -586,6 +587,7 @@ This code is written to the =init.el= to select which modules to load.
 (package! anaconda-mode :disable t)
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
+(package! evil-escape :disable t)
 #+end_src
 
 ** Need to Have Packages
@@ -1420,7 +1422,12 @@ Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][
     evil-vsplit-window-below nil    ; t: follow new splitted window, nil: remain
     ;; let's mimic the original vim behavior and don't make mistakes
     evil-want-fine-undo t
-  ))
+  )
+  ;;
+  (after! evil
+    (setq evil-move-cursor-back nil     ; don't move the block cursor when toggling inser mode
+          evil-kill-on-visual-paste nil ; don't put overwritten text in the kill ring
+          )))
 #+end_src
 
 ** evil-mc
@@ -1588,7 +1595,10 @@ Here's how to fix that:
 I don't use =evil-escape-mode= and I heard it contributes to a typing delay.
 So, let's just disable it.
 
-#+begin_src emacs-lisp
+Update: Instead of disabling evil-escape-mode, better just prevent the
+installation of the package by removing it, see [[Disabling Packages]].
+
+#+begin_src emacs-lisp :tangle no
 (after! evil-escape (evil-escape-mode -1))
 #+end_src
 

@@ -60,6 +60,7 @@
 (package! anaconda-mode :disable t)
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
+(package! evil-escape :disable t)
 
 (package! rainbow-mode)
 
