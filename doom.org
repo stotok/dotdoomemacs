@@ -3140,7 +3140,6 @@ settings for performance optimization, package management, commonly used package
 
 ** General Emacs
 
-- [[http://pages.sachachua.com/.emacs.d/Sacha.html][Sacha Chua: Emacs Configuration]]
 - [[https://github.com/daedreth/UncleDavesEmacs#user-content-ido-and-why-i-started-using-helm][Uncle Dave: Emacs config]]
 - [[https://github.com/PythonNut/emacs-config][PythonNut: Emacs config]]
 - [[https://www.manueluberti.eu/][Manuel Uberti: Emacs Stuff]]
@@ -3153,16 +3152,13 @@ settings for performance optimization, package management, commonly used package
 ** Doom Emacs
 
 - [[https://tecosaur.github.io/emacs-config/config.html][Tecosaur: Emacs config]]
-- [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh: Doom Emacs Workflow]]
-- [[https://blog.jethro.dev/posts/migrating_to_doom_emacs/][Jethro: Migrating To Doom Emacs]]
-- [[https://www.soitflows.xyz/posts/my-doom-emacs-configuration/][So It Flow: My Doom Emacs Config]]
 - [[https://dangirsh.org/projects/doom-config.html][Dan Girshovich: doom-config]]
 - [[https://www.gtrun.org/custom/config.html][GuangTao: Doom Emacs config]]
-- [[https://randomgeekery.org/config/emacs/doom/][Ramdom Geekery: Emacs Doom config]]
 - [[https://cyberchris.xyz/posts/org-mode-assignments/][Writing Assignments with Doom Emacs]]
 - [[https://github.com/sunnyhasija/Academic-Doom-Emacs-Config][An Academic's Opinionated DOOM Emacs Config]]
 - [[https://hungyi.net/tags/doom~emacs/][Hung-Yi's Journal, tag:Doom Emacs]]
 - [[https://github.com/elken/.doom.d][Elken Doom]]: to be continued.
+- [[https://emacstil.com][Emacs TIL]]
 
 ** Org-mode
 
