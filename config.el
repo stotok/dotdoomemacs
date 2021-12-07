@@ -64,6 +64,7 @@
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
+(defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -78,6 +79,8 @@
   (message "hostname: loge"))
  (IS-OMICRON
   (message "hostname: omicron"))
+ (IS-COVID
+  (message "hostname: covid"))
  (t
   (message "hostname: unknown")))
 
@@ -318,10 +321,11 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-COVID
+  (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
+        doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
+        doom-big-font            (font-spec :family "Roboto Mono" :size 18)))
  (IS-IGD1943U
-  ;; (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
-  ;;       doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
-  ;;       doom-big-font            (font-spec :family "Roboto Mono" :size 18))
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
@@ -349,6 +353,8 @@
    (IS-IGL6301W
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-COVID
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))

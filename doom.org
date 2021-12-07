@@ -345,6 +345,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
+(defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -359,6 +360,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: loge"))
  (IS-OMICRON
   (message "hostname: omicron"))
+ (IS-COVID
+  (message "hostname: covid"))
  (t
   (message "hostname: unknown")))
 #+end_src
@@ -376,7 +379,9 @@ The only exceptions are "safe variable" and "safe theme" settings, which are aut
 saved by Emacs in =custom.el=, but this is OK as they don't conflict with anything else from the config.
 
 * Doom Modules
+
 ** Modules
+
 This code is written to the =init.el= to select which modules to load.
 
 #+begin_src emacs-lisp :tangle init.el
@@ -593,6 +598,7 @@ This code is written to the =init.el= to select which modules to load.
 #+end_src
 
 ** Need to Have Packages
+
 Will install these packages later:
 - [[https://xenodium.com/emacs-org-block-completion-on-melpa/][Emacs org block completion on melpa]]
 - [[https://www.reddit.com/r/emacs/comments/ntnhkc/how_i_jump_around_emacs_with_betterjumper/][How I jump around emacs with better jumper]]
@@ -1048,10 +1054,11 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-COVID
+  (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
+        doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
+        doom-big-font            (font-spec :family "Roboto Mono" :size 18)))
  (IS-IGD1943U
-  ;; (setq doom-font                (font-spec :family "Roboto Mono" :size 12)
-  ;;       doom-variable-pitch-font (font-spec :family "Roboto Mono" :size 12)
-  ;;       doom-big-font            (font-spec :family "Roboto Mono" :size 18))
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
@@ -1103,6 +1110,8 @@ I customize existing doom-themes to my liking:
    (IS-IGL6301W
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-COVID
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
