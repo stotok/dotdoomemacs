@@ -65,6 +65,7 @@
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
+(defconst IS-DELTA    (string-prefix-p "delta"    (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -81,6 +82,8 @@
   (message "hostname: omicron"))
  (IS-COVID
   (message "hostname: covid"))
+ (IS-DELTA
+  (message "hostname: delta"))
  (t
   (message "hostname: unknown")))
 
@@ -355,6 +358,8 @@
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
    (IS-COVID
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-DELTA
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
