@@ -120,6 +120,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#qml-qt-declarative][QML (QT Declarative)]]
   - [[#csv-mode][CSV mode]]
   - [[#json-mode][JSON mode]]
+  - [[#cmake-mode][CMake mode]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
 - [[#other-tools][Other tools]]
@@ -2960,9 +2961,18 @@ Available in Doom =:lang json=.
 
 #+begin_src emacs-lisp
 (when (featurep! :lang json)
- (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist))
- )
+  (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
 #+end_src
+
+** CMake mode
+
+Available in Doom: =:lang cc=
+
+#+begin_src emacs-lisp
+(when (featurep! :lang cc)
+  (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
+#+end_src
+
 * Tools
 ** docker
 Yeay ... finally docker.

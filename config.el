@@ -1385,8 +1385,10 @@ Current pattern: %`evil-mc-pattern
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 
 (when (featurep! :lang json)
- (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist))
- )
+  (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
+
+(when (featurep! :lang cc)
+  (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
 
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
