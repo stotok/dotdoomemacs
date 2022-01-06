@@ -63,12 +63,15 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#use-emacs-tree-sitter-for-hightlighting-in-doom-emacs][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 - [[#evil][Evil]]
   - [[#general][General]]
+  - [[#move-around][Move Around]]
+    - [[#vertical-movement][Vertical Movement]]
+    - [[#horizontal-movement][Horizontal Movement]]
+    - [[#arbitrary-movement][Arbitrary Movement]]
   - [[#evil-mc][evil-mc]]
     - [[#incompatibility][Incompatibility]]
     - [[#hydra][Hydra]]
     - [[#working-with-smartparens][Working With Smartparens]]
   - [[#evil-escape][Evil Escape]]
-  - [[#evil-snipe][Evil Snipe]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
 - [[#abo-abo][abo-abo]]
   - [[#avy][avy]]
@@ -1450,7 +1453,42 @@ Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][
           )))
 #+end_src
 
+** Move Around
+
+So many ways to move around. The lazy =j=, =k=, =l=, =h= are in many ways too slow.
+You can train yourself with Evil Motion Trainer to kill the habit of =jklh=.
+
+I categorize my movement into 3 categories:
+
+*** Vertical Movement
+
+Ref: [[https://github.com/PythonNut/evil-easymotion][evil-easymotion]].
+
+Moving down: =gsj=, moving up: =gsk=.
+
+It's better than relative line number, as I don't have to switch to
+the left and type =12j=. I just look at where I want to go, type =gsj=
+and press the letter that pops up.
+
+*** Horizontal Movement
+
+Ref: [[https://github.com/hlissner/evil-snipe][evil-snipe]] and [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh's Doom Emacs Workflows]].
+
+Moving forward: =s??=, moving backward: =S??=. The last snipe with =s=.
+
+Eg: =Cook coca-cola chicken= and wanting to jump to =chicken=.
+
+Sure you can press =fc= a few times, or maybe jump through with =w=. But
+instead, you could type =sch=.
+
+*** Arbitrary Movement
+
+Ref: =evil avy goto char 2=
+
+Bound to =gss=
+
 ** evil-mc
+
 *** Incompatibility
 
 Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cursors_in_emacs/][evil-mc incompatibility]]. Evil-mc is incompatible with lispy-mode and yas-minor-mode:
@@ -1622,10 +1660,6 @@ installation of the package by removing it, see [[Disabling Packages]].
 (after! evil-escape (evil-escape-mode -1))
 #+end_src
 
-** Evil Snipe
-
-See [[https://github.com/hlissner/evil-snipe][evil-snipe]] and [[https://noelwelsh.com/posts/2019-01-10-doom-emacs.html][Noel Welsh's Doom Emacs Workflows]].
-
 ** Evil Motion Trainer
 
 Read: [[https://martin.baillie.id/wrote/evil-motion-training-for-emacs/][Emacs Evil Motion Training]]. Github: [[https://github.com/martinbaillie/evil-motion-trainer][evil-motion-trainer]].
@@ -1645,8 +1679,8 @@ Now, configure it:
   :config
   (setq evil-motion-trainer-threshold 6
         evil-motion-trainer-super-annoying-mode nil)
-  ;; (global-evil-motion-trainer-mode 1)
-  (global-evil-motion-trainer-mode 0)
+  ;; (global-evil-motion-trainer-mode 1)    ; enable
+  (global-evil-motion-trainer-mode 0)       ; disable
  )
 #+end_src
 

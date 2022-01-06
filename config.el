@@ -642,8 +642,8 @@ Current pattern: %`evil-mc-pattern
   :config
   (setq evil-motion-trainer-threshold 6
         evil-motion-trainer-super-annoying-mode nil)
-  ;; (global-evil-motion-trainer-mode 1)
-  (global-evil-motion-trainer-mode 0)
+  ;; (global-evil-motion-trainer-mode 1)    ; enable
+  (global-evil-motion-trainer-mode 0)       ; disable
  )
 
 ;; see ~/.emacs.d/modules/editor/evil/config.el
