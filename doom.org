@@ -1167,7 +1167,8 @@ I like relative line number so vertical jumping is easier.
 #+begin_src emacs-lisp
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+;;(setq display-line-numbers-type 'relative)  ; relative line number
+(setq display-line-numbers-type t)      ; absolute line number
 ;; But I don't want to see line number in og mode
 (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 #+end_src
@@ -2914,17 +2915,37 @@ Ref:
 #+begin_src emacs-lisp
 (setq singapore-holidays '((when (= displayed-year 2021)
                              (append
-                               (holiday-fixed 1 1   "New Year's Day")
-                               (holiday-fixed 2 12  "SG: Chinese New Year")
-                               (holiday-fixed 2 13  "SG: Chinese New Year")
-                               (holiday-fixed 4 2   "SG: Good Friday")
-                               (holiday-fixed 5 1   "Labour Day")
-                               (holiday-fixed 5 13  "SG: Hari Raya Puasa")
-                               (holiday-fixed 5 26  "SG: Vesak Day")
-                               (holiday-fixed 7 20  "SG: Hari Raya Haji")
-                               (holiday-fixed 8 9   "SG: National Day")
-                               (holiday-fixed 11 4  "SG: Deepavali")
-                               (holiday-fixed 12 25 "Christmas Day"))))
+                              (holiday-fixed 1 1   "New Year's Day")
+                              (holiday-fixed 2 12  "SG: Chinese New Year")
+                              (holiday-fixed 2 13  "SG: Chinese New Year")
+                              (holiday-fixed 4 2   "SG: Good Friday")
+                              (holiday-fixed 5 1   "Labour Day")
+                              (holiday-fixed 5 13  "SG: Hari Raya Puasa")
+                              (holiday-fixed 5 26  "SG: Vesak Day")
+                              (holiday-fixed 7 20  "SG: Hari Raya Haji")
+                              (holiday-fixed 8 9   "SG: National Day")
+                              (holiday-fixed 11 4  "SG: Deepavali")
+                              (holiday-fixed 12 25 "Christmas Day")))
+                           (when (= displayed-year 2022)
+                             (append
+                              (holiday-fixed 1 1   "New Year's Day (leave credit)")
+                              (holiday-fixed 1 27  "Totok AL")
+                              (holiday-fixed 1 28  "Totok AL")
+                              (holiday-fixed 1 31  "Early Release")
+                              (holiday-fixed 2 1   "Chinese New Year")
+                              (holiday-fixed 2 2   "Chinese New Year")
+                              (holiday-fixed 4 15  "Good Friday")
+                              (holiday-fixed 5 1   "Labour Day")
+                              (holiday-fixed 5 2   "Holiday in lieu")
+                              (holiday-fixed 5 3   "Hari Raya Puasa")
+                              (holiday-fixed 5 15  "Vesak Day")
+                              (holiday-fixed 5 16  "Holiday in lieu")
+                              (holiday-fixed 7 10  "Hari Raya Haji")
+                              (holiday-fixed 7 11  "Holiday in lieu")
+                              (holiday-fixed 8 9   "National Day")
+                              (holiday-fixed 10 24 "Deepavali")
+                              (holiday-fixed 12 25 "Christmas Day")
+                              (holiday-fixed 12 26 "Christmas Day"))))
       south-korea-holidays '((when (= displayed-year 2021)
                                (append
                                  (holiday-fixed 1 1   "New Year's Day")
@@ -2948,6 +2969,7 @@ Ref:
       ;; calendar-holidays (append singapore-holidays south-korea-holidays)
       calendar-holidays (append singapore-holidays)
       calendar-mark-holidays-flag t     ; mark dates of holidays
+      calendar-week-start-day 1         ; week start on monday
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 #+end_src
