@@ -1363,6 +1363,7 @@ Current pattern: %`evil-mc-pattern
                            (when (= displayed-year 2022)
                              (append
                               (holiday-fixed 1 1   "New Year's Day (leave credit)")
+                              (holiday-fixed 1 20  "Totok AL")
                               (holiday-fixed 1 27  "Totok AL")
                               (holiday-fixed 1 28  "Totok AL")
                               (holiday-fixed 1 31  "Early Release")
