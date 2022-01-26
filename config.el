@@ -991,10 +991,11 @@ Current pattern: %`evil-mc-pattern
  ;; (defadvice projectile-project-root (around ignore-remote first activate)
  ;;   (unless (file-remote-p default-directory) ad-do-it))
 
- ;;; by default, doom emacs use ivy
- (setq projectile-completion-system 'ivy) ; it's nice (from swiper package)
- ;; tell projectile to not try and find the file on the remote SVN server and
- ;; instead search locally, see https://github.com/bbatsov/projectile/issues/520
+ ;;; by default, doom emacs use ivy (update 27-Jan-2022: now default is vertico)
+ ;;; so, let follow default doom setting
+ ;; (setq projectile-completion-system 'ivy) ; it's nice (from swiper package)
+ ;;; tell projectile to not try and find the file on the remote SVN server and
+ ;;; instead search locally, see https://github.com/bbatsov/projectile/issues/520
  (setq projectile-svn-command "find . -type f -not -iwholename '*.svn/*' -print0")
  ;; require presence of project root, otherwise current directory is the project root
  ;; other options: 'prompt or nil
