@@ -25,12 +25,16 @@ VUC_APP/TVIP_Ctrl_Files/TVIP/Vehicle_Micro/BSP/I2C_RH850F1L/
 VUC_APP/TVIP_Ctrl_Files/TVIP/Vehicle_Micro/BSP/MCAL_Bolero/
 VUC_APP/TVIP_Ctrl_Files/TVIP/Vehicle_Micro/BSP/MCAL_RH850F1L/
 VUC_APP/TVIP_Ctrl_Files/TVIP/Vehicle_Micro/BSP/MCAL_V4_RH850F1L/
+fd-cscope.files
 cscope.files
 cscope.out
 TAGS
 TAGS.files
+.ignore
+.fdignore
 *.pyc
 *.o
 *.d
 *.c.test
 .cache/
+.repo/

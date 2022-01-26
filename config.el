@@ -971,6 +971,15 @@ Current pattern: %`evil-mc-pattern
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 
+(defun ttk-project-override (dir)
+  (let ((override (locate-dominating-file dir ".project.el")))
+    (if override
+      (cons 'vc override)
+      nil)))
+
+(after! project
+  (add-hook 'project-find-functions #'ttk-project-override))
+
 (after! projectile
  ;; alien method need external utility (unixes), and fast.
  ;; it ignores the content of .projectile, but read .gitignore

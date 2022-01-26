@@ -96,6 +96,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
 - [[#cscope][Cscope]]
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
+- [[#projectel][project.el]]
+  - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
 - [[#projectile][Projectile]]
 - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
@@ -2266,6 +2268,26 @@ Push to gerrit:
 p r "origin" RET "HEAD:refs/drafts/master"
 p r "origin" RET "HEAD:refs/for/master"
 #+end_example
+
+* project.el
+
+** Overriding the project.el project directory
+
+Ref: [[https://michael.stapelberg.ch/posts/2021-04-02-emacs-project-override/][Emacs: overriding the project.el project directory]].
+
+#+begin_src emacs-lisp
+(defun ttk-project-override (dir)
+  (let ((override (locate-dominating-file dir ".project.el")))
+    (if override
+      (cons 'vc override)
+      nil)))
+
+(after! project
+  (add-hook 'project-find-functions #'ttk-project-override))
+#+end_src
+
+Now, we can use touch .project.el in any directory to make
+=.project.el= recognize the directory as project root!
 
 * Projectile
 
