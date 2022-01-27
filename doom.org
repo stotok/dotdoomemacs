@@ -78,6 +78,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#avy-goto-line][avy-goto-line]]
     - [[#avy-can-do-anything][Avy Can Do Anything]]
   - [[#ivy][ivy]]
+- [[#vertico--co][Vertico & Co]]
 - [[#org][Org]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
@@ -96,9 +97,10 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
 - [[#cscope][Cscope]]
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
-- [[#projectel][project.el]]
-  - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
-- [[#projectile][Projectile]]
+- [[#project-management][Project Management]]
+  - [[#projectel][project.el]]
+    - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
+  - [[#projectile][Projectile]]
 - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
   - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
@@ -1763,6 +1765,9 @@ Ref: [[https://karthinks.com/software/avy-can-do-anything/][Avy can do anything]
 
 ** ivy
 
+[27-Jan-2022] I'm now using =vertico= as the search engine instead of =ivy=.
+=vertico= is now also default search engine in Doom.
+
 #+begin_src emacs-lisp
 (after! ivy
  (setq ivy-height 16
@@ -1777,6 +1782,19 @@ Ref: [[https://karthinks.com/software/avy-can-do-anything/][Avy can do anything]
  (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
  )
 #+end_src
+
+* Vertico & Co
+
+Vertico is Doom's default completion system: [[https://github.com/hlissner/doom-emacs/tree/master/modules/completion/vertico][Doom Emacs Vertico Module]].
+
+Other Refs:
+- [[https://macowners.club/posts/from-ivy-to-vertico/][From Ivy & Counsel to Vertico & Consult]]
+- [[https://cestlaz.github.io/post/using-emacs-80-vertico/][Using Emacs Episode 80 Vertico, Marginalia, Consult and Embark]]
+- [[https://systemcrafters.cc/emacs-tips/streamline-completions-with-vertico/][System Crafters: Streamline Your Emacs Completions with Vertico]]
+- [[https://irreal.org/blog/?p=9699][Irreal: Ivy to Selectrum]]
+- [[https://www.rousette.org.uk/archives/switching-to-selectrum-for-incremental-narrowing-in-emacs/][Switching to Selectrum for incremental narrowing in Emacs]]
+- [[https://emacsredux.com/blog/2021/04/19/configuring-minibuffer-completion-in-projectile/][Emacs Redux: Configuring Minibuffer Completion in Projectile]]
+- [[https://hungyi.net/posts/doom-emacs-search-replace-project/][Hungyi: How to Do a Project-wide Search and Replace in Doom Emacs]]
 
 * Org
 
@@ -2269,9 +2287,11 @@ p r "origin" RET "HEAD:refs/drafts/master"
 p r "origin" RET "HEAD:refs/for/master"
 #+end_example
 
-* project.el
+* Project Management
 
-** Overriding the project.el project directory
+** project.el
+
+*** Overriding the project.el project directory
 
 Ref: [[https://michael.stapelberg.ch/posts/2021-04-02-emacs-project-override/][Emacs: overriding the project.el project directory]].
 
@@ -2289,7 +2309,7 @@ Ref: [[https://michael.stapelberg.ch/posts/2021-04-02-emacs-project-override/][E
 Now, we can use touch .project.el in any directory to make
 =.project.el= recognize the directory as project root!
 
-* Projectile
+** Projectile
 
 #+begin_src emacs-lisp
 (after! projectile
