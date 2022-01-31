@@ -112,6 +112,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
   - [[#projectile][Projectile]]
+    - [[#customization][Customization]]
+    - [[#keeping-projectiles-cache-tidy][Keeping Projectile's Cache Tidy]]
 - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
   - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
@@ -2322,6 +2324,8 @@ Now, we can use touch .project.el in any directory to make
 
 ** Projectile
 
+*** Customization
+
 #+begin_src emacs-lisp
 (after! projectile
  ;; alien method need external utility (unixes), and fast.
@@ -2410,6 +2414,22 @@ Now, we can use touch .project.el in any directory to make
      (advice-add 'projectile-get-ext-command :override #'ttk/advice-projectile-use-rg)))
 )
 #+end_src
+
+*** Keeping Projectile's Cache Tidy
+
+Ref: [[https://magnus.therning.org/2022-01-30-keeping-projectile's-cache-tidy.html][Keeping Projectile's cache tidy]]
+
+Removing entries in the cache that no longer exist on disk.
+
+#+begin_src emacs-lisp
+(defun ttk/projectile-extra-tidy-projects ()
+  (interactive)
+  (let ((missing-dirs (seq-remove 'file-directory-p projectile-known-projects)))
+    (seq-do 'projectile-remove-known-project missing-dirs)
+    (message "Tidied %d projects" (length missing-dirs))))
+#+end_src
+
+Then, hard delete =~/.emacs.d/.local/cache/treemacs-persist=.
 
 * Tramp
 

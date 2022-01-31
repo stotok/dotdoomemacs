@@ -1067,6 +1067,12 @@ Current pattern: %`evil-mc-pattern
      (advice-add 'projectile-get-ext-command :override #'ttk/advice-projectile-use-rg)))
 )
 
+(defun ttk/projectile-extra-tidy-projects ()
+  (interactive)
+  (let ((missing-dirs (seq-remove 'file-directory-p projectile-known-projects)))
+    (seq-do 'projectile-remove-known-project missing-dirs)
+    (message "Tidied %d projects" (length missing-dirs))))
+
 ;;
 ;; TRAMP
 ;;
