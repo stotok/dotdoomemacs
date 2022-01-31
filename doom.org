@@ -8,6 +8,17 @@
 #+STARTUP: fold
 :END:
 
+# To increase text size in generated html
+# Ref: https://www.w3schools.com/cssref/pr_font_font-size.asp
+# Ref: https://stackoverflow.com/questions/51415911/emacs-org-mode-how-to-choose-font-when-exporting-to-html
+# +HTML_HEAD_EXTRA: <style>*{font-family: serif !important}</style>
+# +HTML_HEAD_EXTRA: <style>*{font-size: medium !important}</style>
+# +HTML_HEAD_EXTRA: <style>*{font-family: 'Iosevka Aile Web', sans-serif; font-weight: 300; font-size: 1.3rem;}</style>
+
+# Ref: https://olmon.gitlab.io/org-themes/
+# +SETUPFILE: ../thirdp/org-themes/src/white_clean/white_clean.theme
+
+# These default from org-html-themes
 #+SETUPFILE: ../thirdp/org-html-themes/org/theme-readtheorg-local.setup
 # +SETUPFILE: ../thirdp/org-html-themes/org/theme-bigblow-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
