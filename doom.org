@@ -108,6 +108,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
 - [[#cscope][Cscope]]
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
+  - [[#blame][Blame]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -1467,7 +1468,7 @@ Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][
   )
   ;;
   (after! evil
-    (setq evil-move-cursor-back nil     ; don't move the block cursor when toggling inser mode
+    (setq evil-move-cursor-back t       ; default: move the block cursor when toggling insert mode
           evil-kill-on-visual-paste nil ; don't put overwritten text in the kill ring
           )))
 #+end_src
@@ -2298,6 +2299,12 @@ Push to gerrit:
 #+begin_example
 p r "origin" RET "HEAD:refs/drafts/master"
 p r "origin" RET "HEAD:refs/for/master"
+#+end_example
+
+** Blame
+
+#+begin_example
+M-x magit-blame-addition (SPC g B)
 #+end_example
 
 * Project Management

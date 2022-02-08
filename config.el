@@ -564,7 +564,7 @@
   )
   ;;
   (after! evil
-    (setq evil-move-cursor-back nil     ; don't move the block cursor when toggling inser mode
+    (setq evil-move-cursor-back t       ; default: move the block cursor when toggling insert mode
           evil-kill-on-visual-paste nil ; don't put overwritten text in the kill ring
           )))
 
