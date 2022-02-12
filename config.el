@@ -1432,12 +1432,6 @@ Current pattern: %`evil-mc-pattern
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
 
-(defmacro zz/measure-time (&rest body)
-  "Measure the time it takes to evaluate BODY."
-  `(let ((time (current-time)))
-     ,@body
-     (float-time (time-since time))))
-
 ;; To get the full path of current buffer and put it in kill-ring
 ;;
 (defun ttk/copy-full-path-to-kill-ring ()

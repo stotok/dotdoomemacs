@@ -144,17 +144,10 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#cmake-mode][CMake mode]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
-- [[#other-tools][Other tools]]
-  - [[#gpg-graphical-pipn-entry-utility][GPG Graphical PIPN Entry Utility]]
-  - [[#measure-timing][Measure timing]]
-  - [[#vterm][Vterm]]
-  - [[#unfill][Unfill]]
-  - [[#annotate][Annotate]]
   - [[#copy-full-path-of-current-buffer][Copy full path of current buffer]]
   - [[#insert-date-at-cursor][Insert date at cursor]]
   - [[#show-ascii-table][Show ascii table]]
 - [[#how-to][How To]]
-  - [[#directory-navigation-with-ivy][Directory Navigation with Ivy]]
   - [[#directory-editor-with-dired][Directory Editor with Dired]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
   - [[#what-is-my-xxx][What is my xxx]]
@@ -3113,77 +3106,14 @@ Available in Doom: =:lang cc=
 #+end_src
 
 * Tools
+
 ** docker
+
 Yeay ... finally docker.
 
 #+begin_src emacs-lisp
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
-#+end_src
-
-* Other tools
-
-** GPG Graphical PIPN Entry Utility
-
-I prefer to use the GPG graphical PIN entry utility. This is achieved by
-setting =epg-pinentry-mode= (=epa-pinentry-mode= before Emacs 27) to =nil= instead of
-the default ='loopback=.
-
-Totok 20210814 disable causing error due to: void-variable . EMACS27+
-#+begin_src emacs-lisp :tangle no
-(after! epa
-  (set (if EMACS27+
-           'epg-pinentry-mode
-         'epa-pinentry-mode) ; DEPRECATED `epa-pinentry-mode'
-       nil))
-#+end_src
-
-** Measure timing
-A useful macro (sometimes) for timing the execution of things. From [[https://stackoverflow.com/questions/23622296/emacs-timing-execution-of-function-calls-in-emacs-lisp][StackOverflow]].
-
-#+begin_src emacs-lisp
-(defmacro zz/measure-time (&rest body)
-  "Measure the time it takes to evaluate BODY."
-  `(let ((time (current-time)))
-     ,@body
-     (float-time (time-since time))))
-#+end_src
-
-** Vterm
-
-I'm still not fully convinced of running a terminal inside Emacs, but =vterm= is much
-nicer than any of the previous terminal emulators, so I'm giving it a try.
-I configure it so that it runs my [[https://elv.sh/][favorite shell]]. Vterm runs Elvish flawlessly!
-
-Totok 20210124 disable first.
-#+begin_src emacs-lisp :tangle no
-(setq vterm-shell "/usr/local/bin/elvish")
-#+end_src
-
-** Unfill
-Add "unfill" commands to parallel the "fill" ones, bind ~A-q~ to =unfill-paragraph= and
-rebind ~M-q~ to the =unfill-toggle= command, which fills/unfills paragraphs alternatively.
-
-Totok 20210101 disable first
-#+begin_src emacs-lisp :tangle no
-(package! unfill)
-#+end_src
-#+begin_src emacs-lisp :tangle no
-(use-package! unfill
-  :defer t
-  :bind
-  ("M-q" . unfill-toggle)
-  ("A-q" . unfill-paragraph))
-#+end_src
-
-** Annotate
-
-The [[https://github.com/bastibe/annotate.el][annotate]] package is nice - allows adding annotations to files without modifying
-the file itself.
-
-Totok 20210124 disable first
-#+begin_src emacs-lisp :tangle no
-(package! annotate)
 #+end_src
 
 ** Copy full path of current buffer
@@ -3234,15 +3164,6 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
 #+end_src
 
 * How To
-** Directory Navigation with Ivy
-
-- =SPC .= simply invokes ivy (unless you've disabled its module).
-- Pressing backspace or typing =../= will go up one directory.
-- Typing =/= (or =TAB= twice) will move down the selected directory.
-- If you use evil, =C-j= and =C-k= will move down and up through the file list.
-  Otherwise, =C-n= and =C-p=. Press =RET= (enter) to open the selected file/folder.
-- =C-o= will reveal alternative actions you can take on said file/folder.
-- =C-o= j to open it in another window instead.
 
 ** Directory Editor with Dired
 
