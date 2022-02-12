@@ -1521,11 +1521,11 @@ Ref: [[https://www.reddit.com/r/emacs/comments/iu0euj/getting_modern_multiple_cu
 
 *** Hydra
 
-Copy and paster from: [[https://hungyi.net/posts/hydra-for-evil-mc/][An evil-mc Emacs Hydra]]
+Copy and paste from: [[https://hungyi.net/posts/hydra-for-evil-mc/][An evil-mc Emacs Hydra]]
 
 One thing sorely lacking in native Emacs is the ability to edit with multiple cursors
 like VS Code. Fortunately for Doom Emacs or Evil users, there’s evil-mc. But even with
-that installed, all it gives you is a bunch of commandsyou still have to decide how to
+that installed, all it gives you is a bunch of commands you still have to decide how to
 bind them yourself or rely on Doom’s suggested bindings that map everything to the =g z=
 prefix for every command.
 
