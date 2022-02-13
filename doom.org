@@ -1706,6 +1706,31 @@ Now, configure it:
 - Select something in visual mode with =v= or =V=
 - Press =#= (search forward) or =*= (search backward)
 
+See: [[https://emacs.stackexchange.com/questions/52411/evil-star-visualstar-without-moving-the-cursor][Evil visualstart without moving the cursor]], but below does not work. Disable first.
+#+begin_src emacs-lisp :tangle no
+(after! evil-visualstar
+  (defun my/star-keep-position ()
+    (interactive)
+    (case evil-search-module
+      (evil-search (progn
+                    (evil-ex-search-word-forward)
+                    (evil-ex-search-previous)))
+      (isearch (progn
+                 (evil-search-word-forward)
+                 (evil-search-previous)))))
+
+  (defun my/visualstar-keep-position ()
+    (interactive)
+    (when (region-active-p)
+        (evil-visualstar/begin-search (region-beginning) (region-end) t)
+        (case evil-search-module
+        (evil-search (evil-ex-search-previous))
+        (isearch (evil-search-previous)))))
+
+  (evil-define-key 'normal evil-motion-state-map (kbd "*") 'my/star-keep-position)
+  (evil-define-key 'visual evil-visualstar-mode-map (kbd "*") 'my/visualstar-keep-position))
+#+end_src
+
 ** Reference
 
 - [[https://www.baeldung.com/linux/text-objects-in-vim][Text Objects in Vim]].
