@@ -85,6 +85,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#evil-escape][Evil Escape]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
   - [[#evil-visualstar][Evil Visualstar]]
+  - [[#reference][Reference]]
 - [[#abo-abo][abo-abo]]
   - [[#avy][avy]]
     - [[#avy-goto-line][avy-goto-line]]
@@ -1704,6 +1705,10 @@ Now, configure it:
 
 - Select something in visual mode with =v= or =V=
 - Press =#= (search forward) or =*= (search backward)
+
+** Reference
+
+- [[https://www.baeldung.com/linux/text-objects-in-vim][Text Objects in Vim]].
 
 * abo-abo
 ** avy
