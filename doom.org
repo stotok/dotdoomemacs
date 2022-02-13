@@ -84,6 +84,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#working-with-smartparens][Working With Smartparens]]
   - [[#evil-escape][Evil Escape]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
+  - [[#evil-visualstar][Evil Visualstar]]
 - [[#abo-abo][abo-abo]]
   - [[#avy][avy]]
     - [[#avy-goto-line][avy-goto-line]]
@@ -188,6 +189,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#macros][Macros]]
     - [[#exercise-1][Exercise 1]]
     - [[#exercise-2][Exercise 2]]
+- [[#frequently-forgotten-commands][Frequently Forgotten Commands]]
+  - [[#toggle-truncate-lines][Toggle truncate lines]]
 
 * Doom Config Files
 
@@ -1696,6 +1699,11 @@ Now, configure it:
   (global-evil-motion-trainer-mode 0)       ; disable
  )
 #+end_src
+
+** Evil Visualstar
+
+- Select something in visual mode with =v= or =V=
+- Press =#= (search forward) or =*= (search backward)
 
 * abo-abo
 ** avy
@@ -3596,4 +3604,13 @@ Produce this:
 8   http8mailbox
 9   http9mailbox
 10  http10mailbox
+#+end_example
+
+
+* Frequently Forgotten Commands
+
+** Toggle truncate lines
+
+#+begin_example
+M-x toggle-truncat-lines  (SPC t t)
 #+end_example
