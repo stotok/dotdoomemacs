@@ -106,6 +106,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#tableel][Table.el]]
 - [[#coding][Coding]]
   - [[#tangle-on-save][Tangle-on-save]]
+- [[#template][Template]]
+  - [[#file-template][File Template]]
 - [[#cc][C/C++]]
 - [[#cscope][Cscope]]
 - [[#magit][Magit]]
@@ -462,7 +464,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;god                 ; run Emacs commands without modifier keys
  ;;lispy               ; vim for lisp, for people who don't like vim
  multiple-cursors      ; editing in many places at once
- ;;objed               ; text object editing for the innocent
+ ;;objed               ; text object editing for the innocent. But this is incompatible with :editor evil.
  ;;parinfer            ; turn lisp into python, sort of
  ;;rotate-text         ; cycle region at point between text candidates
  snippets              ; my elves. They type so I don't have to
@@ -2167,6 +2169,43 @@ And configure it:
 
 If we want to manual tangle: =M-x org-babel-tangle=.
 
+* Template
+
+** File Template
+
+Doom has file template based on yasnippet when you enable with =:editor file-templates=.
+
+Ref: [[http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html][Auto-insert .gitignore templates in Doome Emacs]].
+
+#+begin_src emacs-lisp
+(when (featurep! :editor file-templates)
+  ;;
+  ;; Ref: http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html
+  ;;
+  ;; .gitignore templates
+  ;; $ mkdir ~/dotdoomemacs/templates
+  ;; $ cd ~/dotdoomemacs/templates
+  ;; $ git clone https://github.com/github/gitignore
+  (defun ttk/template-insert-gitignore()
+    (interactive)
+    (let* ((dir (concat doom-private-dir "/templates/gitignore/"))
+           (files (directory-files dir nil ".*\\.gitignore"))
+           (pick (yas-choose-value (mapcar #'file-name-sans-extension files))))
+      (insert-file-contents (concat dir (concat pick ".gitignore")))))
+  ;; register the template
+  (set-file-template! "\\.gitignore$" :trigger 'hanno/template-insert-gitignore :mode 'gitignore-mode)
+  ;;
+  ;; python templates
+  (defun ttk/template-insert-python()
+    (interactive)
+    (let* ((dir (concat doom-private-dir "/templates/python/"))
+           (files (directory-files dir nil ".*\\.py"))
+           (pick (yas-choose-value (mapcar #'file-name-sans-extension files))))
+      (insert-file-contents (concat dir (concat pick ".py")))))
+  ;; register the template
+  (set-file-template! "\\.py$" :trigger 'ttk/template-insert-python :mode 'python-mode))
+#+end_src
+
 * C/C++
 
 Over the years of doing C/C++, here's my favourite settings.
@@ -3636,7 +3675,6 @@ Produce this:
 10  http10mailbox
 #+end_example
 
-
 * Frequently Forgotten Commands
 
 ** Toggle truncate lines
@@ -3644,3 +3682,4 @@ Produce this:
 #+begin_example
 M-x toggle-truncat-lines  (SPC t t)
 #+end_example
+

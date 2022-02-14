@@ -854,6 +854,33 @@ Current pattern: %`evil-mc-pattern
    (setq org-auto-tangle-default nil
     ))
 
+(when (featurep! :editor file-templates)
+  ;;
+  ;; Ref: http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html
+  ;;
+  ;; .gitignore templates
+  ;; $ mkdir ~/dotdoomemacs/templates
+  ;; $ cd ~/dotdoomemacs/templates
+  ;; $ git clone https://github.com/github/gitignore
+  (defun ttk/template-insert-gitignore()
+    (interactive)
+    (let* ((dir (concat doom-private-dir "/templates/gitignore/"))
+           (files (directory-files dir nil ".*\\.gitignore"))
+           (pick (yas-choose-value (mapcar #'file-name-sans-extension files))))
+      (insert-file-contents (concat dir (concat pick ".gitignore")))))
+  ;; register the template
+  (set-file-template! "\\.gitignore$" :trigger 'hanno/template-insert-gitignore :mode 'gitignore-mode)
+  ;;
+  ;; python templates
+  (defun ttk/template-insert-python()
+    (interactive)
+    (let* ((dir (concat doom-private-dir "/templates/python/"))
+           (files (directory-files dir nil ".*\\.py"))
+           (pick (yas-choose-value (mapcar #'file-name-sans-extension files))))
+      (insert-file-contents (concat dir (concat pick ".py")))))
+  ;; register the template
+  (set-file-template! "\\.py$" :trigger 'ttk/template-insert-python :mode 'python-mode))
+
 (after! cc-mode
   (defconst ttk-c-style
    '(;; gnu        : coding style blessed by FSF for C code in  GNU programs
