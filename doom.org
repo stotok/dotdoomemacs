@@ -1431,22 +1431,22 @@ and braces.
 #+end_src
 
 * Tree-Sitter
+
 ** Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs
+
 Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 
 #+begin_src emacs-lisp :tangle packages.el
-(package! tree-sitter
-  :recipe (:branch "master"))
-(package! tree-sitter-langs
-  :recipe (:branch "master"))
+(package! tree-sitter)
+(package! tree-sitter-langs)
 #+end_src
 
 #+begin_src emacs-lisp
 (use-package! tree-sitter
- :config
- (require 'tree-sitter-langs)
- (global-tree-sitter-mode)
- (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode)
+  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
 #+end_src
 
 * Evil
