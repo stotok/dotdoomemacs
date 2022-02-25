@@ -63,6 +63,10 @@
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
+(package! forge :disable t)
+(package! magit-gitflow :disable t)
+(package! magit-todos :disable t)
+(package! github-review :disable t)
 
 (package! rainbow-mode)
 

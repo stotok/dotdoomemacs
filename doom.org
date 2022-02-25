@@ -623,6 +623,10 @@ This code is written to the =init.el= to select which modules to load.
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
+(package! forge :disable t)
+(package! magit-gitflow :disable t)
+(package! magit-todos :disable t)
+(package! github-review :disable t)
 #+end_src
 
 ** Need to Have Packages
