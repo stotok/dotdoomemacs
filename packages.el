@@ -113,6 +113,10 @@
            ;; :no-byte-compile t
            ))
 
+(package! blamer
+  :recipe (:host github
+           :repo "artawower/blamer.el"))
+
 (package! graphviz-dot-mode)
 
 (package! lsp-treemacs

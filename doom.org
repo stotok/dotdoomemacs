@@ -113,6 +113,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
   - [[#blame][Blame]]
+  - [[#blamer][Blamer]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -2382,6 +2383,32 @@ M-x magit-blame-addition (SPC g B)
 #+end_example
 
 Press =q= to quit from the blame view.
+
+** Blamer
+
+Ref: [[https://github.com/Artawower/blamer.el][Github: blamer.el]]
+
+To show git blame info for current line. This is another package
+not from magit, and not included in doom yet.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! blamer
+  :recipe (:host github
+           :repo "artawower/blamer.el"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package! blamer
+  :custom
+  (blamer-idle-time 0.3)
+  (blamer-min-offset 70)
+  (blamer-max-commit-message-length 70)
+  (blamer-author-formatter "%s ")
+  (blamer-datetime-formatter nil)        ; do need to show time
+  :config
+  (setq blamer-type 'both)
+  (global-blamer-mode 1))
+#+end_src
 
 * Project Management
 

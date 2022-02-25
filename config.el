@@ -998,6 +998,17 @@ Current pattern: %`evil-mc-pattern
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 
+(use-package! blamer
+  :custom
+  (blamer-idle-time 0.3)
+  (blamer-min-offset 70)
+  (blamer-max-commit-message-length 70)
+  (blamer-author-formatter "%s ")
+  (blamer-datetime-formatter nil)        ; do need to show time
+  :config
+  (setq blamer-type 'both)
+  (global-blamer-mode 1))
+
 (defun ttk-project-override (dir)
   (let ((override (locate-dominating-file dir ".project.el")))
     (if override
