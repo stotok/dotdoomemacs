@@ -1000,11 +1000,11 @@ Current pattern: %`evil-mc-pattern
 
 (use-package! blamer
   :custom
-  (blamer-idle-time 0.3)
+  (blamer-idle-time 0.5)
   (blamer-min-offset 70)
   (blamer-max-commit-message-length 70)
   (blamer-author-formatter "%s ")
-  (blamer-datetime-formatter nil)        ; do need to show time
+  (blamer-datetime-formatter nil)        ; no need to show time
   :config
   (setq blamer-type 'both)
   (global-blamer-mode 1))
