@@ -1847,6 +1847,7 @@ Other Refs:
 - [[https://www.rousette.org.uk/archives/switching-to-selectrum-for-incremental-narrowing-in-emacs/][Switching to Selectrum for incremental narrowing in Emacs]]
 - [[https://emacsredux.com/blog/2021/04/19/configuring-minibuffer-completion-in-projectile/][Emacs Redux: Configuring Minibuffer Completion in Projectile]]
 - [[https://hungyi.net/posts/doom-emacs-search-replace-project/][Hungyi: How to Do a Project-wide Search and Replace in Doom Emacs]]
+- [[https://kristofferbalintona.me/posts/vertico-marginalia-all-the-icons-completion-and-orderless/][Kristoffer Balintona: Vertico, Marginalia, All-the-icons-completion and Orderless]]
 
 * Org
 
