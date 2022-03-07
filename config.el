@@ -1000,7 +1000,7 @@ Current pattern: %`evil-mc-pattern
 
 (use-package! blamer
   :custom
-  (blamer-idle-time 0.5)
+  (blamer-idle-time 1.0)
   (blamer-min-offset 70)
   (blamer-max-commit-message-length 70)
   (blamer-author-formatter "%s ")
