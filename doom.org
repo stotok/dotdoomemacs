@@ -1741,6 +1741,8 @@ See: [[https://emacs.stackexchange.com/questions/52411/evil-star-visualstar-with
 ** Reference
 
 - [[https://www.baeldung.com/linux/text-objects-in-vim][Text Objects in Vim]].
+- [[https://www.youtube.com/watch?v=E7NBhSsZouc][YouTube: Vim Life Ep 7: Coolest Vim Command]]
+- [[https://www.youtube.com/watch?v=H3o4l4GVLW0][Youtube: Vim As Your Editor (1/6): The Basic Vim Movements]]
 
 * abo-abo
 ** avy
