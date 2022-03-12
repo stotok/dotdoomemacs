@@ -1741,8 +1741,14 @@ See: [[https://emacs.stackexchange.com/questions/52411/evil-star-visualstar-with
 ** Reference
 
 - [[https://www.baeldung.com/linux/text-objects-in-vim][Text Objects in Vim]].
+- [[https://www.youtube.com/watch?v=SIePe-A4rs0][YouTube: vim: Text objects]]
+- [[https://www.youtube.com/watch?v=tQKtJyI5cFk][YouTube: vi: Text object motions]]
+- [[https://www.youtube.com/watch?v=c4P2hzVPDbY][YouTube: vim: Copyting and moving text]]
 - [[https://www.youtube.com/watch?v=E7NBhSsZouc][YouTube: Vim Life Ep 7: Coolest Vim Command]]
 - [[https://www.youtube.com/watch?v=H3o4l4GVLW0][Youtube: Vim As Your Editor (1/6): The Basic Vim Movements]]
+- [[https://www.youtube.com/watch?v=gSHf_b6AWKc][YouTube: Vim As Your Editor (2/6): Foundation for Speed]]
+- [[https://www.youtube.com/watch?v=Q6mr7w0YmkQ][YouTube: Vim As Your Editor (3/6): Horizontal Speed]]
+- [[https://www.youtube.com/watch?v=4uPRlnTUlMY][YouTube: Vim As Your Editor (4/6): Vertical Domination]]
 
 * abo-abo
 ** avy
