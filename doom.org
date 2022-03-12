@@ -152,6 +152,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#copy-full-path-of-current-buffer][Copy full path of current buffer]]
   - [[#insert-date-at-cursor][Insert date at cursor]]
   - [[#show-ascii-table][Show ascii table]]
+  - [[#arrayify][Arrayify]]
 - [[#how-to][How To]]
   - [[#directory-editor-with-dired][Directory Editor with Dired]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
@@ -2409,7 +2410,7 @@ not from magit, and not included in doom yet.
 #+begin_src emacs-lisp
 (use-package! blamer
   :custom
-  (blamer-idle-time 1.0)
+  (blamer-idle-time 2.0)
   (blamer-min-offset 70)
   (blamer-max-commit-message-length 70)
   (blamer-author-formatter "%s ")
@@ -3280,6 +3281,39 @@ Ref: [[https://www.emacswiki.org/emacs/AsciiTable][EmacsWiki: Ascii Table]].
                       (setq i (+ 32 i)) i (single-key-description i)
                       (setq i (+ 32 i)) i (single-key-description i)))
       (setq i (- i 96))))))
+#+end_src
+
+** Arrayify
+
+Ref: [[https://news.ycombinator.com/item?id=22129636][Arrayify]].
+
+Turn strings on newlines into QUOTEd, comma-separated one-liner. Eg:
+
+#+begin_example
+josh
+sam
+jed
+C.J.
+toby
+#+end_example
+
+You select those text, and run "arrayify". You can optionally provide a quote character
+to transform to:
+
+#+begin_example
+"josh", "jed", "sam", "C.J.", "toby"
+#+end_example
+
+#+begin_src emacs-lisp
+(defun ttk/arrayify (start end quote)
+  "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
+  (interactive "r\nMQuote: ")
+  (let ((insertion
+         (mapconcat
+          (lambda (x) (format "%s%s%s" quote x quote))
+          (split-string (buffer-substring start end)) ", ")))
+    (delete-region start end)
+    (insert insertion)))
 #+end_src
 
 * How To

@@ -1000,7 +1000,7 @@ Current pattern: %`evil-mc-pattern
 
 (use-package! blamer
   :custom
-  (blamer-idle-time 1.0)
+  (blamer-idle-time 2.0)
   (blamer-min-offset 70)
   (blamer-max-commit-message-length 70)
   (blamer-author-formatter "%s ")
@@ -1502,6 +1502,16 @@ Current pattern: %`evil-mc-pattern
                       (setq i (+ 32 i)) i (single-key-description i)
                       (setq i (+ 32 i)) i (single-key-description i)))
       (setq i (- i 96))))))
+
+(defun ttk/arrayify (start end quote)
+  "Turn strings on newlines into a QUOTEd, comma-separated one-liner."
+  (interactive "r\nMQuote: ")
+  (let ((insertion
+         (mapconcat
+          (lambda (x) (format "%s%s%s" quote x quote))
+          (split-string (buffer-substring start end)) ", ")))
+    (delete-region start end)
+    (insert insertion)))
 
 (map! :leader
       (:prefix-map ("=" . "calc")
