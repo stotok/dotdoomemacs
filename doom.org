@@ -1751,6 +1751,10 @@ See: [[https://emacs.stackexchange.com/questions/52411/evil-star-visualstar-with
 - [[https://www.youtube.com/watch?v=Q6mr7w0YmkQ][YouTube: Vim As Your Editor (3/6): Horizontal Speed]]
 - [[https://www.youtube.com/watch?v=4uPRlnTUlMY][YouTube: Vim As Your Editor (4/6): Vertical Domination]]
 
+To investigate:
+
+- [[https://github.com/yyoncho/evil-repeat-motion][evil-repeat-motion]]
+
 * abo-abo
 ** avy
 
