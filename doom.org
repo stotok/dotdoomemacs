@@ -92,6 +92,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#avy-can-do-anything][Avy Can Do Anything]]
   - [[#ivy][ivy]]
 - [[#vertico--co][Vertico & Co]]
+  - [[#project-wide-search-and-replace][Project-wide Search and Replace]]
 - [[#org][Org]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
@@ -1179,6 +1180,7 @@ I customize existing doom-themes to my liking:
 #+end_src
 
 This is on my TODO list for the next themes:
+- [[https://www.reddit.com/r/emacs/comments/t7doal/i_bet_you_use_hllinemode_do_you_know_how_it_works/][How hl-line-mode works]]
 - [[https://github.com/rougier/nano-emacs][GNU Emacs/NANO]]
 - [[https://github.com/skyler544/doom-nano-testing][Getting NANO to work in Doom]]
 - [[https://www.reddit.com/r/emacs/comments/lncawq/getting_doom_emacs_and_nano_emacs_to_work_together/][Getting Doom Emacs and Nano Themes to work together]]
@@ -1861,6 +1863,16 @@ Other Refs:
 - [[https://emacsredux.com/blog/2021/04/19/configuring-minibuffer-completion-in-projectile/][Emacs Redux: Configuring Minibuffer Completion in Projectile]]
 - [[https://hungyi.net/posts/doom-emacs-search-replace-project/][Hungyi: How to Do a Project-wide Search and Replace in Doom Emacs]]
 - [[https://kristofferbalintona.me/posts/vertico-marginalia-all-the-icons-completion-and-orderless/][Kristoffer Balintona: Vertico, Marginalia, All-the-icons-completion and Orderless]]
+
+** Project-wide Search and Replace
+
+Reference: [[https://hungyi.net/posts/doom-emacs-search-replace-project/][How to Do a Project-wide Search & Replace in Doom Emacs]].
+
+#+begin_example
+SPC s p foo C-; E C-c C-p :%s/foo/bar/g RET Z Z
+#+end_example
+
+Entering those keys will replace "foo" with "bar" in your whole project.
 
 * Org
 
