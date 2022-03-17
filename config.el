@@ -1470,14 +1470,6 @@ Current pattern: %`evil-mc-pattern
 (when (featurep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
 
-;; To get the full path of current buffer and put it in kill-ring
-;;
-(defun ttk/copy-full-path-to-kill-ring ()
-  "copy buffer's full path to kill ring"
-  (interactive)
-  (when buffer-file-name
-    (kill-new (file-truename buffer-file-name))))
-
 ;; insert date into buffer
 ;;
 (defun ttk/insert-date ()

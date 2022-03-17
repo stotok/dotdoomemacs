@@ -3254,7 +3254,9 @@ Yeay ... finally docker.
 
 ** Copy full path of current buffer
 
-#+begin_src emacs-lisp
+Doom already have this with =SPC i F= (Insert current file path). So, disable below.
+
+#+begin_src emacs-lisp :tangle no
 ;; To get the full path of current buffer and put it in kill-ring
 ;;
 (defun ttk/copy-full-path-to-kill-ring ()
