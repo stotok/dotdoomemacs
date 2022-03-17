@@ -3419,6 +3419,7 @@ settings for performance optimization, package management, commonly used package
 - [[https://hungyi.net/tags/doom~emacs/][Hung-Yi's Journal, tag:Doom Emacs]]
 - [[https://github.com/elken/.doom.d][Elken Doom]]: to be continued.
 - [[https://emacstil.com][Emacs TIL]]
+- [[https://narra.co.za/doom-tips-and-howtos/][Doom Tips and Howto]]: little things make great.
 
 ** Org-mode
 
