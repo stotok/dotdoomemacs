@@ -1,3 +1,4 @@
+.repo/
 tests/
 UnitTest_Vcast/
 Int_Scripts/
@@ -37,4 +38,3 @@ TAGS.files
 *.d
 *.c.test
 .cache/
-.repo/
