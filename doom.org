@@ -929,8 +929,11 @@ If you want to choose at random among a few different splash images, you can
 list them in =alternatives=.
 
 #+begin_src emacs-lisp
-(let ;;((alternatives '("kenshin-at-the-inn-01.jpg" "kenshin-at-the-inn-02.jpg")))
-   ((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))
+(let
+    ;; for light background
+    ((alternatives '("swan-5165109-500.svg" "doom-emacs-bw-light.svg")))
+    ;; for dark background
+    ;; ((alternatives '("swan-5165109-500.svg" "doom-emacs-bw-light.svg")))
   (setq fancy-splash-image
         (concat doom-private-dir "splash/"
                 (nth (random (length alternatives)) alternatives))))
@@ -3422,6 +3425,8 @@ settings for performance optimization, package management, commonly used package
 - [[https://github.com/elken/.doom.d][Elken Doom]]: to be continued.
 - [[https://emacstil.com][Emacs TIL]]
 - [[https://narra.co.za/doom-tips-and-howtos/][Doom Tips and Howto]]: little things make great.
+- [[https://github.com/hlissner/doom-emacs/tree/665b627b7c07c8d29ec8d334588cecc2ba308248/docs][Doom Emacs Documentation]]: Read it (old, maybe original idea intention)!!
+- [[https://github.com/hlissner/doom-emacs/blob/master/docs/faq.org][Doom Emacs Documentation]]: Read it (latest version)!!
 
 ** Org-mode
 
