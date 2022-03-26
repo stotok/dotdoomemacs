@@ -207,7 +207,7 @@
 (add-hook 'kill-emacs-hook #'save-frame-dimensions)
 
 (setq-default doom-scratch-dir (format "%s/private" (getenv "DOOMDIR"))
-              doom-scratch-initial-major-mode 'org-mode)
+              doom-scratch-initial-major-mode 'text-mode)
 
 (let ;;((alternatives '("kenshin-at-the-inn-01.jpg" "kenshin-at-the-inn-02.jpg")))
    ((alternatives '("doom-emacs-color.png" "doom-emacs-bw-light.svg")))

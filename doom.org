@@ -618,6 +618,7 @@ This code is written to the =init.el= to select which modules to load.
 #+begin_src emacs-lisp :tangle packages.el
 (package! rtags :disable t)
 (package! helm-rtags :disable t)
+(package! helm-lsp :disable t)
 (package! ivy-rtags :disable t)
 (package! ccls :disable t)
 (package! conda :disable t)
@@ -630,6 +631,7 @@ This code is written to the =init.el= to select which modules to load.
 (package! magit-gitflow :disable t)
 (package! magit-todos :disable t)
 (package! github-review :disable t)
+(package! eglot :disable t)
 #+end_src
 
 ** Need to Have Packages
@@ -831,7 +833,7 @@ Doom has persistance scratch buffer named =doom:scratch= with:
 
 #+begin_src emacs-lisp
 (setq-default doom-scratch-dir (format "%s/private" (getenv "DOOMDIR"))
-              doom-scratch-initial-major-mode 'org-mode)
+              doom-scratch-initial-major-mode 'text-mode)
 #+end_src
 
 *** Emacs Scratch Buffer

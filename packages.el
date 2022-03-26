@@ -55,6 +55,7 @@
 
 (package! rtags :disable t)
 (package! helm-rtags :disable t)
+(package! helm-lsp :disable t)
 (package! ivy-rtags :disable t)
 (package! ccls :disable t)
 (package! conda :disable t)
@@ -67,6 +68,7 @@
 (package! magit-gitflow :disable t)
 (package! magit-todos :disable t)
 (package! github-review :disable t)
+(package! eglot :disable t)
 
 (package! rainbow-mode)
 
