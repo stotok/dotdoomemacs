@@ -60,6 +60,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#themes][Themes]]
   - [[#line-settings][Line settings]]
   - [[#rainbow-mode][Rainbow mode]]
+    - [[#tools-rgb][=:tools rgb=]]
+    - [[#manual-package-installation][Manual package installation]]
   - [[#rainbow-delimiters][Rainbow delimiters]]
   - [[#modeline][Modeline]]
     - [[#doom-modeline][doom-modeline]]
@@ -68,7 +70,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#shrink-whitespace][Shrink Whitespace]]
   - [[#registers][Registers]]
   - [[#key-bindings][Key bindings]]
-    - [[#misc-keybindings][Misc keybindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
 - [[#tree-sitter][Tree-Sitter]]
   - [[#use-emacs-tree-sitter-for-hightlighting-in-doom-emacs][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
@@ -512,7 +513,7 @@ This code is written to the =init.el= to select which modules to load.
  pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements
  ;;prodigy             ; FIXME managing external services & code builders
- ;;rgb                 ; creating color strings
+ rgb                   ; creating color strings
  ;;taskrunner          ; taskrunner for all your projects
  ;;terraform           ; infrastructure as code
  ;;tmux                ; an API for interacting with tmux
@@ -564,7 +565,7 @@ This code is written to the =init.el= to select which modules to load.
   +present             ; presentation, include reveal.js
   +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
-  +pretty              ; Pretty unicode symbols for bullets and priorities. Keep
+  ;+pretty              ; Pretty unicode symbols for bullets and priorities. Keep
                        ; in mind: this can be expensive. If org becomes too slow,
                        ; it'd be wise to disable this flag.
   )
@@ -1215,11 +1216,27 @@ toggle-truncate-lines.
 
 ** Rainbow mode
 
-#+begin_src emacs-lisp :tangle packages.el
+*** =:tools rgb=
+
+=hl-line-mode= overrides the color highlighting of =rainbow-mode,= limiting the use
+of that plugin and on-site color changes using kurecolor. To automatically
+disable it only when rainbow-mode is active:
+
+#+begin_src emacs-lisp
+(when (featurep! :tools rgb)
+  (add-hook! 'rainbow-mode-hook
+             (hl-line-mode (if rainbow-mode -1 +1))))
+#+end_src
+
+*** Manual package installation
+
+No longer needed because already included in =:tools rgb=.
+
+#+begin_src emacs-lisp :tangle no
 (package! rainbow-mode)
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! rainbow-mode
   :hook (emacs-lisp-mode . rainbow-mode))
 #+end_src
@@ -1375,13 +1392,6 @@ already bound. I modify some keybindings here.
 For =evil-normal-state-map=, see: =~/.emacs.d/.local/straight/repos/evil/evil-maps.el=.
 
 For more, see [[#ref-keybindings]].
-
-*** Misc keybindings
-
-#+begin_src emacs-lisp
-(after! magit
-  (setq-default +magit-open-windows-in-direction 'down))
-#+end_src
 
 *** Emulating vi's =%= key
 
@@ -2398,6 +2408,13 @@ Now create new keybindings. "SPC m s" is not currently being used.
 #+end_src
 
 * Magit
+
+Some configuration:
+
+#+begin_src emacs-lisp
+(after! magit
+  (setq-default +magit-open-windows-in-direction 'down))
+#+end_src
 
 ** Magit and Gerrit
 

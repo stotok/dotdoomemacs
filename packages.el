@@ -70,8 +70,6 @@
 (package! github-review :disable t)
 (package! eglot :disable t)
 
-(package! rainbow-mode)
-
 (package! rainbow-delimiters)
 
 ;; https://github.com/jcpetkovich/shrink-whitespace.el

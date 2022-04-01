@@ -117,7 +117,7 @@
  pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements
  ;;prodigy             ; FIXME managing external services & code builders
- ;;rgb                 ; creating color strings
+ rgb                   ; creating color strings
  ;;taskrunner          ; taskrunner for all your projects
  ;;terraform           ; infrastructure as code
  ;;tmux                ; an API for interacting with tmux
@@ -169,7 +169,7 @@
   +present             ; presentation, include reveal.js
   +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
-  +pretty              ; Pretty unicode symbols for bullets and priorities. Keep
+  ;+pretty              ; Pretty unicode symbols for bullets and priorities. Keep
                        ; in mind: this can be expensive. If org becomes too slow,
                        ; it'd be wise to disable this flag.
   )

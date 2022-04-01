@@ -401,8 +401,9 @@
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
 
-(use-package! rainbow-mode
-  :hook (emacs-lisp-mode . rainbow-mode))
+(when (featurep! :tools rgb)
+  (add-hook! 'rainbow-mode-hook
+             (hl-line-mode (if rainbow-mode -1 +1))))
 
 ;;
 ;; balanced and colorful delimiters
@@ -495,9 +496,6 @@
        "i" #'insert-register
        "j" #'jump-to-register
        "s" #'copy-to-register))
-
-(after! magit
-  (setq-default +magit-open-windows-in-direction 'down))
 
 (after! smartparens
   (defun zz/goto-match-paren (arg)
@@ -1000,6 +998,9 @@ Current pattern: %`evil-mc-pattern
 (after! xcscope
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
+
+(after! magit
+  (setq-default +magit-open-windows-in-direction 'down))
 
 (use-package! blamer
   :custom
