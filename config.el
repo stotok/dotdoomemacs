@@ -694,19 +694,6 @@ Current pattern: %`evil-mc-pattern
         )
  )
 
-(after! ivy
- (setq ivy-height 16
-       ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
-       counsel-git-cmd "rg --files"
-       ;; already defined in doom emacs config
-       ;counsel-rg-base-command "rg -i -M 120 --no-heading --line-number --color never %s ."
-       ;; https://oremacs.com/2017/08/04/ripgrep/
-       counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' %s"
-       )
- ;; i don't like dir buffer.
- (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
- )
-
 (setq org-directory "~/org/")
 
 (after! org (setq org-hide-emphasis-markers t))
@@ -1211,7 +1198,7 @@ Current pattern: %`evil-mc-pattern
         ;;;;;;;;;;;;; Features/Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         lsp-completion-enable t            ; see how is performance
-        lsp-completion-provider :ivy       ; long live ivy
+        ;lsp-completion-provider :ivy       ; long live ivy
         ;; lsp-completion-show-detail nil         ; completion item detail
         ;; lsp-completion-show-kind nil           ; completion item kind
         lsp-enable-snippet nil             ; handle yasnippet by myself

@@ -1850,7 +1850,7 @@ Ref: [[https://karthinks.com/software/avy-can-do-anything/][Avy can do anything]
 [27-Jan-2022] I'm now using =vertico= as the search engine instead of =ivy=.
 =vertico= is now also default search engine in Doom.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (after! ivy
  (setq ivy-height 16
        ivy-count-format "(%d/%d)"    ; display the current and total number in the collection
@@ -2756,7 +2756,7 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
         ;;;;;;;;;;;;; Features/Completion ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
         lsp-completion-enable t            ; see how is performance
-        lsp-completion-provider :ivy       ; long live ivy
+        ;lsp-completion-provider :ivy       ; long live ivy
         ;; lsp-completion-show-detail nil         ; completion item detail
         ;; lsp-completion-show-kind nil           ; completion item kind
         lsp-enable-snippet nil             ; handle yasnippet by myself
