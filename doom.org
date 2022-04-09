@@ -1011,7 +1011,7 @@ Show random quote:
     "If you automate a mess, you get an automated mess"
     "Don't document the problem, fix it"
     "If the code and the comments do not match, possibly both are incorrect"
-    "I think it's a new feature. Don't tell anyone it was an accient"
+    "I think it's a new feature. Don't tell anyone it was an accident"
     "When debugging, novices insert corrective code; experts remove defective code"
     "Like glass, it's better to leave them broken than to hurt yourself putting it back together"
     "Adding manpower to a late software project makes it later!"
@@ -1019,7 +1019,6 @@ Show random quote:
     "Good judgment comes from experience, and experience comes from bad judgment"
     "Don't comment bad code - rewrite it"
     "It's not a bug - it's an undocumented feature"
-    "Broken had always comeback stronger. Maybe not bones but hearts surely did"
     "Take your time. Recharge and come back stronger"
     "Copy and paste is a design error"))
 
@@ -2646,6 +2645,10 @@ Ref: [[https://helpdeskheadesk.net/help-desk-head-desk/2021-05-19/][A Few TRAMP 
 
 Diagram to confuse people more, see: [[https://plantuml.com/][PlantUML in a nutshell]].
 
+Useful references:
+- [[https://scripter.co/notes/plantuml/][Scripter: Collection of PlantUML snippets that I find useful]]
+- [[https://www.augmentedmind.de/2021/01/03/plantuml-tutorial-diagrams-as-code/][AugmentedMind: PlantUML tutorial to create diagram as code]]
+
 ** Need =dot= utility from =graphviz= package
 
 See [[https://www.graphviz.org/][graphviz.org]].
@@ -2915,7 +2918,7 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/4463][See this link]]. And 
 
 Ref:
 - [[https://tychoish.com/post/better-company/][Better Company]]
-- [[https://readingworldmagazine.com/emacs/2020-07-27-emacs-company-mode/#article-title][Emacs Comany Mode]]
+- [[https://readingworldmagazine.com/emacs/2020-07-27-emacs-company-mode/#article-title][Emacs Company Mode]]
 
 #+begin_src emacs-lisp
 (after! company

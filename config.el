@@ -289,7 +289,7 @@
     "If you automate a mess, you get an automated mess"
     "Don't document the problem, fix it"
     "If the code and the comments do not match, possibly both are incorrect"
-    "I think it's a new feature. Don't tell anyone it was an accient"
+    "I think it's a new feature. Don't tell anyone it was an accident"
     "When debugging, novices insert corrective code; experts remove defective code"
     "Like glass, it's better to leave them broken than to hurt yourself putting it back together"
     "Adding manpower to a late software project makes it later!"
@@ -297,7 +297,6 @@
     "Good judgment comes from experience, and experience comes from bad judgment"
     "Don't comment bad code - rewrite it"
     "It's not a bug - it's an undocumented feature"
-    "Broken had always comeback stronger. Maybe not bones but hearts surely did"
     "Take your time. Recharge and come back stronger"
     "Copy and paste is a design error"))
 
