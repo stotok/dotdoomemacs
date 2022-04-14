@@ -127,19 +127,12 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
   - [[#plantuml-mode][=plantuml-mode=]]
   - [[#if-youd-like-to-edit-dot-file-directly][If you'd like to edit =dot file= directly]]
+- [[#treemacs][Treemacs]]
+  - [[#lsp-treemacs][=lsp-treemacs=]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
     - [[#configuration-1][Configuration]]
     - [[#keybindings][Keybindings]]
-    - [[#lsp-treemacs][=lsp-treemacs=]]
-  - [[#cc-1][C/C++]]
-    - [[#where-clangd-to-find-compile_commandsjson][Where =clangd= to find =compile_commands.json=?]]
-  - [[#python][Python]]
-    - [[#pyenv][Pyenv]]
-    - [[#pipenv][Pipenv]]
-    - [[#bashrc][=.bashrc=]]
-    - [[#createactivate-virtual-environment][Create/activate virtual environment]]
-    - [[#doom-manual][Doom Manual]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
 - [[#calendar][Calendar]]
@@ -165,7 +158,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#org-mode][Org-mode]]
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings-1][Keybindings]]
-  - [[#pipenv-1][=pipenv=]]
+  - [[#pipenv][=pipenv=]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -452,7 +445,9 @@ This code is written to the =init.el= to select which modules to load.
   ;;+all               ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
   +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
- treemacs              ; a project drawer, like neotree but cooler
+ (treemacs             ; a project drawer, like neotree but cooler
+  +lsp                 ; enable lsp-treemacs integration and add shortcuts for common commands
+  )
  ;;unicode             ; extended unicode support for various languages
  ;;vc-gutter           ; vcs diff in the fringe
  vi-tilde-fringe       ; fringe tildes to mark beyond EOB
@@ -2718,6 +2713,32 @@ See: [[https://github.com/ppareit/graphviz-dot-mode][ppareit/graphviz-dot-mode]]
 (use-package! graphviz-dot-mode)
 #+end_src
 
+* Treemacs
+
+Enabled via doom module =:ui treemacs=.
+
+By default, it's width is locked. To toggle, press =tw=.
+
+#+begin_src emacs-lisp
+(after! treemacs
+  (setq treemacs-width 20))
+#+end_src
+
+** =lsp-treemacs=
+
+Integrated by =:ui (treemacs +lsp)=.
+
+Ref: https://github.com/emacs-lsp/lsp-treemacs
+
+Calltree is nice!
+
+#+begin_src emacs-lisp
+(after! lsp-treemacs
+  (setq lsp-treemacs-theme "Iconless")  ; no need icon, confusing
+  ;; (setq lsp-treemacs-theme "Eclipse")
+  (lsp-treemacs-sync-mode 1))
+#+end_src
+
 * Language Server Protocol
 ** LSP
 
@@ -2889,158 +2910,6 @@ I don't like default doom keybindings for lsp. Here's mine:
 
 Note-1: =xref-pop-marker-stack= in Doom is remapped to =better-jumper-jump-backward=.
 Ref: [[https://github.com/hlissner/doom-emacs/issues/4463][See this link]]. And it's keybinding is =C-o=.
-
-*** =lsp-treemacs=
-
-Ref: https://github.com/emacs-lsp/lsp-treemacs
-
-Calltree is nice!
-
-#+begin_src emacs-lisp :tangle packages.el
-(package! lsp-treemacs
-  :recipe (:branch "master"))
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package! lsp-treemacs
-  :init
-  (setq lsp-treemacs-theme "Iconless")
-  :config
-  (lsp-treemacs-sync-mode 1))
-#+end_src
-
-** C/C++
-
-Yes, I'm using [[https://clangd.llvm.org/][clangd]]. Probably you should too.
-
-Ref:
-- [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp][doom-emacs:tools/lsp]]
-- [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/README.org][doom-emacs:lang/cc]]
-- [[https://clangd.llvm.org/installation.html][clangd installation]]
-- [[https://emacs-lsp.github.io/lsp-mode/page/lsp-clangd/][LSP Support for Emacs]]
-- [[https://emacs-lsp.github.io/lsp-mode/tutorials/CPP-guide/][Configuring Emacs as C/C++ IDE]]
-
-Below will both set =clagd= flags and choose =clangd= as default LSP server
-anywhere =clangd= can be used.
-
-#+begin_src emacs-lisp
-;;                                "--clang-tidy"
-(setq lsp-clients-clangd-args '("-j=2"
-                                "--background-index"
-                                "--completion-style=detailed"
-                                "--log=verbose"
-                                "--header-insertion=never"
-                                "--header-insertion-decorators=0"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
-#+end_src
-
-*** Where =clangd= to find =compile_commands.json=?
-
-Ref: see this [[https://github.com/emacs-lsp/lsp-mode/issues/2278][emacs-lsp discussion]].
-
-=clangd= use heuristic method: If path is invalid, it will look in the current
-directory and parent paths of each source file you are currently editing.
-
-So, how to put compile_commands.json at custom location?
-
-Solution: [[https://llvm.discourse.group/t/clangd-lsp-with-emacs-external-library/1593/3][see this discussion]]. After =clangd-11=, we will also be looking for
-directories named =build= to find =compile_commands.json=. But for a general
-solution, you can either:
-
-- Create symlink in your project root, pointing at the =compile_commands.json=
-  inside the build directory.
-- Provide =--compile-commands-dir=<string>= to =clangd=, pointing at the
-  directory containing the compilation database.
-
-** Python
-
-Yes, I'm using [[https://pypi.org/project/pyright/][pyright]], see =:lang python +pyright=. It needs =npm= system-wide, so install with:
-
-#+begin_example
-$ sudo apt install npm
-#+end_example
-
-Also, project without =pipenv= (which install =pyright= inside virtual env) need system-side:
-
-#+begin_example
-$ pip install pyright
-#+end_example
-
-*** Pyenv
-
-TBD: [[https://www.rootstrap.com/blog/how-to-manage-your-python-projects-with-pipenv-pyenv/][Read Later]]
-
-*** Pipenv
-
-**** debian
-=wheel= and =virtualenv= as system-wide, =pipenv= as user local.
-
-#+begin_example
-$ sudo apt install python3-dev python3-pip
-$ sudo -H pip3 install wheel
-$ sudo -H pip3 install virtualenv
-$ pip3 install --user pipenv
-#+end_example
-
-*** =.bashrc=
-
-#+begin_example
-# pipenv will now place the virtualenv inside the project folder
-# emacs will see it and activate it
-export PIPENV_VENV_IN_PROJECT=1
-...
-# debian pipenv install here
-PATH=~/.local/bin:${PATH}
-#+end_example
-
-*** Create/activate virtual environment
-
-**** Spawn a shell in a virtual environment
-#+begin_example
-$ cd <your project root>
-#+end_example
-
-- First time (create virtual env)
-  #+begin_example
-  $ pipenv shell --python 3 (first time to create env)
-  #+end_example
-- Next time (virtual env already created, ie =Pipfile= already exist)
-  #+begin_example
-  $ pipenv shell (next tie after the first time)
-  #+end_example
-
-**** Install packages
-- First time
-  #+begin_example
-  $ pipenv install autoflake flake8 epc importmagic pyright --skip-lock
-  $ pipenv install pytest nose black pyflakes isort pylint --skip-lock
-  $ pipenv install <python library needed by your project> --skip-lock
-  #+end_example
-- Next time (after clone git repo, install from =Pipfile=)
-  #+begin_example
-  $ pipenv install
-  #+end_example
-
-**** Execute python program
-- When in virtual env shell
-  #+begin_example
-  (venv) $ python main.py
-  #+end_example
-- When not in virtual env shell
-  #+begin_example
-  $ pipenv run python main.py
-  #+end_example
-
-*** Doom Manual
-- Open python file at the project root directory.
-- Activate pipenv
-  #+begin_example
-  M-x pipenv-activate
-  #+end_example
-- Restart lsp
-  #+begin_example
-  M-x lsp-workspace-restart
-  #+end_example
 
 * Company
 

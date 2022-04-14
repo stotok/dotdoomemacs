@@ -56,7 +56,9 @@
   ;;+all               ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
   +defaults)           ; enable reasonable default popup rues for a variaty of buffers
  ;;tabs                ; a tab bar for Emacs
- treemacs              ; a project drawer, like neotree but cooler
+ (treemacs             ; a project drawer, like neotree but cooler
+  +lsp                 ; enable lsp-treemacs integration and add shortcuts for common commands
+  )
  ;;unicode             ; extended unicode support for various languages
  ;;vc-gutter           ; vcs diff in the fringe
  vi-tilde-fringe       ; fringe tildes to mark beyond EOB

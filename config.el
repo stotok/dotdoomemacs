@@ -1175,6 +1175,14 @@ Current pattern: %`evil-mc-pattern
 
 (use-package! graphviz-dot-mode)
 
+(after! treemacs
+  (setq treemacs-width 20))
+
+(after! lsp-treemacs
+  (setq lsp-treemacs-theme "Iconless")  ; no need icon, confusing
+  ;; (setq lsp-treemacs-theme "Eclipse")
+  (lsp-treemacs-sync-mode 1))
+
 (use-package! lsp
   :init
   ;;
@@ -1315,21 +1323,6 @@ Current pattern: %`evil-mc-pattern
         :nv "a" #'lsp-workspace-restart
         :nv "b" #'ttk/xref-display-buffer
         ))
-
-(use-package! lsp-treemacs
-  :init
-  (setq lsp-treemacs-theme "Iconless")
-  :config
-  (lsp-treemacs-sync-mode 1))
-
-;;                                "--clang-tidy"
-(setq lsp-clients-clangd-args '("-j=2"
-                                "--background-index"
-                                "--completion-style=detailed"
-                                "--log=verbose"
-                                "--header-insertion=never"
-                                "--header-insertion-decorators=0"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 
 (after! company
  (setq company-backends '(company-capf

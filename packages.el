@@ -118,6 +118,3 @@
            :repo "artawower/blamer.el"))
 
 (package! graphviz-dot-mode)
-
-(package! lsp-treemacs
-  :recipe (:branch "master"))
