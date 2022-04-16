@@ -1177,6 +1177,9 @@ Current pattern: %`evil-mc-pattern
 (after! treemacs
   (setq treemacs-width 20))
 
+(after! treemacs-projectile
+  (treemacs-project-follow-mode 1))
+
 (after! lsp-treemacs
   (setq lsp-treemacs-theme "Iconless")  ; no need icon, confusing
   ;; (setq lsp-treemacs-theme "Eclipse")
@@ -1313,10 +1316,13 @@ Current pattern: %`evil-mc-pattern
       :g "l" nil                        ; firstly, unbind default doom binding
       (:prefix "l"                      ; define our ownd
         :nv "d" #'xref-find-definitions
+        ;; :nv "d" #'lsp-ui-peek-find-definitions
         :nv "D" #'lsp-ui-doc-show
         :nv "u" #'xref-pop-marker-stack
+        ;; :nv "u" #'lsp-ui-peek-jump-backward
         :nv "c" #'lsp-treemacs-call-hierarchy
         :nv "s" #'lsp-find-references
+        ;; :nv "s" #'lsp-ui-peek-find-references
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart

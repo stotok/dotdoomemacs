@@ -128,6 +128,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#plantuml-mode][=plantuml-mode=]]
   - [[#if-youd-like-to-edit-dot-file-directly][If you'd like to edit =dot file= directly]]
 - [[#treemacs][Treemacs]]
+  - [[#treemacs-projectile][treemacs-projectile]]
   - [[#lsp-treemacs][=lsp-treemacs=]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
@@ -2727,6 +2728,18 @@ By default, it's width is locked. To toggle, press =tw=.
   (setq treemacs-width 20))
 #+end_src
 
+** treemacs-projectile
+
+Ref: [[https://ruivieira.dev/doom-emacs.html][ruivieira:DOOM Emacs]].
+
+To guarantee that when moving to a buffer of a different =projectile= project,
+the =treemacs= tree will reflect that.
+
+#+begin_src emacs-lisp
+(after! treemacs-projectile
+  (treemacs-project-follow-mode 1))
+#+end_src
+
 ** =lsp-treemacs=
 
 Integrated by =:ui (treemacs +lsp)=.
@@ -2900,10 +2913,13 @@ I don't like default doom keybindings for lsp. Here's mine:
       :g "l" nil                        ; firstly, unbind default doom binding
       (:prefix "l"                      ; define our ownd
         :nv "d" #'xref-find-definitions
+        ;; :nv "d" #'lsp-ui-peek-find-definitions
         :nv "D" #'lsp-ui-doc-show
         :nv "u" #'xref-pop-marker-stack
+        ;; :nv "u" #'lsp-ui-peek-jump-backward
         :nv "c" #'lsp-treemacs-call-hierarchy
         :nv "s" #'lsp-find-references
+        ;; :nv "s" #'lsp-ui-peek-find-references
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
