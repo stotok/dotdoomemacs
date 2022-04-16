@@ -117,4 +117,6 @@
   :recipe (:host github
            :repo "artawower/blamer.el"))
 
+(package! bookmark-in-project)
+
 (package! graphviz-dot-mode)

@@ -1101,6 +1101,18 @@ Current pattern: %`evil-mc-pattern
     (seq-do 'projectile-remove-known-project missing-dirs)
     (message "Tidied %d projects" (length missing-dirs))))
 
+(use-package! bookmark-in-project
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+)
+
+(map! :leader
+      :desc "bookmark-in-project-jump"
+      :g "SPC" nil                      ; firstly, unbind default doom binding
+      (:nv "SPC" #'bookmark-in-project-jump))
+
 ;;
 ;; TRAMP
 ;;

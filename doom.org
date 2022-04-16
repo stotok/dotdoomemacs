@@ -122,6 +122,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#projectile][Projectile]]
     - [[#customization][Customization]]
     - [[#keeping-projectiles-cache-tidy][Keeping Projectile's Cache Tidy]]
+  - [[#bookmark-in-project][Bookmark in Project]]
 - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
   - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
@@ -2583,6 +2584,31 @@ Removing entries in the cache that no longer exist on disk.
 #+end_src
 
 Then, hard delete =~/.emacs.d/.local/cache/treemacs-persist=.
+
+** Bookmark in Project
+
+Ref: [[https://gitlab.com/ideasman42/emacs-bookmark-in-project][emacs-bookmark-in-project]].
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! bookmark-in-project)
+#+end_src
+
+Let's do some configuration.
+#+begin_src emacs-lisp
+(use-package! bookmark-in-project
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+)
+
+(map! :leader
+      :desc "bookmark-in-project-jump"
+      :g "SPC" nil                      ; firstly, unbind default doom binding
+      (:nv "SPC" #'bookmark-in-project-jump))
+#+end_src
+
+Note: To create a bookmark, do as usual with doom way =SPC Enter=.
 
 * Tramp
 
