@@ -1506,6 +1506,10 @@ Current pattern: %`evil-mc-pattern
     (delete-region start end)
     (insert insertion)))
 
+(map! (:map 'override
+       :v "v" #'er/expand-region
+       :v "V" #'er/contract-region))
+
 (map! :leader
       (:prefix-map ("=" . "calc")
        "=" #'calc-dispatch

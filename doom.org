@@ -152,6 +152,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#arrayify][Arrayify]]
 - [[#how-to][How To]]
   - [[#directory-editor-with-dired][Directory Editor with Dired]]
+  - [[#expand-region][Expand region]]
+    - [[#key-binding][Key binding]]
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
   - [[#what-is-my-xxx][What is my xxx]]
 - [[#references][References]]
@@ -173,7 +175,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#use-case-2-make-occurance-cursors][Use Case 2: Make occurance cursors]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
-  - [[#expand-region][Expand region]]
   - [[#copy-and-comment-lines][Copy and comment lines]]
   - [[#search-with-ripgrep][Search with ripgrep]]
     - [[#live-project-search-from-the-project-root-using-ripgrep][Live project search from the project root using ripgrep]]
@@ -3314,6 +3315,28 @@ Two panes operations:
 - Copy file from current pane to another pane: =C=
 - Move file from current pane to antoher pane: =R=
 
+** Expand region
+
+Ref: [[https://github.com/magnars/expand-region.el][magnars/expand-region.el]]
+Video: [[http://emacsrocks.com/e09.html][Emacs Rocks! Episode 09: expand-region]]
+
+#+begin_example
+M-x er/expand-region
+#+end_example
+
+*** Key binding
+
+Good read: [[https://micro.rousette.org.uk/2021/01/03/a-useful-binding.html][A useful binding for expand-region in Emacs]]. Clever keybinding
+from Henrik the Devil Lissner himself :)
+
+#+begin_src emacs-lisp
+(map! (:map 'override
+       :v "v" #'er/expand-region
+       :v "V" #'er/contract-region))
+#+end_src
+
+In visual mode, hit =v= will expand region, hit =V= will contract region!
+
 ** Map Unmap keybinding
 Ref:
 - [[https://github.com/hlissner/doom-emacs/blob/develop/modules/lang/cc/config.el][doom config.el]]
@@ -3480,21 +3503,13 @@ it and seemed ready to slide off any moment.
 #+end_example
 
 ** Narrowing
-Ref: [[https://www.youtube.com/watch?v=4bVMXXxPiQs][Narrowing]]
+Ref: [[https://www.youtube.com/watch?v=4bVMXXxPiQs][Youtube: Narrowing]]
 
 #+begin_example
 - Select region of lines                 (visual line)
 - M-x doom/narrow-buffer-indirectly
 - Do something, e.g. evil-multiedit
-- z N                                    (M-x doom/widen-indirectly-narrowed-buffer)
-#+end_example
-
-** Expand region
-Ref: [[https://github.com/magnars/expand-region.el][magnars/expand-region.el]]
-Video: [[http://emacsrocks.com/e09.html][Emacs Rocks! Episode 09: expand-region]]
-
-#+begin_example
-M-x er/expand-region
+- M-x doom/widen-indirectly-narrowed-buffer  (Bound to: z N)
 #+end_example
 
 ** Copy and comment lines
@@ -3713,6 +3728,6 @@ Produce this:
 ** Toggle truncate lines
 
 #+begin_example
-M-x toggle-truncat-lines  (SPC t t)
+M-x toggle-truncate-lines  (SPC t t)
 #+end_example
 
