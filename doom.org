@@ -91,6 +91,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#avy][avy]]
     - [[#avy-goto-line][avy-goto-line]]
     - [[#avy-can-do-anything][Avy Can Do Anything]]
+    - [[#avy-actions-are-awesome][Avy Actions are Awesome!]]
   - [[#ivy][ivy]]
 - [[#vertico--co][Vertico & Co]]
   - [[#project-wide-search-and-replace][Project-wide Search and Replace]]
@@ -965,6 +966,7 @@ Show random quote:
     "Good days give you happiness and bad days give you experience"
     "We are what we repeatedly do; excellence, then, is not an act but a habit"
     "A wise man gets more use from his enemies than a fool from his friends"
+    "Our brains actually don't mind hard work, we just don't love the idea of it"
     "Success is how high you bounce after you hit bottom"
     "I’d rather live with a good question than a bad answer"
     "Imitation is suicide"
@@ -1841,6 +1843,12 @@ Ref: [[https://karthinks.com/software/avy-can-do-anything/][Avy can do anything]
         )
  )
 #+end_src
+
+*** Avy Actions are Awesome!
+
+Ref: [[https://ag91.github.io/blog/2022/04/20/repeat-with-me-avy-actions-are-awesome/][Repeat with me: Avy actions are awesome!]]
+
+To read the article later!
 
 ** ivy
 

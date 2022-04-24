@@ -240,6 +240,7 @@
     "Good days give you happiness and bad days give you experience"
     "We are what we repeatedly do; excellence, then, is not an act but a habit"
     "A wise man gets more use from his enemies than a fool from his friends"
+    "Our brains actually don't mind hard work, we just don't love the idea of it"
     "Success is how high you bounce after you hit bottom"
     "I’d rather live with a good question than a bad answer"
     "Imitation is suicide"
