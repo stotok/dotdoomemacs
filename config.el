@@ -1169,8 +1169,8 @@ Current pattern: %`evil-mc-pattern
 ;; see doom-emacs/modules/lang/plantuml/packages.el
 (use-package! plantuml-mode
   :init
-  (setq plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
-        org-plantuml-jar-path (format "%s/plantuml/plantuml.jar" (getenv "DOOMDIR"))
+  (setq plantuml-jar-path (format "%s/plantuml/plantuml-1.2022.4.jar" (getenv "DOOMDIR"))
+        org-plantuml-jar-path (format "%s/plantuml/plantuml-1.2022.4.jar" (getenv "DOOMDIR"))
         plantuml-indent-level 3
         ;; See: https://github.com/skuro/plantuml-mode/issues/46
         ;; we can save *PLANTUML Preview* buffer to a file with command:
