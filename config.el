@@ -107,7 +107,8 @@
 (setq utf-translate-cjk-mode nil
       locale-coding-system 'utf-8
       default-file-name-coding-system 'utf-8
-      default-buffer-file-coding-system 'utf-8)
+      default-buffer-file-coding-system 'utf-8
+      coding-system-for-write 'utf-8)
 
 (setq create-lockfiles nil)
 

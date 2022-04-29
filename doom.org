@@ -164,6 +164,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings-1][Keybindings]]
   - [[#pipenv][=pipenv=]]
+  - [[#latex-and-tikz][Latex and Tikz]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -691,7 +692,8 @@ Change the default encoding to UTF-8
 (setq utf-translate-cjk-mode nil
       locale-coding-system 'utf-8
       default-file-name-coding-system 'utf-8
-      default-buffer-file-coding-system 'utf-8)
+      default-buffer-file-coding-system 'utf-8
+      coding-system-for-write 'utf-8)
 #+end_src
 
 Do not create lockfiles for files being edited
@@ -3419,6 +3421,18 @@ M-x SPC h f map\!
 - [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
 - [[https://github.com/hlissner/doom-emacs/pull/2806][Enable pipenv-with-projectile]]
 - [[https://github.com/hlissner/doom-emacs/pull/3116][Enable projectile integration for pipenv.el]]
+
+** Latex and Tikz
+
+This is awesome [[https://latexdraw.com/][TikZBlog]].
+
+Ref:
+
+- [[https://atc1.aut.uah.es/~david/notes/2017/03/datastructures-in-tikz/][Data Structures in Tikz]]
+- [[https://www.baeldung.com/cs/latex-drawing-graphs][Draw a Graph Using LaTeX]]
+- [[https://jindongpu.wordpress.com/2013/09/25/use-tikz-package-to-draw-automata-in-latex/][Use Tikz package to draw automana in LaTeX]]
+- [[https://latexdraw.com/block-diagram-in-latex-step-by-step-tikz-tutorial/][Block Diagram in LaTeX: Step-by-Step Tikz Tutorial]]
+
 * Practice
 ** Delete n lines including current line
 *** With avy
