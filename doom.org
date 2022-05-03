@@ -161,10 +161,10 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#general-emacs][General Emacs]]
   - [[#doom-emacs][Doom Emacs]]
   - [[#org-mode][Org-mode]]
-  - [[#issues-and-fixes][Issues and Fixes]]
   - [[#keybindings-1][Keybindings]]
   - [[#pipenv][=pipenv=]]
   - [[#latex-and-tikz][Latex and Tikz]]
+  - [[#everything-else][Everything Else]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -172,9 +172,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#delete-n-block-of-chars][Delete n block of chars]]
     - [[#with-avy-1][With avy]]
     - [[#with-evil-snipe][With evil-snipe]]
-  - [[#evil-mc-1][Evil-mc]]
-    - [[#use-case-1-make-vertical-cursors][Use Case 1: Make vertical cursors]]
-    - [[#use-case-2-make-occurance-cursors][Use Case 2: Make occurance cursors]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
   - [[#copy-and-comment-lines][Copy and comment lines]]
@@ -194,8 +191,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#macros][Macros]]
     - [[#exercise-1][Exercise 1]]
     - [[#exercise-2][Exercise 2]]
-- [[#frequently-forgotten-commands][Frequently Forgotten Commands]]
-  - [[#toggle-truncate-lines][Toggle truncate lines]]
 
 * Doom Config Files
 
@@ -3396,10 +3391,6 @@ settings for performance optimization, package management, commonly used package
 
 - [[https://blog.tecosaur.com/tmio/][This Month in Org]]
 
-** Issues and Fixes
-
-- [[https://github.com/hlissner/emacs-doom-themes/issues/185][Unable to see time in modeline]]
-
 ** Keybindings
 :PROPERTIES:
 :CUSTOM_ID: ref-keybindings
@@ -3433,13 +3424,21 @@ Ref:
 - [[https://jindongpu.wordpress.com/2013/09/25/use-tikz-package-to-draw-automata-in-latex/][Use Tikz package to draw automana in LaTeX]]
 - [[https://latexdraw.com/block-diagram-in-latex-step-by-step-tikz-tutorial/][Block Diagram in LaTeX: Step-by-Step Tikz Tutorial]]
 
+** Everything Else
+
+Ref:
+
+- [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unux Tools][Hints for Writing Unix Tools]]
+
 * Practice
 ** Delete n lines including current line
+
 *** With avy
 #+begin_example
 d        (delete)
 g s l    (avy-goto-line)
 #+end_example
+
 *** With evilmotion
 #+begin_example
 d        (delete)
@@ -3447,6 +3446,7 @@ d        (delete)
 #+end_example
 
 ** Delete n block of chars
+
 *** With avy
 #+begin_example
 d            (delete)
@@ -3454,40 +3454,11 @@ g s s        (evil-avy-goto-char-2)
     or
 g s <SPACE>  (evil-avy-goto-char-timer)
 #+end_example
+
 *** With evil-snipe
 #+begin_example
 d            (delete)
 s 2chars     (evil snipe)
-#+end_example
-
-** Evil-mc
-*** Use Case 1: Make vertical cursors
-Functions to use:
-#+begin_example
-evil-mc-make-cursor-here
-evil-mc-make-cursor-move-next-line (g z j)
-evil-mc-make-cursor-move-prev-line (g z k)
-#+end_example
-
-Example (do it in c-mode major mode). Evil-mc does not fully work in org-mode.
-#+begin_src c :tangle no
-#define ONE              1
-#define TWO              2
-#define THREE            3
-
-#define MULTI_ONE       TWO * ONE
-#define MULTI_TWO       TWO * TWO
-#define MULTI_THREE     TWO * ONE
-#define MULTI_FOUR      TWO * THREE
-#+end_src
-
-*** Use Case 2: Make occurance cursors
-Functions to use:
-#+begin_example
-- Select a region   (visual selection)
-- g z d             (find occurance downwards)
-or
-- g z m             (find all occurance)
 #+end_example
 
 ** Evil-multiedit
@@ -3540,9 +3511,10 @@ M-x evilnc-copy-and-comment-lines
 #+end_example
 
 ** Search with ripgrep
+
 *** Live project search from the project root using ripgrep
 #+begin_example
-M-x +ivy/project-search  ( SPC / ) ( SPC s p )
+M-x +default/search-project  ( SPC / ) ( SPC s p )
 #+end_example
 
 *** Grep for a string in the current directory using ripgrep
@@ -3556,11 +3528,13 @@ M-x counsel-projectile-rg
 #+end_example
 
 ** Break a long line into shorther lines
+
 #+begin_example
 M-x ruler-mode        (show ruler)
 M-x set-fill-column   (set max chars per line used to 'fill' command)
 M-x fill-paragraph    (break a long line into shorter lines)
 #+end_example
+
 ** Calculator
 
 Reading:
@@ -3744,12 +3718,3 @@ Produce this:
 9   http9mailbox
 10  http10mailbox
 #+end_example
-
-* Frequently Forgotten Commands
-
-** Toggle truncate lines
-
-#+begin_example
-M-x toggle-truncate-lines  (SPC t t)
-#+end_example
-
