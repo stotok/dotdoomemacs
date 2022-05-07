@@ -3429,6 +3429,7 @@ Ref:
 Ref:
 
 - [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unux Tools][Hints for Writing Unix Tools]]
+- [[https://www.youtube.com/watch?v=ZWQPBoxbqw4][Youtube: Tips and Secrets to Shell Efficienty]]
 
 * Practice
 ** Delete n lines including current line
