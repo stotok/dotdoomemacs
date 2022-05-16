@@ -918,9 +918,10 @@ Ref: [[https://umarahmad.xyz/blog/quick-scratch-buffers/][Quick persistent scrat
 
 Zzamboni made a super simple set of Doom-Emacs custom splash screens by combining
 [[http://www.thedreamcastjunkyard.co.uk/2018/03/cross-platform-online-multiplayer-added.html][a Doom logo]] with the word "Emacs" rendered in the [[https://fontmeme.com/doom-font/][Doom Font]]. You can see them
-at https://gitlab.com/zzamboni/dot-doom/-/tree/master/splash (you can also see
-one of them at the top of this file). I configure it to be used instead of the
-default splash screen.
+at https://gitlab.com/zzamboni/dot-doom/-/tree/master/splash.
+
+tachanka61 also makes another set of images, refer to: [[https://github.com/tachanka61/graphics][tachanka61/graphics]].
+
 
 If you want to choose at random among a few different splash images, you can
 list them in =alternatives=.
@@ -2460,6 +2461,10 @@ not from magit, and not included in doom yet.
   (global-blamer-mode 1))
 #+end_src
 
+References:
+- [[https://www.lvguowei.me/post/magit-rebase/][Guowei Lv: Magit Tutorial - Rebase (Part I)]]
+- [[https://www.lvguowei.me/post/magit-rebase-2/][Guowei Lv: Magit Tutorial - Rebase (Part II)]]
+
 * Project Management
 
 ** project.el
@@ -3412,6 +3417,8 @@ M-x SPC h f map\!
 - [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
 - [[https://github.com/hlissner/doom-emacs/pull/2806][Enable pipenv-with-projectile]]
 - [[https://github.com/hlissner/doom-emacs/pull/3116][Enable projectile integration for pipenv.el]]
+- [[https://levelup.gitconnected.com/install-multiple-python-versions-on-windows-10-15a8685ec99d][Install Multiple Python Versions on Windows 10]]
+- [[https://levelup.gitconnected.com/how-to-install-and-manage-multiple-python-versions-on-windows-10-c90098d7ba5a][How to install and Manage Multiple Python Versions on Windows 10]]
 
 ** Latex and Tikz
 
