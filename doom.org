@@ -86,6 +86,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#evil-escape][Evil Escape]]
   - [[#evil-motion-trainer][Evil Motion Trainer]]
   - [[#evil-visualstar][Evil Visualstar]]
+  - [[#evil-exchange][Evil Exchange]]
   - [[#reference][Reference]]
 - [[#abo-abo][abo-abo]]
   - [[#avy][avy]]
@@ -1752,6 +1753,13 @@ See: [[https://emacs.stackexchange.com/questions/52411/evil-star-visualstar-with
   (evil-define-key 'normal evil-motion-state-map (kbd "*") 'my/star-keep-position)
   (evil-define-key 'visual evil-visualstar-mode-map (kbd "*") 'my/visualstar-keep-position))
 #+end_src
+
+** Evil Exchange
+
+Easy text swap operator, see [[https://github.com/Dewdrops/evil-exchange][evil-exchange]].
+
+First, in visual mode, select text then =gx=. Go to another text to swap with, in visual mode,
+select text then =gx= again to swap with the previus text.
 
 ** Reference
 
