@@ -747,6 +747,11 @@ Other default preferences
  )
 #+end_src
 
+Let's use =hippie-expand= instead of =dabbrev= as default. Ref: [[https://www.masteringemacs.org/article/text-expansion-hippie-expand][Text Expansion with Hippie Expand]]:
+#+begin_src emacs-lisp
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+#+end_src
+
 ** Mac Modifiers
 
 Change Mac modifiers to my liking.

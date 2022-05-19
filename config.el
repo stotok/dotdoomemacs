@@ -149,6 +149,8 @@
  dabbrev-case-replace nil              ; make sure case is preserved when expanding
  )
 
+(global-set-key [remap dabbrev-expand] 'hippie-expand)
+
 (cond (IS-MAC
  ;; 1) Mac build-in Keyboard & Mouse preference:
  ;;    - Swapt [CapsLock] and [Control]
