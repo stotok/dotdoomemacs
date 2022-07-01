@@ -513,6 +513,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;taskrunner          ; taskrunner for all your projects
  ;;terraform           ; infrastructure as code
  ;;tmux                ; an API for interacting with tmux
+ tree-sitter           ; syntax and parsing, sitting in a tree...
  ;;upload              ; map local to remote projects via ssh/ftp
 
  :os
@@ -522,7 +523,7 @@ This code is written to the =init.el= to select which modules to load.
  :lang
  ;;agda                ; types of types of types of types...
  ;;beancount           ; mind the GAAP
- (cc +lsp)             ; C/C++/Obj-C madness
+ (cc +lsp +tree-sitter)          ; C/C++/Obj-C madness
  ;;clojure             ; java with a lisp
  common-lisp           ; if you've seen one lisp, you've seen them all
  ;;coq                 ; proofs-as-programs
@@ -544,7 +545,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;(haskell +dante)    ; a language that's lazier than I am
  ;;hy                  ; readability of scheme w/ speed of python
  ;;idris               ; a language you can depend on
- json                  ; At least it ain't XML
+ (json +tree-sitter)                    ; At least it ain't XML
  ;;(java +meghanada)   ; the poster child for carpal tunnel syndrome
  ;;javascript          ; all(hope(abandon(ye(who(enter(here))))))
  ;;julia               ; a better, faster MATLAB
@@ -572,6 +573,7 @@ This code is written to the =init.el= to select which modules to load.
   +lsp                 ; you gonna need this
   +pyright             ; use pyright lsp server instead of mspyls or pyls
   ;;+pyenv               ; python virtual environment support via pyenv
+  +tree-sitter
   )
  qt                    ; the 'cutest' gui framework ever (qml-mode, qt-pro-mode)
  ;;racket                ; a DSL for DSLs
@@ -1462,14 +1464,25 @@ and braces.
 
 ** Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs
 
+Note on 1-July-2022: This section is no longer needed. Doom Emacs has module tree-sitter
+in =tools/tree-sitter=.
+
+Ref:
+- [[https://github.com/doomemacs/doomemacs/tree/master/modules/tools/tree-sitter][Doom Emacs: tools/tree-sitter]]
+- [[https://abdelhakbougouffa.pro/posts/config/][Abdelhak's Blog: Doom Emacs Configuration]]
+- [[https://github.com/doomemacs/doomemacs/tree/master/modules/tools/tree-sitter][Parser for these languages]]
+- [[https://emacs-tree-sitter.github.io/syntax-highlighting][These languages]]
+
+Section below is now obsolete.
+
 Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! tree-sitter)
 (package! tree-sitter-langs)
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! tree-sitter
   :config
   (require 'tree-sitter-langs)

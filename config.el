@@ -552,12 +552,6 @@
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 
-(use-package! tree-sitter
-  :config
-  (require 'tree-sitter-langs)
-  (global-tree-sitter-mode)
-  (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode))
-
 (when (featurep! :editor evil)
   (setq-default
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.

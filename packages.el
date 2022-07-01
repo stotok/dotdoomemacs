@@ -75,9 +75,6 @@
 ;; https://github.com/jcpetkovich/shrink-whitespace.el
 (package! shrink-whitespace)
 
-(package! tree-sitter)
-(package! tree-sitter-langs)
-
 (package! evil-motion-trainer
   :recipe (:host github
            :repo "martinbaillie/evil-motion-trainer"

@@ -123,6 +123,7 @@
  ;;taskrunner          ; taskrunner for all your projects
  ;;terraform           ; infrastructure as code
  ;;tmux                ; an API for interacting with tmux
+ tree-sitter           ; syntax and parsing, sitting in a tree...
  ;;upload              ; map local to remote projects via ssh/ftp
 
  :os
@@ -132,7 +133,7 @@
  :lang
  ;;agda                ; types of types of types of types...
  ;;beancount           ; mind the GAAP
- (cc +lsp)             ; C/C++/Obj-C madness
+ (cc +lsp +tree-sitter)          ; C/C++/Obj-C madness
  ;;clojure             ; java with a lisp
  common-lisp           ; if you've seen one lisp, you've seen them all
  ;;coq                 ; proofs-as-programs
@@ -154,7 +155,7 @@
  ;;(haskell +dante)    ; a language that's lazier than I am
  ;;hy                  ; readability of scheme w/ speed of python
  ;;idris               ; a language you can depend on
- json                  ; At least it ain't XML
+ (json +tree-sitter)                    ; At least it ain't XML
  ;;(java +meghanada)   ; the poster child for carpal tunnel syndrome
  ;;javascript          ; all(hope(abandon(ye(who(enter(here))))))
  ;;julia               ; a better, faster MATLAB
@@ -182,6 +183,7 @@
   +lsp                 ; you gonna need this
   +pyright             ; use pyright lsp server instead of mspyls or pyls
   ;;+pyenv               ; python virtual environment support via pyenv
+  +tree-sitter
   )
  qt                    ; the 'cutest' gui framework ever (qml-mode, qt-pro-mode)
  ;;racket                ; a DSL for DSLs
