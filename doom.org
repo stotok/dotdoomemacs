@@ -2219,6 +2219,7 @@ To turn it on by default, for example in Message mode, use:
 Ref: [[https://github.com/emacs-mirror/emacs/blob/master/lisp/textmodes/table.el][table.el by Takaaki Ota]].
 Ref: [[https://emacs.stackexchange.com/questions/38135/wrap-cell-content-in-an-org-mode-table][2 Modes: org-table and table.el]].
 Ref: [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Text-Based-Tables.html][Editing Text-based Tables]].
+Ref: [[https://emacsnotes.wordpress.com/2022/06/20/how-to-create-a-table-with-multi-paragraph-content-spanned-cells-using-emacs-org-mode/][How to create a Table with multi-paragraph content & spanned cells using Emacs Org Mode]]
 
 * Coding
 
@@ -3581,6 +3582,7 @@ Reading:
 - [[https://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
 - [[https://www.emacswiki.org/emacs/Calc_Tutorials_by_Andrew_Hyatt][Calc Tutorials by Andrew Hyatt]]
 - [[https://pagefault.se/post/emacs-can-do-that/][Convert hours, mins and seconds]]
+- [[https://github.com/Jesse-Millwood/calc-prog-utils][Calc Prog: a small extension to the Emacs Calc package]]
 
 *** Keybinding
 
