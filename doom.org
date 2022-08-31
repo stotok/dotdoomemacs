@@ -1208,8 +1208,6 @@ I like relative line number so vertical jumping is easier.
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;;(setq display-line-numbers-type 'relative)  ; relative line number
 (setq display-line-numbers-type t)      ; absolute line number
-;; But I don't want to see line number in og mode
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 #+end_src
 
 Doom Emacs uses 'SPC t' for "toggle" commands, so I choose 'SPC t t' for
@@ -3062,6 +3060,19 @@ Ref:
 ;;   ;; end of using digits to select company-mode candidates
 ;;   ;;
  )
+#+end_src
+
+=company= is great, but it can get in the way when using on =org-mode= buffers. Hence,
+disable:
+
+#+begin_src emacs-lisp
+(after! org
+  ;; But I don't want to see line number in og mode
+  (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+  ;; disable auto-complete in org-mode buffers
+  (remove-hook 'org-mode-hook #'auto-fill-mode)
+  ;; disable company too
+  (setq company-global-modes '(not org-mode)))
 #+end_src
 
 * Spell Checker

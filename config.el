@@ -399,8 +399,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 ;;(setq display-line-numbers-type 'relative)  ; relative line number
 (setq display-line-numbers-type t)      ; absolute line number
-;; But I don't want to see line number in og mode
-(add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
 
 (map! :leader
       :desc "Toggle truncate lines"
@@ -1400,6 +1398,14 @@ Current pattern: %`evil-mc-pattern
 ;;   ;; end of using digits to select company-mode candidates
 ;;   ;;
  )
+
+(after! org
+  ;; But I don't want to see line number in og mode
+  (add-hook! 'org-mode-hook #'doom-disable-line-numbers-h)
+  ;; disable auto-complete in org-mode buffers
+  (remove-hook 'org-mode-hook #'auto-fill-mode)
+  ;; disable company too
+  (setq company-global-modes '(not org-mode)))
 
 (setq singapore-holidays '((when (= displayed-year 2021)
                              (append
