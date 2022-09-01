@@ -152,6 +152,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#insert-date-at-cursor][Insert date at cursor]]
   - [[#show-ascii-table][Show ascii table]]
   - [[#arrayify][Arrayify]]
+  - [[#dwim-shell-command][dwim-shell-command]]
 - [[#how-to][How To]]
   - [[#directory-editor-with-dired][Directory Editor with Dired]]
   - [[#expand-region][Expand region]]
@@ -3319,6 +3320,39 @@ to transform to:
           (split-string (buffer-substring start end)) ", ")))
     (delete-region start end)
     (insert insertion)))
+#+end_src
+
+** dwim-shell-command
+
+Ref: [[https://github.com/xenodium/dwim-shell-command][github.com/xenodium/dwim-shell-command]]
+
+Activate manually by: =M-x dwim-shell-command=.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! dwim-shell-command
+  :recipe (:host github
+           :repo "xenodium/dwim-shell-command"))
+#+end_src
+
+Let's doe some configuration
+#+begin_src emacs-lisp
+(use-package! dwim-shell-command
+  :init
+  ;; code here will run immeidately
+  :config
+  ;; code here will run after the package is loaded
+  (defun ttk/dwim-shell-command-convert-svg-to-png ()
+    "Convert all marked svg files to png format"
+    (interactive)
+    (dwim-shell-command-on-marked-files
+     "Convert to png"
+     "rsvg-convert -b white <<f>> -f png -o <<fne>>.png"
+     :utils "rsvg-convert"))
+  :bind (([remap shell-command] . dwim-shell-command)
+         :map dired-mode-map
+         ([remap dired-do-async-shell-command] . dwim-shell-command)
+         ([remap dired-do-shell-command] . dwim-shell-command)
+         ([remap dired-smart-shell-command] . dwim-shell-command)))
 #+end_src
 
 * How To

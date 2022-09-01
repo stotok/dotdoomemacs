@@ -1512,6 +1512,24 @@ Current pattern: %`evil-mc-pattern
     (delete-region start end)
     (insert insertion)))
 
+(use-package! dwim-shell-command
+  :init
+  ;; code here will run immeidately
+  :config
+  ;; code here will run after the package is loaded
+  (defun ttk/dwim-shell-command-convert-svg-to-png ()
+    "Convert all marked svg files to png format"
+    (interactive)
+    (dwim-shell-command-on-marked-files
+     "Convert to png"
+     "rsvg-convert -b white <<f>> -f png -o <<fne>>.png"
+     :utils "rsvg-convert"))
+  :bind (([remap shell-command] . dwim-shell-command)
+         :map dired-mode-map
+         ([remap dired-do-async-shell-command] . dwim-shell-command)
+         ([remap dired-do-shell-command] . dwim-shell-command)
+         ([remap dired-smart-shell-command] . dwim-shell-command)))
+
 (map! (:map 'override
        :v "v" #'er/expand-region
        :v "V" #'er/contract-region))

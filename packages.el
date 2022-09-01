@@ -117,3 +117,7 @@
 (package! bookmark-in-project)
 
 (package! graphviz-dot-mode)
+
+(package! dwim-shell-command
+  :recipe (:host github
+           :repo "xenodium/dwim-shell-command"))
