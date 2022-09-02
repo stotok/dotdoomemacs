@@ -748,6 +748,16 @@ Other default preferences
  ;; always just just left-to-right text
  bidi-display-reordering nil           ; makes emacs a bit faster for very long lines
  dabbrev-case-replace nil              ; make sure case is preserved when expanding
+ ;;
+ ;; This section is related to window
+ ;; For more info: https://www.masteringemacs.org/article/demystifying-emacs-window-manager
+ ;; #1: If wwitching buffers manually with C-x b fails with error, so I want it to open somewhere
+ switch-to-buffer-in-dedicated-window 'pop
+ ;; #2: Treat manual buffer switching the same as programmatic switching
+ switch-to-buffer-obey-display-actions t ; requires emacs 27+
+ ;; Controlling Buffer and Window Display
+ ;; If you want to control where a buffer or window must appear, you must customize
+ ;; display-buffer-alist
  )
 #+end_src
 
