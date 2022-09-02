@@ -404,6 +404,17 @@
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
 
+(use-package! pulsing-cursor
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  (setq pulsing-cursor-delay 1.0        ; 1sec
+        pulsing-cursor-interval 1.0     ; 1sec
+        pulsing-cursor-blinks 10        ; how many blinks before become solid
+   )
+  (pulsing-cursor-mode +1))
+
 (when (featurep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
              (hl-line-mode (if rainbow-mode -1 +1))))

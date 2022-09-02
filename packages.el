@@ -70,6 +70,10 @@
 (package! github-review :disable t)
 (package! eglot :disable t)
 
+(package! pulsing-cursor
+  :recipe (:host github
+           :repo "jasonjckn/pulsing-cursor"))
+
 (package! rainbow-delimiters)
 
 ;; https://github.com/jcpetkovich/shrink-whitespace.el

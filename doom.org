@@ -59,6 +59,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#fonts][Fonts]]
   - [[#themes][Themes]]
   - [[#line-settings][Line settings]]
+  - [[#pulsing-cursor][Pulsing Cursor]]
   - [[#rainbow-mode][Rainbow mode]]
     - [[#tools-rgb][=:tools rgb=]]
     - [[#manual-package-installation][Manual package installation]]
@@ -1218,6 +1219,30 @@ toggle-truncate-lines.
 (map! :leader
       :desc "Toggle truncate lines"
       "t t" #'toggle-truncate-lines)
+#+end_src
+
+** Pulsing Cursor
+
+Ref: [[https://github.com/jasonjckn/pulsing-cursor][github.com/jasonjckn/pulsing-cursor]]
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! pulsing-cursor
+  :recipe (:host github
+           :repo "jasonjckn/pulsing-cursor"))
+#+end_src
+
+Configuration:
+#+begin_src emacs-lisp
+(use-package! pulsing-cursor
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  (setq pulsing-cursor-delay 1.0        ; 1sec
+        pulsing-cursor-interval 1.0     ; 1sec
+        pulsing-cursor-blinks 10        ; how many blinks before become solid
+   )
+  (pulsing-cursor-mode +1))
 #+end_src
 
 ** Rainbow mode
