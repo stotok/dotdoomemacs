@@ -423,7 +423,9 @@
         pulsing-cursor-interval 1.0     ; 1sec
         pulsing-cursor-blinks 10        ; how many blinks before become solid
    )
-  (pulsing-cursor-mode +1))
+ ;;(pulsing-cursor-mode +1)               ; enable on start
+ (pulsing-cursor-mode -1)               ; disable on start
+  )
 
 (when (featurep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
@@ -1550,6 +1552,9 @@ Current pattern: %`evil-mc-pattern
          ([remap dired-do-async-shell-command] . dwim-shell-command)
          ([remap dired-do-shell-command] . dwim-shell-command)
          ([remap dired-smart-shell-command] . dwim-shell-command)))
+
+;; For emacs-28.1 and above
+(setq dired-kill-when-opening-new-dired-buffer t)
 
 (map! (:map 'override
        :v "v" #'er/expand-region

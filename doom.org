@@ -1252,7 +1252,9 @@ Configuration:
         pulsing-cursor-interval 1.0     ; 1sec
         pulsing-cursor-blinks 10        ; how many blinks before become solid
    )
-  (pulsing-cursor-mode +1))
+ ;;(pulsing-cursor-mode +1)               ; enable on start
+ (pulsing-cursor-mode -1)               ; disable on start
+  )
 #+end_src
 
 ** Rainbow mode
@@ -3394,7 +3396,17 @@ Let's doe some configuration
 
 ** Directory Editor with Dired
 
-Ref:
+Tired of dired littering your emacs with dozens of buffers as you
+navigate through a directory tree? This solves it:
+
+#+begin_src emacs-lisp
+;; For emacs-28.1 and above
+(setq dired-kill-when-opening-new-dired-buffer t)
+#+end_src
+
+For other =dired= options, refer to [[https://www.masteringemacs.org/article/whats-new-in-emacs-28-1][New in Emacs 28.1]].
+
+Other Ref:
 
 - [[https://www.youtube.com/watch?v=oZSmlAAbmYs][Youtube: Emacs Doom E03 - A short intro to Dired]]
 - [[https://www.youtube.com/watch?v=ing9Y53RICs][Youtube: The Nuts and Bolds of Emacs DIRED]]
