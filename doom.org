@@ -562,7 +562,7 @@ This code is written to the =init.el= to select which modules to load.
  ;;ocaml               ; an objective camel
  (org                  ; organize your plain life in plain text
   +present             ; presentation, include reveal.js
-  +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+  ;+roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
   ;+pretty              ; Pretty unicode symbols for bullets and priorities. Keep
                        ; in mind: this can be expensive. If org becomes too slow,
@@ -1200,7 +1200,11 @@ I customize existing doom-themes to my liking:
   (interactive)
   (set-face-background 'hl-line nil)
   (set-face-foreground 'hl-line nil)
-  (set-face-underline 'hl-line t))
+  (set-face-underline 'hl-line t)
+  ;; change cursor's color
+  (setq evil-normal-state-cursor '(box "tomato")
+        evil-insert-state-cursor '(bar "medium sea green")
+        evil-visual-state-cursor '(hollow "orange")))
 ;;(ttk/hl-line-underline-on)
 #+end_src
 
@@ -2071,11 +2075,13 @@ And enable it automatically on org-mode start-up:
 
 ** Org Roam
 
+[24-sep-2022] Seldom use org-roam, so disable first.
+
 *** Configuration
 
 Yes, only for Org Roam v2.
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (setq org-roam-directory "~/project/org-roam"
       +org-roam-open-buffer-on-find-file nil)
 #+end_src
@@ -2084,7 +2090,7 @@ Yes, only for Org Roam v2.
 
 Ref: [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]
 
-#+begin_src emacs-lisp :tangle packages.el
+#+begin_src emacs-lisp :tangle no
 (package! websocket)
 (package! org-roam-ui
   :recipe (:host github
@@ -2092,7 +2098,7 @@ Ref: [[https://github.com/org-roam/org-roam-ui][org-roam-ui]]
            :files ("*.el" "out")))
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! websocket
     :after org-roam)
 

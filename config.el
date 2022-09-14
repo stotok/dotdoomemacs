@@ -402,7 +402,11 @@
   (interactive)
   (set-face-background 'hl-line nil)
   (set-face-foreground 'hl-line nil)
-  (set-face-underline 'hl-line t))
+  (set-face-underline 'hl-line t)
+  ;; change cursor's color
+  (setq evil-normal-state-cursor '(box "tomato")
+        evil-insert-state-cursor '(bar "medium sea green")
+        evil-visual-state-cursor '(hollow "orange")))
 ;;(ttk/hl-line-underline-on)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -751,25 +755,6 @@ Current pattern: %`evil-mc-pattern
         org-appear-autosubmarkers t
         org-appear-autoentities t
         org-appear-autokeywords t))
-
-(setq org-roam-directory "~/project/org-roam"
-      +org-roam-open-buffer-on-find-file nil)
-
-(use-package! websocket
-    :after org-roam)
-
-(use-package! org-roam-ui
-    :after org-roam ;; or :after org
-    ;; :hook
-;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
-;;         a hookable mode anymore, you're advised to pick something yourself
-;;         if you don't care about startup time, use
-    ;; :hook (after-init . org-roam-ui-mode)
-    :config
-    (setq org-roam-ui-sync-theme t
-          org-roam-ui-follow t
-          org-roam-ui-update-on-save t
-          org-roam-ui-open-on-start t))
 
 (use-package! ox-awesomecv
   :after org)

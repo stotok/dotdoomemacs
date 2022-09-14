@@ -170,7 +170,7 @@
  ;;ocaml               ; an objective camel
  (org                  ; organize your plain life in plain text
   +present             ; presentation, include reveal.js
-  +roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
+  ;+roam2               ; Need sqlite3: $ sudo apt install sqlite3 libsqlite3-dev
                        ;               $ brew install sqlite3
   ;+pretty              ; Pretty unicode symbols for bullets and priorities. Keep
                        ; in mind: this can be expensive. If org becomes too slow,
