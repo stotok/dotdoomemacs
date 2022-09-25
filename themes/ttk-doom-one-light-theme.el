@@ -90,8 +90,8 @@ Can be an integer to determine the exact padding."
    ;; error, as they are used in the base theme defined in doom-themes-base.
    (highlight      blue)
    (vertical-bar   (doom-darken base2 0.1))
-   (selection      dark-blue)
-   ;; (selection      base2)           ; totok to make it not too intrusive in nav-flash
+   ;; (selection      dark-blue)
+   (selection      base2)           ; totok to make it not too intrusive in nav-flash
    (builtin        magenta)
    (comments       (if doom-one-light-brighter-comments cyan base4))
    (doc-comments   (doom-darken comments 0.15))
@@ -191,7 +191,7 @@ Can be an integer to determine the exact padding."
    (selectrum-current-candidate :background base1)
    ;;;; vertico
    ;; (vertico-current :background base1)
-   (vertico-current :background base1 :underline t)    ; totok to make it more obvious
+   (vertico-current :background bg-alt :underline t)    ; totok to make it more obvious with underline
    ;;;; solaire-mode
    (solaire-mode-line-face
     :inherit 'mode-line
