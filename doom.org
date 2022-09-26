@@ -126,7 +126,9 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#customization][Customization]]
     - [[#keeping-projectiles-cache-tidy][Keeping Projectile's Cache Tidy]]
   - [[#bookmark-in-project][Bookmark in Project]]
-- [[#tramp][Tramp]]
+- [[#remote-file-editing][Remote File Editing]]
+  - [[#using-local-emacs-from-a-remote-host][Using Local Emacs from a Remote Host]]
+  - [[#tramp][Tramp]]
 - [[#plantuml][Plantuml]]
   - [[#need-dot-utility-from-graphviz-package][Need =dot= utility from =graphviz= package]]
   - [[#plantuml-mode][=plantuml-mode=]]
@@ -2692,7 +2694,14 @@ Let's do some configuration.
 
 Note: To create a bookmark, do as usual with doom way =SPC Enter=.
 
-* Tramp
+* Remote File Editing
+** Using Local Emacs from a Remote Host
+
+Ref: [[https://irreal.org/blog/?p=9457][irreal.org/blog/?p=9457]] and [[https://mina86.com/2021/emacs-remote/][Emacs Remote]].
+
+<TODO>
+
+** Tramp
 
 Ref: [[https://helpdeskheadesk.net/help-desk-head-desk/2021-05-19/][A Few TRAMP Tricks]]
 
