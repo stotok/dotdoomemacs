@@ -51,7 +51,7 @@
  modeline              ; snazzy, Atom-inspired modeline, plus API
  nav-flash             ; blink cursor line after big motions
  ;;neotree             ; a project drawer, like NERDTree for vim
- ;;ophints             ; highlight the region an operation acts on (previously evil-goggles)
+ ophints               ; highlight the region an operation acts on (previously evil-goggles)
  (popup
   ;;+all               ; ensure all temporary/special buffers (name started with space or asterix) treated as popups
   +defaults)           ; enable reasonable default popup rues for a variaty of buffers
