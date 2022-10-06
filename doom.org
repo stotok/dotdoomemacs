@@ -412,7 +412,9 @@ saved by Emacs in =custom.el=, but this is OK as they don't conflict with anythi
 ** Modules
 
 This code is written to the =init.el= to select which modules to load.
-Reference: [[https://github.com/doomemacs/doomemacs/blob/master/templates/init.example.el][Doom Emacs init.example.el]].
+Reference:
+- Online reference: [[https://github.com/doomemacs/doomemacs/blob/master/templates/init.example.el][Doom emacs blob init.example.el]].
+- Offline reference: "SPC f e example RET"
 
 #+begin_src emacs-lisp :tangle init.el
 (doom!
