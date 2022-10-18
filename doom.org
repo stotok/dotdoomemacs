@@ -630,6 +630,7 @@ Reference:
 (package! conda :disable t)
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
+(package! ocamlformat :disable t)
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
@@ -637,6 +638,7 @@ Reference:
 (package! magit-gitflow :disable t)
 (package! magit-todos :disable t)
 (package! github-review :disable t)
+(package! github-browse-file :disable t)
 (package! eglot :disable t)
 #+end_src
 
@@ -1227,8 +1229,8 @@ I like relative line number so vertical jumping is easier.
 #+begin_src emacs-lisp
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-;;(setq display-line-numbers-type 'relative)  ; relative line number
-(setq display-line-numbers-type t)      ; absolute line number
+(setq display-line-numbers-type 'relative)  ; relative line number
+;; (setq display-line-numbers-type t)      ; absolute line number
 #+end_src
 
 Doom Emacs uses 'SPC t' for "toggle" commands, so I choose 'SPC t t' for
@@ -2989,6 +2991,7 @@ File watchers: [[https://emacs-lsp.github.io/lsp-mode/page/file-watchers/][see t
  ;; VUC directories
  (dolist (dir '(
             "[/\\\\]\\.repo\\'"
+            "[/\\\\]\\.venv\\'"
             "[/\\\\]\\tests\\'"
             "[/\\\\]\\err\\'"
             "[/\\\\]\\lst\\'"

@@ -61,6 +61,7 @@
 (package! conda :disable t)
 (package! anaconda-mode :disable t)
 (package! company-anaconda :disable t)
+(package! ocamlformat :disable t)
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
@@ -68,6 +69,7 @@
 (package! magit-gitflow :disable t)
 (package! magit-todos :disable t)
 (package! github-review :disable t)
+(package! github-browse-file :disable t)
 (package! eglot :disable t)
 
 (package! pulsing-cursor
