@@ -372,7 +372,7 @@
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
-    (setq doom-theme 'ttk-doom-one-light))
+    (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
    (IS-COVID
