@@ -376,7 +376,7 @@
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
    (IS-COVID
-    (setq doom-theme 'ttk-doom-one-light))
+    (setq doom-theme 'ttk-doom-solarized-light))
    (IS-DELTA
     (setq doom-theme 'ttk-doom-one-light))
    (t
