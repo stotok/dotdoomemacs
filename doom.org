@@ -972,7 +972,7 @@ Show random quote:
 ;; if you don't need widget function, you can remove-hook it
 ;; see +doom-dashboard-functions at modules/ui/doom-dashboard/config.el
 ;;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
-;;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 ;; (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
@@ -1956,6 +1956,7 @@ Other Refs:
 - [[https://emacsredux.com/blog/2021/04/19/configuring-minibuffer-completion-in-projectile/][Emacs Redux: Configuring Minibuffer Completion in Projectile]]
 - [[https://hungyi.net/posts/doom-emacs-search-replace-project/][Hungyi: How to Do a Project-wide Search and Replace in Doom Emacs]]
 - [[https://kristofferbalintona.me/posts/vertico-marginalia-all-the-icons-completion-and-orderless/][Kristoffer Balintona: Vertico, Marginalia, All-the-icons-completion and Orderless]]
+- [[https://karthinks.com/software/fifteen-ways-to-use-embark/][karthinks: Fifteen Ways to Use Embark]]
 
 ** Project-wide Search and Replace
 

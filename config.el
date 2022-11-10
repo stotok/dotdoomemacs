@@ -234,7 +234,7 @@
 ;; if you don't need widget function, you can remove-hook it
 ;; see +doom-dashboard-functions at modules/ui/doom-dashboard/config.el
 ;;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
-;;(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
 (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-loaded)
 ;; (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
