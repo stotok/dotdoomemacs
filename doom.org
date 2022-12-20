@@ -3582,6 +3582,7 @@ Ref:
 
 - [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unux Tools]]
 - [[https://www.youtube.com/watch?v=ZWQPBoxbqw4][Youtube: Tips and Secrets to Shell Efficienty]]
+- [[https://skybert.net/mac-os-x/macos-as-unix-workstation-2022/][macOS as Unix Workstation 2022]]
 
 * Practice
 ** Delete n lines including current line
