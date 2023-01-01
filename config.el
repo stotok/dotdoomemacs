@@ -245,6 +245,7 @@
     "It takes an average person 7 minutes to fall asleep"
     "If you can't explain it simply, you don't understand it well enough"
     "The world is changed by examples, not by opinions"
+    "An excessive knowledge of Marxism is a sign of a misspent youth"
     "Give a man a fish, you feed him for a day. Teach a man to fish, you feed him for a lifetime"
     "The tools we use have a profound influence on our thinking habits, and, on our thinking abilities"
     "When you talk, you spray around 2.5 microscopic saliva droplets per word"
@@ -372,7 +373,7 @@
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
-    (setq doom-theme 'ttk-doom-solarized-light))
+    (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
    (IS-COVID
