@@ -367,6 +367,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 ;; Well, macros to check system-name.
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
+(defconst IS-IGL7568W (string-prefix-p "IGL7568W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
@@ -379,6 +380,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: sidestep"))
  (IS-IGL6301W
   (message "hostname: IGL6301W"))
+ (IS-IGL7568W
+  (message "hostname: IGL7568W"))
  (IS-IGD1943U
   (message "hostname: igd1943u"))
  (IS-IGD0464U

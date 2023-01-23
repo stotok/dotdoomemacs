@@ -60,6 +60,7 @@
 ;; Well, macros to check system-name.
 (defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
 (defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
+(defconst IS-IGL7568W (string-prefix-p "IGL7568W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
@@ -72,6 +73,8 @@
   (message "hostname: sidestep"))
  (IS-IGL6301W
   (message "hostname: IGL6301W"))
+ (IS-IGL7568W
+  (message "hostname: IGL7568W"))
  (IS-IGD1943U
   (message "hostname: igd1943u"))
  (IS-IGD0464U
@@ -353,6 +356,10 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-IGL7568W
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (IS-LOGE
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
@@ -366,7 +373,7 @@
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
         doom-big-font            (font-spec :family "monospace" :size 18))))
 
-(when (featurep! :ui doom)
+(when (modulep! :ui doom)
   (setq doom-themes-enable-bold t      ; if nil, bold i universally disabled
       doom-themes-enable-italic t      ; if nil, italics is universally disabled
   )
@@ -375,6 +382,8 @@
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-IGL7568W
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
@@ -434,7 +443,7 @@
  (pulsing-cursor-mode -1)               ; disable on start
   )
 
-(when (featurep! :tools rgb)
+(when (modulep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
              (hl-line-mode (if rainbow-mode -1 +1))))
 
@@ -580,7 +589,7 @@
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 
-(when (featurep! :editor evil)
+(when (modulep! :editor evil)
   (setq-default
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
     +evil-want-o/O-to-continue-comments nil
@@ -630,7 +639,7 @@ Current pattern: %`evil-mc-pattern
   ("<escape>" #'evil-mc-resume-cursors "quit" :color blue))
 
 (map!
- (:when (featurep! :editor multiple-cursors)
+ (:when (modulep! :editor multiple-cursors)
   :prefix "g"
   :nv "z" #'my-mc-hydra/body))
 
@@ -850,7 +859,7 @@ Current pattern: %`evil-mc-pattern
    (setq org-auto-tangle-default nil
     ))
 
-(when (featurep! :editor file-templates)
+(when (modulep! :editor file-templates)
   ;;
   ;; Ref: http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html
   ;;
@@ -1480,13 +1489,13 @@ Current pattern: %`evil-mc-pattern
   )
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 
-(when (featurep! :lang json)
+(when (modulep! :lang json)
   (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
 
-(when (featurep! :lang cc)
+(when (modulep! :lang cc)
   (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
 
-(when (featurep! :tools docker)
+(when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
 
 ;; insert date into buffer
