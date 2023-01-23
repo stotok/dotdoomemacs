@@ -1024,6 +1024,8 @@ Show random quote:
     "Laziness is nothing more than the habit of resting before you get tired"
     "When we talk to God, we're praying. When God talks to us, we're schizophrenic"
     "Smile and let everyone know that today, your're a lot stronger than yesterday"
+    "Look at the order in which you do things"
+    "A line has two sides"
     "In the Beginning ... Was the command Line"
     "Life is 10% what happens to you and 90% how you react to it"
     "The secret of getting ahead is getting started"
