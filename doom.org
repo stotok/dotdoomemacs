@@ -1136,6 +1136,10 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-IGL7568W
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (IS-LOGE
   (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
@@ -1173,7 +1177,7 @@ I customize existing doom-themes to my liking:
 - That's it. Customize other settings as you please.
 
 #+begin_src emacs-lisp
-(when (featurep! :ui doom)
+(when (modulep! :ui doom)
   (setq doom-themes-enable-bold t      ; if nil, bold i universally disabled
       doom-themes-enable-italic t      ; if nil, italics is universally disabled
   )
@@ -1182,6 +1186,8 @@ I customize existing doom-themes to my liking:
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL6301W
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-IGL7568W
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
@@ -1284,7 +1290,7 @@ of that plugin and on-site color changes using kurecolor. To automatically
 disable it only when rainbow-mode is active:
 
 #+begin_src emacs-lisp
-(when (featurep! :tools rgb)
+(when (modulep! :tools rgb)
   (add-hook! 'rainbow-mode-hook
              (hl-line-mode (if rainbow-mode -1 +1))))
 #+end_src
@@ -1550,7 +1556,7 @@ Ref: [[https://hungyi.net/posts/use-emacs-tree-sitter-doom-emacs/][Use Emacs-Tre
 Ref: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/editor/evil][Doom editor/evil]]
 
 #+begin_src emacs-lisp
-(when (featurep! :editor evil)
+(when (modulep! :editor evil)
   (setq-default
     ;; i don't like the o/O keys will respect and continue commented lines, so disable it.
     +evil-want-o/O-to-continue-comments nil
@@ -1663,7 +1669,7 @@ the previous multiple cursor bindings under =g z=.
 
 #+begin_src emacs-lisp
 (map!
- (:when (featurep! :editor multiple-cursors)
+ (:when (modulep! :editor multiple-cursors)
   :prefix "g"
   :nv "z" #'my-mc-hydra/body))
 #+end_src
@@ -2313,7 +2319,7 @@ Doom has file template based on yasnippet when you enable with =:editor file-tem
 Ref: [[http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html][Auto-insert .gitignore templates in Doome Emacs]].
 
 #+begin_src emacs-lisp
-(when (featurep! :editor file-templates)
+(when (modulep! :editor file-templates)
   ;;
   ;; Ref: http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html
   ;;
@@ -3283,7 +3289,7 @@ Available on Melpa, ref: https://elpa.gnu.org/packages/csv-mode.html
 Available in Doom =:lang json=.
 
 #+begin_src emacs-lisp
-(when (featurep! :lang json)
+(when (modulep! :lang json)
   (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
 #+end_src
 
@@ -3292,7 +3298,7 @@ Available in Doom =:lang json=.
 Available in Doom: =:lang cc=
 
 #+begin_src emacs-lisp
-(when (featurep! :lang cc)
+(when (modulep! :lang cc)
   (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
 #+end_src
 
@@ -3303,7 +3309,7 @@ Available in Doom: =:lang cc=
 Yeay ... finally docker.
 
 #+begin_src emacs-lisp
-(when (featurep! :tools docker)
+(when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
 #+end_src
 
