@@ -1083,11 +1083,14 @@ Show random quote:
 
 To install custom fonts in linux:
 #+begin_src bash
-$ mkdir ~/.fonts
-$ rsync ~/Download/NewFonts/ ~/.fonts/
-### Delete non fonts file (e.g. text files), then:
-$ cd ~/.fonts
-$ fc-cache -fv
+$ cd ~/Downloads
+$ wget https://github.com/be5invis/Iosevka/releases/download/v17.1.0/super-ttc-iosevka-ss04-17.1.0.zip
+$ unzip super-ttc-iosevka-ss04-17.1.0.zip
+  it will extract to a font file: iosevka-ss04.ttc
+$ sudo mkdir /usr/local/share/fonts/iosevka-font
+$ sudo mv iosevka-ss04.ttc /usr/local/share/fonts/iosevka-font/
+$ sudo chown root:staff /usr/local/share/fonts/iosevka-font/iosevka-ss04.ttc
+$ sudo fc-cache -fv
 #+end_src
 
 To list available fonts in linux:
