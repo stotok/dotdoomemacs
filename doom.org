@@ -3187,7 +3187,7 @@ Ref:
 - [[https://thenybble.de/projects/german-emacs-calendar.html][German emacs calendar setup]]
 
 ** Localized Holidays
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (setq singapore-holidays '((when (= displayed-year 2021)
                              (append
                               (holiday-fixed 1 1   "New Year's Day")
