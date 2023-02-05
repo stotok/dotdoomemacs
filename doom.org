@@ -115,6 +115,13 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#file-template][File Template]]
 - [[#cc][C/C++]]
 - [[#cscope][Cscope]]
+- [[#python][Python]]
+  - [[#pipenv][pipenv]]
+    - [[#python-launcher][Python Launcher]]
+    - [[#python-user-base-directory][Python User Base Directory]]
+    - [[#install][Install]]
+    - [[#bashrc][.bashrc]]
+    - [[#createactivate-virtual-environment][Create/Activate virtual environment]]
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
   - [[#blame][Blame]]
@@ -167,7 +174,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#doom-emacs][Doom Emacs]]
   - [[#org-mode][Org-mode]]
   - [[#keybindings-1][Keybindings]]
-  - [[#pipenv][=pipenv=]]
+  - [[#pipenv-1][=pipenv=]]
   - [[#latex-and-tikz][Latex and Tikz]]
   - [[#everything-else][Everything Else]]
 - [[#practice][Practice]]
@@ -2504,6 +2511,174 @@ Now create new keybindings. "SPC m s" is not currently being used.
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 #+end_src
+
+* Python
+** pipenv
+*** Python Launcher
+**** Debian
+#+begin_example
+$ python3 --version
+Python 3.9.1
+$ python2 --version
+Python 2.7.18
+#+end_example
+
+**** Windows
+#+begin_example
+C:> py --list
+ -V:3.11 *        Python 3.11 (64-bit)
+ -V:2.7
+C:> py -3.11 --version
+Python 3.11.1
+C:> py -2.7 --version
+Python 2.7.18
+#+end_example
+
+*** Python User Base Directory
+
+Ref: [[https://pipenv.pypa.io/en/latest/install/#installing-pipenv][Pragmagic Installation of Pipenv]]
+
+Make sure user base directory is in the PATH of your system.
+
+**** Debian
+#+begin_example
+$ python3 -m site --user-base
+/home/stotok/.local
+#+end_example
+
+Add it to system's PATH: =/home/stotok/.local=
+
+**** Windows
+#+begin_example
+C:> py -3.11 -m site --user-site
+C:\Users\uia53572\AppData\Roaming\Python\Python311\site-packages
+#+end_example
+
+Replace =site-packages= with =Scripts= and add it to system's PATH:
+=C:\Users\uia53572\AppData\Roaming\Python\Python311\Scripts=
+
+*** Install
+
+**** brew (system-wide)
+#+begin_example
+$ brew install pipenv
+#+end_example
+
+**** debian (wheel and virtualenv as system-wide, pipenv as user local)
+#+begin_example
+$ sudo apt install python3-dev
+$ sudo pip3 install wheel
+$ sudo pip3 install virtualenv
+$ pip3 install --user pipenv
+#+end_example
+
+**** Windows
+- wheel (system wide: C:\Python311\Scripts)
+#+begin_example
+C:\Users\uia53572>C:\Python311\Scripts\pip3 install wheel
+Collecting wheel
+  Downloading wheel-0.38.4-py3-none-any.whl (36 kB)
+Installing collected packages: wheel
+  WARNING: The script wheel.exe is installed in 'C:\Python311\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed wheel-0.38.4
+#+end_example
+
+- virtualenv (system wide: C:\Python311\Scripts)
+#+begin_example
+C:\Users\uia53572>C:\Python311\Scripts\pip3 install virtualenv
+Collecting virtualenv
+  Downloading virtualenv-20.17.1-py3-none-any.whl (8.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.8/8.8 MB 12.9 MB/s eta 0:00:00
+Collecting distlib<1,>=0.3.6
+  Downloading distlib-0.3.6-py2.py3-none-any.whl (468 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 468.5/468.5 kB 5.9 MB/s eta 0:00:00
+Collecting filelock<4,>=3.4.1
+  Downloading filelock-3.9.0-py3-none-any.whl (9.7 kB)
+Collecting platformdirs<3,>=2.4
+  Downloading platformdirs-2.6.2-py3-none-any.whl (14 kB)
+Installing collected packages: distlib, platformdirs, filelock, virtualenv
+  WARNING: The script virtualenv.exe is installed in 'C:\Python311\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed distlib-0.3.6 filelock-3.9.0 platformdirs-2.6.2 virtualenv-20.17.1
+#+end_example
+
+- pipenv (user wide: C:\Users\uia53572\AppData\Roaming\Python\Python311\Scripts)
+#+begin_example
+C:\Users\uia53572>C:\Python311\Scripts\pip3 install --user pipenv
+Collecting pipenv
+  Downloading pipenv-2023.2.4-py3-none-any.whl (2.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.9/2.9 MB 16.6 MB/s eta 0:00:00
+Collecting certifi
+  Downloading certifi-2022.12.7-py3-none-any.whl (155 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.3/155.3 kB ? eta 0:00:00
+Requirement already satisfied: setuptools>=36.2.1 in c:\python311\lib\site-packages (from pipenv) (65.5.0)
+Collecting virtualenv-clone>=0.2.5
+  Downloading virtualenv_clone-0.5.7-py3-none-any.whl (6.6 kB)
+Requirement already satisfied: virtualenv in c:\python311\lib\site-packages (from pipenv) (20.17.1)
+Requirement already satisfied: distlib<1,>=0.3.6 in c:\python311\lib\site-packages (from virtualenv->pipenv) (0.3.6)
+Requirement already satisfied: filelock<4,>=3.4.1 in c:\python311\lib\site-packages (from virtualenv->pipenv) (3.9.0)
+Requirement already satisfied: platformdirs<3,>=2.4 in c:\python311\lib\site-packages (from virtualenv->pipenv) (2.6.2)
+Installing collected packages: virtualenv-clone, certifi, pipenv
+  WARNING: The script virtualenv-clone.exe is installed in 'C:\Users\uia53572\AppData\Roaming\Python\Python311\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts pipenv-resolver.exe and pipenv.exe are installed in 'C:\Users\uia53572\AppData\Roaming\Python\Python311\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed certifi-2022.12.7 pipenv-2023.2.4 virtualenv-clone-0.5.7
+#+end_example
+
+*** .bashrc
+
+#+begin_example
+### with this, pipenv will now place the virtualenv inside
+### the project folder, emacs will see it and activate it
+# export PIPENV_VENV_IN_PROJECT=1
+### change to WORKON_HOME due to multi env windows and WSL
+export WORKON_HOME=/mnt/d/DSUsers/uia53572/.venvs/linux
+#+end_example
+
+*** Create/Activate virtual environment
+
+**** Spawn a shell in a virtual environment
+#+begin_example
+$ cd <your project root>
+#+end_example
+
+***** First time (create virtual env)
+#+begin_example
+$ pipenv shell --python 3.7 (first time to create venv)
+#+end_example
+
+***** Next time (virtual env already created, ie =Pipfile= already exist)
+#+begin_example
+$ pipenv shell
+#+end_example
+
+**** Install pacakges
+
+***** First time
+#+begin_example
+$ pipenv install autoflake flake8 epc importmagic 'python-language-server[all]' 'ptvsd>=4.2'
+$ pipenv install pyls-isort pyls-mypy pyls-black
+$ pipenv install <python library needed by your project>
+#+end_example
+
+***** Next time (after cloning from git repo, install from Pipfile and Pipfile.lock)
+#+begin_example
+$ pipenv install
+#+end_example
+
+**** Execute python program
+
+***** When in virtual env shell
+#+begin_example
+(venv) $ python main.py
+#+end_example
+
+***** When not in virtual env shell
+#+begin_example
+$ pipenv run python main.py
+#+end_example
 
 * Magit
 
