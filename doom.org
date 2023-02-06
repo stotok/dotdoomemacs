@@ -121,6 +121,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#python-user-base-directory][Python User Base Directory]]
     - [[#install][Install]]
     - [[#bashrc][.bashrc]]
+    - [[#windows-environment-variable][windows environment variable]]
     - [[#createactivate-virtual-environment][Create/Activate virtual environment]]
 - [[#magit][Magit]]
   - [[#magit-and-gerrit][Magit and Gerrit]]
@@ -2636,6 +2637,16 @@ Successfully installed certifi-2022.12.7 pipenv-2023.2.4 virtualenv-clone-0.5.7
 ### change to WORKON_HOME due to multi env windows and WSL
 export WORKON_HOME=/mnt/d/DSUsers/uia53572/.venvs/linux
 #+end_example
+
+*** windows environment variable
+#+begin_example
+1: Execute in DOS command: "C:>sysdm.cpl"
+2: Go to advanced tab, open "Environment Variables..."
+3: New User Variable
+4: Variable Name: "WORKON_HOME", Variable value: "D:\DSUsers\uia53572\.venvs\windows"
+#+end_example
+
+Then reboot your laptop
 
 *** Create/Activate virtual environment
 
