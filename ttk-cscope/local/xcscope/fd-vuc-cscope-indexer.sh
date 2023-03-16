@@ -21,7 +21,9 @@ FIND="fd --ignore-case --type f"
 CSCOPE="cscope"
 #
 ${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
-    VUC_APP/TVIP_Ctrl_Files/TVIP | cut -d '/' -f3- > .fdignore
+    VUC_APP/TVIP_Ctrl_Files/TVIP    \
+    --exclude Vehicle_Micro/Middleware/IPC/src/ipc_transmit_handler_define.h \
+    | cut -d '/' -f3- > .fdignore
 #
 echo "generating cscope file listing: ${LIST_FILE} ..."
 ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
@@ -73,6 +75,7 @@ ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
     --exclude VUC_APP/User_Config/out \
     --exclude VUC_APP/User_Config/Sec \
     --exclude VUC_APP/User_Config/tmp \
+    --exclude VUC_APP/TVIP_Ctrl_Files/TVIP/Vehicle_Micro/Middleware/IPC/src/ipc_transmit_handler_define.h \
     > ${LIST_FILE}
 #
 echo "generating cscope database: ${DATABASE_FILE} ..."
