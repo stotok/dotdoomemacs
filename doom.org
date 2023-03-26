@@ -3768,6 +3768,8 @@ M-x SPC h f map\!
 - [[https://www.reddit.com/r/emacs/comments/irhe5d/doomemacs_binding_functions_to_keystrokes_greater/][Binding functions to keystrokes greater than two]].
 - [[https://github.com/hlissner/doom-emacs/issues/1313#issuecomment-480665450][map! macro cause non-prefix error]]
 - [[https://rameezkhan.me/adding-keybindings-to-doom-emacs/][Rameez Khan: Adding Keybindings to Doom Emacs]]
+- [[https://emacsredux.com/blog/2023/03/12/remove-keybinding-in-emacs/][Emacs Redux: Remove Keybinding in Emacs]]
+- [[https://emacsredux.com/blog/2023/03/14/removing-unbinding-vs-unsetting-keybindings/][Emacs Redux: Removing (Unbinding) vs Unsetting Keybindigs]]
 
 ** =pipenv=
 - [[https://github.com/hlissner/doom-emacs/issues/1666][REQ Automatically activate pipenv if available]]
