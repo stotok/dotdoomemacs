@@ -185,6 +185,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#delete-n-block-of-chars][Delete n block of chars]]
     - [[#with-avy-1][With avy]]
     - [[#with-evil-snipe][With evil-snipe]]
+  - [[#uncommenting][(Un)commenting]]
+    - [[#select-comment][Select comment]]
   - [[#evil-multiedit][Evil-multiedit]]
   - [[#narrowing][Narrowing]]
   - [[#copy-and-comment-lines][Copy and comment lines]]
@@ -784,6 +786,14 @@ Let's use =hippie-expand= instead of =dabbrev= as default. Ref: [[https://www.ma
 #+begin_src emacs-lisp
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 #+end_src
+
+Also, let's enable local variales and eva:
+#+begin_src emacs-lisp
+(after! org
+  (setq-default enable-local-variables t
+                enable-local-eval t))
+#+end_src
+
 
 ** Mac Modifiers
 
@@ -3826,6 +3836,15 @@ g s <SPACE>  (evil-avy-goto-char-timer)
 #+begin_example
 d            (delete)
 s 2chars     (evil snipe)
+#+end_example
+
+** (Un)commenting
+
+Ref: [[https://medium.com/@aria_39488/the-niceties-of-evil-in-doom-emacs-cabb46a9446b][The Niceties of Evil in Doom Emacs]].
+
+*** Select comment
+#+begin_example
+vac   (visual around comment)
 #+end_example
 
 ** Evil-multiedit

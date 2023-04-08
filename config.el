@@ -164,6 +164,10 @@
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 
+(after! org
+  (setq-default enable-local-variables t
+                enable-local-eval t))
+
 (cond (IS-MAC
  ;; 1) Mac build-in Keyboard & Mouse preference:
  ;;    - Swapt [CapsLock] and [Control]
