@@ -427,8 +427,8 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)  ; relative line number
-;; (setq display-line-numbers-type t)      ; absolute line number
+;; (setq display-line-numbers-type 'relative)  ; relative line number
+(setq display-line-numbers-type t)      ; absolute line number
 
 (map! :leader
       :desc "Toggle truncate lines"
