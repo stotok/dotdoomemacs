@@ -201,7 +201,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#trail-commands][Trail Commands]]
     - [[#digit-grouping][Digit Grouping]]
     - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
-    - [[#convert-decimalhexadecimal][Convert Decimal/Hexadecimal]]
+    - [[#convert-decimalhexadecimalbinary][Convert Decimal/Hexadecimal/Binary]]
     - [[#binary-number-operation][Binary Number Operation]]
     - [[#hms][HMS]]
   - [[#macros][Macros]]
@@ -4009,13 +4009,14 @@ C-x * y             (copy last item in calc into cursor location)
 Convert 2:18:47 into seconds = 8327
 #+end_example
 
-*** Convert Decimal/Hexadecimal
+*** Convert Decimal/Hexadecimal/Binary
 
 #+begin_example
 M-x calc
 Type any number.
 Type "D6" to turn the display into hex form
 Type "D0" to turn the display into dec form
+Type "D2" to turn the display into binary form
 #+end_example
 
 To display radix generally, use "D r" (calc-radix) and enter
