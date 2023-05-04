@@ -1209,7 +1209,12 @@ Current pattern: %`evil-mc-pattern
 (use-package! graphviz-dot-mode)
 
 (after! treemacs
-  (setq treemacs-width 20))
+  (setq treemacs-width 20
+        ;; switch to treemacs with keyboard: https://github.com/doomemacs/doomemacs/issues/1177
+        treemacs-is-never-other-window nil)
+  ;; enable follow mode
+  (treemacs-follow-mode t)
+  (treemacs-project-follow-mode t))
 
 (after! treemacs-projectile
   (treemacs-project-follow-mode 1))
