@@ -1213,11 +1213,10 @@ Current pattern: %`evil-mc-pattern
         ;; switch to treemacs with keyboard: https://github.com/doomemacs/doomemacs/issues/1177
         treemacs-is-never-other-window nil)
   ;; enable follow mode
-  (treemacs-follow-mode t)
-  (treemacs-project-follow-mode t))
+  (treemacs-follow-mode t))
 
 (after! treemacs-projectile
-  (treemacs-project-follow-mode 1))
+  (treemacs-project-follow-mode t))
 
 (after! lsp-treemacs
   (setq lsp-treemacs-theme "Iconless")  ; no need icon, confusing

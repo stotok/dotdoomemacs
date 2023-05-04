@@ -3086,8 +3086,7 @@ By default, it's width is locked. To toggle, press =tw=.
         ;; switch to treemacs with keyboard: https://github.com/doomemacs/doomemacs/issues/1177
         treemacs-is-never-other-window nil)
   ;; enable follow mode
-  (treemacs-follow-mode t)
-  (treemacs-project-follow-mode t))
+  (treemacs-follow-mode t))
 #+end_src
 
 ** treemacs-projectile
@@ -3099,7 +3098,7 @@ the =treemacs= tree will reflect that.
 
 #+begin_src emacs-lisp
 (after! treemacs-projectile
-  (treemacs-project-follow-mode 1))
+  (treemacs-project-follow-mode t))
 #+end_src
 
 ** =lsp-treemacs=
