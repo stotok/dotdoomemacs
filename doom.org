@@ -1037,6 +1037,7 @@ Show random quote:
     "A diamond is merely a lump of coal that did well under pressure"
     "Action speaks louder than words"
     "Design for the future, because it will be here sooner than you think"
+    "Ninety nine failed solutions equals a gain of 99 pieces of information"
     "Repair what you can but when you must fail, fail noisily and as soon as possible"
     "Too much agrement kills a chat"
     "Don't talk about yourself; it will be done when you leave"
