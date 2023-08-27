@@ -504,7 +504,7 @@
 ;;
 ;; which-function-mode
 ;;
-(if nil
+(if t
     (which-function-mode 1) ; enable for all modes
   (progn                    ; enable for certain modes
     (require 'which-func)
