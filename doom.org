@@ -108,6 +108,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#revealjs-presentations][Reveal.js presentations]]
   - [[#org-tree-slide][Org-tree-slide]]
   - [[#publishing-project][Publishing Project]]
+  - [[#anki-decks-with-orgmode][Anki Decks with Orgmode]]
   - [[#the-orgtbl-minor-mode][The Orgtbl Minor mode]]
   - [[#tableel][Table.el]]
 - [[#coding][Coding]]
@@ -2300,6 +2301,26 @@ $ rm -rf ~/.emacs.d/.local/cache/org-timestamps
   ;; Source code block evaluated during export. I don't want to be asked everytime :)
   (setq org-confirm-babel-evaluate nil)
   )
+#+end_src
+
+** Anki Decks with Orgmode
+
+Ref: [[https://rgoswami.me/posts/anki-decks-orgmode/][Anki Decks with Orgmode]].
+
+Let's install the package:
+#+begin_src emacs-lisp :tangle packages.el
+(package! anki-editor
+  :recipe (:host github
+           :repo "louietan/anki-editor"))
+#+end_src
+
+Let's configure it:
+#+begin_src emacs-lisp
+(use-package! anki-editor
+  :after org-noter
+  :config
+  ;; Making decks
+  (setq anki-editor-create-decks 't))
 #+end_src
 
 ** The Orgtbl Minor mode

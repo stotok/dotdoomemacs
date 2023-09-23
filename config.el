@@ -856,6 +856,12 @@ Current pattern: %`evil-mc-pattern
   (setq org-confirm-babel-evaluate nil)
   )
 
+(use-package! anki-editor
+  :after org-noter
+  :config
+  ;; Making decks
+  (setq anki-editor-create-decks 't))
+
 (use-package! org-auto-tangle
   :defer t
   :hook (org-mode . org-auto-tangle-mode)

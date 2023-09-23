@@ -93,6 +93,10 @@
            :repo "Titan-C/org-cv"
            :branch "master"))
 
+(package! anki-editor
+  :recipe (:host github
+           :repo "louietan/anki-editor"))
+
 (package! org-auto-tangle)
 
 ;; Relative paths are expanded to ~/.emacs.d/.local/straight/repos/{local-repo}
