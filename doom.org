@@ -152,13 +152,16 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#keybindings][Keybindings]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
-- [[#calendar][Calendar]]
+- [[#calendar-and-clock][Calendar and Clock]]
+  - [[#calendar][Calendar]]
   - [[#localized-holidays][Localized Holidays]]
+  - [[#world-clock][World Clock]]
 - [[#other-modes][Other Modes]]
   - [[#qml-qt-declarative][QML (QT Declarative)]]
   - [[#csv-mode][CSV mode]]
   - [[#json-mode][JSON mode]]
   - [[#cmake-mode][CMake mode]]
+  - [[#makefile-mode][Makefile mode]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
   - [[#copy-full-path-of-current-buffer][Copy full path of current buffer]]
@@ -2305,7 +2308,9 @@ $ rm -rf ~/.emacs.d/.local/cache/org-timestamps
 
 ** Anki Decks with Orgmode
 
-Ref: [[https://rgoswami.me/posts/anki-decks-orgmode/][Anki Decks with Orgmode]].
+Ref:
+- [[https://rgoswami.me/posts/anki-decks-orgmode/][Anki Decks with Orgmode]].
+- [[https://yiufung.net/post/anki-org/][Power up Anki with Emacs and more]]
 
 Let's install the package:
 #+begin_src emacs-lisp :tangle packages.el
@@ -2319,8 +2324,9 @@ Let's configure it:
 (use-package! anki-editor
   :after org-noter
   :config
-  ;; Making decks
-  (setq anki-editor-create-decks 't))
+  (setq anki-editor-create-decks t ; Allow anki-editor to create a new deck if it does not exist
+        anki-editor-org-tags-as-anki-tags t
+   ))
 #+end_src
 
 ** The Orgtbl Minor mode
@@ -3423,7 +3429,9 @@ Another variation,
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 
-* Calendar
+* Calendar and Clock
+
+** Calendar
 Ref:
 - [[https://emacsredux.com/blog/2021/06/08/emacs-as-your-calendar/][Emacs as Your Calendar]]
 - [[https://emacs.stackexchange.com/questions/8309/change-local-holiday-calendar][StackExchange: Change local holiday calendar]]
@@ -3494,6 +3502,29 @@ Ref:
 (add-hook 'calendar-today-visible-hook 'calendar-mark-today)    ; mark today's date
 #+end_src
 
+** World Clock
+
+List of world clock to show for M-x world-clock. Refer [[https://en.wikipedia.org/wiki/List_of_tz_database_time_zones][this timezone]] for the valid TZNAME.
+
+#+begin_src emacs-lisp
+(setq world-clock-list
+      '(
+        ("America/Chicago" "Deer Park")
+        ("Etc/UTC"         "UTC")
+        ("Asia/Kolkata"    "Bangalore")
+        ("Asia/Singapore"  "Singapore")
+        ("Asia/Chongqing"  "Chongqing")
+        ("Asia/Tokyo"      "Tokyo")
+        ("Asia/Seoul"      "Seoul")
+        ))
+#+end_src
+
+Format of the display.
+
+#+begin_src emacs-lisp
+(setq world-clock-time-format "%a %d-%b-%Y %p %I:%M %Z") ; default: "%A %d %B %R %Z"
+#+end_src
+
 * Other Modes
 ** QML (QT Declarative)
 Note: This is not needed anymore. Available in Doom =:lang qt=.
@@ -3547,6 +3578,15 @@ Available in Doom: =:lang cc=
 #+begin_src emacs-lisp
 (when (modulep! :lang cc)
   (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
+#+end_src
+
+** Makefile mode
+
+#+begin_src emacs-lisp
+(setq auto-mode-alist (cons '("component.def"              .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("BuildEnv.opt"               .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("makefile_RH850_F1K_1_5MB"   .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("windriver_RH850.opt"        .  makefile-mode) auto-mode-alist))
 #+end_src
 
 * Tools

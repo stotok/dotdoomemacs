@@ -859,8 +859,9 @@ Current pattern: %`evil-mc-pattern
 (use-package! anki-editor
   :after org-noter
   :config
-  ;; Making decks
-  (setq anki-editor-create-decks 't))
+  (setq anki-editor-create-decks t ; Allow anki-editor to create a new deck if it does not exist
+        anki-editor-org-tags-as-anki-tags t
+   ))
 
 (use-package! org-auto-tangle
   :defer t
@@ -1443,11 +1444,29 @@ Current pattern: %`evil-mc-pattern
   ;; disable company too
   (setq company-global-modes '(not org-mode)))
 
+(setq world-clock-list
+      '(
+        ("America/Chicago" "Deer Park")
+        ("Etc/UTC"         "UTC")
+        ("Asia/Kolkata"    "Bangalore")
+        ("Asia/Singapore"  "Singapore")
+        ("Asia/Chongqing"  "Chongqing")
+        ("Asia/Tokyo"      "Tokyo")
+        ("Asia/Seoul"      "Seoul")
+        ))
+
+(setq world-clock-time-format "%a %d-%b-%Y %p %I:%M %Z") ; default: "%A %d %B %R %Z"
+
 (when (modulep! :lang json)
   (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
 
 (when (modulep! :lang cc)
   (setq auto-mode-alist (cons '("^[Cc][Mm][Aa][Kk][Ee][Ll][Ii][Ss][Tt][Ss].[Tt][Xx][Tt]$" . cmake-mode) auto-mode-alist)))
+
+(setq auto-mode-alist (cons '("component.def"              .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("BuildEnv.opt"               .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("makefile_RH850_F1K_1_5MB"   .  makefile-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("windriver_RH850.opt"        .  makefile-mode) auto-mode-alist))
 
 (when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
