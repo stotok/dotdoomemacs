@@ -1445,7 +1445,7 @@ Current pattern: %`evil-mc-pattern
   (setq company-global-modes '(not org-mode)))
 
 (setq world-clock-list
-      '(
+      '( ;  TZNAME            LABEL
         ("America/Chicago" "Deer Park")
         ("Etc/UTC"         "UTC")
         ("Asia/Kolkata"    "Bangalore")
@@ -1454,7 +1454,7 @@ Current pattern: %`evil-mc-pattern
         ("Asia/Tokyo"      "Tokyo")
         ("Asia/Seoul"      "Seoul")
         ))
-
+;; Format of the display
 (setq world-clock-time-format "%a %d-%b-%Y %p %I:%M %Z") ; default: "%A %d %B %R %Z"
 
 (when (modulep! :lang json)

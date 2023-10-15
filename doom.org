@@ -152,7 +152,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#keybindings][Keybindings]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
-- [[#calendar-and-clock][Calendar and Clock]]
+- [[#calendar-and-world-clock][Calendar and World Clock]]
   - [[#calendar][Calendar]]
   - [[#localized-holidays][Localized Holidays]]
   - [[#world-clock][World Clock]]
@@ -3429,7 +3429,7 @@ Another variation,
 Globally you can toggle with 'M-x global-spell-fu-mode'. =spell-fu= caches words
 in =~/.emacs.d/.local/etc/spell-fu=.
 
-* Calendar and Clock
+* Calendar and World Clock
 
 ** Calendar
 Ref:
@@ -3508,7 +3508,7 @@ List of world clock to show for M-x world-clock. Refer [[https://en.wikipedia.or
 
 #+begin_src emacs-lisp
 (setq world-clock-list
-      '(
+      '( ;  TZNAME            LABEL
         ("America/Chicago" "Deer Park")
         ("Etc/UTC"         "UTC")
         ("Asia/Kolkata"    "Bangalore")
@@ -3517,11 +3517,7 @@ List of world clock to show for M-x world-clock. Refer [[https://en.wikipedia.or
         ("Asia/Tokyo"      "Tokyo")
         ("Asia/Seoul"      "Seoul")
         ))
-#+end_src
-
-Format of the display.
-
-#+begin_src emacs-lisp
+;; Format of the display
 (setq world-clock-time-format "%a %d-%b-%Y %p %I:%M %Z") ; default: "%A %d %B %R %Z"
 #+end_src
 
@@ -3813,29 +3809,23 @@ settings for performance optimization, package management, commonly used package
 
 ** General Emacs
 
-- [[https://github.com/daedreth/UncleDavesEmacs#user-content-ido-and-why-i-started-using-helm][Uncle Dave: Emacs config]]
-- [[https://github.com/PythonNut/emacs-config][PythonNut: Emacs config]]
-- [[https://www.manueluberti.eu/][Manuel Uberti: Emacs Stuff]]
 - [[https://philjackson.github.io/][Phil Jackson: Snippets and other bits]]
-- [[https://github.com/angrybacon/dotemacs/blob/master/dotemacs.org#use-better-defaults][Angry Bacon: Better Defaults]]
-- [[https://blog.sumtypeofway.com/posts/emacs-config.html][Emacs is Agar for Brain Worms]]
-- [[https://www.masteringemacs.org/][Mastering Emacs]]
-- [[https://philjackson.github.io/emacs/widescreen/2021/06/06/wide-screen-emacs/][Widescreen Emacs And Vertical Splits]]
-- [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
+- [[https://blog.sumtypeofway.com/posts/emacs-config.html][Patrick Thomson: Emacs is Agar for Brain Worms]]
+- [[https://www.masteringemacs.org/][Mickey Petersen: Mastering Emacs]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][GNU Press: An Introduction to Programming in Emacs Lisp]]
+- [[http://yummymelon.com/devnull/][Charles Choi: notes from /dev/null]]
 
 ** Doom Emacs
 
 - [[https://tecosaur.github.io/emacs-config/config.html][Tecosaur: Emacs config]]
 - [[https://dangirsh.org/projects/doom-config.html][Dan Girshovich: doom-config]]
 - [[https://www.gtrun.org/custom/config.html][GuangTao: Doom Emacs config]]
-- [[https://cyberchris.xyz/posts/org-mode-assignments/][Writing Assignments with Doom Emacs]]
-- [[https://github.com/sunnyhasija/Academic-Doom-Emacs-Config][An Academic's Opinionated DOOM Emacs Config]]
-- [[https://hungyi.net/tags/doom~emacs/][Hung-Yi's Journal, tag:Doom Emacs]]
+- [[https://cyberchris.xyz/posts/org-mode-assignments/][Chris Tomy: Writing Assignments with Doom Emacs]]
+- [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Hung-Yi's Journal: Emacs Lets You Calculate While You Write]]
 - [[https://github.com/elken/.doom.d][Elken Doom]]: to be continued.
-- [[https://emacstil.com][Emacs TIL]]
-- [[https://narra.co.za/doom-tips-and-howtos/][Doom Tips and Howto]]: little things make great.
-- [[https://github.com/hlissner/doom-emacs/tree/665b627b7c07c8d29ec8d334588cecc2ba308248/docs][Doom Emacs Documentation]]: Read it (old, maybe original idea intention)!!
-- [[https://github.com/hlissner/doom-emacs/blob/master/docs/faq.org][Doom Emacs Documentation]]: Read it (latest version)!!
+- [[https://emacstil.com][Junji Zhi: Emacs TIL]]
+- [[https://narra.co.za/doom-tips-and-howtos/][Nardus Geldenhuys: Doom Tips and Howto]]: little things make great.
+- [[https://hieuphay.com/doom-emacs-config/][Hieu Phay: My Doom Emacs Configuration]]
 
 ** Org-mode
 
@@ -3882,7 +3872,7 @@ Ref:
 
 Ref:
 
-- [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unux Tools]]
+- [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unix Tools]]
 - [[https://www.youtube.com/watch?v=ZWQPBoxbqw4][Youtube: Tips and Secrets to Shell Efficienty]]
 - [[https://skybert.net/mac-os-x/macos-as-unix-workstation-2022/][macOS as Unix Workstation 2022]]
 
@@ -4080,12 +4070,12 @@ Convert 2:18:47 into seconds = 8327
 #+begin_example
 M-x calc
 Type any number.
-Type "D6" to turn the display into hex form
-Type "D0" to turn the display into dec form
-Type "D2" to turn the display into binary form
+Type "d6" to turn the display into hex form
+Type "d0" to turn the display into dec form
+Type "d2" to turn the display into binary form
 #+end_example
 
-To display radix generally, use "D r" (calc-radix) and enter
+To display radix generally, use "d r" (calc-radix) and enter
 an integer from 2 to 36 (2:binary, 8:octal, 6:hex, 0:dec, etc).
 
 About inputting a number:
