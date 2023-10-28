@@ -1257,9 +1257,7 @@ I customize existing doom-themes to my liking:
 This is on my TODO list for the next themes:
 - [[https://www.reddit.com/r/emacs/comments/t7doal/i_bet_you_use_hllinemode_do_you_know_how_it_works/][How hl-line-mode works]]
 - [[https://github.com/rougier/nano-emacs][GNU Emacs/NANO]]
-- [[https://github.com/skyler544/doom-nano-testing][Getting NANO to work in Doom]]
-- [[https://www.reddit.com/r/emacs/comments/lncawq/getting_doom_emacs_and_nano_emacs_to_work_together/][Getting Doom Emacs and Nano Themes to work together]]
-- [[https://github.com/hlissner/doom-emacs/issues/117][Doom Using a custome theme]]
+- [[https://github.com/ronisbr/doom-nano-themes][Doom NANO Themes]]
 
 ** Line settings
 
@@ -3593,7 +3591,8 @@ Yeay ... finally docker.
 
 #+begin_src emacs-lisp
 (when (modulep! :tools docker)
-  (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
+  (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("dockerfile" . dockerfile-mode) auto-mode-alist)))
 #+end_src
 
 ** Copy full path of current buffer

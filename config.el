@@ -1469,7 +1469,8 @@ Current pattern: %`evil-mc-pattern
 (setq auto-mode-alist (cons '("windriver_RH850.opt"        .  makefile-mode) auto-mode-alist))
 
 (when (modulep! :tools docker)
-  (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist)))
+  (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("dockerfile" . dockerfile-mode) auto-mode-alist)))
 
 ;; insert date into buffer
 ;;
