@@ -2867,6 +2867,10 @@ Now, we can use touch .project.el in any directory to make
  ;; But doesn't work with indexing method alien nor turbo-alien
  ;; nvm, use rg to index and ignored directories put inside .rgignore
  (with-eval-after-load 'projectile
+   ;; 29-Oct-2023. Find out that there is a sequence on how projectile search
+   ;; a project root. https://docs.projectile.mx/projectile/projects.html#customizing-project-detection
+   ;; So, for my case just add a file '.projectile' at my project root folder is sufficient because
+   ;; ".repo" does not seem to be priority than ".git" for example
    (add-to-list 'projectile-project-root-files-bottom-up ".repo")
    ;; ignored directories
    (add-to-list 'projectile-globally-ignored-directories "tests")
