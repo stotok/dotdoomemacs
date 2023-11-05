@@ -389,6 +389,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 (defconst IS-DELTA    (string-prefix-p "delta"    (system-name) t))
+(defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -409,6 +410,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: covid"))
  (IS-DELTA
   (message "hostname: delta"))
+ (IS-ERIS
+  (message "hostname: eris"))
  (t
   (message "hostname: unknown")))
 #+end_src
@@ -1107,7 +1110,7 @@ Show random quote:
 To install custom fonts in linux:
 #+begin_src bash
 $ cd ~/Downloads
-$ wget https://github.com/be5invis/Iosevka/releases/download/v17.1.0/super-ttc-iosevka-ss04-17.1.0.zip
+$ wget https://github.com/be5invis/Iosevka/releases/download/v27.3.4/super-ttc-iosevka-ss04-27.3.4.zip
 $ unzip super-ttc-iosevka-ss04-17.1.0.zip
   it will extract to a font file: iosevka-ss04.ttc
 $ sudo mkdir /usr/local/share/fonts/iosevka-font
@@ -1174,6 +1177,10 @@ Settings related to fonts:
   (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
         doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
+ (IS-ERIS
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
@@ -1221,6 +1228,8 @@ I customize existing doom-themes to my liking:
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-DELTA
     (setq doom-theme 'ttk-doom-one-light))
+   (IS-ERIS
+    (setq doom-theme 'ttk-doom-zenburn))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification

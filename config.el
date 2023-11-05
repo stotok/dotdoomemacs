@@ -67,6 +67,7 @@
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 (defconst IS-DELTA    (string-prefix-p "delta"    (system-name) t))
+(defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 ;; print hostname
 (cond
  (IS-SIDESTEP
@@ -87,6 +88,8 @@
   (message "hostname: covid"))
  (IS-DELTA
   (message "hostname: delta"))
+ (IS-ERIS
+  (message "hostname: eris"))
  (t
   (message "hostname: unknown")))
 
@@ -373,6 +376,10 @@
   (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
         doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
+ (IS-ERIS
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
@@ -396,6 +403,8 @@
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-DELTA
     (setq doom-theme 'ttk-doom-one-light))
+   (IS-ERIS
+    (setq doom-theme 'ttk-doom-zenburn))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
