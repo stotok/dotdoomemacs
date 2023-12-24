@@ -2595,7 +2595,7 @@ Python 2.7.18
 
 *** Python User Base Directory
 
-Ref: [[https://pipenv.pypa.io/en/latest/install/#installing-pipenv][Pragmagic Installation of Pipenv]]
+Ref: [[https://docs.pipenv.org/en/latest/advanced.html][Pragmagic Installation of Pipenv]]
 
 Make sure user base directory is in the PATH of your system.
 
@@ -2605,7 +2605,7 @@ $ python3 -m site --user-base
 /home/stotok/.local
 #+end_example
 
-Add it to system's PATH: =/home/stotok/.local=
+Add it to system's PATH: =/home/stotok/.local/bin=
 
 **** Windows
 #+begin_example
@@ -2623,12 +2623,12 @@ Replace =site-packages= with =Scripts= and add it to system's PATH:
 $ brew install pipenv
 #+end_example
 
-**** debian (wheel and virtualenv as system-wide, pipenv as user local)
+**** debian (system-wide)
 #+begin_example
 $ sudo apt install python3-dev
-$ sudo pip3 install wheel
-$ sudo pip3 install virtualenv
-$ pip3 install --user pipenv
+$ sudo apt install python3-wheel
+$ sudo apt install python3-virtualenv
+$ sudo apt install pipenv
 #+end_example
 
 **** Windows
