@@ -404,7 +404,7 @@
    (IS-DELTA
     (setq doom-theme 'ttk-doom-one-light))
    (IS-ERIS
-    (setq doom-theme 'ttk-doom-zenburn))
+    (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
   ;; corrects (and improves) org-mode's native fontification
