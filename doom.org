@@ -2624,11 +2624,22 @@ $ brew install pipenv
 #+end_example
 
 **** debian (system-wide)
+
+For debian bookworks:
 #+begin_example
 $ sudo apt install python3-dev
 $ sudo apt install python3-wheel
 $ sudo apt install python3-virtualenv
 $ sudo apt install pipenv
+#+end_example
+
+For debian bullseye:
+#+begin_example
+$ sudo apt -y purge python3-dev
+$ sudo pip3 install pipenv
+$ sudo apt -y purge python3-virtualenv
+$ sudo apt -y purge python3-virtualenv-clone
+$ sudo pip3 install virtualenv
 #+end_example
 
 **** Windows
