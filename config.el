@@ -1391,18 +1391,20 @@ Current pattern: %`evil-mc-pattern
         ))
 
 (after! company
+  ;; Full list of company backends, see:
+  ;; https://github.com/company-mode/company-mode/tree/master
  (setq company-backends '(company-capf
                           company-keywords
-                          company-semantic
+                          ;; company-semantic   ; i don't use semantic
                           company-files
-                          company-etags
-                          company-elisp
+                          ;; company-etags      ; i use cscope
+                          ;; company-elisp      ; no longer needed
                           company-clang
                           ;; company-irony-c-headers
                           ;; company-irony
                           ;; company-jedi
                           company-cmake
-                          company-ispell
+                          ;; company-ispell    ; i don't use ispell
                           company-yasnippet))
  (setq company-echo-delay 0
        company-minimum-prefix-length 3
