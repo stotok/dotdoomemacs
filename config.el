@@ -1091,6 +1091,7 @@ Current pattern: %`evil-mc-pattern
    ;; ignored directories
    (add-to-list 'projectile-globally-ignored-directories "tests")
    (add-to-list 'projectile-globally-ignored-directories ".repo")
+   (add-to-list 'projectile-globally-ignored-directories ".venv")
    ;; ignored files
    (add-to-list 'projectile-globally-ignored-file-suffixes ".d")
    (add-to-list 'projectile-globally-ignored-file-suffixes ".o")
