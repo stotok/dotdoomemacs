@@ -116,13 +116,14 @@
       default-buffer-file-coding-system 'utf-8
       coding-system-for-write 'utf-8)
 
-(setq create-lockfiles nil)
+(setq-default create-lockfiles nil)
 
-(setq auto-save-default nil             ; don't create #autosave# files
-      make-backup-files nil             ; don't create backup~ files
-      create-lockfiles  nil)
+(setq-default
+ auto-save-default nil             ; don't create #autosave# files
+ make-backup-files nil             ; don't create backup~ files
+ create-lockfiles  nil)
 
-(setq confirm-kill-emacs nil)
+(setq-default confirm-kill-emacs nil)
 
 (set-fringe-mode '(0 . 0))            ; disable fringe, dun need it (no line wrap, etc)
 (fset 'yes-or-no-p 'y-or-n-p)         ; replace yes/no prompts with y/n
@@ -552,6 +553,9 @@
        "i" #'insert-register
        "j" #'jump-to-register
        "s" #'copy-to-register))
+
+(when (modulep! :emacs undo
+                (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)))
 
 (after! smartparens
   (defun zz/goto-match-paren (arg)

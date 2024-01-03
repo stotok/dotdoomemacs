@@ -71,6 +71,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#indent-guide][Indent guide]]
   - [[#shrink-whitespace][Shrink Whitespace]]
   - [[#registers][Registers]]
+  - [[#undo][undo]]
   - [[#key-bindings][Key bindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
 - [[#tree-sitter][Tree-Sitter]]
@@ -728,21 +729,22 @@ Change the default encoding to UTF-8
 Do not create lockfiles for files being edited
 
 #+begin_src emacs-lisp
-(setq create-lockfiles nil)
+(setq-default create-lockfiles nil)
 #+end_src
 
 Do not need emacs backup file lah ...
 
 #+begin_src emacs-lisp
-(setq auto-save-default nil             ; don't create #autosave# files
-      make-backup-files nil             ; don't create backup~ files
-      create-lockfiles  nil)
+(setq-default
+ auto-save-default nil             ; don't create #autosave# files
+ make-backup-files nil             ; don't create backup~ files
+ create-lockfiles  nil)
 #+end_src
 
 Disable exit confirmation.
 
 #+begin_src emacs-lisp
-(setq confirm-kill-emacs nil)
+(setq-default confirm-kill-emacs nil)
 #+end_src
 
 Other default preferences
@@ -795,7 +797,7 @@ Let's use =hippie-expand= instead of =dabbrev= as default. Ref: [[https://www.ma
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
 #+end_src
 
-Also, let's enable local variales and eva:
+Also, let's enable local variales and eval:
 #+begin_src emacs-lisp
 (after! org
   (setq-default enable-local-variables t
@@ -1411,8 +1413,9 @@ If you are interested in adding your own segment, please refer to: [[https://www
 #+end_src
 
 *** which-function-mode
-Emacs comes with a minor mode called which-function-mode that shows the current defun –
-Lisp lingo for a function, but Emacs-speak for anything that would count as one –
+
+Emacs comes with a minor mode called which-function-mode that shows the current
+defun – Lisp lingo for a function, but Emacs-speak for anything that would count as one –
 in your modeline by looking at where your point is.
 
 #+begin_src emacs-lisp
@@ -1495,6 +1498,17 @@ Ref: [[https://tech.toryanderson.com/2020/07/03/emacs-tip-registers/][The Simple
        "i" #'insert-register
        "j" #'jump-to-register
        "s" #'copy-to-register))
+#+end_src
+
+** undo
+
+I'm using undo-fu and don't want to persist undo history across session.
+
+Ref: [[https://github.com/doomemacs/doomemacs/tree/master/modules/emacs/undo][Disabling persistent undo histor]].
+
+#+begin_src emacs-lisp
+(when (modulep! :emacs undo
+                (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)))
 #+end_src
 
 ** Key bindings
