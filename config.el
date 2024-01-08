@@ -58,36 +58,24 @@
 ;; they are implemented.
 
 ;; Well, macros to check system-name.
-(defconst IS-SIDESTEP (string-prefix-p "sidestep" (system-name) t))
-(defconst IS-IGL6301W (string-prefix-p "IGL6301W" (system-name) t))
 (defconst IS-IGL7568W (string-prefix-p "IGL7568W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
-(defconst IS-LOGE     (string-prefix-p "loge"     (system-name) t))
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
-(defconst IS-DELTA    (string-prefix-p "delta"    (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 ;; print hostname
 (cond
- (IS-SIDESTEP
-  (message "hostname: sidestep"))
- (IS-IGL6301W
-  (message "hostname: IGL6301W"))
  (IS-IGL7568W
   (message "hostname: IGL7568W"))
  (IS-IGD1943U
   (message "hostname: igd1943u"))
  (IS-IGD0464U
   (message "hostname: igd0464u"))
- (IS-LOGE
-  (message "hostname: loge"))
  (IS-OMICRON
   (message "hostname: omicron"))
  (IS-COVID
   (message "hostname: covid"))
- (IS-DELTA
-  (message "hostname: delta"))
  (IS-ERIS
   (message "hostname: eris"))
  (t
@@ -254,6 +242,7 @@
     "At any given moment, about 0.7% of the people in the world are drunk"
     "Shift your focus from the past to the future"
     "It takes an average person 7 minutes to fall asleep"
+    "The limits of my language means the limits of my world"
     "If you can't explain it simply, you don't understand it well enough"
     "The world is changed by examples, not by opinions"
     "An excessive knowledge of Marxism is a sign of a misspent youth"
@@ -268,6 +257,7 @@
     "A wise man gets more use from his enemies than a fool from his friends"
     "Our brains actually don't mind hard work, we just don't love the idea of it"
     "Success is how high you bounce after you hit bottom"
+    "Think rationally, talk emotionally"
     "I’d rather live with a good question than a bad answer"
     "Imitation is suicide"
     "Do what you must, and your friends will adjust"
@@ -349,11 +339,7 @@
 (add-to-list '+doom-dashboard-functions 'ttk/quotes t)
 
 (cond
- (IS-SIDESTEP
-  (setq doom-font                (font-spec :family "menlo" :size 12)
-        doom-variable-pitch-font (font-spec :family "menlo" :size 12)
-        doom-big-font            (font-spec :family "menlo" :size 18)))
- ((or IS-IGL6301W IS-OMICRON)
+ (IS-OMICRON
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
@@ -369,10 +355,6 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
- (IS-LOGE
-  (setq doom-font                (font-spec :family "Input Mono Narrow" :size 12)
-        doom-variable-pitch-font (font-spec :family "Input Mono Narrow" :size 12)
-        doom-big-font            (font-spec :family "Input Mono Narrow" :size 18)))
  (IS-IGD0464U
   (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
@@ -394,16 +376,12 @@
   (cond
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
-   (IS-IGL6301W
-    (setq doom-theme 'ttk-doom-one-light))
    (IS-IGL7568W
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
    (IS-COVID
     (setq doom-theme 'ttk-doom-solarized-light))
-   (IS-DELTA
-    (setq doom-theme 'ttk-doom-one-light))
    (IS-ERIS
     (setq doom-theme 'ttk-doom-one-light))
    (t
