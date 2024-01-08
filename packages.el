@@ -54,9 +54,13 @@
 ;;(unpin! t)
 
 (package! rtags :disable t)
+(package! helm :disable t)
 (package! helm-rtags :disable t)
 (package! helm-lsp :disable t)
+(package! ivy :disable t)
 (package! ivy-rtags :disable t)
+(package! swiper :disable t)
+(package! counsel :disable t)
 (package! ccls :disable t)
 (package! conda :disable t)
 (package! anaconda-mode :disable t)
@@ -70,7 +74,6 @@
 (package! magit-todos :disable t)
 (package! github-review :disable t)
 (package! github-browse-file :disable t)
-(package! eglot :disable t)
 
 (package! pulsing-cursor
   :recipe (:host github
