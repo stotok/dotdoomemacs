@@ -4069,7 +4069,7 @@ M-x calc-trail-out,     bound to t o
 Display thousands in decimal, or tuple in binary.
 
 #+begin_example
-M-x calc-group-digits <enter>, bound to D g
+M-x calc-group-digits <enter>, bound to d g
 #+end_example
 
 *** Calc-Mode Epiphany
