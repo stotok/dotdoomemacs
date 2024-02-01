@@ -17,20 +17,26 @@
 
 # Ref: https://olmon.gitlab.io/org-themes/
 # +SETUPFILE: ../thirdp/org-themes/src/white_clean/white_clean.theme
+#+SETUPFILE: ../thirdp/org-themes/src/readtheorg_inline/readtheorg_inline.theme
+# +SETUPFILE: ../thirdp/org-themes/src/simple_inline/simple_inline.theme
 
 # These default from org-html-themes
-#+SETUPFILE: ../thirdp/org-html-themes/org/theme-readtheorg-local.setup
+# +SETUPFILE: ../thirdp/org-html-themes/org/theme-readtheorg-local.setup
 # +SETUPFILE: ../thirdp/org-html-themes/org/theme-bigblow-local.setup
 # Then copy the "src" folder from the org-html-themes folder into
 # the same folder as the file you want to export
 # cp -R ../thridp/org-html-themes/src bo/
+
 #+EXPORT_FILE_NAME: bo/doom
 # the exported filename will be bo/doom.html, bo/doom.tex or bo/doom.pdf
+# This is to set the number of headline levels to use for export
+#+OPTIONS: H:5
+# This is to set the headlines that will be numbered
+#       #+OPTIONS: num:nil
 
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
 #+email: s.totok@gmail.com
-#       #+OPTIONS: num:nil
 
 This is my Doom Emacs configuration, originally forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
 
