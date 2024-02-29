@@ -64,6 +64,7 @@
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
+(defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
 ;; print hostname
 (cond
  (IS-IGL7568W
@@ -78,6 +79,8 @@
   (message "hostname: covid"))
  (IS-ERIS
   (message "hostname: eris"))
+ (IS-VDI1039
+  (message "hostname: igvmf02d1039vdi"))
  (t
   (message "hostname: unknown")))
 
@@ -357,6 +360,10 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-VDI1039
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (IS-IGD0464U
   (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
@@ -379,6 +386,8 @@
    ((or IS-OMICRON IS-IGD0464U)
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL7568W
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-VDI1039
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
