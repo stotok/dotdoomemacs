@@ -113,8 +113,8 @@
  (lsp
    +peek               ; use lsp-ui-peek for definitions and references
    )
- magit                 ; a git porcelain for Emacs
- ;;(magit +forge)        ; a git porcelain for Emacs
+ ;; magit                 ; a git porcelain for Emacs
+ (magit +forge)        ; a git porcelain for Emacs + Github
  ;;make                ; run make tasks from Emacs
  ;;pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements

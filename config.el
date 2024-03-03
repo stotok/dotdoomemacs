@@ -1340,6 +1340,7 @@ Current pattern: %`evil-mc-pattern
             "[/\\\\]\\out\\'"
             "[/\\\\]\\tmp\\'"
             "[/\\\\]\\.cache\\'" ; clangd index
+            "[/\\\\]\\.clangd\\'" ; clangd index
             "[/\\\\]\\.kwlp\\'"  ; klocwor
             "[/\\\\]\\.kwps\\'"  ; klocwor
             "[/\\\\]\\Application_PTF\\'"
@@ -1352,6 +1353,16 @@ Current pattern: %`evil-mc-pattern
  ;; well disable first :)
  (setq lsp-enable-file-watchers nil)
 )
+
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("-j=3"
+          "--background-index"
+          "--clang-tidy"
+          "--completion-style=detailed"
+          "--header-insertion=never"
+          "--header-insertion-decorators=0"))
+  (set-lsp-priority! 'clangd 2))
 
 (defun ttk/xref-display-buffer ()
  "Display the *xref* buffer."

@@ -529,8 +529,8 @@ Reference:
  (lsp
    +peek               ; use lsp-ui-peek for definitions and references
    )
- magit                 ; a git porcelain for Emacs
- ;;(magit +forge)        ; a git porcelain for Emacs
+ ;; magit                 ; a git porcelain for Emacs
+ (magit +forge)        ; a git porcelain for Emacs + Github
  ;;make                ; run make tasks from Emacs
  ;;pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements
@@ -657,11 +657,6 @@ Reference:
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
-(package! forge :disable t)
-(package! magit-gitflow :disable t)
-(package! magit-todos :disable t)
-(package! github-review :disable t)
-(package! github-browse-file :disable t)
 #+end_src
 
 ** Need to Have Packages
@@ -3184,9 +3179,9 @@ Calltree is nice!
 
 The world is moving towards [[https://langserver.org/][Language Server Protocol]], so are we.
 
-- For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/tools/lsp#table-of-contents][Doom LSP]].
-- For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/cc#lsp-servers][LSP servers]].
-- For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/develop/modules/lang/python#language-server-protocol-support][LSP Support]].
+- For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/tools/lsp/][Doom LSP]].
+- For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/lang/cc#lsp-servers][LSP servers]].
+- For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/lang/python#language-server-protocol-support][LSP Support]].
 - See [[https://www.cheng92.com/emacs/doom-emacs-with-org/][this one]] as well.
 - Please see [[https://emacs-lsp.github.io/lsp-mode/page/settings/mode/][emacs-lsp/lsp-mode settings]].
 - Robert Krahn: [[https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/#lsp-mode-and-lsp-ui-mode][Configuring Emacs for Rust Development]].
@@ -3301,6 +3296,7 @@ File watchers: [[https://emacs-lsp.github.io/lsp-mode/page/file-watchers/][see t
             "[/\\\\]\\out\\'"
             "[/\\\\]\\tmp\\'"
             "[/\\\\]\\.cache\\'" ; clangd index
+            "[/\\\\]\\.clangd\\'" ; clangd index
             "[/\\\\]\\.kwlp\\'"  ; klocwor
             "[/\\\\]\\.kwps\\'"  ; klocwor
             "[/\\\\]\\Application_PTF\\'"
@@ -3313,6 +3309,20 @@ File watchers: [[https://emacs-lsp.github.io/lsp-mode/page/file-watchers/][see t
  ;; well disable first :)
  (setq lsp-enable-file-watchers nil)
 )
+#+end_src
+
+LSP-mode with clangd. Ref: [[https://github.com/doomemacs/doomemacs/tree/master/modules/lang/cc#lsp-servers][Configure LSP servers]].
+
+#+begin_src emacs-lisp
+(after! lsp-clangd
+  (setq lsp-clients-clangd-args
+        '("-j=3"
+          "--background-index"
+          "--clang-tidy"
+          "--completion-style=detailed"
+          "--header-insertion=never"
+          "--header-insertion-decorators=0"))
+  (set-lsp-priority! 'clangd 2))
 #+end_src
 
 *** Keybindings
