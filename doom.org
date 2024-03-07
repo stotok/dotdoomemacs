@@ -683,6 +683,11 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/4242][Setting doom local le
 
 ** Personal Info and GPG
 
+Ref:
+- [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
+- [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
+- [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
+
 This is used by GPG and other things.
 
 #+begin_src emacs-lisp
