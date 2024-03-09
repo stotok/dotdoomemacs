@@ -1,0 +1,38 @@
+###### this is to negate .gitignore of aivc3 project style
+!/*/
+###### end of negating .gitignore
+###### common
+.git/
+.github/
+.build/
+.repo/
+.cache/
+.local/
+compile_commands.json
+CCAST_.CFG
+cscope.files
+cscope.out
+*.pyc
+*.o
+*.d
+*.so
+*.pdf
+*.log
+####### aivc3
+## files
+.clang-format
+## directories
+bin/
+3p/rn93xx/bin/
+3p/rn93xx/yocto/build_bin/
+3p/rn93xx/yocto/downloads/
+3p/rn93xx/yocto/footprint/
+3p/rn93xx/yocto/poky/
+3p/rn93xx/yocto/prebuilt/
+3p/rn93xx/yocto/src/kernel-5.15/out/
+3p/rn93xx/yocto/src/kernel-5.15/kernel_platform/qcom/proprietary/devicetree/
+3p/rn93xx/yocto/src/kernel-5.15/kernel_platform/bootable/bootloader/
+3p/rn93xx/yocto/src/kernel-5.15/kernel_platform/prebuilts/
+3p/rn93xx/yocto/src/kernel-5.15/kernel_platform/build/
+3p/rn93xx/yocto/src/kernel-5.15/kernel_platform/msm-kernel/
+pipeline/

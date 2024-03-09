@@ -657,6 +657,8 @@ Reference:
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
+(package! projectile-ripgrep :disable t) ; name changed to something else ...
+(package! projectile-ag :disable t)      ; name changed to something else ...
 #+end_src
 
 ** Need to Have Packages
@@ -2921,13 +2923,16 @@ Now, we can use touch .project.el in any directory to make
  ;;
  ;; Default rg arguments
  ;; https://github.com/BurntSushi/ripgrep
+ ;;
+ ;; totok 20240309 remove folow symlink for avic3, due to symline oe-logs/ and oe-works/
+ ;;      "--follow"                          ; follow symlinks
+
  (when (executable-find "rg")
    (message "Projectile use rg to generate project files.")
    (progn
      (defconst ttk/rg-arguments
        `("--line-number"                     ; line numbers
          "--smart-case"
-         "--follow"                          ; follow symlinks
          "--mmap")                           ; apply memory map optimization when possible
        "Default rg arguments used in the functions in `projectile' package.")
      ;;

@@ -69,6 +69,8 @@
 (package! lsp-python-ms :disable t)
 (package! lsp-ivy :disable t)
 (package! evil-escape :disable t)
+(package! projectile-ripgrep :disable t) ; name changed to something else ...
+(package! projectile-ag :disable t)      ; name changed to something else ...
 
 (package! pulsing-cursor
   :recipe (:host github

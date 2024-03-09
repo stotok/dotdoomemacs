@@ -1098,13 +1098,16 @@ Current pattern: %`evil-mc-pattern
  ;;
  ;; Default rg arguments
  ;; https://github.com/BurntSushi/ripgrep
+ ;;
+ ;; totok 20240309 remove folow symlink for avic3, due to symline oe-logs/ and oe-works/
+ ;;      "--follow"                          ; follow symlinks
+
  (when (executable-find "rg")
    (message "Projectile use rg to generate project files.")
    (progn
      (defconst ttk/rg-arguments
        `("--line-number"                     ; line numbers
          "--smart-case"
-         "--follow"                          ; follow symlinks
          "--mmap")                           ; apply memory map optimization when possible
        "Default rg arguments used in the functions in `projectile' package.")
      ;;
