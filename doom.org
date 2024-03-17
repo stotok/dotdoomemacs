@@ -2956,7 +2956,7 @@ See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository 
 Add a new remote name =upstream= that Forge understand it:
 
 #+begin_example
-$ git remote add upstream git@github.com:stotok/dotdoomemacs.git
+$ git remote add upstream https://github.com:stotok/dotdoomemacs.git
 #+end_example
 
 *** 5th Step: Startup your magit
