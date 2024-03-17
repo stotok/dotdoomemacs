@@ -53,7 +53,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#need-to-have-packages][Need to Have Packages]]
 - [[#general-configuration][General Configuration]]
   - [[#doom-local-leader-key][Doom Local Leader Key]]
-  - [[#personal-info-and-gpg][Personal Info and GPG]]
   - [[#better-defaults][Better Defaults]]
   - [[#mac-modifiers][Mac Modifiers]]
   - [[#frame-title][Frame Title]]
@@ -80,6 +79,10 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#undo][undo]]
   - [[#key-bindings][Key bindings]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
+- [[#personal-info-and-gpg][Personal Info and GPG]]
+  - [[#first-installation-and-key-pair-generation][First: Installation and Key-Pair Generation]]
+  - [[#second-create-a-file-you-want-to-encrypt][Second: Create a file you want to encrypt]]
+  - [[#third-emacs-configuration][Third: Emacs configuration]]
 - [[#tree-sitter][Tree-Sitter]]
   - [[#use-emacs-tree-sitter-for-hightlighting-in-doom-emacs][Use Emacs-Tree-Sitter for Hightlighting in Doom Emacs]]
 - [[#evil][Evil]]
@@ -681,28 +684,6 @@ Ref: [[https://github.com/hlissner/doom-emacs/issues/4242][Setting doom local le
 (setq-default evil-snipe-override-evil-repeat-keys nil
               doom-localleader-key ","
               doom-localleader-alt-key "M-,")
-#+end_src
-
-** Personal Info and GPG
-
-Ref:
-- [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
-- [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
-- [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
-
-This is used by GPG and other things.
-
-#+begin_src emacs-lisp
-(setq user-full-name "Totok Sulistiomono"
-      user-mail-address "s.totok@gmail.com")
-#+end_src
-
-Speaking of GPG, I use =~/.authsource.gpg= instead of the default in =~/.emacs.d=.
-Reason: I don't want to accidentally purge this file (e.g. =rm -rf ~/.emacs.d=).
-
-#+begin_src emacs-lisp
-(setq auth-sources '("~/.authinfo.gpg")
-      auth-source-cache-expiry nil)      ; default is 7200 (2h)
 #+end_src
 
 ** Better Defaults
@@ -1579,6 +1560,99 @@ and braces.
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 #+end_src
+
+* Personal Info and GPG
+
+Ref:
+- [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
+- [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
+- [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
+
+This is used by GPG and other things.
+
+** First: Installation and Key-Pair Generation
+
+#+begin_example
+$ sudo apt install gpg
+$ gpg --gen-key
+#+end_example
+
+It will store the key pair in:
+
+#+begin_example
+$ tree ~/.gnupg/
+/home/user/.gnupg/
+├── openpgp-revocs.d
+│   └── xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.rev
+├── private-keys-v1.d
+│   ├── xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.key
+│   └── xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.key
+├── pubring.kbx
+├── random_seed
+├── S.gpg-agent
+├── S.gpg-agent.browser
+├── S.gpg-agent.extra
+├── S.gpg-agent.ssh
+└── trustdb.gpg
+#+end_example
+
+To list your secret keys:
+
+#+begin_example
+$ gpg --list-secret-keys
+/home/user/.gnupg/pubring.kbx
+-------------------------------
+sec   rsa3072 2024-03-16 [SC] [expires: 2026-03-16]
+      xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+uid           [ultimate] Sire Gandalf <gandalf.sire@nomail.com>
+ssb   rsa3072 2024-03-16 [E] [expires: 2026-03-16]
+#+end_example
+
+** Second: Create a file you want to encrypt
+
+I create a file in my home directory:
+
+#+begin_example
+$ touch ~/.authinfo
+#+end_example
+
+Encrypt it with the uid email address in your secret key:
+
+#+begin_example
+$ gpg -e -r gandalf.sire@nomail.com ~/.authinfo
+#+end_example
+
+It will encrypt and create a new file by adding =.gpg= extension:
+
+#+begin_example
+$ ls -alF ~
+-rw-r--r-- 1 gandalf gandalf    0 Mar 17 08:24 .authinfo
+-rw-r--r-- 1 gandalf gandalf  469 Mar 17 08:25 .authinfo.gpg
+#+end_example
+
+You can delete =~/.authinfo= now.
+
+** Third: Emacs configuration
+
+#+begin_src emacs-lisp
+(setq user-full-name "Totok Sulistiomono"
+      user-mail-address "s.totok@gmail.com"
+      epg-gpg-program "gpg"             ; debian gpg ver 2
+      )
+#+end_src
+
+Speaking of GPG, I use =~/.authinfo.gpg= in home directory instead of
+the default in =~/.emacs.d=. Reason: I don't want to accidentally purge
+this file (e.g. =rm -rf ~/.emacs.d=).
+
+#+begin_src emacs-lisp
+(setq auth-sources '((:source "~/.authinfo.gpg")) ; can have multiple sources
+      auth-source-cache-expiry nil                ; default is 7200 (2h)
+      auth-source-debug t)
+#+end_src
+
+Now, emacs will be able to automatically encrypt/decrypt =~/.authinfo.gpg=
+on the fly.
 
 * Tree-Sitter
 
