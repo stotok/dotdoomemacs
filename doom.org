@@ -143,8 +143,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#1st-step-create-a-token-for-your-forge][1st Step: Create a token for your forge.]]
     - [[#2nd-step-register-your-username-for-your-forge][2nd Step: Register your username for your forge]]
     - [[#3rd-step-add-the-following-to-your-authinfogpg][3rd Step: Add the following to your =~/.authinfo.gpg=.]]
-    - [[#4th-step-startup-your-magit][4th Step: Startup your magit]]
-    - [[#pull-all-forge-topics-with--f-evil-users][Pull all forge topics with =@ f= (evil users)]]
+    - [[#4th-step-add-a-remote-name-that-forge-can-understand][4th Step: Add a remote name that Forge can understand]]
+    - [[#5th-step-startup-your-magit][5th Step: Startup your magit]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -1571,8 +1571,6 @@ and braces.
 
 Ref:
 - [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
-- [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
-- [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
 
 This is used by GPG and other things.
 
@@ -2923,6 +2921,12 @@ References:
 
 ** Forge
 
+Reference:
+
+- [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
+- [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
+- [[https://github.com/magit/forge/wiki/Tips-and-Tricks#using-ssh-identities][Forge: Tips and Tricks]]
+
 Pre-requisite: GnuPG is setup and running within emacs. See: ...
 
 *** 1st Step: Create a token for your forge.
@@ -2945,13 +2949,29 @@ Replace =USERNAME= and =TOKENSECRET= with yours:
 machine api.github.com login USERNAME^forge password TOKENSECRET
 #+end_example
 
-*** 4th Step: Startup your magit
+*** 4th Step: Add a remote name that Forge can understand
+
+See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository Detection]].
+
+Add a new remote name =upstream= that Forge understand it:
+
+#+begin_example
+$ git remote add upstream git@github.com:stotok/dotdoomemacs.git
+#+end_example
+
+*** 5th Step: Startup your magit
 
 #+begin_example
 M-x magit-status
 #+end_example
 
-*** Pull all forge topics with =@ f= (evil users)
+**** Firstly, forge-pull to pull topic from forge repository
+
+#+begin_example
+M-x forge-pull
+#+end_example
+
+**** List all topics: =@ f f=
 
 * Project Management
 
