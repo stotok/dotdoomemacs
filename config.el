@@ -1024,15 +1024,18 @@ Current pattern: %`evil-mc-pattern
   (setq-default +magit-open-windows-in-direction 'down))
 
 (use-package! blamer
+  :defer 10
   :custom
-  (blamer-idle-time 2.0)
-  (blamer-min-offset 70)
-  (blamer-max-commit-message-length 70)
-  (blamer-author-formatter "%s ")
-  (blamer-datetime-formatter nil)        ; no need to show time
+    (blamer-idle-time 2.0)
+    (blamer-min-offset 70)
+    (blamer-author-formatter "%s ")
+    (blamer-datetime-formatter nil)     ; no need to show time
+    (blamer-type 'both)
+    (blamer-uncommitted-changes-message "NOT COMMITTED")
+    (blamer-max-lines 30) ; if > 30 lines selected, blamer will not execute git commands
+    (blamer-max-commit-message-length 40) ; will be truncated if more than 40 chars
   :config
-  (setq blamer-type 'both)
-  (global-blamer-mode 1))
+    (global-blamer-mode 1))
 
 (defun ttk-project-override (dir)
   (let ((override (locate-dominating-file dir ".project.el")))
