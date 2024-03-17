@@ -139,6 +139,12 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#magit-and-gerrit][Magit and Gerrit]]
   - [[#blame][Blame]]
   - [[#blamer][Blamer]]
+  - [[#forge][Forge]]
+    - [[#1st-step-create-a-token-for-your-forge][1st Step: Create a token for your forge.]]
+    - [[#2nd-step-register-your-username-for-your-forge][2nd Step: Register your username for your forge]]
+    - [[#3rd-step-add-the-following-to-your-authinfogpg][3rd Step: Add the following to your =~/.authinfo.gpg=.]]
+    - [[#4th-step-startup-your-magit][4th Step: Startup your magit]]
+    - [[#pull-all-forge-topics-with--f-evil-users][Pull all forge topics with =@ f= (evil users)]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -2914,6 +2920,38 @@ not from magit, and it's already in melpa. But I prefer latest:
 References:
 - [[https://www.lvguowei.me/post/magit-rebase/][Guowei Lv: Magit Tutorial - Rebase (Part I)]]
 - [[https://www.lvguowei.me/post/magit-rebase-2/][Guowei Lv: Magit Tutorial - Rebase (Part II)]]
+
+** Forge
+
+Pre-requisite: GnuPG is setup and running within emacs. See: ...
+
+*** 1st Step: Create a token for your forge.
+
+- Github: [[https://github.com/settings/tokens]], Requires =repo=,
+  =user= and =read:org= scopes
+- Gitlab: TBD
+
+*** 2nd Step: Register your username for your forge
+
+#+begin_example
+$ git config --global github.user USERNAME
+#+end_example
+
+*** 3rd Step: Add the following to your =~/.authinfo.gpg=.
+
+Replace =USERNAME= and =TOKENSECRET= with yours:
+
+#+begin_example
+machine api.github.com login USERNAME^forge password TOKENSECRET
+#+end_example
+
+*** 4th Step: Startup your magit
+
+#+begin_example
+M-x magit-status
+#+end_example
+
+*** Pull all forge topics with =@ f= (evil users)
 
 * Project Management
 
