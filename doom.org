@@ -36,7 +36,7 @@
 
 #+title: Dot Doom Emacs
 #+author: Totok Sulistiomono
-#+email: s.totok@gmail.com
+#+email: sstotok@gmail.com
 
 This is my Doom Emacs configuration, originally forked from [[https://github.com/zzamboni/dot-doom][zzamboni/dot-doom.git]].
 
