@@ -140,11 +140,11 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#blame][Blame]]
   - [[#blamer][Blamer]]
   - [[#forge][Forge]]
-    - [[#1st-step-create-a-token-for-your-forge][1st Step: Create a token for your forge.]]
-    - [[#2nd-step-register-your-username-for-your-forge][2nd Step: Register your username for your forge]]
-    - [[#3rd-step-add-the-following-to-your-authinfogpg][3rd Step: Add the following to your =~/.authinfo.gpg=.]]
-    - [[#4th-step-add-a-remote-name-that-forge-can-understand][4th Step: Add a remote name that Forge can understand]]
-    - [[#5th-step-startup-your-magit][5th Step: Startup your magit]]
+    - [[#create-a-token-for-your-forge][Create a token for your forge.]]
+    - [[#register-your-username-for-your-forge][Register your username for your forge]]
+    - [[#add-the-following-to-your-authinfogpg][Add the following to your =~/.authinfo.gpg=.]]
+    - [[#add-a-remote-name-that-forge-can-understand][Add a remote name that Forge can understand]]
+    - [[#startup-your-magit][Startup your magit]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -1572,6 +1572,7 @@ and braces.
 Ref:
 - [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
 
+<<personal_info_gpg>>
 This is used by GPG and other things.
 
 ** First: Installation and Key-Pair Generation
@@ -2927,21 +2928,21 @@ Reference:
 - [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
 - [[https://github.com/magit/forge/wiki/Tips-and-Tricks#using-ssh-identities][Forge: Tips and Tricks]]
 
-Pre-requisite: GnuPG is setup and running within emacs. See: ...
+Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg][Personal Info and GPG]].
 
-*** 1st Step: Create a token for your forge.
+*** Create a token for your forge.
 
 - Github: [[https://github.com/settings/tokens]], Requires =repo=,
   =user= and =read:org= scopes
 - Gitlab: TBD
 
-*** 2nd Step: Register your username for your forge
+*** Register your username for your forge
 
 #+begin_example
 $ git config --global github.user USERNAME
 #+end_example
 
-*** 3rd Step: Add the following to your =~/.authinfo.gpg=.
+*** Add the following to your =~/.authinfo.gpg=.
 
 Replace =USERNAME= and =TOKENSECRET= with yours:
 
@@ -2949,7 +2950,7 @@ Replace =USERNAME= and =TOKENSECRET= with yours:
 machine api.github.com login USERNAME^forge password TOKENSECRET
 #+end_example
 
-*** 4th Step: Add a remote name that Forge can understand
+*** Add a remote name that Forge can understand
 
 See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository Detection]].
 
@@ -2959,7 +2960,7 @@ Add a new remote name =upstream= that Forge understand it:
 $ git remote add upstream https://github.com:stotok/dotdoomemacs.git
 #+end_example
 
-*** 5th Step: Startup your magit
+*** Startup your magit
 
 #+begin_example
 M-x magit-status
