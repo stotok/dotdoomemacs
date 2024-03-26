@@ -2880,6 +2880,11 @@ $ pipenv run python main.py
 
 * Magit
 
+References:
+- Youtube: [[https://www.youtube.com/watch?v=qPfJoeQCIvA][System Crafters: 9 Techniques to Boost Your Git Workflow with Magit]].
+- [[https://www.lvguowei.me/post/magit-rebase/][Guowei Lv: Magit Tutorial - Rebase (Part I)]]
+- [[https://www.lvguowei.me/post/magit-rebase-2/][Guowei Lv: Magit Tutorial - Rebase (Part II)]]
+
 Some configuration:
 
 #+begin_src emacs-lisp
@@ -2932,10 +2937,6 @@ not from magit, and it's already in melpa. But I prefer latest:
     (global-blamer-mode 1))
 #+end_src
 
-References:
-- [[https://www.lvguowei.me/post/magit-rebase/][Guowei Lv: Magit Tutorial - Rebase (Part I)]]
-- [[https://www.lvguowei.me/post/magit-rebase-2/][Guowei Lv: Magit Tutorial - Rebase (Part II)]]
-
 ** Forge
 
 Reference:
@@ -2984,27 +2985,16 @@ M-x magit-status
 
 **** Firstly, forge-pull to pull topic from forge repository
 
+If there is pull request, it will be shown:
 #+begin_example
 M-x forge-pull
-#+end_example
 
-If there is pull request, it will be shown:
-
-#+begin_example
 Head:     master Update lah
 Merge:    gitpi/master Update lah
 
 Recent commits
 571fae2 master gitpi/master github/master Update lah
 b1e58e3 Update upstrame
-f45edb9 Update documentation
-d616c89 upstream/master Set up forge
-1e1f9ed Update blamer settings
-1441665 Update how to do GPG in Emacs
-8047ada Update ignore file
-3a60769 Add aivc3 .ignore and adjust rg not to follow symlink
-06ba556 Add some notes
-988ea5f Enable packages related to github
 
 Pull requests (1)
 #+end_example
