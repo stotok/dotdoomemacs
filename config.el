@@ -65,6 +65,7 @@
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
+(defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
 ;; print hostname
 (cond
  (IS-IGL7568W
@@ -81,6 +82,8 @@
   (message "hostname: eris"))
  (IS-VDI1039
   (message "hostname: igvmf02d1039vdi"))
+ (IS-HORUS
+  (message "hostname: horus"))
  (t
   (message "hostname: unknown")))
 
@@ -366,6 +369,10 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-HORUS
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
@@ -388,6 +395,8 @@
    (IS-COVID
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-ERIS
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-HORUS
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))

@@ -403,6 +403,7 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 (defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
+(defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
 ;; print hostname
 (cond
  (IS-IGL7568W
@@ -419,6 +420,8 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
   (message "hostname: eris"))
  (IS-VDI1039
   (message "hostname: igvmf02d1039vdi"))
+ (IS-HORUS
+  (message "hostname: horus"))
  (t
   (message "hostname: unknown")))
 #+end_src
@@ -1102,15 +1105,27 @@ Show random quote:
 
 ** Fonts
 
+My favourite fonts:
+
++ [[https://input.fontbureau.com][Input]].
++ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
++ [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]]. Also [[https://github.com/be5invis/Iosevka][Iosevka on GitHub]].
+  - On MacOS
+    #+begin_example
+    $ brew tap homebrew/cask-fonts
+    $ brew install --cask font-iosevka
+    $ brew install --cask font-iosevka-ss04
+    #+end_example
+
 To install custom fonts in linux:
 #+begin_src bash
 $ cd ~/Downloads
-$ wget https://github.com/be5invis/Iosevka/releases/download/v27.3.4/super-ttc-iosevka-ss04-27.3.4.zip
-$ unzip super-ttc-iosevka-ss04-17.1.0.zip
-  it will extract to a font file: iosevka-ss04.ttc
+$ wget https://github.com/be5invis/Iosevka/releases/download/v29.0.4/SuperTTC-IosevkaSS04-29.0.4.zip
+$ unzip SuperTTC-IosevkaSS04-29.0.4.zip
+  it will extract to a font file: IosevkaSS04.ttc
 $ sudo mkdir /usr/local/share/fonts/iosevka-font
-$ sudo mv iosevka-ss04.ttc /usr/local/share/fonts/iosevka-font/
-$ sudo chown root:staff /usr/local/share/fonts/iosevka-font/iosevka-ss04.ttc
+$ sudo mv IosevkaSS04.ttc /usr/local/share/fonts/iosevka-font/
+$ sudo chown root:staff /usr/local/share/fonts/iosevka-font/IosevkaSS04.ttc
 $ sudo fc-cache -fv
 #+end_src
 
@@ -1123,18 +1138,6 @@ To list fonts that emacs can see:
 #+begin_example
 M-x menu-set-font
 #+end_example
-
-My favourite fonts:
-
-+ [[https://input.fontbureau.com][Input]].
-+ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
-+ [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]]. Also [[https://github.com/be5invis/Iosevka][Iosevka on GitHub]].
-  - On MacOS
-    #+begin_example
-    $ brew tap homebrew/cask-fonts
-    $ brew install --cask font-iosevka
-    $ brew install --cask font-iosevka-ss04
-    #+end_example
 
 Settings related to fonts:
 
@@ -1171,6 +1174,10 @@ Settings related to fonts:
  (IS-ERIS
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+ (IS-HORUS
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
@@ -1218,6 +1225,8 @@ I customize existing doom-themes to my liking:
    (IS-COVID
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-ERIS
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-HORUS
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
