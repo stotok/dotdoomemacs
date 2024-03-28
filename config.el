@@ -599,10 +599,15 @@
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 
-(setq user-full-name "Totok Sulistiomono"
-      user-mail-address "s.totok@gmail.com"
-      epg-gpg-program "gpg"             ; debian gpg ver 2
-      )
+(cond
+ (IS-HORUS
+  (setq user-full-name "Totok Sulistiomono"
+        user-mail-address "sstotok@gmail.com"
+        epg-gpg-program "gpg"))          ; debian gpg ver 2
+ (t
+  (setq user-full-name "Totok Sulistiomono"
+        user-mail-address "s.totok@gmail.com"
+        epg-gpg-program "gpg")))        ; debian gpg ver 2
 
 (setq auth-sources '((:source "~/.authinfo.gpg")) ; can have multiple sources
       auth-source-cache-expiry nil                ; default is 7200 (2h)
