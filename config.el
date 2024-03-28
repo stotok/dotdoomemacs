@@ -370,9 +370,9 @@
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (IS-HORUS
-  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
-        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 14)
-        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 12)
         doom-variable-pitch-font (font-spec :family "monospace" :size 12)
