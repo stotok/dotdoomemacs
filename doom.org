@@ -1110,15 +1110,17 @@ My favourite fonts:
 + [[https://input.fontbureau.com][Input]].
 + [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
 + [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]]. Also [[https://github.com/be5invis/Iosevka][Iosevka on GitHub]].
-  - On MacOS
-    #+begin_example
-    $ brew tap homebrew/cask-fonts
-    $ brew install --cask font-iosevka
-    $ brew install --cask font-iosevka-ss04
-    #+end_example
+
+On MacOS
+#+begin_example
+$ brew tap homebrew/cask-fonts
+$ brew install --cask font-iosevka
+$ brew install --cask font-iosevka-ss04
+#+end_example
 
 To install custom fonts in linux:
-#+begin_src bash
+
+#+begin_example
 $ cd ~/Downloads
 $ wget https://github.com/be5invis/Iosevka/releases/download/v29.0.4/SuperTTC-IosevkaSS04-29.0.4.zip
 $ unzip SuperTTC-IosevkaSS04-29.0.4.zip
@@ -1127,12 +1129,12 @@ $ sudo mkdir /usr/local/share/fonts/iosevka-font
 $ sudo mv IosevkaSS04.ttc /usr/local/share/fonts/iosevka-font/
 $ sudo chown root:staff /usr/local/share/fonts/iosevka-font/IosevkaSS04.ttc
 $ sudo fc-cache -fv
-#+end_src
+#+end_example
 
 To list available fonts in linux:
-#+begin_src bash
+#+begin_example
 $ fc-list | grep InputSans
-#+end_src
+#+end_example
 
 To list fonts that emacs can see:
 #+begin_example
