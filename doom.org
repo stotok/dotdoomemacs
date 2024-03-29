@@ -2950,8 +2950,8 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
 
 *** Create a token for your forge.
 
-- Github: [[https://github.com/settings/tokens]], Requires =repo=,
-  =user= and =read:org= scopes
+- Github: [[https://github.com/settings/tokens]]
+  + Requires: =repo=, =user= and =read:org= scopes
 - Gitlab: TBD
 
 *** Register your username for your forge
