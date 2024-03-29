@@ -2941,6 +2941,7 @@ not from magit, and it's already in melpa. But I prefer latest:
 
 Reference:
 
+- [[https://magit.vc/manual/forge.html][Forge User and Developer Manual]]
 - [[https://docs.doomemacs.org/v21.12/modules/tools/magit/][doom emacs: forge setting]].
 - [[https://gist.github.com/Azeirah/542f1db12e3ef904abfc7e9c2e83310e][Magit forge for Gitlab in Doom Emacs]].
 - [[https://github.com/magit/forge/wiki/Tips-and-Tricks#using-ssh-identities][Forge: Tips and Tricks]]
@@ -2974,8 +2975,10 @@ See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository 
 Add a new remote name =upstream= that Forge understand it:
 
 #+begin_example
-$ git remote add upstream https://github.com:stotok/dotdoomemacs.git
+$ git remote add upstream https://github.com/gandalf/dotdoomemacs.git
 #+end_example
+
+Pay attention for the above format, to use =/= instead of =:= before =gandalf=.
 
 *** Startup your magit
 
