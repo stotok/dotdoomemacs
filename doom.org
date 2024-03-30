@@ -145,6 +145,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#add-the-following-to-your-authinfogpg][Add the following to your =~/.authinfo.gpg=.]]
     - [[#add-a-remote-name-that-forge-can-understand][Add a remote name that Forge can understand]]
     - [[#startup-your-magit][Startup your magit]]
+    - [[#configuration-1][Configuration]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -164,7 +165,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#lsp-treemacs][=lsp-treemacs=]]
 - [[#language-server-protocol][Language Server Protocol]]
   - [[#lsp][LSP]]
-    - [[#configuration-1][Configuration]]
+    - [[#configuration-2][Configuration]]
     - [[#keybindings][Keybindings]]
 - [[#company][Company]]
 - [[#spell-checker][Spell Checker]]
@@ -3007,6 +3008,30 @@ Pull requests (1)
 #+end_example
 
 **** List all topics: =@ f f=
+
+This will list all topics.
+
+*** Configuration
+
+**** ssh config
+
+Remove any reference of =Host= pointing to =github.com= in =~/.ssh/config=.
+The purpose is not to confuse with setting of =remote= upstream later.
+
+**** =remote=
+
+#+begin_example
+$ git remote -vv
+gitpi   git@gitpi:dotdoomemacs.git (fetch)
+gitpi   git@gitpi:dotdoomemacs.git (push)
+sshgithub       git@sshgithub:gandalf/dotdoomemacs.git (fetch)
+sshgithub       git@sshgithub:gandalf/dotdoomemacs.git (push)
+upstream        https://github.com/gandalf/dotdoomemacs.git (fetch)
+upstream        https://github.com/gandalf/dotdoomemacs.git (push)
+#+end_example
+
+- =upstream= :: Host name must be =github.com=. For simplicity let's just use =https=.
+
 
 * Project Management
 
