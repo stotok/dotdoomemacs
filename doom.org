@@ -146,6 +146,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#add-a-remote-name-that-forge-can-understand][Add a remote name that Forge can understand]]
     - [[#startup-your-magit][Startup your magit]]
     - [[#configuration-1][Configuration]]
+  - [[#code-review][Code Review]]
   - [[#github-development-model][Github Development Model]]
     - [[#add-collaborators][Add Collaborators]]
     - [[#managing-a-branch-protection-rule][Managing a branch protection rule]]
@@ -3045,6 +3046,15 @@ upstream        https://github.com/gandalf/dotdoomemacs.git (push)
 #+end_example
 
 - =upstream= :: Host name must be =github.com=. For simplicity let's just use =https=.
+
+** Code Review
+
+Ref: [[https://github.com/wandersoncferreira/code-review][github: wandersoncferreira/code-review]].
+
+Already enabled when choosing =+forge=.
+
+However, see this:
+- [[https://github.com/magit/forge/pull/266][forge: Code review support #266]]
 
 ** Github Development Model
 
