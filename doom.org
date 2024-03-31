@@ -147,6 +147,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#startup-your-magit][Startup your magit]]
     - [[#configuration-1][Configuration]]
   - [[#github-development-model][Github Development Model]]
+    - [[#add-collaborators][Add Collaborators]]
     - [[#managing-a-branch-protection-rule][Managing a branch protection rule]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
@@ -3036,10 +3037,13 @@ upstream        https://github.com/gandalf/dotdoomemacs.git (push)
 
 ** Github Development Model
 
+*** Add Collaborators
+
+This is what sometimes called =user= of your repository.
+
 *** Managing a branch protection rule
 
 Ref: [[https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule][github: Managing a branch protection rule]].
-
 
 * Project Management
 
