@@ -3015,6 +3015,8 @@ This will list all topics.
 
 *** Configuration
 
+We are going to use "Shared Repository" model in this repo.
+
 **** ssh config
 
 Remove any reference of =Host= pointing to =github.com= in =~/.ssh/config=.
