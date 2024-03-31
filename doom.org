@@ -146,6 +146,8 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#add-a-remote-name-that-forge-can-understand][Add a remote name that Forge can understand]]
     - [[#startup-your-magit][Startup your magit]]
     - [[#configuration-1][Configuration]]
+  - [[#github-development-model][Github Development Model]]
+    - [[#managing-a-branch-protection-rule][Managing a branch protection rule]]
 - [[#project-management][Project Management]]
   - [[#projectel][project.el]]
     - [[#overriding-the-projectel-project-directory][Overriding the project.el project directory]]
@@ -3031,6 +3033,12 @@ upstream        https://github.com/gandalf/dotdoomemacs.git (push)
 #+end_example
 
 - =upstream= :: Host name must be =github.com=. For simplicity let's just use =https=.
+
+** Github Development Model
+
+*** Managing a branch protection rule
+
+Ref: [[https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/managing-a-branch-protection-rule][github: Managing a branch protection rule]].
 
 
 * Project Management
