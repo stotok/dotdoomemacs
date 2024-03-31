@@ -3014,6 +3014,15 @@ Pull requests (1)
 
 This will list all topics.
 
+**** Forge delete local topic
+
+After pull request is merged, by default the info is still in local database
+albeit with marking 'merged'. If you don't want to see it:
+
+#+begin_example
+M-x forge-remove-topic-locally
+#+end_example
+
 *** Configuration
 
 We are going to use "Shared Repository" model in this repo.
