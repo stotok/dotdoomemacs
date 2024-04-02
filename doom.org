@@ -140,12 +140,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#blame][Blame]]
   - [[#blamer][Blamer]]
   - [[#forge][Forge]]
-    - [[#create-a-token-for-your-forge][Create a token for your forge.]]
-    - [[#register-your-username-for-your-forge][Register your username for your forge]]
-    - [[#add-the-following-to-your-authinfogpg][Add the following to your =~/.authinfo.gpg=.]]
-    - [[#add-a-remote-name-that-forge-can-understand][Add a remote name that Forge can understand]]
-    - [[#startup-your-magit][Startup your magit]]
-    - [[#how-to-create-pull-request][How to Create Pull Request]]
     - [[#how-to-merge-pull-request][How to Merge Pull Request]]
   - [[#code-review][Code Review]]
   - [[#github-development-model][Github Development Model]]
@@ -2958,93 +2952,106 @@ Reference:
 
 Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg][Personal Info and GPG]].
 
-*** Create a token for your forge.
+- Create a token for your forge ::
+  + Github: [[https://github.com/settings/tokens]]
+    - Requires: =repo=, =user= and =read:org= scopes
+  + Gitlab: TBD
 
-- Github: [[https://github.com/settings/tokens]]
-  + Requires: =repo=, =user= and =read:org= scopes
-- Gitlab: TBD
+- Register your username for your forge ::
+  #+begin_example
+  $ git config --global github.user USERNAME
+  #+end_example
 
-*** Register your username for your forge
+- Add the following to your =~/.authinfo.gpg= ::
+  Replace =USERNAME= and =TOKENSECRET= with yours:
+  #+begin_example
+  machine api.github.com login USERNAME^forge password TOKENSECRET
+  #+end_example
 
-#+begin_example
-$ git config --global github.user USERNAME
-#+end_example
+- Add a remote name that Forge can understand ::
+  See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository Detection]].
 
-*** Add the following to your =~/.authinfo.gpg=.
+  Add a new remote name =upstream= that Forge understand it:
+  #+begin_example
+  $ git remote add upstream git@github.com:gandalf/dotdoomemacs.git
+  #+end_example
 
-Replace =USERNAME= and =TOKENSECRET= with yours:
+  Or,
 
-#+begin_example
-machine api.github.com login USERNAME^forge password TOKENSECRET
-#+end_example
+  #+begin_example
+  $ git remote add upstream https://github.com/gandalf/dotdoomemacs.git
+  #+end_example
 
-*** Add a remote name that Forge can understand
+  Pay attention for the above format, to use =/= instead of =:= before =gandalf=.
+  And =remote-url= name must be =github.com=.
 
-See [[https://magit.vc/manual/forge/Repository-Detection.html][Forge Repository Detection]].
+- Startup your magit ::
+  #+begin_example
+  M-x magit-status
+  #+end_example
 
-Add a new remote name =upstream= that Forge understand it:
+  + Firstly, forge-pull to pull topic from forge repository ::
+    If there is pull request, it will be shown:
+    #+begin_example
+    M-x forge-pull
 
-#+begin_example
-$ git remote add upstream git@github.com:gandalf/dotdoomemacs.git
-#+end_example
+    Head:     master Update lah
+    Merge:    gitpi/master Update lah
 
-Or,
+    Recent commits
+    571fae2 master gitpi/master github/master Update lah
+    b1e58e3 Update upstrame
 
-#+begin_example
-$ git remote add upstream https://github.com/gandalf/dotdoomemacs.git
-#+end_example
+    Pull requests (1)
+    #+end_example
 
-Pay attention for the above format, to use =/= instead of =:= before =gandalf=.
-And =remote-url= name must be =github.com=.
+  + List all topics: =@ f f= ::
+    This will list all topics.
 
-*** Startup your magit
+  + Forge delete local topic ::
+    After pull request is merged, by default the info is still in local database
+    albeit with marking 'merged'. If you don't want to see it:
 
-#+begin_example
-M-x magit-status
-#+end_example
+    #+begin_example
+    M-x forge-remove-topic-locally
+    #+end_example
 
-**** Firstly, forge-pull to pull topic from forge repository
+- How to Create Pull Request ::
 
-If there is pull request, it will be shown:
-#+begin_example
-M-x forge-pull
+  Ref:
 
-Head:     master Update lah
-Merge:    gitpi/master Update lah
+  + Youtube: [[https://www.youtube.com/watch?v=fFuf3hExF5w][Zaiste: Emacs Magit with Forge for Issuing Pull Requests]]
+  + [[https://lahtela.me/2020/08/11/using-forge-and-pull-requests.html][Using Magit Forge with Github Pull Request]]
 
-Recent commits
-571fae2 master gitpi/master github/master Update lah
-b1e58e3 Update upstrame
+  Once you have fetched forge topics and populated the pull requests section,
+  you can go into the branch transient and there should be options for checking
+  out a pull request or creating a branch based of a pull request (f and F on mine,
+  I think it's the default). Pull requests will also become a target for merges
+  and rebasing. They'll be named either pullreq/ followed by the number or the
+  branch name prefixed by the remote.
 
-Pull requests (1)
-#+end_example
+  + Step-1 :: Create local feature branch off from a branch where you want to
+    merge later.
+    #+begin_example
+    $ git checkout -b myfeature01
+    #+end_example
+  + Step-2 :: Push the local feature branch to remote =upstream= branch (same name better).
+    #+begin_example
+    $ git push -u upstream myfeature01
+    #+end_example
+  + Step-3 :: Create PR for the current repository (=forge-create-pullreq=). Fire up
+    magit forge menu:
+    #+begin_example
+    Create
+      c i issue
+      c p pull-request
+      c u pull-request from issue
+      c r Review pull request
+      c f fork or remote
+    #+end_example
+    Then you select =c p=.
 
-**** List all topics: =@ f f=
-
-This will list all topics.
-
-**** Forge delete local topic
-
-After pull request is merged, by default the info is still in local database
-albeit with marking 'merged'. If you don't want to see it:
-
-#+begin_example
-M-x forge-remove-topic-locally
-#+end_example
-
-*** How to Create Pull Request
-
-Ref:
-
-- Youtube: [[https://www.youtube.com/watch?v=fFuf3hExF5w][Zaiste: Emacs Magit with Forge for Issuing Pull Requests]]
-- [[https://lahtela.me/2020/08/11/using-forge-and-pull-requests.html][Using Magit Forge with Github Pull Request]]
-
-Once you have fetched forge topics and populated the pull requests section,
-you can go into the branch transient and there should be options for checking
-out a pull request or creating a branch based of a pull request (f and F on mine,
-I think it's the default). Pull requests will also become a target for merges
-and rebasing. They'll be named either pullreq/ followed by the number or the
-branch name prefixed by the remote.
+    Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/???=.
 
 *** How to Merge Pull Request
 
