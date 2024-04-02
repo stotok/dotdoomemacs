@@ -3051,7 +3051,7 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     #+end_example
     Then you select =c p=.
 
-    Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/???=.
+    Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/master=.
 
 *** How to Merge Pull Request
 
