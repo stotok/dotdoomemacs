@@ -3054,7 +3054,6 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     Then you select =c p=.
 
     Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/master=.
-
   + Step-4 :: Make some more changes locally, and push to the same remote =upstream=
     branch earlier.
     #+begin_example
@@ -3066,12 +3065,28 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     PR contains 2 commits. You can make further changes locally, commit and push
     to the same remote =upstream= branch as many as you want.
 
-
 *** How to Merge Pull Request
 
 Ref:
-
 - Youtube: [[https://www.youtube.com/watch?v=Qj4eRccsos8][Zaiste: Emacs Magit with Forge for merging Pull Requests]]
+- [[https://github.com/magit/forge/issues/96][github forge: possible to merge PR's from magit? #96]]
+
+You have to checkout a local branch for the pr first (b y) then you can use
+magit-merge-into (m i) to merge it. The correct target branch will be offered
+and you will be asked whether you want the pr branch and the pr remote
+(if appropriate).
+
+Forge has decided to not add a command to merge without creating a branch first
+because its a good thing to do some review in Magit before doing so. On the other
+hand since the pr's commits are now listed when viewing the pr, that is possible
+without creating a branch first. Then again you might want to rebase and/or make
+small changes and for that you need a branch.
+
+Please try using the "create branch and then merge that" approach, and how it
+work for you.
+
++ Step-1 :: Checkout a local branch.
+
 
 ** Code Review
 
