@@ -3035,8 +3035,10 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     #+begin_example
     $ git checkout -b myfeature01
     #+end_example
-  + Step-2 :: Push the local feature branch to remote =upstream= branch (same name better).
+  + Step-2 :: Make some changes and push the local feature branch to remote
+    =upstream= branch (same name better).
     #+begin_example
+    $ git commit -m "initial changes"
     $ git push -u upstream myfeature01
     #+end_example
   + Step-3 :: Create PR for the current repository (=forge-create-pullreq=). Fire up
@@ -3052,6 +3054,18 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     Then you select =c p=.
 
     Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/master=.
+
+  + Step-4 :: Make some more changes locally, and push to the same remote =upstream=
+    branch earlier.
+    #+begin_example
+    $ git commit -m "further changes"
+    $ git push upstream myfeature01
+    #+end_example
+
+    The new commit will be automatically into the commits of the PR. So, now the
+    PR contains 2 commits. You can make further changes locally, commit and push
+    to the same remote =upstream= branch as many as you want.
+
 
 *** How to Merge Pull Request
 
