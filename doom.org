@@ -3071,11 +3071,6 @@ Ref:
 - Youtube: [[https://www.youtube.com/watch?v=Qj4eRccsos8][Zaiste: Emacs Magit with Forge for merging Pull Requests]]
 - [[https://github.com/magit/forge/issues/96][github forge: possible to merge PR's from magit? #96]]
 
-You have to checkout a local branch for the pr first (b y) then you can use
-magit-merge-into (m i) to merge it. The correct target branch will be offered
-and you will be asked whether you want the pr branch and the pr remote
-(if appropriate).
-
 Forge has decided to not add a command to merge without creating a branch first
 because its a good thing to do some review in Magit before doing so. On the other
 hand since the pr's commits are now listed when viewing the pr, that is possible
@@ -3085,8 +3080,22 @@ small changes and for that you need a branch.
 Please try using the "create branch and then merge that" approach, and how it
 work for you.
 
-+ Step-1 :: Checkout a local branch.
-
++ Step-1 :: Create a local branch from pull-request (=b F=). If you are the one
+  who also previously the one created the pull-request, then your existing
+  local branch name will be reused. However, pay attention to:
+  #+begin_example
+  Head:        myfeature01 further changes
+  Rebase:      master blah blah blah
+  Push:        upstream/myfeature01 further changes
+  #+end_example
+  The HEAD is now pointing to your local branch.
++ Step-2 :: Now you can do code review locally.
++ Step-3 :: Push local branch =myfeature01= to remote =upstream/master=. It will
+  merge the push request to remote master branch.
++ Step-4 :: Refresh local forge dababase with =M-x forge-pull=.
++ Step-5 :: Checkout to local =master= branch and pull remote =upstream/master=
+  into your local =master= branch.
++ Step-7 :: Now you can delete local =myfeature01= as well as remote =upstream/myfeature01=.
 
 ** Code Review
 
