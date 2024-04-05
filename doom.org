@@ -3085,12 +3085,28 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     Then you select =c p=.
 
     Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/master=.
-  + Step-4 :: Make some more changes locally, and push to the same remote =upstream=
-    branch earlier.
+
+  + Step-4 :: Make some changes locally and new commit (not commit ammend), and push
+    to the same remote =upstream= branch earlier.
     #+begin_example
     $ git commit -m "further changes"
     $ git push upstream myfeature01
     #+end_example
+    Or, in magit buffer (=@ p p=: pushRemote, setting that):
+    #+begin_example
+    Push 'myfeature01' to
+      p pushRemote, setting that
+      u @{upstream}, creating it
+      e elsewhere
+    #+end_example
+    Magit will popup:
+    #+begin_example
+    Set branch.myfeature01.pushRemote and push there:
+      gitpi
+      sshgithub
+      upstream
+    #+end_example
+    Select: =upstream=
 
     The new commit will be automatically into the commits of the PR. So, now the
     PR contains 2 commits. You can make further changes locally, commit and push
@@ -3111,9 +3127,9 @@ small changes and for that you need a branch.
 Please try using the "create branch and then merge that" approach, and how it
 work for you.
 
-+ Step-1 :: Create a local branch from pull-request (=b F=). If you are the one
-  who also previously the one created the pull-request, then your existing
-  local branch name will be reused. However, pay attention to:
++ Step-1 :: In magit status buffer, create a local branch from pull-request (=b F=).
+  If you are the one who also previously the one created the pull-request, then
+  your existing local branch name will be reused. However, pay attention to:
   #+begin_example
   Head:        myfeature01 further changes
   Rebase:      master blah blah blah
