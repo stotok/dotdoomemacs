@@ -432,12 +432,15 @@ relevant indicators like =lexical-binding=, or instructions about the contents o
 Doom [[https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org#configure][does not recommend the Emacs =customize= mechanism]]:
 
 #+begin_quote
-/Note: do not use M-x customize or the customize API in general. Doom is designed to be configured programmatically from your config.el, which can conflict with Customize’s way of modifying variables./
+/Note: do not use M-x customize or the customize API in general. Doom is designed
+to be configured programmatically from your config.el, which can conflict with
+Customize’s way of modifying variables./
 #+end_quote
 
 All necessary settings are therefore set by hand as part of this configuration file.
-The only exceptions are "safe variable" and "safe theme" settings, which are automatically
-saved by Emacs in =custom.el=, but this is OK as they don't conflict with anything else from the config.
+The only exceptions are "safe variable" and "safe theme" settings, which are
+automatically saved by Emacs in =custom.el=, but this is OK as they don't conflict
+with anything else from the config.
 
 * Doom Modules
 
@@ -3035,12 +3038,40 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     #+begin_example
     $ git checkout -b myfeature01
     #+end_example
+    More often than not, this is my case: In master branch, directly modifying
+    file and commit, forgetting to create a feature branch. But no worry, go to
+    magit status and =? b s= (checkout a new spin-off):
+    #+begin_example
+    Checkout
+        s new spin-off
+    #+end_example
+    then give the new branch a name =myfeature01=. Magit will immediately checkout
+    to it, and the master branch will be reset back to the original before
+    the new commits.
+
   + Step-2 :: Make some changes and push the local feature branch to remote
     =upstream= branch (same name better).
     #+begin_example
     $ git commit -m "initial changes"
     $ git push -u upstream myfeature01
     #+end_example
+    Or, from magit status buffer: =? P u= (@{upstream}, creating it)
+    #+begin_example
+    Push 'myfeature01' to
+      p pushRemote, setting that
+      u @{upstream}, creating it
+      e elsewhere
+    #+end_example
+    Then magit will popup
+    #+begin_example
+    Set upstream of 'myfeature01' and push there:
+      upstream/master
+      gitpi/master
+      gitpi/myfeature01
+      upstream/myfeature01
+    #+end_example
+    You select =upstream/myfeature01=.
+
   + Step-3 :: Create PR for the current repository (=forge-create-pullreq=). Fire up
     magit forge menu:
     #+begin_example
