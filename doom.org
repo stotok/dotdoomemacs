@@ -3036,7 +3036,7 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
   + Step-1 :: Create local feature branch off from a branch where you want to
     merge later.
     #+begin_example
-    $ git checkout -b myfeature01
+    $ git checkout -b feature/ticket-01
     #+end_example
     More often than not, this is my case: In master branch, directly modifying
     file and commit, forgetting to create a feature branch. But no worry, go to
@@ -3045,7 +3045,7 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     Checkout
         s new spin-off
     #+end_example
-    then give the new branch a name =myfeature01=. Magit will immediately checkout
+    then give the new branch a name =feature/ticket-01=. Magit will immediately checkout
     to it, and the master branch will be reset back to the original before
     the new commits.
 
@@ -3053,24 +3053,24 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     =upstream= branch (same name better).
     #+begin_example
     $ git commit -m "initial changes"
-    $ git push -u upstream myfeature01
+    $ git push -u upstream feature/ticket-01
     #+end_example
     Or, from magit status buffer: =? P u= (@{upstream}, creating it)
     #+begin_example
-    Push 'myfeature01' to
+    Push 'feature/ticket-01' to
       p pushRemote, setting that
       u @{upstream}, creating it
       e elsewhere
     #+end_example
     Then magit will popup
     #+begin_example
-    Set upstream of 'myfeature01' and push there:
+    Set upstream of 'feature/ticket-01' and push there:
       upstream/master
       gitpi/master
-      gitpi/myfeature01
-      upstream/myfeature01
+      gitpi/feature/ticket-01
+      upstream/feature/ticket-01
     #+end_example
-    You select =upstream/myfeature01=.
+    You select =upstream/feature/ticket-01=.
 
   + Step-3 :: Create PR for the current repository (=forge-create-pullreq=). Fire up
     magit forge menu:
@@ -3084,24 +3084,24 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
     #+end_example
     Then you select =c p=.
 
-    Then follow instruction. =Source= is =upstream/myfeature01=, =Target= is =upstream/master=.
+    Then follow instruction. =Source= is =upstream/feature/ticket-01=, =Target= is =upstream/master=.
 
   + Step-4 :: Make some changes locally and new commit (not commit ammend), and push
     to the same remote =upstream= branch earlier.
     #+begin_example
     $ git commit -m "further changes"
-    $ git push upstream myfeature01
+    $ git push upstream feature/ticket-01
     #+end_example
     Or, in magit buffer (=@ p p=: pushRemote, setting that):
     #+begin_example
-    Push 'myfeature01' to
+    Push 'feature/ticket-01' to
       p pushRemote, setting that
       u @{upstream}, creating it
       e elsewhere
     #+end_example
     Magit will popup:
     #+begin_example
-    Set branch.myfeature01.pushRemote and push there:
+    Set branch.feature/ticket-01.pushRemote and push there:
       gitpi
       sshgithub
       upstream
@@ -3131,18 +3131,18 @@ work for you.
   If you are the one who also previously the one created the pull-request, then
   your existing local branch name will be reused. However, pay attention to:
   #+begin_example
-  Head:        myfeature01 further changes
+  Head:        feature/ticket-01 further changes
   Rebase:      master blah blah blah
-  Push:        upstream/myfeature01 further changes
+  Push:        upstream/feature/ticket-01 further changes
   #+end_example
   The HEAD is now pointing to your local branch.
 + Step-2 :: Now you can do code review locally.
-+ Step-3 :: Push local branch =myfeature01= to remote =upstream/master=. It will
++ Step-3 :: Push local branch =feature/ticket-01= to remote =upstream/master=. It will
   merge the push request to remote master branch.
 + Step-4 :: Refresh local forge dababase with =M-x forge-pull=.
 + Step-5 :: Checkout to local =master= branch and pull remote =upstream/master=
   into your local =master= branch.
-+ Step-7 :: Now you can delete local =myfeature01= as well as remote =upstream/myfeature01=.
++ Step-7 :: Now you can delete local =feature/ticket-01= as well as remote =upstream/feature/ticket-01=.
 
 ** Code Review
 
