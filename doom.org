@@ -2976,17 +2976,28 @@ Pre-requisite: GnuPG is setup and running within emacs. See: [[personal_info_gpg
 
   Add a new remote name =upstream= that Forge understand it:
   #+begin_example
-  $ git remote add upstream git@github.com:gandalf/dotdoomemacs.git
+  $ git remote add upstream https://github.com/gandalf/dotdoomemacs.git
   #+end_example
+
+  Pay attention the above format, to use =/= instead of =:= before =gandalf=.
+  And =remote-url= name must be =github.com=.
 
   Or,
 
   #+begin_example
-  $ git remote add upstream https://github.com/gandalf/dotdoomemacs.git
+  $ git remote add upstream git@github.com:gandalf/dotdoomemacs.git
   #+end_example
 
-  Pay attention for the above format, to use =/= instead of =:= before =gandalf=.
-  And =remote-url= name must be =github.com=.
+  + Note ::
+    - =remote-url= must be =github.com=
+    - I guess it's using =ssh= protocol, but, I don't need to setup
+      /ssh key/ in =~/.ssh/config=:
+      #+begin_example
+      Host github.com
+          IdentityFile  ~/.ssh/your_private_key
+      #+end_example
+      However, =push= remote =upstream= is allowed via magit. I'm not sure
+      how. Maybe via the =token=?
 
 - Startup your magit ::
   #+begin_example
@@ -3135,7 +3146,7 @@ work for you.
   Rebase:      master blah blah blah
   Push:        upstream/feature/ticket-01 further changes
   #+end_example
-  The HEAD is now pointing to your local branch.
+  The HEAD is now pointing to your local branch and it tracks upstream branch.
 + Step-2 :: Now you can do code review locally.
 + Step-3 :: Push local branch =feature/ticket-01= to remote =upstream/master=. It will
   merge the push request to remote master branch.
