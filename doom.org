@@ -1086,6 +1086,7 @@ Show random quote:
     "Good judgment comes from experience, and experience comes from bad judgment"
     "Don't comment bad code - rewrite it"
     "It's not a bug - it's an undocumented feature"
+    "The jump always feels scary, and often, the landing is amazing"
     "Take your time. Recharge and come back stronger"
     "Copy and paste is a design error"))
 
