@@ -1039,16 +1039,23 @@ Current pattern: %`evil-mc-pattern
   (setq-default +magit-open-windows-in-direction 'down))
 
 (use-package! blamer
-  :defer 10
+  :bind
+  :defer 20
   :custom
-    (blamer-idle-time 2.0)
+    (blamer-idle-time 1.0)
     (blamer-min-offset 70)
     (blamer-author-formatter "%s ")
     (blamer-datetime-formatter nil)     ; no need to show time
+    (blamer-prettify-time-p nil)        ; no need show 2days ago/yesterday etc
     (blamer-type 'both)
     (blamer-uncommitted-changes-message "NOT COMMITTED")
     (blamer-max-lines 30) ; if > 30 lines selected, blamer will not execute git commands
     (blamer-max-commit-message-length 40) ; will be truncated if more than 40 chars
+    (blamer-smart-background-p nil)       ; prefer not blamer face
+    (blamer-border-lines nil)             ; borders will not present
+    ;; (blamer-force-truncate-long-line nil) ; when truncate-lines mode is disabled you can
+    (blamer-show-avatar-p nil)
+    (blamer-enable-async-execution-p nil) ; this is the culprit. Must be nil !!!
   :config
     (global-blamer-mode 1))
 
