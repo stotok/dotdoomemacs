@@ -600,15 +600,12 @@
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 
-(cond
- (IS-HORUS
-  (setq user-full-name "Totok Sulistiomono"
-        user-mail-address "sstotok@gmail.com"
-        epg-gpg-program "gpg"))          ; debian gpg ver 2
- (t
-  (setq user-full-name "Totok Sulistiomono"
-        user-mail-address "s.totok@gmail.com"
-        epg-gpg-program "gpg")))        ; debian gpg ver 2
+(add-hook 'after-init-hook
+           (lambda ()
+             (let ((file-name-handler-alist '(("\\.gpg\\(~\\|\\.~[0-9]+~\\)?\\'" . epa-file-handler))))
+               (load-file (expand-file-name "personal.el.gpg" doom-private-dir)))))
+
+(setenv "GPG_AGENT_INFO" nil)
 
 (setq auth-sources '((:source "~/.authinfo.gpg")) ; can have multiple sources
       auth-source-cache-expiry nil                ; default is 7200 (2h)

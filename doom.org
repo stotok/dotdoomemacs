@@ -1656,15 +1656,17 @@ You can delete =~/.authinfo= now.
 ** Third: Emacs configuration
 
 #+begin_src emacs-lisp
-(cond
- (IS-HORUS
-  (setq user-full-name "Totok Sulistiomono"
-        user-mail-address "sstotok@gmail.com"
-        epg-gpg-program "gpg"))          ; debian gpg ver 2
- (t
-  (setq user-full-name "Totok Sulistiomono"
-        user-mail-address "s.totok@gmail.com"
-        epg-gpg-program "gpg")))        ; debian gpg ver 2
+(add-hook 'after-init-hook
+           (lambda ()
+             (let ((file-name-handler-alist '(("\\.gpg\\(~\\|\\.~[0-9]+~\\)?\\'" . epa-file-handler))))
+               (load-file (expand-file-name "personal.el.gpg" doom-private-dir)))))
+#+end_src
+
+Now, let's force Emacs to use its own internal password prompt instead
+of an external pin entry program.
+
+#+begin_src emacs-lisp
+(setenv "GPG_AGENT_INFO" nil)
 #+end_src
 
 Speaking of GPG, I use =~/.authinfo.gpg= in home directory instead of
