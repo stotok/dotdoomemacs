@@ -753,7 +753,7 @@ Other default preferences
  truncate-lines t                     ; turn on truncating long lines
  require-final-newline t              ; always add a final newline
  delete-by-moving-to-trash nil        ; no need to go to OS's trash folder
- cursor-in-non-selected-windows nil   ; hide cursor in inactive windows
+ cursor-in-non-selected-windows t     ; hide cursor in inactive windows
  select-enable-clipboard t            ; merge system's and emacs's clipboard
  ;; disable, looks like Doom has it by default?
  split-height-threshold 0             ; i only want vertical window splitting
@@ -1310,11 +1310,11 @@ Configuration:
   ;; code here will run immediately
   :config
   ;; code here will run after the package is loaded
-  (setq pulsing-cursor-delay 0          ; 0sec
-        pulsing-cursor-interval 1.0     ; 1sec
+  (setq pulsing-cursor-delay 1.0        ; 1.0 sec
+        pulsing-cursor-interval 1.5     ; 1.5 sec
         pulsing-cursor-blinks 10        ; how many blinks before become solid
    )
- ;;(pulsing-cursor-mode +1)               ; enable on start
+ ;; (pulsing-cursor-mode +1)               ; enable on start
  (pulsing-cursor-mode -1)               ; disable on start
   )
 #+end_src
