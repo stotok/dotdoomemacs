@@ -2534,6 +2534,9 @@ Ref: [[http://www.hoowl.se/auto_inserting_gitignore_templates_in_emacs.html][Aut
 
 * C/C++
 
+Interesting read:
+- [[https://google.github.io/styleguide/cppguide.html#C++_Version][Google C++ Style Guide]], package: [[https://github.com/google/styleguide/blob/gh-pages/google-c-style.el][google-c-style.el]].
+
 Over the years of doing C/C++, here's my favourite settings.
 
 #+begin_src emacs-lisp
@@ -2688,6 +2691,10 @@ Now create new keybindings. "SPC m s" is not currently being used.
 #+end_src
 
 * Python
+
+Interesting read:
+- [[https://google.github.io/styleguide/pyguide.html][Google Python Style Guide]]
+
 ** pipenv
 *** Python Launcher
 **** Debian
@@ -2893,6 +2900,7 @@ References:
 - Youtube: [[https://www.youtube.com/watch?v=qPfJoeQCIvA][System Crafters: 9 Techniques to Boost Your Git Workflow with Magit]]
 - [[https://www.lvguowei.me/post/magit-rebase/][Guowei Lv: Magit Tutorial - Rebase (Part I)]]
 - [[https://www.lvguowei.me/post/magit-rebase-2/][Guowei Lv: Magit Tutorial - Rebase (Part II)]]
+- [[https://www.emoses.org/posts/emacs-custom-auth-source/][Building a custom emacs auth-source]]
 
 Some configuration:
 
@@ -3712,7 +3720,7 @@ I don't like default doom keybindings for lsp. Here's mine:
       :map (c-mode-map c++-mode-map python-mode-map)
       :localleader
       :g "l" nil                        ; firstly, unbind default doom binding
-      (:prefix "l"                      ; define our ownd
+      :prefix ("l" . "ttk-lsp")         ; define our own
         :nv "d" #'xref-find-definitions
         ;; :nv "d" #'lsp-ui-peek-find-definitions
         :nv "D" #'lsp-ui-doc-show
@@ -3724,8 +3732,7 @@ I don't like default doom keybindings for lsp. Here's mine:
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
-        :nv "b" #'ttk/xref-display-buffer
-        ))
+        :nv "b" #'ttk/xref-display-buffer)
 #+end_src
 
 Note-1: =xref-pop-marker-stack= in Doom is remapped to =better-jumper-jump-backward=.

@@ -1407,7 +1407,7 @@ Current pattern: %`evil-mc-pattern
       :map (c-mode-map c++-mode-map python-mode-map)
       :localleader
       :g "l" nil                        ; firstly, unbind default doom binding
-      (:prefix "l"                      ; define our ownd
+      :prefix ("l" . "ttk-lsp")         ; define our own
         :nv "d" #'xref-find-definitions
         ;; :nv "d" #'lsp-ui-peek-find-definitions
         :nv "D" #'lsp-ui-doc-show
@@ -1419,8 +1419,7 @@ Current pattern: %`evil-mc-pattern
         :nv "S" #'lsp-ui-find-workspace-symbol
         :nv "i" #'lsp-ui-sideline-toggle-symbols-info
         :nv "a" #'lsp-workspace-restart
-        :nv "b" #'ttk/xref-display-buffer
-        ))
+        :nv "b" #'ttk/xref-display-buffer)
 
 (after! company
   ;; Full list of company backends, see:
