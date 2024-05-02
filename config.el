@@ -817,62 +817,6 @@ Current pattern: %`evil-mc-pattern
           org-tree-slide-slide-in-effect t))
  )
 
-(after! org
-  ;; Project Tree
-  (setq org-publish-project-alist
-   '(;;
-     ;; SSDC project
-     ;;
-     ("ssdc-notes"
-       :base-directory "~/project/stotok/ssdc/org/"
-       :base-extension "org"
-       :publishing-function org-html-publish-to-html
-       :publishing-directory "~/project/stotok/ssdc/bo/html/"
-       :recursive t
-       :headline-levels 4             ; Just the default for this project.
-       :auto-preamble t)
-     ("ssdc-static"
-       :base-directory "~/project/stotok/ssdc/org/"
-       :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-       :publishing-directory "~/project/stotok/ssdc/bo/html/"
-       :recursive t
-       :publishing-function org-publish-attachment)
-     ("ssdc-org-html-themes"
-       :base-directory "~/project/thirdp/org-html-themes/src/"
-       :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-       :publishing-directory "~/project/stotok/ssdc/bo/html/src/"
-       :recursive t
-       :publishing-function org-publish-attachment)
-     ("ssdc-org" :components ("ssdc-notes" "ssdc-static" "ssdc-org-html-themes"))
-    ;;
-    ;; CTDC project
-    ;;
-    ("ctdc-notes"
-      :base-directory "~/project/conti/ctdc/org/"
-      :base-extension "org"
-      :publishing-directory "~/project/conti/ctdc/bo/html/"
-      :recursive t
-      :publishing-function org-html-publish-to-html
-      :headline-levels 4             ; Just the default for this project.
-      :auto-preamble t)
-    ("ctdc-static"
-      :base-directory "~/project/conti/ctdc/org/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/conti/ctdc/bo/html/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("ctdc-org-html-themes"
-      :base-directory "~/project/thirdp/org-html-themes/src/"
-      :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-      :publishing-directory "~/project/conti/ctdc/bo/html/src/"
-      :recursive t
-      :publishing-function org-publish-attachment)
-    ("ctdc-org" :components ("ctdc-notes" "ctdc-static" "ctdc-org-html-themes"))
-    ))
-  ;; Source code block evaluated during export. I don't want to be asked everytime :)
-  (setq org-confirm-babel-evaluate nil)
-  )
-
 (use-package! anki-editor
   :after org-noter
   :config

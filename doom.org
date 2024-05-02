@@ -28,7 +28,7 @@
 # cp -R ../thridp/org-html-themes/src bo/
 
 #+EXPORT_FILE_NAME: bo/doom
-# the exported filename will be bo/doom.html, bo/doom.tex or bo/doom.pdf
+# the exported filename will be bo/doom.html, bo/doom.tex or bo/doom.pdf (relateve to doom.org)
 # This is to set the number of headline levels to use for export
 #+OPTIONS: H:5
 # This is to set the headlines that will be numbered
@@ -2371,7 +2371,9 @@ Very important, if anything weird then delete entirely this folder:
 $ rm -rf ~/.emacs.d/.local/cache/org-timestamps
 #+end_example
 
-#+begin_src emacs-lisp
+Update: 03-May-2024. I'm now using org-theme. So, below is not necessary. Disable.
+
+#+begin_src emacs-lisp :tangle no
 (after! org
   ;; Project Tree
   (setq org-publish-project-alist
