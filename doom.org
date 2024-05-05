@@ -78,6 +78,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#registers][Registers]]
   - [[#undo][undo]]
   - [[#key-bindings][Key bindings]]
+    - [[#first-this-is-for-one-of-my-laptop-keyboard][First, this is for one of my laptop keyboard]]
     - [[#emulating-vis--key][Emulating vi's =%= key]]
 - [[#personal-info-and-gpg][Personal Info and GPG]]
   - [[#first-installation-and-key-pair-generation][First: Installation and Key-Pair Generation]]
@@ -126,7 +127,9 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
 - [[#template][Template]]
   - [[#file-template][File Template]]
 - [[#cc][C/C++]]
-- [[#cscope][Cscope]]
+- [[#tagging][Tagging]]
+  - [[#cscope][Cscope]]
+  - [[#citre][Citre]]
 - [[#python][Python]]
   - [[#pipenv][pipenv]]
     - [[#python-launcher][Python Launcher]]
@@ -1523,6 +1526,17 @@ For =evil-normal-state-map=, see: =~/.emacs.d/.local/straight/repos/evil/evil-ma
 
 For more, see [[#ref-keybindings]].
 
+*** First, this is for one of my laptop keyboard
+
+Update [05-May-2024]. No need below. Better approach is in linux
+keyboard setting: Map Hyper to Win
+
+In this laptop, =alt= is somehow detected as =super=. So:
+
+#+begin_src emacs-lisp :tangle no
+(define-key global-map (kbd "s-x") 'execute-extended-command)
+#+end_src
+
 *** Emulating vi's =%= key
 
 One of the few things I missed in Emacs from vi was the =%= key, which jumps to the
@@ -2634,7 +2648,9 @@ Some keybindings.
         "e" 'c-end-of-statement)
 #+end_src
 
-* Cscope
+* Tagging
+
+** Cscope
 
 Tool for browsing source code, see [[http://cscope.sourceforge.net/][CSCOPE]]. =cscope= package is local package.
 
@@ -2691,6 +2707,50 @@ Now create new keybindings. "SPC m s" is not currently being used.
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 #+end_src
+
+** Citre
+
+Ref: [[https://github.com/universal-ctags/citre][github.com/universal-ctags/citre]]
+
+I'm going to use =gnu global= as citre's backkend, so:
+#+begin_example
+$ sudo apt install global -y
+#+end_example
+
+The build-in parser for =global= already support C, Yacc, PHP4 and assembly.
+To support C++ (and others) =global= need:
+
+- python
+- Pygments
+  #+begin_example
+  $ pip3 install Pygments
+  #+end_example
+- ctags
+  #+begin_example
+  $ sudo apt install universal-ctags -y
+  #+end_example
+
+Now let's get =citre=:
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! citre
+  :recipe (:host github
+           :repo "universal-ctags/citre"))
+#+end_src
+
+Configuration:
+#+begin_src emacs-lisp
+(use-package! citre
+  :init
+  ;; code here will run immediately
+  ;; this is needed in :init block for lazy load to work
+  (require 'citre-config)
+  :config
+  ;; code here will run after the package is loaded
+  )
+#+end_src
+
+
 
 * Python
 

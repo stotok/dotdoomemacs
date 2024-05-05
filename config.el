@@ -976,6 +976,15 @@ Current pattern: %`evil-mc-pattern
   ;; *cscope* buffer at bottom and get focus automatically
   (set-popup-rule! "^*cscope*$" :side 'bottom :select t :ttl nil))
 
+(use-package! citre
+  :init
+  ;; code here will run immediately
+  ;; this is needed in :init block for lazy load to work
+  (require 'citre-config)
+  :config
+  ;; code here will run after the package is loaded
+  )
+
 (after! magit
   (setq-default +magit-open-windows-in-direction 'down))
 

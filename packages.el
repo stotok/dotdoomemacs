@@ -114,6 +114,10 @@
            ;; :no-byte-compile t
            ))
 
+(package! citre
+  :recipe (:host github
+           :repo "universal-ctags/citre"))
+
 (package! blamer
   :recipe (:host github
            :repo "artawower/blamer.el"))
