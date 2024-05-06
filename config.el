@@ -1472,6 +1472,24 @@ Current pattern: %`evil-mc-pattern
 (setq auto-mode-alist (cons '("makefile_RH850_F1K_1_5MB"   .  makefile-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("windriver_RH850.opt"        .  makefile-mode) auto-mode-alist))
 
+(map! :leader
+      (:prefix-map ("=" . "calc")
+       "=" #'calc-dispatch
+       ;; some other shorcuts
+       "c" #'calc                ; launch calc mode w/o doing anything clever
+       "q" #'quick-calc          ; quick calculations in the minibuffer
+       "g" #'calc-grab-region    ; grab a region w/o going through calc-dispatch
+       "p" #'calc-copy-to-buffer ; same as SPC u p P
+       ))
+
+(use-package! casual
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu))
+  )
+
 (when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist))
   (setq auto-mode-alist (cons '("dockerfile" . dockerfile-mode) auto-mode-alist)))
@@ -1535,13 +1553,3 @@ Current pattern: %`evil-mc-pattern
 (map! (:map 'override
        :v "v" #'er/expand-region
        :v "V" #'er/contract-region))
-
-(map! :leader
-      (:prefix-map ("=" . "calc")
-       "=" #'calc-dispatch
-       ;; some other shorcuts
-       "c" #'calc                ; launch calc mode w/o doing anything clever
-       "q" #'quick-calc          ; quick calculations in the minibuffer
-       "g" #'calc-grab-region    ; grab a region w/o going through calc-dispatch
-       "p" #'calc-copy-to-buffer ; same as SPC u p P
-       ))

@@ -183,6 +183,17 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#json-mode][JSON mode]]
   - [[#cmake-mode][CMake mode]]
   - [[#makefile-mode][Makefile mode]]
+- [[#calculator][Calculator]]
+  - [[#keybinding][Keybinding]]
+  - [[#trail-commands][Trail Commands]]
+  - [[#digit-grouping][Digit Grouping]]
+  - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
+  - [[#convert-decimalhexadecimalbinary][Convert Decimal/Hexadecimal/Binary]]
+  - [[#binary-number-operation][Binary Number Operation]]
+  - [[#hms][HMS]]
+    - [[#convert-minute-to-hhmmss][Convert Minute to HH:MM:SS]]
+    - [[#convert-hhmmss-to-minute][Convert HH:MM:SS to Minute]]
+  - [[#casual---opinioted-procelain-for-emacs-calc][Casual - Opinioted procelain for emacs calc]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
   - [[#copy-full-path-of-current-buffer][Copy full path of current buffer]]
@@ -221,14 +232,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
     - [[#grep-for-a-string-in-the-current-directory-using-ripgrep][Grep for a string in the current directory using ripgrep]]
     - [[#search-the-current-project-with-ripgrep][Search the current project with ripgrep]]
   - [[#break-a-long-line-into-shorther-lines][Break a long line into shorther lines]]
-  - [[#calculator][Calculator]]
-    - [[#keybinding][Keybinding]]
-    - [[#trail-commands][Trail Commands]]
-    - [[#digit-grouping][Digit Grouping]]
-    - [[#calc-mode-epiphany][Calc-Mode Epiphany]]
-    - [[#convert-decimalhexadecimalbinary][Convert Decimal/Hexadecimal/Binary]]
-    - [[#binary-number-operation][Binary Number Operation]]
-    - [[#hms][HMS]]
   - [[#macros][Macros]]
     - [[#exercise-1][Exercise 1]]
     - [[#exercise-2][Exercise 2]]
@@ -4078,6 +4081,186 @@ Available in Doom: =:lang cc=
 (setq auto-mode-alist (cons '("windriver_RH850.opt"        .  makefile-mode) auto-mode-alist))
 #+end_src
 
+* Calculator
+
+Reading:
+- [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
+- [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
+- [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Emacs Lets You Calculate While You Write]].
+- [[https://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
+- [[https://www.emacswiki.org/emacs/Calc_Tutorials_by_Andrew_Hyatt][Calc Tutorials by Andrew Hyatt]]
+- [[https://pagefault.se/post/emacs-can-do-that/][Convert hours, mins and seconds]]
+- [[https://github.com/Jesse-Millwood/calc-prog-utils][Calc Prog: a small extension to the Emacs Calc package]]
+
+** Keybinding
+
+Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
+calc mode to be more aligned with evil mode.
+
+Most common operations in Doom Emacs are mapped to the =SPC= leader,
+so pressing =C-x= felt foreign to me. So,
+
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix-map ("=" . "calc")
+       "=" #'calc-dispatch
+       ;; some other shorcuts
+       "c" #'calc                ; launch calc mode w/o doing anything clever
+       "q" #'quick-calc          ; quick calculations in the minibuffer
+       "g" #'calc-grab-region    ; grab a region w/o going through calc-dispatch
+       "p" #'calc-copy-to-buffer ; same as SPC u p P
+       ))
+#+end_src
+
+|-------------------------+------------|
+| Function                | Keybinding |
+|-------------------------+------------|
+| M-x calc-dispatch       | SPC = =    |
+| M-x calc                | SPC = c    |
+| M-x quick-calc          | SPC = q    |
+| M-x calc-grab-region    | SPC = g    |
+| M-x calc-copy-to-buffer | SPC = p    |
+| M-x calc-unpack         | v u        |
+| M-x calc-copy-to-buffer | SPC u p P  |
+|-------------------------+------------|
+
+** Trail Commands
+
+Ref: [[https://www.gnu.org/software/emacs/manual/html_node/calc/Trail-Commands.html][Emacs Trail Commands]]
+
+#+begin_example
+M-x calc-trail-display, bound to t d
+M-x calc-trail-in,      bound to t i
+M-x calc-trail-out,     bound to t o
+#+end_example
+
+** Digit Grouping
+
+Display thousands in decimal, or tuple in binary.
+
+#+begin_example
+M-x calc-group-digits <enter>, bound to d g
+#+end_example
+
+** Calc-Mode Epiphany
+
+Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].
+#+begin_example
+<Place cursor at the location for calc result>
+M-x calc            (calc mode)
+<Do calculcation>
+C-x * y             (copy last item in calc into cursor location)
+#+end_example
+#+begin_example
+# 2:18:47
+Convert 2:18:47 into seconds = 8327
+#+end_example
+
+** Convert Decimal/Hexadecimal/Binary
+
+#+begin_example
+M-x calc
+Type any number.
+Type "d6" to turn the display into hex form
+Type "d0" to turn the display into dec form
+Type "d2" to turn the display into binary form
+#+end_example
+
+To display radix generally, use "d r" (calc-radix) and enter
+an integer from 2 to 36 (2:binary, 8:octal, 6:hex, 0:dec, etc).
+
+About inputting a number:
+- A number entered without "#" is always interpreted as decimal.
+- To enter a number with different radix, type "initial digit" then "#"
+  |---------------+-------------|
+  | initial digit | radix       |
+  |---------------+-------------|
+  |             2 | binary      |
+  |            16 | hexadecimal |
+  |             8 | octal       |
+  |             0 | decimal     |
+  |---------------+-------------|
+- To enter a number as current radix, type "#".
+
+** Binary Number Operation
+
+|------------+----------------------+------------------------------|
+| Keybinding | Calc Function        | Description                  |
+|------------+----------------------+------------------------------|
+| b a        | (calc-and)           | Bitwise AND                  |
+| b o        | (calc-or)            | Bitwise OR                   |
+| b x        | (calc-xor)           | Bitwise XOR                  |
+| b n        | (calc-not)           | Bitwise NOT                  |
+| b d        | (calc-diff)          | Bitwise difference           |
+| b r        | (calc-rshift-binary) | Bitwise right shift by 1 bit |
+| b l        | (calc-lshift-binary) | Bitwise left shift by 1 bit  |
+|------------+----------------------+------------------------------|
+
+**** Bitwise shift by more than 1 bit
+
+- Use /numeric prefix argument/. Example: To shift 9 bits to the left:
+  #+begin_example
+  1 <RET>
+  C-9 b l
+  #+end_example
+- Use =H b l=. It requires 2 arguments from the stack: the value to shift,
+  and, at the top-of-stack, the number of bits to shift:
+  #+begin_example
+  1 <RET>
+  9 <RET>
+  H b l
+  #+end_example
+
+** HMS
+*** Convert Minute to HH:MM:SS
+1. Convert 8000 min to hour
+   : 8000 RET 60 RET /
+   133.333333333
+2. Convert the hour to HMS
+   : M-x calc-to-hms (bound to c h)
+   133@ 19' 59.999999"
+Result: 6000 secs = 133 hour 19 min 60 sec
+
+*** Convert HH:MM:SS to Minute
+1. Enter to algebraic mode
+   : '
+   : Algebraic: 133hr+19min+60sec
+   133 hr + 19 min + 60 sec
+2. Convert to base unit
+   : M-x calc-base-unit (bound to U b)
+   480000 s
+3. Convert to minute
+   : 60 RET /
+   8000 s
+
+** Casual - Opinioted procelain for emacs calc
+
+<<NOTE>> Well, emacs segmentation fault on activating =casual-main-menu=.
+
+Ref:
+- [[http://yummymelon.com/devnull/announcing-casual-an-opinionated-porcelain-for-emacs-calc.html][Announcing Casual - An opinioated procelain for Emacs Calc]]
+- [[https://github.com/kickingvegas/casual][github: Casual]]
+- [[https://www.reddit.com/r/emacs/comments/1bnj5xe/announcing_casual_an_opinionated_porcelain_for/][reddit: Announcing Casual - An opinionated procelain for Emacs Calc]]
+
+Enough is enough for memorizing too many default emacs's keybindings.
+
+#+begin_src emacs-lisp :tangle packages.el
+(package! casual
+  :recipe (:host github
+           :repo "kickingvegas/casual"))
+#+end_src
+
+Configuration:
+#+begin_src emacs-lisp
+(use-package! casual
+  :init
+  ;; code here will run immediately
+  :config
+  ;; code here will run after the package is loaded
+  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu))
+  )
+#+end_src
+
 * Tools
 
 ** docker
@@ -4483,158 +4666,6 @@ M-x ruler-mode        (show ruler)
 M-x set-fill-column   (set max chars per line used to 'fill' command)
 M-x fill-paragraph    (break a long line into shorter lines)
 #+end_example
-
-** Calculator
-
-Reading:
-- [[https://truongnghiem.wordpress.com/common-calculations-in-emacscalc/][Common Calculations in Emacs Calc]].
-- [[https://florian.adamsky.it/2016/03/31/emacs-calc-for-programmers-and-cs.html][Emacs Calc for Programmers and Computer Scientists]].
-- [[https://hungyi.net/posts/emacs-calculate-while-you-write/][Emacs Lets You Calculate While You Write]].
-- [[https://nullprogram.com/blog/2009/06/23/][The Emacs Calculator]]
-- [[https://www.emacswiki.org/emacs/Calc_Tutorials_by_Andrew_Hyatt][Calc Tutorials by Andrew Hyatt]]
-- [[https://pagefault.se/post/emacs-can-do-that/][Convert hours, mins and seconds]]
-- [[https://github.com/Jesse-Millwood/calc-prog-utils][Calc Prog: a small extension to the Emacs Calc package]]
-
-*** Keybinding
-
-Doom Emacs uses [[https://github.com/emacs-evil/evil-collection][evil-collection]] which remaps some of the keys in
-calc mode to be more aligned with evil mode.
-
-Most common operations in Doom Emacs are mapped to the =SPC= leader,
-so pressing =C-x= felt foreign to me. So,
-
-#+begin_src emacs-lisp
-(map! :leader
-      (:prefix-map ("=" . "calc")
-       "=" #'calc-dispatch
-       ;; some other shorcuts
-       "c" #'calc                ; launch calc mode w/o doing anything clever
-       "q" #'quick-calc          ; quick calculations in the minibuffer
-       "g" #'calc-grab-region    ; grab a region w/o going through calc-dispatch
-       "p" #'calc-copy-to-buffer ; same as SPC u p P
-       ))
-#+end_src
-
-|-------------------------+------------|
-| Function                | Keybinding |
-|-------------------------+------------|
-| M-x calc-dispatch       | SPC = =    |
-| M-x calc                | SPC = c    |
-| M-x quick-calc          | SPC = q    |
-| M-x calc-grab-region    | SPC = g    |
-| M-x calc-copy-to-buffer | SPC = p    |
-| M-x calc-unpack         | v u        |
-| M-x calc-copy-to-buffer | SPC u p P  |
-|-------------------------+------------|
-
-*** Trail Commands
-
-Ref: [[https://www.gnu.org/software/emacs/manual/html_node/calc/Trail-Commands.html][Emacs Trail Commands]]
-
-#+begin_example
-M-x calc-trail-display, bound to t d
-M-x calc-trail-in,      bound to t i
-M-x calc-trail-out,     bound to t o
-#+end_example
-
-*** Digit Grouping
-
-Display thousands in decimal, or tuple in binary.
-
-#+begin_example
-M-x calc-group-digits <enter>, bound to d g
-#+end_example
-
-*** Calc-Mode Epiphany
-
-Ref: [[https://www.youtube.com/watch?v=D9lmCbLGZ_c][Youtube Demonstration]].
-#+begin_example
-<Place cursor at the location for calc result>
-M-x calc            (calc mode)
-<Do calculcation>
-C-x * y             (copy last item in calc into cursor location)
-#+end_example
-#+begin_example
-# 2:18:47
-Convert 2:18:47 into seconds = 8327
-#+end_example
-
-*** Convert Decimal/Hexadecimal/Binary
-
-#+begin_example
-M-x calc
-Type any number.
-Type "d6" to turn the display into hex form
-Type "d0" to turn the display into dec form
-Type "d2" to turn the display into binary form
-#+end_example
-
-To display radix generally, use "d r" (calc-radix) and enter
-an integer from 2 to 36 (2:binary, 8:octal, 6:hex, 0:dec, etc).
-
-About inputting a number:
-- A number entered without "#" is always interpreted as decimal.
-- To enter a number with different radix, type "initial digit" then "#"
-  |---------------+-------------|
-  | initial digit | radix       |
-  |---------------+-------------|
-  |             2 | binary      |
-  |            16 | hexadecimal |
-  |             8 | octal       |
-  |             0 | decimal     |
-  |---------------+-------------|
-- To enter a number as current radix, type "#".
-
-*** Binary Number Operation
-
-|------------+----------------------+------------------------------|
-| Keybinding | Calc Function        | Description                  |
-|------------+----------------------+------------------------------|
-| b a        | (calc-and)           | Bitwise AND                  |
-| b o        | (calc-or)            | Bitwise OR                   |
-| b x        | (calc-xor)           | Bitwise XOR                  |
-| b n        | (calc-not)           | Bitwise NOT                  |
-| b d        | (calc-diff)          | Bitwise difference           |
-| b r        | (calc-rshift-binary) | Bitwise right shift by 1 bit |
-| b l        | (calc-lshift-binary) | Bitwise left shift by 1 bit  |
-|------------+----------------------+------------------------------|
-
-**** Bitwise shift by more than 1 bit
-
-- Use /numeric prefix argument/. Example: To shift 9 bits to the left:
-  #+begin_example
-  1 <RET>
-  C-9 b l
-  #+end_example
-- Use =H b l=. It requires 2 arguments from the stack: the value to shift,
-  and, at the top-of-stack, the number of bits to shift:
-  #+begin_example
-  1 <RET>
-  9 <RET>
-  H b l
-  #+end_example
-
-*** HMS
-**** Convert Minute to HH:MM:SS
-1. Convert 8000 min to hour
-   : 8000 RET 60 RET /
-   133.333333333
-2. Convert the hour to HMS
-   : M-x calc-to-hms (bound to c h)
-   133@ 19' 59.999999"
-Result: 6000 secs = 133 hour 19 min 60 sec
-
-**** Convert HH:MM:SS to Minute
-1. Enter to algebraic mode
-   : '
-   : Algebraic: 133hr+19min+60sec
-   133 hr + 19 min + 60 sec
-2. Convert to base unit
-   : M-x calc-base-unit (bound to U b)
-   480000 s
-3. Convert to minute
-   : 60 RET /
-   8000 s
 
 ** Macros
 

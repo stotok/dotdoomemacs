@@ -126,6 +126,10 @@
 
 (package! graphviz-dot-mode)
 
+(package! casual
+  :recipe (:host github
+           :repo "kickingvegas/casual"))
+
 (package! dwim-shell-command
   :recipe (:host github
            :repo "xenodium/dwim-shell-command"))
