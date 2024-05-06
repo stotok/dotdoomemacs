@@ -752,6 +752,10 @@ Current pattern: %`evil-mc-pattern
         )
  )
 
+(lambda()
+  (setq-local completion-category-defaults
+              (assoc-delete-all 'lsp-capf completion-category-defaults)))
+
 (setq org-directory "~/org/")
 
 (after! org (setq org-hide-emphasis-markers t))

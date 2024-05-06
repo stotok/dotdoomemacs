@@ -109,6 +109,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#ivy][ivy]]
 - [[#vertico--co][Vertico & Co]]
   - [[#project-wide-search-and-replace][Project-wide Search and Replace]]
+  - [[#orderless-completion-in-lsp-mode][Orderless completion in lsp-mode]]
 - [[#org][Org]]
   - [[#general-org-configuration][General Org Configuration]]
   - [[#org-visual-settings][Org visual settings]]
@@ -2156,6 +2157,17 @@ SPC s p foo C-; E C-c C-p :%s/foo/bar/g RET Z Z
 #+end_example
 
 Entering those keys will replace "foo" with "bar" in your whole project.
+
+** Orderless completion in lsp-mode
+
+Ref: [[https://magnus.therning.org/2024-05-04-orderless-completion-in-lsp-mode.html][Orderless completion in lsp-mode]]
+
+It turns out that /lsp-mode/ messes around with =completion-category-defaults=. So,
+#+begin_src emacs-lisp
+(lambda()
+  (setq-local completion-category-defaults
+              (assoc-delete-all 'lsp-capf completion-category-defaults)))
+#+end_src
 
 * Org
 
