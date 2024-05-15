@@ -4007,6 +4007,7 @@ List of world clock to show for M-x world-clock. Refer [[https://en.wikipedia.or
       '( ;  TZNAME            LABEL
         ("America/Chicago" "Deer Park")
         ("Etc/UTC"         "UTC")
+        ("Europe/Berlin"   "Frankfurt")
         ("Asia/Kolkata"    "Bangalore")
         ("Asia/Singapore"  "Singapore")
         ("Asia/Chongqing"  "Chongqing")

@@ -1452,6 +1452,7 @@ Current pattern: %`evil-mc-pattern
       '( ;  TZNAME            LABEL
         ("America/Chicago" "Deer Park")
         ("Etc/UTC"         "UTC")
+        ("Europe/Berlin"   "Frankfurt")
         ("Asia/Kolkata"    "Bangalore")
         ("Asia/Singapore"  "Singapore")
         ("Asia/Chongqing"  "Chongqing")
