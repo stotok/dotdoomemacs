@@ -1295,12 +1295,14 @@ Current pattern: %`evil-mc-pattern
         lsp-ui-flycheck-enable nil
         lsp-ui-flycheck-live-reporting nil
         lsp-ui-imenu-enable nil
-        lsp-ui-doc-show-with-cursor nil ; cursor hover
-        lsp-ui-doc-show-with-mouse nil  ; mouse hover
+        lsp-ui-doc-show-with-cursor nil  ; cursor hover
+        lsp-ui-doc-show-with-mouse nil   ; mouse hover
+        lsp-ui-doc-use-childframe nil    ; see how this
+        lsp-ui-doc-include-signature nil ; see how this
         lsp-signature-auto-activate nil        ; manually: `lsp-signature-activate'
         lsp-signature-render-documentation nil ; signature help documentation
         ;;
-        xref-prompt-for-identifier t  ; prompt if no identifier
+        xref-prompt-for-identifier t           ; prompt if no identifier
    )
   ;;
   ;; For python, you need to add :lang (python +lsp)

@@ -3632,10 +3632,11 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 - For Doom LSP: see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/tools/lsp/][Doom LSP]].
 - For CC +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/lang/cc#lsp-servers][LSP servers]].
 - For python +lsp, see: [[https://github.com/hlissner/doom-emacs/tree/master/modules/lang/python#language-server-protocol-support][LSP Support]].
-- See [[https://www.cheng92.com/emacs/doom-emacs-with-org/][this one]] as well.
 - Please see [[https://emacs-lsp.github.io/lsp-mode/page/settings/mode/][emacs-lsp/lsp-mode settings]].
 - Robert Krahn: [[https://robert.kra.hn/posts/2021-02-07_rust-with-emacs/#lsp-mode-and-lsp-ui-mode][Configuring Emacs for Rust Development]].
 - TODO: see how [[https://github.com/xevrem/customacs][lsp and which-key integration]] works.
+- Mortens: [[https://www.mortens.dev/blog/emacs-and-the-language-server-protocol/index.html][Emacs and the Language Server Protocol]]
+- Read this: [[https://neovim.discourse.group/t/clangd-creates-lots-of-errors-when-using-different-compiler-qcc/4437][clangd creates lots of errors when using different compiler (qcc)]]
 
 *** Configuration
 
@@ -3712,12 +3713,14 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
         lsp-ui-flycheck-enable nil
         lsp-ui-flycheck-live-reporting nil
         lsp-ui-imenu-enable nil
-        lsp-ui-doc-show-with-cursor nil ; cursor hover
-        lsp-ui-doc-show-with-mouse nil  ; mouse hover
+        lsp-ui-doc-show-with-cursor nil  ; cursor hover
+        lsp-ui-doc-show-with-mouse nil   ; mouse hover
+        lsp-ui-doc-use-childframe nil    ; see how this
+        lsp-ui-doc-include-signature nil ; see how this
         lsp-signature-auto-activate nil        ; manually: `lsp-signature-activate'
         lsp-signature-render-documentation nil ; signature help documentation
         ;;
-        xref-prompt-for-identifier t  ; prompt if no identifier
+        xref-prompt-for-identifier t           ; prompt if no identifier
    )
   ;;
   ;; For python, you need to add :lang (python +lsp)
@@ -3774,6 +3777,17 @@ LSP-mode with clangd. Ref: [[https://github.com/doomemacs/doomemacs/tree/master/
           "--header-insertion-decorators=0"))
   (set-lsp-priority! 'clangd 2))
 #+end_src
+
+**** .clangd
+
+=clangd= does not like certain specific compiler cross compiling
+options and generate ALS error. So, create a file =.clangd= at
+the root of your project:
+
+#+begin_example
+CompileFlags:
+    Remove: [-march=*, -mabi=*, -mcpu=*]
+#+end_example
 
 *** Keybindings
 
