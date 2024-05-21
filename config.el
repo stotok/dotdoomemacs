@@ -987,7 +987,24 @@ Current pattern: %`evil-mc-pattern
   (require 'citre-config)
   :config
   ;; code here will run after the package is loaded
-  )
+  (setq
+   ;; set this if you use project management plugin like projectile.
+   ;; it's use for things like displaying paths relatively, see it's doctring.
+   citre-project-root-function #'projectile-project-root
+   ;; if you only want the auto enabling citre-mode behavior to work for
+   ;; certain mode (like `prog-mode'), set it like this:
+   citre-auto-enable-citre-mode-modes '(prog-mode)))
+
+(map! :after cc-mode
+      :map (c-mode-map c++-mode-map)
+      :localleader
+      :prefix ("c" . "citre")
+       "s" #'citre-jump-to-reference
+       "S" #'citre-query-jump-to-reference
+       "d" #'citre-jump
+       "D" #'citre-query-jump
+       "u" #'citre-jump-back
+ )
 
 (after! magit
   (setq-default +magit-open-windows-in-direction 'down))
@@ -1383,7 +1400,7 @@ Current pattern: %`evil-mc-pattern
 (after! company
   ;; Full list of company backends, see:
   ;; https://github.com/company-mode/company-mode/tree/master
- (setq company-backends '(company-capf
+ (setq company-backends '(company-capf          ; citre use this
                           company-keywords
                           ;; company-semantic   ; i don't use semantic
                           company-files
