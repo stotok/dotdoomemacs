@@ -988,12 +988,21 @@ Current pattern: %`evil-mc-pattern
   :config
   ;; code here will run after the package is loaded
   (setq
+   ;; set these if readtags/ctags is not in your PATH
+   citre-readtags-program "/usr/bin/readtags" ; does not help
+   citre-ctags-program "/usr/bin/ctags"       ; does not help
+   ;; set these if gtags/global is not in your PATH and you want
+   ;; to use global backend
+   citre-gtags-program "/usr/bin/gtags"       ; does not help
+   citre-global-program "/usr/bin/global"     ; does not help
    ;; set this if you use project management plugin like projectile.
    ;; it's use for things like displaying paths relatively, see it's doctring.
    citre-project-root-function #'projectile-project-root
    ;; if you only want the auto enabling citre-mode behavior to work for
    ;; certain mode (like `prog-mode'), set it like this:
-   citre-auto-enable-citre-mode-modes '(prog-mode)))
+   citre-auto-enable-citre-mode-modes '(prog-mode)
+   ;;
+   citre-use-project-root-when-creating-tags t))
 
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
