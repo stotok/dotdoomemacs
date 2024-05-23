@@ -2744,6 +2744,11 @@ To support C++ (and others) =global= need:
   #+begin_example
   $ sudo apt install universal-ctags -y
   #+end_example
+- Setup env var
+#+begin_example
+$ export GTAGSCONF=/etc/gtags/gtags.conf
+$ export GTAGSLABEL=native-pygments
+#+end_example
 
 Now let's get =citre=:
 
@@ -2777,7 +2782,9 @@ Configuration:
    ;; certain mode (like `prog-mode'), set it like this:
    citre-auto-enable-citre-mode-modes '(prog-mode)
    ;;
-   citre-use-project-root-when-creating-tags t))
+   citre-use-project-root-when-creating-tags t
+   ;;
+   citre-tags-imenu-create-tags-file-threshold nil))
 #+end_src
 
 Now create keybindings. "SPC m c" is not currently being used.

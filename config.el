@@ -1002,7 +1002,9 @@ Current pattern: %`evil-mc-pattern
    ;; certain mode (like `prog-mode'), set it like this:
    citre-auto-enable-citre-mode-modes '(prog-mode)
    ;;
-   citre-use-project-root-when-creating-tags t))
+   citre-use-project-root-when-creating-tags t
+   ;;
+   citre-tags-imenu-create-tags-file-threshold nil))
 
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
