@@ -23,6 +23,10 @@ cscope.out
 *.tar
 *.tgz
 *.tar.gz
+#######
+GPATH
+GRTAGS
+GTAGS
 ####### aivc3
 ## files
 .clang-format
