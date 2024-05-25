@@ -2725,7 +2725,9 @@ Now create new keybindings. "SPC m s" is not currently being used.
 
 ** Citre
 
-Ref: [[https://github.com/universal-ctags/citre][github.com/universal-ctags/citre]]
+Ref:
+- [[https://github.com/universal-ctags/citre][github.com/universal-ctags/citre]]
+- [[https://stackoverflow.com/questions/23703585/how-to-use-gtags-v-to-create-index-but-skipping-some-subdirectories][How to use gtags -v to create index but skipping some subdirectories]]
 
 I'm going to use =gnu global= as citre's backkend, so:
 #+begin_example
@@ -2749,7 +2751,7 @@ To support C++ (and others) =global= need:
 $ export GTAGSCONF="${HOME}/project/dotdoomemacs/ttk-cscope/local/xcscope/gtags.conf"
 $ export GTAGSLABEL=native-pygments
 #+end_example
-- Generate GTAGS
+- Generate TAG
 #+begin_example
 $ gtags -v --compact
 #+end_example
@@ -3688,6 +3690,8 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
 - TODO: see how [[https://github.com/xevrem/customacs][lsp and which-key integration]] works.
 - Mortens: [[https://www.mortens.dev/blog/emacs-and-the-language-server-protocol/index.html][Emacs and the Language Server Protocol]]
 - Read this: [[https://neovim.discourse.group/t/clangd-creates-lots-of-errors-when-using-different-compiler-qcc/4437][clangd creates lots of errors when using different compiler (qcc)]]
+- Read this: [[https://sarcasm.github.io/notes/dev/compilation-database.html][Sarcasm tips documentation: COMPILATION DATABASE]]
+- Read this: [[https://langserver.org/][Langserver.org]]
 
 *** Configuration
 
