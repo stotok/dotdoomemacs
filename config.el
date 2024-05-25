@@ -972,7 +972,7 @@ Current pattern: %`evil-mc-pattern
         "C" #'cscope-find-called-functions
         "i" #'cscope-find-files-including-file
         "b" #'cscope-display-buffer
-        "u" #'cscope-pop-mark
+        "o" #'cscope-pop-mark
         "a" #'cscope-set-initial-directory
         "A" #'cscope-unset-initial-directory)
 
@@ -1025,7 +1025,7 @@ Current pattern: %`evil-mc-pattern
        "S" #'citre-query-jump-to-reference
        "d" #'citre-jump
        "D" #'citre-query-jump
-       "u" #'citre-jump-back
+       "o" #'citre-jump-back
  )
 
 (after! magit

@@ -2712,7 +2712,7 @@ Now create new keybindings. "SPC m s" is not currently being used.
         "C" #'cscope-find-called-functions
         "i" #'cscope-find-files-including-file
         "b" #'cscope-display-buffer
-        "u" #'cscope-pop-mark
+        "o" #'cscope-pop-mark
         "a" #'cscope-set-initial-directory
         "A" #'cscope-unset-initial-directory)
 #+end_src
@@ -2816,7 +2816,7 @@ Now create keybindings. "SPC m c" is not currently being used.
        "S" #'citre-query-jump-to-reference
        "d" #'citre-jump
        "D" #'citre-query-jump
-       "u" #'citre-jump-back
+       "o" #'citre-jump-back
  )
 #+end_src
 
