@@ -2731,7 +2731,7 @@ Ref:
 
 I'm going to use =gnu global= as citre's backkend, so:
 #+begin_example
-$ sudo apt install global -y
+$ sudo apt install global
 #+end_example
 
 The build-in parser for =global= already support C, Yacc, PHP4 and assembly.
@@ -2742,20 +2742,32 @@ To support C++ (and others) =global= need:
   #+begin_example
   $ pip3 install Pygments
   #+end_example
+  Or,
+  #+begin_example
+  $ sudo apt install python-pygments -y
+  #+end_example
+
 - ctags
   #+begin_example
   $ sudo apt install universal-ctags -y
   #+end_example
+  Or, =ubuntu 16.04=:
+  #+begin_example
+  $ sudo snap install universal-ctags
+  #+end_example
 - Setup env var
-#+begin_example
-$ export GTAGSCONF="${HOME}/project/dotdoomemacs/ttk-cscope/local/xcscope/gtags.conf"
-$ export GTAGSLABEL=native-pygments
-#+end_example
+  #+begin_example
+  $ export GTAGSCONF="${HOME}/project/dotdoomemacs/ttk-cscope/local/xcscope/gtags.conf"
+  $ export GTAGSLABEL=native-pygments
+  #+end_example
 - Generate TAG
-#+begin_example
-$ gtags -v --compact
-#+end_example
-
+  #+begin_example
+  $ gtags -v --compact
+  #+end_example
+  Or,
+  #+begin_example
+  $ fd-soc-gtags-indexer.sh
+  #+end_example
 
 Now let's get =citre=:
 
