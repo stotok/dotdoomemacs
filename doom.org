@@ -4317,8 +4317,6 @@ Result: 6000 secs = 133 hour 19 min 60 sec
 
 ** Casual - Opinioted procelain for emacs calc
 
-<<NOTE>> Well, emacs segmentation fault on activating =casual-main-menu=.
-
 Ref:
 - [[http://yummymelon.com/devnull/announcing-casual-an-opinionated-porcelain-for-emacs-calc.html][Announcing Casual - An opinioated procelain for Emacs Calc]]
 - [[https://github.com/kickingvegas/casual][github: Casual]]
@@ -4326,21 +4324,22 @@ Ref:
 
 Enough is enough for memorizing too many default emacs's keybindings.
 
-#+begin_src emacs-lisp :tangle packages.el
+<<NOTE>> Well, emacs segmentation fault on activating =casual-main-menu=.
+
+#+begin_src emacs-lisp :tangle no
 (package! casual
   :recipe (:host github
            :repo "kickingvegas/casual"))
 #+end_src
 
 Configuration:
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package! casual
   :init
   ;; code here will run immediately
   :config
   ;; code here will run after the package is loaded
-  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu))
-  )
+  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu)))
 #+end_src
 
 * Tools
