@@ -66,6 +66,7 @@
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
 (defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
+(defconst IS-DEDUN    (string-prefix-p "dedun"    (system-name) t))
 ;; print hostname
 (cond
  (IS-IGL7568W
@@ -84,6 +85,8 @@
   (message "hostname: igvmf02d1039vdi"))
  (IS-HORUS
   (message "hostname: horus"))
+ (IS-DEDUN
+  (message "hostname: dedun"))
  (t
   (message "hostname: unknown")))
 
@@ -374,10 +377,14 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)))
+ (IS-DEDUN
+  (setq doom-font                (font-spec :family "monospace" :size 24)
+        doom-variable-pitch-font (font-spec :family "monospace" :size 24)
+        doom-big-font            (font-spec :family "monospace" :size 32)))
  (t
-  (setq doom-font                (font-spec :family "monospace" :size 12)
-        doom-variable-pitch-font (font-spec :family "monospace" :size 12)
-        doom-big-font            (font-spec :family "monospace" :size 18))))
+  (setq doom-font                (font-spec :family "monospace" :size 20)
+        doom-variable-pitch-font (font-spec :family "monospace" :size 20)
+        doom-big-font            (font-spec :family "monospace" :size 24))))
 
 (when (modulep! :ui doom)
   (setq doom-themes-enable-bold t      ; if nil, bold i universally disabled
@@ -398,6 +405,8 @@
    (IS-ERIS
     (setq doom-theme 'ttk-doom-one-light))
    (IS-HORUS
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-DEDUN
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
