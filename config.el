@@ -378,9 +378,9 @@
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)))
  (IS-DEDUN
-  (setq doom-font                (font-spec :family "monospace" :size 24)
-        doom-variable-pitch-font (font-spec :family "monospace" :size 24)
-        doom-big-font            (font-spec :family "monospace" :size 32)))
+  (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
+        doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
+        doom-big-font            (font-spec :family "Ubuntu Mono" :size 32)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 20)
         doom-variable-pitch-font (font-spec :family "monospace" :size 20)

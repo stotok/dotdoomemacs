@@ -1158,6 +1158,15 @@ To list fonts that emacs can see:
 M-x menu-set-font
 #+end_example
 
+To list font family that emacs can see, in =*scratch*= buffer:
+#+begin_example
+(font-family-list)
+#+end_example
+Then =for evil mode=:
+- In normal mode, move the the end of the expression
+- =C-x C-e= (or, =M-x eval-last-sexp=)
+- There will show in minibuffer
+
 Settings related to fonts:
 
 + 'doom-font' -- standard monospace font that is used for most things.
@@ -1199,9 +1208,9 @@ Settings related to fonts:
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)))
  (IS-DEDUN
-  (setq doom-font                (font-spec :family "monospace" :size 24)
-        doom-variable-pitch-font (font-spec :family "monospace" :size 24)
-        doom-big-font            (font-spec :family "monospace" :size 32)))
+  (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
+        doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
+        doom-big-font            (font-spec :family "Ubuntu Mono" :size 32)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 20)
         doom-variable-pitch-font (font-spec :family "monospace" :size 20)
