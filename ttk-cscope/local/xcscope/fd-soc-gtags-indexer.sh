@@ -16,16 +16,10 @@ if ! command -v gtags > /dev/null 2>&1; then
 fi
 #
 LIST_FILE="gtags.files"
-DATABASE_FILE="cscope.out"
 FIND="fd --ignore-case --type f"
 CSCOPE="cscope"
 GTAGS="gtags"
-#
-${FIND} '\.([chly](xx|pp)*|cc|hh)$' \
-    VUC_APP/TVIP_Ctrl_Files/TVIP    \
-    --exclude Vehicle_Micro/Middleware/IPC/src/ipc_transmit_handler_define.h \
-    --exclude Vehicle_Micro/Middleware/IPC/api/ipc_if_pd_subaru.c \
-    | cut -d '/' -f3- > .fdignore
+LOG="/tmp/fd-soc-gtags-indexer.log"
 #
 echo "generating gtags file listing: ${LIST_FILE} ..."
 ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
@@ -39,7 +33,7 @@ ${FIND} '\.([ch](xx|pp)|[ch]|cc|hh)$' \
     --exclude 3p \
     > ${LIST_FILE}
 #
-echo "generating gtags database: ${DATABASE_FILE} ..."
-${GTAGS} -v --compact -f ${LIST_FILE}
+echo "generating gtags database ..."
+${GTAGS} -v --compact -f ${LIST_FILE} 2>&1 | tee ${LOG}
 #
-echo "done."
+echo "Done. Log output at: ${LOG}"
