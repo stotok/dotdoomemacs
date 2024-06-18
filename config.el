@@ -1026,6 +1026,8 @@ Current pattern: %`evil-mc-pattern
    citre-peek-use-dashes-as-horizontal-border t
   ))
 
+(advice-add #'citre-jump :around #'doom-set-jump-a)
+
 (map! :after cc-mode
       :map (c-mode-map c++-mode-map)
       :localleader

@@ -2837,6 +2837,12 @@ Configuration:
   ))
 #+end_src
 
+Now let's integrate citre-jump-back to xref-go-back. Doom way of course:
+
+#+begin_src emacs-lisp
+(advice-add #'citre-jump :around #'doom-set-jump-a)
+#+end_src
+
 Now create keybindings. "SPC m c" is not currently being used.
 
 #+begin_src emacs-lisp
