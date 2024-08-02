@@ -208,7 +208,6 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#map-unmap-keybinding][Map Unmap keybinding]]
   - [[#what-is-my-xxx][What is my xxx]]
 - [[#references][References]]
-  - [[#for-reading][FOR Reading]]
   - [[#todo-to-install-later][TODO: To Install Later]]
   - [[#general-emacs][General Emacs]]
   - [[#doom-emacs][Doom Emacs]]
@@ -4590,10 +4589,6 @@ A lot of manual configuration has been rendered moot by using Emacs Doom,
 which aggregates a well-maintained and organized collection of common configuration
 settings for performance optimization, package management, commonly used packages
 (e.g. Org) and much more.
-
-** FOR Reading
-
-- [[LambdaLand: My Top Emacs Packages][https://lambdaland.org/posts/2024-05-30_top_emacs_packages/]]
 
 ** TODO: To Install Later
 
