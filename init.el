@@ -44,7 +44,7 @@
  ;;(emoji +unicode)    ;
  ;;fill-column         ; a `fill-column' indicator
  ;;hl-todo               ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
- hydra
+ ;;;;;;; hydra           ; hydra already removed from doom
  indent-guides         ; highlighted indent columns
  ;;ligatures           ; ligatures and symbols to make your code pretty again
  ;;minimap             ; show a map of the code on the side
@@ -119,7 +119,7 @@
  ;;pass                  ; password manager for nerds
  ;;pdf                 ; pdf enhancements
  ;;prodigy             ; FIXME managing external services & code builders
- rgb                   ; creating color strings
+ ;;;;;;rgb                   ; creating color strings ; already removed from doom
  ;;taskrunner          ; taskrunner for all your projects
  ;;terraform           ; infrastructure as code
  ;;tmux                ; an API for interacting with tmux

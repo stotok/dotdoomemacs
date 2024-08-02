@@ -609,11 +609,6 @@
             (t (self-insert-command (or arg 1))))))
   (map! "%" 'zz/goto-match-paren))
 
-(add-hook 'after-init-hook
-           (lambda ()
-             (let ((file-name-handler-alist '(("\\.gpg\\(~\\|\\.~[0-9]+~\\)?\\'" . epa-file-handler))))
-               (load-file (expand-file-name "personal.el.gpg" doom-private-dir)))))
-
 (setenv "GPG_AGENT_INFO" nil)
 
 (setq auth-sources '((:source "~/.authinfo.gpg")) ; can have multiple sources
