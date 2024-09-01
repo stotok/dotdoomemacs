@@ -784,6 +784,10 @@ Current pattern: %`evil-mc-pattern
 
 (after! org (setq org-startup-folded 'fold))
 
+(after! org
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)")))))
+
 (add-hook! org-mode :append
            #'visual-line-mode)
 

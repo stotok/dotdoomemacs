@@ -2274,6 +2274,14 @@ Default folding is very noisy, rarely need to see everything expanded.
 (after! org (setq org-startup-folded 'fold))
 #+end_src
 
+Well, TODO and DONE alone are not enough.
+
+#+begin_src emacs-lisp
+(after! org
+  (setq org-todo-keywords
+        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)")))))
+#+end_src
+
 ** Org visual settings
 
 Enable visual line mode in Org mode by default.
