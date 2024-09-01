@@ -4600,8 +4600,9 @@ settings for performance optimization, package management, commonly used package
 
 ** TODO: To Install Later
 
-- [[https://github.com/emacs-citar/citar?tab=readme-ov-file][github: citar, completing read frond-end BibTeX, JSON, LaTeX, etc]]
+- github: [[https://github.com/emacs-citar/citar][Citar: completing read frond-end BibTeX, JSON, LaTeX, etc]]
 - [[https://emacsconf.org/2021/talks/research/][emacsconf: managing research workflow (bibliography, note-taking, arXiv)]]
+- github: [[https://github.com/pprevos/emacs-writing-studio][Emacs Writing Studio]]
 
 ** General Emacs
 
