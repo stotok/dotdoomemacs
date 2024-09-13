@@ -4357,22 +4357,18 @@ Ref:
 
 Enough is enough for memorizing too many default emacs's keybindings.
 
-<<NOTE>> Well, emacs segmentation fault on activating =casual-main-menu=.
-
-#+begin_src emacs-lisp :tangle no
-(package! casual
+#+begin_src emacs-lisp :tangle packages.el
+(package! casual-calc
   :recipe (:host github
-           :repo "kickingvegas/casual"))
+           :repo "kickingvegas/casual-calc"))
 #+end_src
 
-Configuration:
-#+begin_src emacs-lisp :tangle no
-(use-package! casual
+#+begin_src emacs-lisp
+(use-package! casual-calc
   :init
-  ;; code here will run immediately
-  :config
-  ;; code here will run after the package is loaded
-  :bind (:map calc-mode-map ("C-o" . 'casual-main-menu)))
+  :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)
+         :map calc-alg-map  ("C-o" . 'casual-calc-tmenu))
+  :after (calc))
 #+end_src
 
 * Tools

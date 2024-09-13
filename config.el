@@ -1534,6 +1534,12 @@ Current pattern: %`evil-mc-pattern
        "p" #'calc-copy-to-buffer ; same as SPC u p P
        ))
 
+(use-package! casual-calc
+  :init
+  :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)
+         :map calc-alg-map  ("C-o" . 'casual-calc-tmenu))
+  :after (calc))
+
 (when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist))
   (setq auto-mode-alist (cons '("dockerfile" . dockerfile-mode) auto-mode-alist)))
