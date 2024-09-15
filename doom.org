@@ -1623,7 +1623,8 @@ and braces.
 * Personal Info and GPG
 
 Ref:
-- [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
+- Mastering Emacs: [[https://www.masteringemacs.org/article/keeping-secrets-in-emacs-gnupg-auth-sources][Keeping Secrets in Emacs with GnuPG and Auth Sources]].
+- Magnus Random Stuff: [[https://magnus.therning.org/2024-09-01-improving-how-i-handle-secrets-in-my-work-notes.html][Improving how I handle secrets in my work notes]].
 
 <<personal_info_gpg>>
 This is used by GPG and other things.
@@ -2279,7 +2280,7 @@ Well, TODO and DONE alone are not enough.
 #+begin_src emacs-lisp
 (after! org
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)")))))
+        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)" "CANCEL(c)")))))
 #+end_src
 
 ** Org visual settings

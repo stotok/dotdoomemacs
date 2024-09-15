@@ -786,7 +786,7 @@ Current pattern: %`evil-mc-pattern
 
 (after! org
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)")))))
+        (quote ((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)" "CANCEL(c)")))))
 
 (add-hook! org-mode :append
            #'visual-line-mode)
