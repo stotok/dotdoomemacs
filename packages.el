@@ -126,6 +126,8 @@
 
 (package! graphviz-dot-mode)
 
+(package! ts)
+
 (package! casual-calc
   :recipe (:host github
            :repo "kickingvegas/casual-calc"))

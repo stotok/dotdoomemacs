@@ -1500,18 +1500,38 @@ Current pattern: %`evil-mc-pattern
   (setq company-global-modes '(not org-mode)))
 
 (setq world-clock-list
-      '( ;  TZNAME            LABEL
-        ("America/Chicago" "Deer Park")
-        ("Etc/UTC"         "UTC")
-        ("Europe/Berlin"   "Frankfurt")
-        ("Asia/Kolkata"    "Bangalore")
-        ("Asia/Singapore"  "Singapore")
-        ("Asia/Chongqing"  "Chongqing")
-        ("Asia/Tokyo"      "Tokyo")
-        ("Asia/Seoul"      "Seoul")
+      '( ;  TZNAME             LABEL
+        ("America/Mexico_City" "GDL")
+        ("America/Chicago"     "DPK") ; Deer Park
+        ("Etc/UTC"             "UTC")
+        ("Europe/Berlin"       "Frankfurt")
+        ("Asia/Kolkata"        "BGL") ; Bangalore
+        ("Asia/Singapore"      "SGP") ; Singapore
+        ("Asia/Chongqing"      "CHQ") ; Chongqing
+        ("Asia/Tokyo"          "Tokyo")
+        ("Asia/Seoul"          "Seoul")
         ))
 ;; Format of the display
 (setq world-clock-time-format "%a %d-%b-%Y %p %I:%M %Z") ; default: "%A %d %B %R %Z"
+
+(use-package! ts
+  :init
+  :config
+   (defun ttk/world-clock ()
+     (interactive)
+     (with-temp-buffer
+       (org-mode)
+       (save-excursion
+         (setq ots (org-timestamp ""))))
+     (setq-local diff (ts-diff (ts-fill (ts-parse-org ots)) (make-ts :unix 0))) ;; seconds since 1970
+     (setq value "")
+     (dolist (timedata world-clock-list)
+       (setq value (concat value
+                           (format-time-string
+                            "%a %d-%b-%Y %p %I:%M %Z"
+                            diff (car timedata))
+                            " " (car timedata) "\n")))
+     (insert value)))
 
 (when (modulep! :lang json)
   (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
