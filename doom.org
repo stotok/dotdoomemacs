@@ -4159,10 +4159,12 @@ Let's use our own function to display it.
      (dolist (timedata world-clock-list)
        (setq value (concat value
                            (format-time-string
-                            "%a %d-%b-%Y %p %I:%M %Z"
+                            "%a %d-%b-%Y %p %I:%M %z"
                             diff (car timedata))
                             " " (car timedata) "\n")))
-     (insert value)))
+     ;; (insert value)                     ; insert into current buffer at current cursor position
+     (display-message-or-buffer value)  ; shown in the echo area
+     ))
 #+end_src
 
 * Other Modes

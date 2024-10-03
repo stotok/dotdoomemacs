@@ -1528,10 +1528,12 @@ Current pattern: %`evil-mc-pattern
      (dolist (timedata world-clock-list)
        (setq value (concat value
                            (format-time-string
-                            "%a %d-%b-%Y %p %I:%M %Z"
+                            "%a %d-%b-%Y %p %I:%M %z"
                             diff (car timedata))
                             " " (car timedata) "\n")))
-     (insert value)))
+     ;; (insert value)                     ; insert into current buffer at current cursor position
+     (display-message-or-buffer value)  ; shown in the echo area
+     ))
 
 (when (modulep! :lang json)
   (setq auto-mode-alist (cons '("\\.[jJ][sS][oO][nN]$" . json-mode) auto-mode-alist)))
