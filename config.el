@@ -1501,13 +1501,13 @@ Current pattern: %`evil-mc-pattern
 
 (setq world-clock-list
       '( ;  TZNAME             LABEL
-        ("America/Mexico_City" "GDL")
-        ("America/Chicago"     "DPK") ; Deer Park
-        ("Etc/UTC"             "UTC")
-        ("Europe/Berlin"       "Frankfurt")
-        ("Asia/Kolkata"        "BGL") ; Bangalore
-        ("Asia/Singapore"      "SGP") ; Singapore
-        ("Asia/Chongqing"      "CHQ") ; Chongqing
+        ("America/Mexico_City" "GDL  ") ; Guadalajara
+        ("America/Chicago"     "DPK  ") ; Deer Park
+        ("Etc/UTC"             "UTC  ")
+        ("Europe/Berlin"       "FFM  ") ; Frankfurt
+        ("Asia/Kolkata"        "BGL  ") ; Bangalore
+        ("Asia/Singapore"      "SGP  ") ; Singapore
+        ("Asia/Chongqing"      "CHQ  ") ; Chongqing
         ("Asia/Tokyo"          "Tokyo")
         ("Asia/Seoul"          "Seoul")
         ))
@@ -1527,10 +1527,10 @@ Current pattern: %`evil-mc-pattern
      (setq value "")
      (dolist (timedata world-clock-list)
        (setq value (concat value
+                           (nth 1 timedata) " "
                            (format-time-string
                             "%a %d-%b-%Y %p %I:%M %z"
-                            diff (car timedata))
-                            " " (nth 1 timedata) "\n")))
+                            diff (car timedata)) "\n")))
      ;; (insert value)                     ; insert into current buffer at current cursor position
      (display-message-or-buffer value)  ; shown in the echo area
      ))
