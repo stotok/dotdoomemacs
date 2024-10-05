@@ -1530,7 +1530,7 @@ Current pattern: %`evil-mc-pattern
                            (format-time-string
                             "%a %d-%b-%Y %p %I:%M %z"
                             diff (car timedata))
-                            " " (car timedata) "\n")))
+                            " " (nth 1 timedata) "\n")))
      ;; (insert value)                     ; insert into current buffer at current cursor position
      (display-message-or-buffer value)  ; shown in the echo area
      ))
