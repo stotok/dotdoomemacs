@@ -1503,10 +1503,10 @@ Current pattern: %`evil-mc-pattern
       '( ;  TZNAME             LABEL
         ("America/Mexico_City" "GDL  ") ; Guadalajara
         ("America/Chicago"     "DPK  ") ; Deer Park
-        ("Etc/UTC"             "UTC  ")
+        ("Etc/UTC"             "-UTC-")
         ("Europe/Berlin"       "FFM  ") ; Frankfurt
         ("Asia/Kolkata"        "BGL  ") ; Bangalore
-        ("Asia/Singapore"      "SGP  ") ; Singapore
+        ("Asia/Singapore"      "SGP**") ; Singapore
         ("Asia/Chongqing"      "CHQ  ") ; Chongqing
         ("Asia/Tokyo"          "Tokyo")
         ("Asia/Seoul"          "Seoul")
