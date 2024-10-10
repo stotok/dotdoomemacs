@@ -216,6 +216,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#pipenv-1][=pipenv=]]
   - [[#latex-and-tikz][Latex and Tikz]]
   - [[#everything-else][Everything Else]]
+  - [[#ai][AI]]
 - [[#practice][Practice]]
   - [[#delete-n-lines-including-current-line][Delete n lines including current line]]
     - [[#with-avy][With avy]]
@@ -4703,6 +4704,11 @@ Ref:
 - [[https://monkey.org/~marius/unix-tools-hints.html][Hints for Writing Unix Tools]]
 - [[https://www.youtube.com/watch?v=ZWQPBoxbqw4][Youtube: Tips and Secrets to Shell Efficienty]]
 - [[https://skybert.net/mac-os-x/macos-as-unix-workstation-2022/][macOS as Unix Workstation 2022]]
+
+** AI
+
+- [[https://www.perplexity.ai/][Perplexcity]]
+- [[https://gemini.google.com][Gemini]]
 
 * Practice
 ** Delete n lines including current line
