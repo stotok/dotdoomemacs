@@ -120,6 +120,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#revealjs-presentations][Reveal.js presentations]]
   - [[#org-tree-slide][Org-tree-slide]]
   - [[#publishing-project][Publishing Project]]
+  - [[#organizing-a-book-in-org-mode][Organizing A Book In Org Mode]]
   - [[#anki-decks-with-orgmode][Anki Decks with Orgmode]]
   - [[#the-orgtbl-minor-mode][The Orgtbl Minor mode]]
   - [[#tableel][Table.el]]
@@ -2488,6 +2489,15 @@ Update: 03-May-2024. I'm now using org-theme. So, below is not necessary. Disabl
   (setq org-confirm-babel-evaluate nil)
   )
 #+end_src
+
+** Organizing A Book In Org Mode
+
+Reference:
+- [[https://medium.com/@lakshminp/publishing-a-book-using-org-mode-9e817a56d144][Publishing a book using org-mode]]
+- [[https://www.reddit.com/r/planetemacs/comments/1fv9uj3/pdf_a_quick_guide_on_writing_a_book_with_emacs/][(pdf) A quick guide on writing a book with emacs org-mode]]
+
+And this is list of things of writing with emacs:
+- [[https://github.com/thinkhuman/writingwithemacs][Emacs for Writing]]
 
 ** Anki Decks with Orgmode
 
