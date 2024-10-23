@@ -155,6 +155,10 @@
  ;; Controlling Buffer and Window Display
  ;; If you want to control where a buffer or window must appear, you must customize
  ;; display-buffer-alist
+ ;;
+ ;; this one for minibuffer and echo area
+ resize-mini-windows t                  ; this to make casual-calc height to grow
+ max-mini-window-height 0.5             ; default 0.25
  )
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
@@ -1556,10 +1560,12 @@ Current pattern: %`evil-mc-pattern
        "p" #'calc-copy-to-buffer ; same as SPC u p P
        ))
 
-(use-package! casual-calc
+(use-package! casual
   :init
-  :bind (:map calc-mode-map ("C-o" . 'casual-calc-tmenu)
-         :map calc-alg-map  ("C-o" . 'casual-calc-tmenu))
+  :bind (:map calc-mode-map  ("C-o" . 'casual-calc-tmenu)  ; calc
+         ;; :map calc-alg-map  ("C-o" . 'casual-calc-tmenu) ; calc
+         ;; :map dired-mode-map ("C-o" . 'casual-dired-tmenu) ; dired
+         )
   :after (calc))
 
 (when (modulep! :tools docker)

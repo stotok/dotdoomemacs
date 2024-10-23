@@ -128,9 +128,9 @@
 
 (package! ts)
 
-(package! casual-calc
+(package! casual
   :recipe (:host github
-           :repo "kickingvegas/casual-calc"))
+           :repo "kickingvegas/casual"))
 
 (package! dwim-shell-command
   :recipe (:host github
