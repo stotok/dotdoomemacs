@@ -158,7 +158,7 @@
  ;;
  ;; this one for minibuffer and echo area
  resize-mini-windows t                  ; this to make casual-calc height to grow
- max-mini-window-height 0.5             ; default 0.25
+ max-mini-window-height 0.75            ; default 0.25
  )
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
