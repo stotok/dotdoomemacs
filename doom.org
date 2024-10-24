@@ -1539,11 +1539,10 @@ Ref: [[https://tech.toryanderson.com/2020/07/03/emacs-tip-registers/][The Simple
 
 I'm using undo-fu and don't want to persist undo history across session.
 
-Ref: [[https://github.com/doomemacs/doomemacs/tree/master/modules/emacs/undo][Disabling persistent undo histor]].
+Ref: [[https://github.com/doomemacs/doomemacs/tree/master/modules/emacs/undo][Disabling persistent undo history]].
 
 #+begin_src emacs-lisp
-(when (modulep! :emacs undo
-                (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)))
+(remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
 #+end_src
 
 ** Key bindings

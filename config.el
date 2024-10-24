@@ -560,8 +560,7 @@
        "j" #'jump-to-register
        "s" #'copy-to-register))
 
-(when (modulep! :emacs undo
-                (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)))
+(remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
 
 (after! smartparens
   (defun zz/goto-match-paren (arg)
