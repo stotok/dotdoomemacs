@@ -157,8 +157,10 @@
  ;; display-buffer-alist
  ;;
  ;; this one for minibuffer and echo area
- resize-mini-windows t                  ; this to make casual-calc height to grow
- max-mini-window-height 0.75            ; default 0.25
+ resize-mini-windows 'grow-only        ; this to make casual-calc height to grow
+ max-mini-window-height 0.75           ; default 0.25
+ ;; looks like below do the trick for cacual-calc
+ window-min-height      8              ; min total height, in lines, of any window
  )
 
 (global-set-key [remap dabbrev-expand] 'hippie-expand)
