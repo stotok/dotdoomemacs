@@ -157,7 +157,7 @@
  ;; display-buffer-alist
  ;;
  ;; this one for minibuffer and echo area
- ;resize-mini-windows 'grow-only        ; this to make casual-calc height to grow
+ resize-mini-windows 'grow-only        ; this to make casual-calc height to grow
  max-mini-window-height 0.75           ; default 0.25
  ;; looks like below do the trick for cacual-calc
  ;window-min-height      8              ; min total height, in lines, of any window
@@ -1562,13 +1562,16 @@ Current pattern: %`evil-mc-pattern
        "p" #'calc-copy-to-buffer ; same as SPC u p P
        ))
 
-(use-package! casual
-  :init
-  :bind (:map calc-mode-map  ("C-o" . 'casual-calc-tmenu)  ; calc
-         ;; :map calc-alg-map  ("C-o" . 'casual-calc-tmenu) ; calc
-         ;; :map dired-mode-map ("C-o" . 'casual-dired-tmenu) ; dired
-         )
-  :after (calc))
+(map! :after calc
+      :map calc-mode-map
+       "C-o" #'casual-calc-tmenu        ; no need nv
+      :map calc-alg-map
+       "C-o" #'casual-calc-tmenu        ; no need nv
+)
+
+(map! :after dired
+      :map dired-mode-map
+      :nv "C-o" #'casual-dired-tmenu)   ; need nv
 
 (when (modulep! :tools docker)
   (setq auto-mode-alist (cons '("Dockerfile\\$" . dockerfile-mode) auto-mode-alist))

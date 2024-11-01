@@ -194,7 +194,7 @@ This is my Doom Emacs configuration, originally forked from [[https://github.com
   - [[#hms][HMS]]
     - [[#convert-minute-to-hhmmss][Convert Minute to HH:MM:SS]]
     - [[#convert-hhmmss-to-minute][Convert HH:MM:SS to Minute]]
-  - [[#casual---opinioted-procelain-for-emacs-calc][Casual - Opinioted procelain for emacs calc]]
+- [[#casual---opinioted-procelain-for-emacs-calc-dired-and-others][Casual - Opinioted procelain for emacs calc, dired and others]]
 - [[#tools][Tools]]
   - [[#docker][docker]]
   - [[#copy-full-path-of-current-buffer][Copy full path of current buffer]]
@@ -800,7 +800,7 @@ Other default preferences
  ;; display-buffer-alist
  ;;
  ;; this one for minibuffer and echo area
- ;resize-mini-windows 'grow-only        ; this to make casual-calc height to grow
+ resize-mini-windows 'grow-only        ; this to make casual-calc height to grow
  max-mini-window-height 0.75           ; default 0.25
  ;; looks like below do the trick for cacual-calc
  ;window-min-height      8              ; min total height, in lines, of any window
@@ -4400,7 +4400,7 @@ Result: 6000 secs = 133 hour 19 min 60 sec
    : 60 RET /
    8000 s
 
-** Casual - Opinioted procelain for emacs calc
+* Casual - Opinioted procelain for emacs calc, dired and others
 
 Ref:
 - [[http://yummymelon.com/devnull/announcing-casual-an-opinionated-porcelain-for-emacs-calc.html][Announcing Casual - An opinioated procelain for Emacs Calc]]
@@ -4416,14 +4416,21 @@ Enough is enough for memorizing too many default emacs's keybindings.
            :repo "kickingvegas/casual"))
 #+end_src
 
+For Calc:
 #+begin_src emacs-lisp
-(use-package! casual
-  :init
-  :bind (:map calc-mode-map  ("C-o" . 'casual-calc-tmenu)  ; calc
-         ;; :map calc-alg-map  ("C-o" . 'casual-calc-tmenu) ; calc
-         ;; :map dired-mode-map ("C-o" . 'casual-dired-tmenu) ; dired
-         )
-  :after (calc))
+(map! :after calc
+      :map calc-mode-map
+       "C-o" #'casual-calc-tmenu        ; no need nv
+      :map calc-alg-map
+       "C-o" #'casual-calc-tmenu        ; no need nv
+)
+#+end_src
+
+For Dired:
+#+begin_src emacs-lisp
+(map! :after dired
+      :map dired-mode-map
+      :nv "C-o" #'casual-dired-tmenu)   ; need nv
 #+end_src
 
 * Tools
