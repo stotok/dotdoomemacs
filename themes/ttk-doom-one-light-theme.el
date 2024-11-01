@@ -133,7 +133,9 @@ Can be an integer to determine the exact padding."
 
   ;;;; Base theme face overrides
   (((font-lock-comment-face &override)
-    :background (if doom-one-light-brighter-comments base0))
+    :background (if doom-one-light-brighter-comments
+                    base0
+                  'unspecified))
    ((font-lock-doc-face &override) :slant 'italic)
    ((line-number &override) :foreground (doom-lighten base4 0.15))
    ((line-number-current-line &override) :foreground base8)
@@ -148,7 +150,8 @@ Can be an integer to determine the exact padding."
    (shadow :foreground base4)
    (tooltip :background base1 :foreground fg)
 
-   (hl-line :background nil)            ; totok only wants underline
+   ;;;; (hl-line :background nil)            ; totok only wants underline
+   (hl-line :background 'unspecified)            ; totok only wants underline (emacs 29)
 
    ;;;; centaur-tabs
    (centaur-tabs-unselected :background bg-alt :foreground base4)
@@ -209,7 +212,9 @@ Can be an integer to determine the exact padding."
    (wgrep-face :background base1)
    ;;;; whitespace
    ((whitespace-tab &override)         :background (unless (default-value 'indent-tabs-mode) base0))
-   ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode) base0)))
+   ((whitespace-indentation &override) :background (if (default-value 'indent-tabs-mode)
+                                                       base0
+                                                     'unspecified)))
 
   ;;;; Base theme variable overrides-
   ()

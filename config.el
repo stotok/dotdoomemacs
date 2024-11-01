@@ -562,7 +562,8 @@
        "j" #'jump-to-register
        "s" #'copy-to-register))
 
-(remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
+(after! undo-fu
+ (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode))
 
 (after! smartparens
   (defun zz/goto-match-paren (arg)
