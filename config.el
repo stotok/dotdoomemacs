@@ -61,10 +61,9 @@
 (defconst IS-IGL7568W (string-prefix-p "IGL7568W" (system-name) t))
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
-(defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
-(defconst IS-COVID    (string-prefix-p "covid"    (system-name) t))
-(defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
+(defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
+(defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
 (defconst IS-DEDUN    (string-prefix-p "dedun"    (system-name) t))
 (defconst IS-REX      (string-prefix-p "rex"      (system-name) t))
@@ -79,8 +78,6 @@
   (message "hostname: igd0464u"))
  (IS-OMICRON
   (message "hostname: omicron"))
- (IS-COVID
-  (message "hostname: covid"))
  (IS-ERIS
   (message "hostname: eris"))
  (IS-VDI1039
@@ -361,10 +358,6 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
- (IS-COVID
-  (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
-        doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
-        doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
  (IS-IGD1943U
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
@@ -420,8 +413,6 @@
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
-   (IS-COVID
-    (setq doom-theme 'ttk-doom-solarized-light))
    (IS-ERIS
     (setq doom-theme 'ttk-doom-one-light))
    (IS-HORUS
