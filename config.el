@@ -65,7 +65,6 @@
 (defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
-(defconst IS-DEDUN    (string-prefix-p "dedun"    (system-name) t))
 (defconst IS-REX      (string-prefix-p "rex"      (system-name) t))
 (defconst IS-HAMM     (string-prefix-p "hamm"     (system-name) t))
 ;; print hostname
@@ -84,8 +83,6 @@
   (message "hostname: igvmf02d1039vdi"))
  (IS-HORUS
   (message "hostname: horus"))
- (IS-DEDUN
-  (message "hostname: dedun"))
  (IS-REX
   (message "hostname: rex"))
  (IS-HAMM
@@ -382,10 +379,6 @@
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 20)
         doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)))
- (IS-DEDUN
-  (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
-        doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
-        doom-big-font            (font-spec :family "Ubuntu Mono" :size 32)))
  (IS-REX
   (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
         doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
@@ -416,8 +409,6 @@
    (IS-ERIS
     (setq doom-theme 'ttk-doom-one-light))
    (IS-HORUS
-    (setq doom-theme 'ttk-doom-one-light))
-   (IS-DEDUN
     (setq doom-theme 'ttk-doom-one-light))
    (IS-REX
     (setq doom-theme 'ttk-doom-one-light))
