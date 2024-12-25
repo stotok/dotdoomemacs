@@ -68,6 +68,7 @@
 (defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
 (defconst IS-DEDUN    (string-prefix-p "dedun"    (system-name) t))
 (defconst IS-REX      (string-prefix-p "rex"      (system-name) t))
+(defconst IS-HAMM     (string-prefix-p "hamm"     (system-name) t))
 ;; print hostname
 (cond
  (IS-IGL7568W
@@ -90,6 +91,8 @@
   (message "hostname: dedun"))
  (IS-REX
   (message "hostname: rex"))
+ (IS-HAMM
+  (message "hostname: hamm"))
  (t
   (message "hostname: unknown")))
 
@@ -394,6 +397,10 @@
   (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
         doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
         doom-big-font            (font-spec :family "Ubuntu Mono" :size 32)))
+ (IS-HAMM
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (t
   (setq doom-font                (font-spec :family "monospace" :size 20)
         doom-variable-pitch-font (font-spec :family "monospace" :size 20)
@@ -422,6 +429,8 @@
    (IS-DEDUN
     (setq doom-theme 'ttk-doom-one-light))
    (IS-REX
+    (setq doom-theme 'ttk-doom-one-light))
+   (IS-HAMM
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
