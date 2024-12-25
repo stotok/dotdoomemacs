@@ -62,7 +62,6 @@
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
-(defconst IS-OMICRON  (string-prefix-p "omicron"  (system-name) t))
 (defconst IS-ERIS     (string-prefix-p "eris"     (system-name) t))
 (defconst IS-HORUS    (string-prefix-p "horus"    (system-name) t))
 (defconst IS-REX      (string-prefix-p "rex"      (system-name) t))
@@ -75,8 +74,6 @@
   (message "hostname: igd1943u"))
  (IS-IGD0464U
   (message "hostname: igd0464u"))
- (IS-OMICRON
-  (message "hostname: omicron"))
  (IS-ERIS
   (message "hostname: eris"))
  (IS-VDI1039
@@ -351,10 +348,6 @@
 (add-to-list '+doom-dashboard-functions 'ttk/quotes t)
 
 (cond
- (IS-OMICRON
-  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
-        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
-        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 18)))
  (IS-IGD1943U
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
@@ -398,7 +391,7 @@
   )
   ;; select theme
   (cond
-   ((or IS-OMICRON IS-IGD0464U)
+   (IS-IGD0464U
     (setq doom-theme 'ttk-doom-solarized-light))
    (IS-IGL7568W
     (setq doom-theme 'ttk-doom-one-light))
@@ -410,9 +403,7 @@
     (setq doom-theme 'ttk-doom-one-light))
    (IS-HORUS
     (setq doom-theme 'ttk-doom-one-light))
-   (IS-REX
-    (setq doom-theme 'ttk-doom-one-light))
-   (IS-HAMM
+   ((or IS-REX IS-HAMM)
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
