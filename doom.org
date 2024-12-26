@@ -3124,7 +3124,9 @@ not from magit, and it's already in melpa. But I prefer latest:
     (blamer-show-avatar-p nil)
     (blamer-enable-async-execution-p nil) ; this is the culprit. Must be nil !!!
   :config
-    (global-blamer-mode 1))
+    ;; (global-blamer-mode 1)              ; enable
+    (global-blamer-mode -1)             ; disable
+ )
 #+end_src
 
 ** Forge

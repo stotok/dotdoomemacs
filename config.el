@@ -1039,7 +1039,9 @@ Current pattern: %`evil-mc-pattern
     (blamer-show-avatar-p nil)
     (blamer-enable-async-execution-p nil) ; this is the culprit. Must be nil !!!
   :config
-    (global-blamer-mode 1))
+    ;; (global-blamer-mode 1)              ; enable
+    (global-blamer-mode -1)             ; disable
+ )
 
 (defun ttk-project-override (dir)
   (let ((override (locate-dominating-file dir ".project.el")))
