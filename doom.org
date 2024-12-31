@@ -1122,9 +1122,10 @@ Show random quote:
 
 My favourite fonts:
 
-+ [[https://input.fontbureau.com][Input]].
-+ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]].
++ [[https://input.fontbureau.com][Input]]
++ [[https://fonts.google.com/specimen/Roboto+Mono][Roboto Mono]]
 + [[https://typeof.net/Iosevka/][Iosevka]] and [[https://github.com/be5invis/Iosevka][Installation Guide]]. Also [[https://github.com/be5invis/Iosevka][Iosevka on GitHub]].
++ [[https://www.rahuljuliato.com/posts/nerd-fonts][Nerd Fonts Installer]]. Also [[https://www.nerdfonts.com/][Nerd Fonts on GitHub]].
 
 On MacOS
 #+begin_example
