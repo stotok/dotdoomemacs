@@ -1333,6 +1333,17 @@ Current pattern: %`evil-mc-pattern
         lsp-signature-render-documentation nil ; signature help documentation
         ;;
         xref-prompt-for-identifier t           ; prompt if no identifier
+
+        ;;
+        ;; for lua language server
+        ;; how to install lua-language-server, compile from the source.
+        ;; ref: https://github.com/LuaLS/lua-language-server
+        ;;
+        lsp-clients-lua-language-server-install-dir (f-join (getenv "HOME") "project/lua-language-server/")
+        lsp-clients-lua-language-server-bin (f-join lsp-clients-lua-language-server-install-dir "bin/lua-language-server")
+        lsp-clients-lua-language-server-main-location (f-join lsp-clients-lua-language-server-install-dir "bin/main.lua")
+        lsp-lua-workspace-max-preload 2048 ; default: 300, Max preloaded files
+        lsp-lua-workspace-preload-file-size 1024 ; default: 100. Skip files larger than this value (KB) when preloading
    )
   ;;
   ;; For python, you need to add :lang (python +lsp)
@@ -1354,7 +1365,7 @@ Current pattern: %`evil-mc-pattern
             "[/\\\\]\\err\\'"
             "[/\\\\]\\lst\\'"
             "[/\\\\]\\opt\\'"
-            "[/\\\\]\\out\\'"
+
             "[/\\\\]\\tmp\\'"
             "[/\\\\]\\.cache\\'" ; clangd index
             "[/\\\\]\\.clangd\\'" ; clangd index

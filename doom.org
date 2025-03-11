@@ -599,7 +599,7 @@ Reference:
  (latex +latexmk)      ; writing papers in Emacs has never been so fun
  ;;lean
  ;;ledger              ; an accounting system in Emacs
- (lua +tree-sitter)    ; one-based indices? one-based indices
+ (lua +lsp +tree-sitter)                ; one-based indices? one-based indices
  ;;markdown              ; writing docs for people to ignore
  ;;nim                 ; python + lisp at the speed of c
  ;;nix                 ; I hereby declare "nix geht mehr!"
@@ -3815,6 +3815,17 @@ The world is moving towards [[https://langserver.org/][Language Server Protocol]
         lsp-signature-render-documentation nil ; signature help documentation
         ;;
         xref-prompt-for-identifier t           ; prompt if no identifier
+
+        ;;
+        ;; for lua language server
+        ;; how to install lua-language-server, compile from the source.
+        ;; ref: https://github.com/LuaLS/lua-language-server
+        ;;
+        lsp-clients-lua-language-server-install-dir (f-join (getenv "HOME") "project/lua-language-server/")
+        lsp-clients-lua-language-server-bin (f-join lsp-clients-lua-language-server-install-dir "bin/lua-language-server")
+        lsp-clients-lua-language-server-main-location (f-join lsp-clients-lua-language-server-install-dir "bin/main.lua")
+        lsp-lua-workspace-max-preload 2048 ; default: 300, Max preloaded files
+        lsp-lua-workspace-preload-file-size 1024 ; default: 100. Skip files larger than this value (KB) when preloading
    )
   ;;
   ;; For python, you need to add :lang (python +lsp)
@@ -3840,7 +3851,7 @@ File watchers: [[https://emacs-lsp.github.io/lsp-mode/page/file-watchers/][see t
             "[/\\\\]\\err\\'"
             "[/\\\\]\\lst\\'"
             "[/\\\\]\\opt\\'"
-            "[/\\\\]\\out\\'"
+
             "[/\\\\]\\tmp\\'"
             "[/\\\\]\\.cache\\'" ; clangd index
             "[/\\\\]\\.clangd\\'" ; clangd index
