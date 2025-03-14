@@ -62,7 +62,7 @@
 (defconst IS-IGD1943U (string-prefix-p "igd1943u" (system-name) t))
 (defconst IS-IGD0464U (string-prefix-p "igd0464u" (system-name) t))
 (defconst IS-VDI1039  (string-prefix-p "igvmf02d1039vdi" (system-name) t))
-(defconst IS-REX      (string-prefix-p "rex"      (system-name) t))
+(defconst IS-REXX     (string-prefix-p "rexx"     (system-name) t))
 (defconst IS-HAMM     (string-prefix-p "hamm"     (system-name) t))
 ;; print hostname
 (cond
@@ -74,8 +74,8 @@
   (message "hostname: igd0464u"))
  (IS-VDI1039
   (message "hostname: igvmf02d1039vdi"))
- (IS-REX
-  (message "hostname: rex"))
+ (IS-REXX
+  (message "hostname: rexx"))
  (IS-HAMM
   (message "hostname: hamm"))
  (t
@@ -358,10 +358,10 @@
   (setq doom-font                (font-spec :family "Input Mono Condensed" :size 12)
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
         doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
- (IS-REX
-  (setq doom-font                (font-spec :family "Ubuntu Mono" :size 24)
-        doom-variable-pitch-font (font-spec :family "Ubuntu Mono" :size 24)
-        doom-big-font            (font-spec :family "Ubuntu Mono" :size 32)))
+ (IS-REXX
+  (setq doom-font                (font-spec :family "JetBrainsMono Nerd Font" :size 24)
+        doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 24)
+        doom-big-font            (font-spec :family "JetBrainsMono Nerd Font" :size 32)))
  (IS-HAMM
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
@@ -385,7 +385,7 @@
     (setq doom-theme 'ttk-doom-one-light))
    (IS-IGD1943U
     (setq doom-theme 'ttk-doom-one-light))
-   ((or IS-REX IS-HAMM)
+   ((or IS-REXX IS-HAMM)
     (setq doom-theme 'ttk-doom-one-light))
    (t
     (setq doom-theme 'ttk-doom-zenburn)))
