@@ -359,9 +359,9 @@
         doom-variable-pitch-font (font-spec :family "Input Mono Condensed" :size 12)
         doom-big-font            (font-spec :family "Input Mono Condensed" :size 18)))
  (IS-REXX
-  (setq doom-font                (font-spec :family "JetBrainsMono Nerd Font" :size 24)
-        doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 24)
-        doom-big-font            (font-spec :family "JetBrainsMono Nerd Font" :size 32)))
+  (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)
+        doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 24)
+        doom-big-font            (font-spec :family "Iosevka Fixed SS04 MdEx" :size 28)))
  (IS-HAMM
   (setq doom-font                (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
         doom-variable-pitch-font (font-spec :family "Iosevka Fixed SS04 MdEx" :size 12)
@@ -1339,6 +1339,16 @@ Current pattern: %`evil-mc-pattern
         ;; how to install lua-language-server, compile from the source.
         ;; ref: https://github.com/LuaLS/lua-language-server
         ;;
+        ;; ref: https://github.com/luals/lua-language-server/wiki/Getting-Started
+        ;; Step-1: Install ninja
+        ;;    $ sudo apt install -y ninja-build
+        ;; Step-2: Ensure you have C++17
+        ;;    $ gcc -v --help 2> /dev/null | sed -n '/^ *-std=\([^<][^ ]\+\).*/ {s//\1/p}'
+        ;;    c++17
+        ;; Step-3: $ cd ~/project/
+        ;; Step-4: $ git clone https://github.com/LuaLS/lua-language-server
+        ;; Step-5: $ cd lua-language-server
+        ;; Step-6: $ ./make.sh
         lsp-clients-lua-language-server-install-dir (f-join (getenv "HOME") "project/lua-language-server/")
         lsp-clients-lua-language-server-bin (f-join lsp-clients-lua-language-server-install-dir "bin/lua-language-server")
         lsp-clients-lua-language-server-main-location (f-join lsp-clients-lua-language-server-install-dir "bin/main.lua")
