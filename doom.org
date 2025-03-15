@@ -1145,6 +1145,14 @@ $ sudo mkdir /usr/local/share/fonts/iosevka-font
 $ sudo mv IosevkaSS04.ttc /usr/local/share/fonts/iosevka-font/
 $ sudo chown root:staff /usr/local/share/fonts/iosevka-font/IosevkaSS04.ttc
 $ sudo fc-cache -fv
+
+$ cd ~/Downloads
+$ wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
+$ unzip JetBrainsMono.zip -d JetBrainsMono
+  it will extract many ttf files into folder: JetBrainsMono
+$ sudo mv JetBrainsMono /usr/local/share/fonts/
+$ sudo chown root:staff /usr/local/share/fonts/JetBrainsMono
+$ sudo fc-cache -fv
 #+end_example
 
 To list available fonts in linux:
